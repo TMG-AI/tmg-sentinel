@@ -130,7 +130,7 @@ export interface TMGClient {
   added_at: string;
 }
 
-export const TEAM_MEMBERS = ["Jim", "Ben", "Tara"] as const;
+export const TEAM_MEMBERS = ["Liza", "Jim", "Ben", "Tara"] as const;
 
 export const ENGAGEMENT_LABELS: Record<EngagementType, string> = {
   fara_foreign_political: "FARA-Registerable Foreign Political Work",
