@@ -297,6 +297,26 @@ export default function VettingDetail() {
         </div>
       )}
 
+      {/* Sources */}
+      {result?.sources && result.sources.length > 0 && (
+        <div className="glass-card p-6 mb-6">
+          <h2 className="section-title flex items-center gap-2"><ExternalLink className="w-4 h-4" /> Sources ({result.sources.length})</h2>
+          <div className="space-y-2">
+            {[...result.sources].sort((a, b) => b.score - a.score).map((src) => (
+              <div key={src.id} className="flex items-center gap-3 p-2.5 rounded-lg bg-muted text-sm">
+                <span className="text-xs font-mono text-muted-foreground w-6 text-right flex-shrink-0">{src.id}</span>
+                <a href={src.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline truncate flex-1">
+                  {src.title}
+                </a>
+                <Badge variant="outline" className="text-xs flex-shrink-0 bg-primary/5 text-primary border-primary/20">
+                  {(src.score * 100).toFixed(0)}%
+                </Badge>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Evidence Accordion */}
       {dimensions && !gatesFailed && (
         <div className="glass-card p-6 mb-6">
