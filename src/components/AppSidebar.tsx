@@ -24,19 +24,18 @@ const navItems = [
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
-  const location = useLocation();
 
   return (
-    <Sidebar collapsible="icon" className="border-r-0">
+    <Sidebar collapsible="icon" className="border-r border-border bg-card">
       <SidebarHeader className="p-4 pb-6">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-md bg-sidebar-accent flex items-center justify-center flex-shrink-0">
-            <Shield className="w-4 h-4 text-sidebar-primary" />
+          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
+            <Shield className="w-4 h-4 text-primary-foreground" />
           </div>
           {!collapsed && (
             <div className="flex flex-col min-w-0">
-              <span className="text-sm font-bold text-sidebar-primary tracking-tight leading-none">The Messina Group</span>
-              <span className="text-xs text-sidebar-muted mt-0.5">Client Vetting System</span>
+              <span className="text-sm font-bold text-foreground tracking-tight leading-none">The Messina Group</span>
+              <span className="text-xs text-muted-foreground mt-0.5">Client Vetting System</span>
             </div>
           )}
         </div>
@@ -52,8 +51,8 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       end={item.url === "/"}
-                      className="flex items-center gap-3 px-3 py-2 rounded-md text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
-                      activeClassName="bg-sidebar-accent text-sidebar-accent-foreground font-medium"
+                      className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                      activeClassName="bg-primary/8 text-primary font-medium"
                     >
                       <item.icon className="w-4 h-4 flex-shrink-0" />
                       {!collapsed && <span className="text-sm">{item.title}</span>}
@@ -68,7 +67,7 @@ export function AppSidebar() {
 
       <SidebarFooter className="p-4">
         {!collapsed && (
-          <div className="text-xs text-sidebar-muted">
+          <div className="text-xs text-muted-foreground">
             TMG Vetting v1.0
           </div>
         )}

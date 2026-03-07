@@ -88,7 +88,7 @@ export default function VettingDetail() {
   return (
     <div className="page-container max-w-5xl">
       {/* Back */}
-      <button onClick={() => navigate(-1)} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
+      <button onClick={() => navigate(-1)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4" /> Back
       </button>
 
@@ -98,7 +98,7 @@ export default function VettingDetail() {
           <div className="flex-1">
             <h1 className="text-3xl font-bold text-foreground mb-3">{v.subject_name}</h1>
             <div className="flex items-center gap-2 flex-wrap mb-3">
-              <Badge variant="outline" className={v.subject_type === "individual" ? "bg-[hsl(var(--domestic-political)/0.1)] text-[hsl(var(--domestic-political))] border-[hsl(var(--domestic-political)/0.2)]" : "bg-purple-50 text-purple-600 border-purple-200"}>
+              <Badge variant="outline" className={v.subject_type === "individual" ? "bg-[hsl(var(--domestic-political)/0.08)] text-[hsl(var(--domestic-political))] border-[hsl(var(--domestic-political)/0.15)]" : "bg-[hsl(var(--accent)/0.08)] text-[hsl(var(--accent))] border-[hsl(var(--accent)/0.15)]"}>
                 {v.subject_type === "individual" ? "Individual" : "Organization"}
               </Badge>
               <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${getEngagementClass(v.engagement_type)}`}>
@@ -168,7 +168,7 @@ export default function VettingDetail() {
       {gates && (
         <div className="mb-6">
           {gatesFailed && (
-            <div className="risk-badge-critical p-4 rounded-lg mb-4 flex items-center gap-3">
+            <div className="risk-badge-critical p-4 rounded-xl mb-4 flex items-center gap-3">
               <Skull className="w-6 h-6 flex-shrink-0" />
               <div>
                 <p className="font-bold text-sm">AUTO-REJECTED — {gates.sanctions.status === "FAIL" ? "Sanctions" : "Debarment"} match found</p>
@@ -187,17 +187,17 @@ export default function VettingDetail() {
       {dimensions && !gatesFailed && dimensionOrder.length > 0 && (
         <div className="glass-card p-6 mb-6">
           <h2 className="section-title">Risk Dimension Scorecard</h2>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {dimensionOrder.map(([key, dim]) => (
               <div key={key}>
-                <div className="flex items-center justify-between mb-1">
+                <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-medium text-foreground">{DIMENSION_LABELS[key] || key}</span>
                     <span className="text-xs text-muted-foreground">({(dim.weight * 100).toFixed(0)}%)</span>
                   </div>
                   <span className="text-sm font-bold text-foreground">{dim.score.toFixed(1)}</span>
                 </div>
-                <div className="w-full h-2.5 rounded-full bg-muted overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                   <div className={`h-full rounded-full transition-all ${getScoreBarColor(dim.score)}`} style={{ width: `${(dim.score / 10) * 100}%` }} />
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">{dim.summary}</p>
@@ -212,15 +212,15 @@ export default function VettingDetail() {
         <div className="glass-card p-6 mb-6">
           <h2 className="section-title">Scoring Modifiers</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div className="p-3 rounded-lg bg-secondary">
+            <div className="p-4 rounded-xl bg-muted">
               <p className="font-medium text-foreground mb-1">Confidence</p>
               <p className="text-xs text-muted-foreground">{scoring.confidence_modifier === "none" ? "HIGH confidence — score used as-is" : `${scoring.confidence_modifier} applied`}</p>
             </div>
-            <div className="p-3 rounded-lg bg-secondary">
+            <div className="p-4 rounded-xl bg-muted">
               <p className="font-medium text-foreground mb-1">Engagement Context</p>
               <p className="text-xs text-muted-foreground">{scoring.engagement_multiplier}x multiplier{scoring.engagement_multiplier !== 1 ? ` (${scoring.raw_composite.toFixed(2)} → ${scoring.adjusted_composite.toFixed(2)})` : ""}</p>
             </div>
-            <div className="p-3 rounded-lg bg-secondary">
+            <div className="p-4 rounded-xl bg-muted">
               <p className="font-medium text-foreground mb-1">Final Score</p>
               <p className="text-xs text-muted-foreground">{scoring.final_composite.toFixed(2)} → {scoring.risk_tier}</p>
             </div>
@@ -236,11 +236,11 @@ export default function VettingDetail() {
             <div>
               <h3 className="text-xs font-semibold text-destructive uppercase mb-2">Red Flags ({flags.red.length})</h3>
               {flags.red.length === 0 ? (
-                <p className="text-xs text-muted-foreground p-3 bg-secondary rounded-lg">No red flags</p>
+                <p className="text-xs text-muted-foreground p-3 bg-muted rounded-xl">No red flags</p>
               ) : (
                 <div className="space-y-2">
                   {flags.red.map((f, i) => (
-                    <div key={i} className="p-3 rounded-lg border border-destructive/20 bg-destructive/5">
+                    <div key={i} className="p-3 rounded-xl border border-destructive/15 bg-[hsl(var(--destructive)/0.04)]">
                       <div className="flex items-center gap-2 mb-1">
                         <AlertTriangle className="w-3.5 h-3.5 text-destructive" />
                         <span className="text-sm font-medium text-foreground">{f.title}</span>
@@ -255,11 +255,11 @@ export default function VettingDetail() {
             <div>
               <h3 className="text-xs font-semibold text-[hsl(var(--risk-moderate))] uppercase mb-2">Yellow Flags ({flags.yellow.length})</h3>
               {flags.yellow.length === 0 ? (
-                <p className="text-xs text-muted-foreground p-3 bg-secondary rounded-lg">No yellow flags</p>
+                <p className="text-xs text-muted-foreground p-3 bg-muted rounded-xl">No yellow flags</p>
               ) : (
                 <div className="space-y-2">
                   {flags.yellow.map((f, i) => (
-                    <div key={i} className="p-3 rounded-lg border border-[hsl(var(--risk-moderate)/0.2)] bg-[hsl(var(--risk-moderate)/0.05)]">
+                    <div key={i} className="p-3 rounded-xl border border-[hsl(var(--risk-moderate)/0.15)] bg-[hsl(var(--risk-moderate)/0.04)]">
                       <div className="flex items-center gap-2 mb-1">
                         <AlertTriangle className="w-3.5 h-3.5 text-[hsl(var(--risk-moderate))]" />
                         <span className="text-sm font-medium text-foreground">{f.title}</span>
@@ -275,7 +275,7 @@ export default function VettingDetail() {
         </div>
       )}
       {flags && flags.red.length === 0 && flags.yellow.length === 0 && (
-        <div className="glass-card p-4 mb-6 flex items-center gap-3 bg-[hsl(var(--risk-low)/0.05)] border-[hsl(var(--risk-low)/0.2)]">
+        <div className="glass-card p-4 mb-6 flex items-center gap-3 bg-[hsl(var(--risk-low)/0.04)] border-[hsl(var(--risk-low)/0.15)]">
           <CheckCircle className="w-5 h-5 text-risk-low flex-shrink-0" />
           <span className="text-sm text-foreground font-medium">No flags identified</span>
         </div>
@@ -313,7 +313,7 @@ export default function VettingDetail() {
                   ) : (
                     <div className="space-y-2">
                       {dim.evidence.map((ev, i) => (
-                        <div key={i} className="p-3 rounded bg-secondary text-sm">
+                        <div key={i} className="p-3 rounded-lg bg-muted text-sm">
                           <p className="text-foreground">{ev.text}</p>
                           <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
                             <span>{ev.source}</span>
@@ -367,7 +367,7 @@ export default function VettingDetail() {
                 </span>
               </div>
               {v.decision_notes && (
-                <div className="p-3 rounded bg-secondary text-sm text-muted-foreground mb-4">{v.decision_notes}</div>
+                <div className="p-3 rounded-lg bg-muted text-sm text-muted-foreground mb-4">{v.decision_notes}</div>
               )}
               <Button variant="outline" size="sm" onClick={handleReopen}>Reopen Vetting</Button>
             </div>
@@ -405,6 +405,7 @@ export default function VettingDetail() {
               onChange={(e) => setDecisionNotes(e.target.value)}
               placeholder="Explain the rationale for this decision..."
               rows={4}
+              className="bg-background"
             />
             {(pendingDecision === "conditionally_approved" || pendingDecision === "rejected") && !decisionNotes.trim() && (
               <p className="text-xs text-destructive mt-1">Notes are required for this decision type.</p>
@@ -432,14 +433,14 @@ function GateCard({ title, gate }: { title: string; gate: { status: "PASS" | "FA
       <div className="flex items-center gap-2 mb-2">
         {pass ? <CheckCircle className="w-5 h-5 text-risk-low" /> : <XCircle className="w-5 h-5 text-destructive" />}
         <span className="font-semibold text-sm text-foreground">{title}</span>
-        <span className={`text-xs font-bold px-2 py-0.5 rounded ${pass ? "bg-[hsl(var(--risk-low)/0.12)] text-risk-low" : "bg-destructive/10 text-destructive"}`}>
+        <span className={`text-xs font-bold px-2 py-0.5 rounded ${pass ? "bg-[hsl(var(--risk-low)/0.10)] text-risk-low" : "bg-destructive/10 text-destructive"}`}>
           {gate.status}
         </span>
       </div>
       {!pass && gate.matches.length > 0 && (
         <div className="space-y-1 mb-2">
           {gate.matches.map((m: any, i: number) => (
-            <div key={i} className="text-xs p-2 rounded bg-destructive/5 border border-destructive/10">
+            <div key={i} className="text-xs p-2 rounded-lg bg-[hsl(var(--destructive)/0.04)] border border-destructive/10">
               <p className="font-medium text-destructive">{m.list}: {m.matched_name} ({m.confidence}% match)</p>
               <p className="text-muted-foreground mt-0.5">{m.details}</p>
             </div>

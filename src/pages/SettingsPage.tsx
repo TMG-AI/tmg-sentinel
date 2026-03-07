@@ -59,10 +59,10 @@ export default function SettingsPage() {
 
             <div className="flex items-end gap-3 mb-6">
               <div className="flex-1">
-                <Input placeholder="Client name" value={newName} onChange={(e) => setNewName(e.target.value)} />
+                <Input placeholder="Client name" value={newName} onChange={(e) => setNewName(e.target.value)} className="bg-background" />
               </div>
               <div className="flex-1">
-                <Input placeholder="Industry" value={newIndustry} onChange={(e) => setNewIndustry(e.target.value)} />
+                <Input placeholder="Industry" value={newIndustry} onChange={(e) => setNewIndustry(e.target.value)} className="bg-background" />
               </div>
               <Button onClick={addClient} disabled={!newName.trim()} size="sm">
                 <Plus className="w-4 h-4 mr-1" /> Add
@@ -86,7 +86,7 @@ export default function SettingsPage() {
                     <TableCell>
                       <button onClick={() => toggleActive(c.id)}>
                         {c.active ? (
-                          <Badge variant="outline" className="bg-[hsl(var(--risk-low)/0.1)] text-risk-low border-risk-low/20 cursor-pointer">
+                          <Badge variant="outline" className="bg-[hsl(var(--risk-low)/0.08)] text-risk-low border-[hsl(var(--risk-low)/0.15)] cursor-pointer">
                             <CheckCircle className="w-3 h-3 mr-1" /> Active
                           </Badge>
                         ) : (
@@ -116,10 +116,9 @@ export default function SettingsPage() {
                 { name: "Jim", role: "Admin / Reviewer" },
                 { name: "Ben", role: "Reviewer" },
                 { name: "Tara", role: "Reviewer" },
-                { name: "Shannon", role: "Reviewer" },
                 { name: "Admin", role: "Admin" },
               ].map((m) => (
-                <div key={m.name} className="flex items-center justify-between p-3 rounded-lg bg-secondary">
+                <div key={m.name} className="flex items-center justify-between p-3 rounded-xl bg-muted">
                   <div>
                     <span className="font-medium text-sm text-foreground">{m.name}</span>
                   </div>
@@ -134,7 +133,7 @@ export default function SettingsPage() {
           <div className="glass-card p-6">
             <h2 className="section-title">Pipeline Status</h2>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 rounded-lg bg-secondary">
+              <div className="flex items-center justify-between p-4 rounded-xl bg-muted">
                 <div>
                   <p className="font-medium text-sm text-foreground">Python Pipeline Backend</p>
                   <p className="text-xs text-muted-foreground">Connection to automated vetting engine</p>

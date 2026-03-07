@@ -28,7 +28,7 @@ export default function VettingHistory() {
           <h1 className="text-2xl font-bold text-foreground">Vetting History</h1>
           <p className="text-sm text-muted-foreground mt-1">Complete record of all vetting requests</p>
         </div>
-        <Input placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} className="max-w-xs" />
+        <Input placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} className="max-w-xs bg-card" />
       </div>
 
       <div className="glass-card overflow-hidden">
@@ -54,7 +54,7 @@ export default function VettingHistory() {
                   <TableCell className="text-xs capitalize text-muted-foreground">{v.subject_type}</TableCell>
                   <TableCell className="text-xs text-muted-foreground">{ENGAGEMENT_LABELS[v.engagement_type].split(" ").slice(0, 2).join(" ")}</TableCell>
                   <TableCell className="text-xs text-muted-foreground">{VETTING_LEVEL_LABELS[v.vetting_level].title}</TableCell>
-                  <TableCell className="font-mono text-sm">{v.composite_score != null ? v.composite_score.toFixed(1) : "—"}</TableCell>
+                  <TableCell className="text-sm font-medium">{v.composite_score != null ? v.composite_score.toFixed(1) : "—"}</TableCell>
                   <TableCell>
                     {v.risk_tier ? (
                       <span className={`text-xs font-bold px-2 py-0.5 rounded ${getRiskTierColor(v.risk_tier)}`}>{v.risk_tier}</span>

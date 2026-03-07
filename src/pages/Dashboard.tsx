@@ -50,10 +50,10 @@ export default function Dashboard() {
   }, [vettings, search, statusFilter, sortBy]);
 
   const stats = [
-    { label: "Active Vettings", value: active, icon: Activity, accent: "text-[hsl(var(--status-running))]" },
-    { label: "Awaiting Decision", value: awaiting, icon: AlertTriangle, accent: "text-[hsl(var(--risk-moderate))]" },
-    { label: "Completed This Month", value: completedMonth, icon: CheckCircle, accent: "text-[hsl(var(--risk-low))]" },
-    { label: "Avg. Turnaround", value: avgTurnaround, icon: Clock, accent: "text-muted-foreground" },
+    { label: "Active Vettings", value: active, icon: Activity, colorClass: "text-primary" },
+    { label: "Awaiting Decision", value: awaiting, icon: AlertTriangle, colorClass: "text-[hsl(var(--risk-moderate))]" },
+    { label: "Completed This Month", value: completedMonth, icon: CheckCircle, colorClass: "text-[hsl(var(--risk-low))]" },
+    { label: "Avg. Turnaround", value: avgTurnaround, icon: Clock, colorClass: "text-muted-foreground" },
   ];
 
   return (
@@ -65,12 +65,14 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {stats.map((s) => (
-          <div key={s.label} className="glass-card p-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{s.label}</span>
-              <s.icon className={`w-4 h-4 ${s.accent}`} />
+          <div key={s.label} className="glass-card p-5">
+            <div className="flex flex-col items-center text-center gap-2">
+              <div className="p-2 rounded-lg bg-muted">
+                <s.icon className={`w-5 h-5 ${s.colorClass}`} />
+              </div>
+              <p className="text-sm text-muted-foreground font-medium">{s.label}</p>
+              <p className={`text-3xl font-bold ${s.colorClass}`}>{s.value}</p>
             </div>
-            <div className="text-2xl font-bold text-foreground">{s.value}</div>
           </div>
         ))}
       </div>
@@ -80,10 +82,10 @@ export default function Dashboard() {
           placeholder="Search by subject name..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="max-w-xs"
+          className="max-w-xs bg-card"
         />
         <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="w-[160px]"><SelectValue placeholder="Status" /></SelectTrigger>
+          <SelectTrigger className="w-[160px] bg-card"><SelectValue placeholder="Status" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Statuses</SelectItem>
             <SelectItem value="pending">Pending</SelectItem>
@@ -94,7 +96,7 @@ export default function Dashboard() {
           </SelectContent>
         </Select>
         <Select value={sortBy} onValueChange={setSortBy}>
-          <SelectTrigger className="w-[160px]"><SelectValue placeholder="Sort" /></SelectTrigger>
+          <SelectTrigger className="w-[160px] bg-card"><SelectValue placeholder="Sort" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="recent">Most Recent</SelectItem>
             <SelectItem value="risk">Highest Risk</SelectItem>
