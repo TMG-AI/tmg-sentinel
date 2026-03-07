@@ -331,19 +331,30 @@ export default function VettingDetail() {
                   {dim.evidence.length === 0 ? (
                     <p className="text-xs text-muted-foreground py-2">No evidence items collected for this dimension.</p>
                   ) : (
-                    <div className="space-y-2">
+                     <div className="space-y-2">
                       {dim.evidence.map((ev, i) => (
                         <div key={i} className="p-3 rounded-lg bg-muted text-sm">
                           <p className="text-foreground">{ev.text}</p>
-                          <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
-                            <span>{ev.source}</span>
-                            <span>{ev.date}</span>
-                            {ev.url && (
-                              <a href={ev.url} target="_blank" rel="noopener noreferrer" className="text-primary flex items-center gap-1 hover:underline">
-                                View <ExternalLink className="w-3 h-3" />
-                              </a>
-                            )}
-                          </div>
+                          {ev.source_urls && ev.source_urls.length > 0 ? (
+                            <div className="flex items-center gap-2 flex-wrap mt-2">
+                              {ev.source_urls.map((su, si) => (
+                                <a key={si} href={su.url} target="_blank" rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-primary/8 text-primary border border-primary/15 hover:bg-primary/15 transition-colors">
+                                  {su.title} <ExternalLink className="w-2.5 h-2.5" />
+                                </a>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
+                              <span>{ev.source}</span>
+                              <span>{ev.date}</span>
+                              {ev.url && (
+                                <a href={ev.url} target="_blank" rel="noopener noreferrer" className="text-primary flex items-center gap-1 hover:underline">
+                                  View <ExternalLink className="w-3 h-3" />
+                                </a>
+                              )}
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
