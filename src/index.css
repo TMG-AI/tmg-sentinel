@@ -1,96 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 215 50% 23%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 20% 95%;
+    --secondary-foreground: 215 25% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 15% 93%;
+    --muted-foreground: 215 12% 50%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 20% 90%;
+    --accent-foreground: 215 25% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 215 50% 23%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Risk colors */
+    --risk-low: 142 71% 45%;
+    --risk-low-foreground: 0 0% 100%;
+    --risk-moderate: 45 93% 47%;
+    --risk-moderate-foreground: 0 0% 10%;
+    --risk-elevated: 25 95% 53%;
+    --risk-elevated-foreground: 0 0% 100%;
+    --risk-high: 0 72% 51%;
+    --risk-high-foreground: 0 0% 100%;
+    --risk-critical: 0 50% 20%;
+    --risk-critical-foreground: 0 0% 100%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Engagement colors */
+    --fara: 25 95% 53%;
+    --fara-foreground: 0 0% 100%;
+    --foreign-corp: 45 93% 47%;
+    --foreign-corp-foreground: 0 0% 10%;
+    --domestic-political: 215 50% 50%;
+    --domestic-political-foreground: 0 0% 100%;
+    --domestic-corp: 215 12% 60%;
+    --domestic-corp-foreground: 0 0% 100%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Status colors */
+    --status-pending: 215 12% 60%;
+    --status-running: 215 80% 55%;
+    --status-completed: 142 71% 45%;
+    --status-error: 0 72% 51%;
+    --status-gates-failed: 0 50% 20%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* TMG brand */
+    --tmg-navy: 215 50% 18%;
+    --tmg-navy-light: 215 40% 28%;
+    --tmg-gold: 40 70% 50%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    /* Sidebar */
+    --sidebar-background: 215 50% 18%;
+    --sidebar-foreground: 210 25% 82%;
+    --sidebar-primary: 210 40% 98%;
+    --sidebar-primary-foreground: 215 50% 18%;
+    --sidebar-accent: 215 40% 24%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 215 40% 25%;
+    --sidebar-ring: 215 80% 55%;
+    --sidebar-muted: 215 25% 40%;
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Chart */
+    --chart-1: 215 50% 23%;
+    --chart-2: 142 71% 45%;
+    --chart-3: 25 95% 53%;
+    --chart-4: 0 72% 51%;
+    --chart-5: 45 93% 47%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 215 30% 8%;
+    --foreground: 210 20% 90%;
+    --card: 215 30% 12%;
+    --card-foreground: 210 20% 90%;
+    --popover: 215 30% 12%;
+    --popover-foreground: 210 20% 90%;
+    --primary: 210 60% 60%;
+    --primary-foreground: 215 30% 8%;
+    --secondary: 215 25% 18%;
+    --secondary-foreground: 210 20% 90%;
+    --muted: 215 25% 18%;
+    --muted-foreground: 215 15% 55%;
+    --accent: 215 25% 22%;
+    --accent-foreground: 210 20% 90%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 25% 22%;
+    --input: 215 25% 22%;
+    --ring: 210 60% 60%;
   }
 }
 
@@ -98,8 +116,53 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+  .risk-badge-low {
+    @apply bg-[hsl(var(--risk-low))] text-[hsl(var(--risk-low-foreground))];
+  }
+  .risk-badge-moderate {
+    @apply bg-[hsl(var(--risk-moderate))] text-[hsl(var(--risk-moderate-foreground))];
+  }
+  .risk-badge-elevated {
+    @apply bg-[hsl(var(--risk-elevated))] text-[hsl(var(--risk-elevated-foreground))];
+  }
+  .risk-badge-high {
+    @apply bg-[hsl(var(--risk-high))] text-[hsl(var(--risk-high-foreground))];
+  }
+  .risk-badge-critical {
+    @apply bg-[hsl(var(--risk-critical))] text-[hsl(var(--risk-critical-foreground))];
+  }
+  
+  .engagement-fara {
+    @apply bg-[hsl(var(--fara)/0.15)] text-[hsl(var(--fara))] border border-[hsl(var(--fara)/0.3)];
+  }
+  .engagement-foreign-corp {
+    @apply bg-[hsl(var(--foreign-corp)/0.15)] text-[hsl(var(--foreign-corp)/0.85)] border border-[hsl(var(--foreign-corp)/0.3)];
+  }
+  .engagement-domestic-political {
+    @apply bg-[hsl(var(--domestic-political)/0.12)] text-[hsl(var(--domestic-political))] border border-[hsl(var(--domestic-political)/0.25)];
+  }
+  .engagement-domestic-corp {
+    @apply bg-[hsl(var(--domestic-corp)/0.12)] text-[hsl(var(--domestic-corp))] border border-[hsl(var(--domestic-corp)/0.25)];
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card border border-border shadow-sm rounded-lg;
+  }
+  .page-container {
+    @apply p-6 lg:p-8 max-w-7xl mx-auto;
+  }
+  .section-title {
+    @apply text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4;
   }
 }
