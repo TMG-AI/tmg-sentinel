@@ -113,10 +113,10 @@ export default function SettingsPage() {
             <h2 className="section-title">Team Members</h2>
             <div className="space-y-3">
               {[
-                { name: "Jim", role: "Admin / Reviewer" },
+                { name: "Liza", role: "Admin / Reviewer" },
+                { name: "Jim", role: "Reviewer" },
                 { name: "Ben", role: "Reviewer" },
                 { name: "Tara", role: "Reviewer" },
-                { name: "Admin", role: "Admin" },
               ].map((m) => (
                 <div key={m.name} className="flex items-center justify-between p-3 rounded-xl bg-muted">
                   <div>
