@@ -209,8 +209,4 @@ function PipelineStatusPanel() {
       </div>
     </div>
   );
-        </TabsContent>
-      </Tabs>
-    </div>
-  );
 }
