@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Trash2, CheckCircle, XCircle } from "lucide-react";
+import { Plus, Trash2, CheckCircle, XCircle, RefreshCw } from "lucide-react";
+import { checkHealth, type HealthResponse } from "@/lib/api";
 
 interface Client {
   id: string;
