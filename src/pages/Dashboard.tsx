@@ -99,16 +99,14 @@ export default function Dashboard() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
         {stats.map((s) => (
-          <div key={s.label} className="glass-card p-5 group">
-            <div className="flex items-start justify-between mb-3">
-              <div className={`p-2.5 rounded-xl ${s.bgColor}`}>
-                <s.icon className={`w-5 h-5 ${s.color}`} />
-              </div>
+          <div key={s.label} className="glass-card px-3 py-4 group text-center">
+            <div className={`inline-flex p-2 rounded-xl ${s.bgColor} mb-2`}>
+              <s.icon className={`w-4 h-4 ${s.color}`} />
             </div>
-            <p className={`text-3xl font-bold ${s.color}`}>{s.value}</p>
-            <p className="text-sm text-muted-foreground font-medium mt-1">{s.label}</p>
+            <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
+            <p className="text-xs text-muted-foreground font-medium mt-0.5">{s.label}</p>
           </div>
         ))}
       </div>
