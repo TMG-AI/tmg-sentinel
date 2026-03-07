@@ -111,6 +111,7 @@ export interface Evidence {
   url: string;
   date: string;
   temporal_weight: number;
+  source_urls?: { url: string; title: string }[];
 }
 
 export interface AuditLogEntry {
