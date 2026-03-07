@@ -131,21 +131,7 @@ export default function SettingsPage() {
         </TabsContent>
 
         <TabsContent value="pipeline">
-          <div className="glass-card p-6">
-            <h2 className="section-title">Pipeline Status</h2>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 rounded-xl bg-muted">
-                <div>
-                  <p className="font-medium text-sm text-foreground">Python Pipeline Backend</p>
-                  <p className="text-xs text-muted-foreground">Connection to automated vetting engine</p>
-                </div>
-                <Badge variant="outline" className="text-[hsl(var(--risk-moderate))]">Not Connected</Badge>
-              </div>
-              <p className="text-xs text-muted-foreground">
-                The pipeline backend is not yet connected. Use the "Upload Results JSON" button on individual vetting detail pages to manually input results for testing.
-              </p>
-            </div>
-          </div>
+          <PipelineStatusPanel />
         </TabsContent>
       </Tabs>
     </div>

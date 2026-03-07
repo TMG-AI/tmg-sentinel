@@ -307,11 +307,11 @@ export default function SubmitVetting() {
 
         <Button
           size="lg"
-          disabled={!canSubmit}
+          disabled={!canSubmit || isSubmitting}
           onClick={() => setShowConfirm(true)}
           className="w-full bg-[hsl(var(--risk-low))] hover:bg-[hsl(var(--risk-low)/0.9)] text-[hsl(var(--risk-low-foreground))] font-semibold text-base py-6 rounded-xl"
         >
-          <Check className="w-5 h-5 mr-2" /> Start Vetting
+          {isSubmitting ? <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Submitting...</> : <><Check className="w-5 h-5 mr-2" /> Start Vetting</>}
         </Button>
       </div>
 
