@@ -33,55 +33,44 @@
     --destructive-foreground: 0 0% 100%;
 
     --border: 220 13% 90%;
-    --input: 220 13% 90%;
+    --input: 220 13% 88%;
     --ring: 245 58% 51%;
 
     --radius: 0.75rem;
 
-    /* Risk colors */
+    /* Risk colors — vivid and distinct */
     --risk-low: 152 69% 40%;
     --risk-low-foreground: 0 0% 100%;
     --risk-moderate: 38 92% 50%;
     --risk-moderate-foreground: 0 0% 10%;
-    --risk-elevated: 25 95% 50%;
+    --risk-elevated: 25 95% 53%;
     --risk-elevated-foreground: 0 0% 100%;
     --risk-high: 0 72% 51%;
     --risk-high-foreground: 0 0% 100%;
-    --risk-critical: 0 50% 20%;
+    --risk-critical: 350 80% 35%;
     --risk-critical-foreground: 0 0% 100%;
 
-    /* Engagement colors */
-    --fara: 25 95% 50%;
+    /* Engagement colors — bold and scannable */
+    --fara: 25 95% 53%;
     --fara-foreground: 0 0% 100%;
     --foreign-corp: 38 92% 50%;
     --foreign-corp-foreground: 0 0% 10%;
     --domestic-political: 245 58% 55%;
     --domestic-political-foreground: 0 0% 100%;
-    --domestic-corp: 220 10% 55%;
+    --domestic-corp: 220 15% 55%;
     --domestic-corp-foreground: 0 0% 100%;
 
     /* Status colors */
-    --status-pending: 220 10% 55%;
+    --status-pending: 220 10% 60%;
     --status-running: 245 58% 55%;
     --status-completed: 152 69% 40%;
     --status-error: 0 72% 51%;
-    --status-gates-failed: 0 50% 20%;
+    --status-gates-failed: 350 80% 35%;
 
-    /* TMG brand - now light-friendly */
+    /* TMG brand */
     --tmg-navy: 245 58% 51%;
     --tmg-navy-light: 245 40% 62%;
     --tmg-gold: 38 92% 50%;
-
-    /* Sidebar - LIGHT theme */
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 20% 25%;
-    --sidebar-primary: 245 58% 51%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 95%;
-    --sidebar-accent-foreground: 220 20% 10%;
-    --sidebar-border: 220 13% 90%;
-    --sidebar-ring: 245 58% 51%;
-    --sidebar-muted: 220 10% 55%;
 
     /* Chart */
     --chart-1: 245 58% 51%;
@@ -111,16 +100,6 @@
     --border: 220 15% 20%;
     --input: 220 15% 20%;
     --ring: 245 70% 65%;
-
-    --sidebar-background: 220 20% 6%;
-    --sidebar-foreground: 220 14% 95%;
-    --sidebar-primary: 245 70% 65%;
-    --sidebar-primary-foreground: 220 20% 10%;
-    --sidebar-accent: 220 20% 14%;
-    --sidebar-accent-foreground: 220 14% 95%;
-    --sidebar-border: 220 15% 16%;
-    --sidebar-ring: 245 70% 65%;
-    --sidebar-muted: 220 10% 55%;
   }
 }
 
@@ -140,41 +119,41 @@
 
 @layer components {
   .risk-badge-low {
-    @apply bg-[hsl(var(--risk-low))] text-[hsl(var(--risk-low-foreground))];
+    @apply bg-[hsl(var(--risk-low))] text-[hsl(var(--risk-low-foreground))] font-bold;
   }
   .risk-badge-moderate {
-    @apply bg-[hsl(var(--risk-moderate))] text-[hsl(var(--risk-moderate-foreground))];
+    @apply bg-[hsl(var(--risk-moderate))] text-[hsl(var(--risk-moderate-foreground))] font-bold;
   }
   .risk-badge-elevated {
-    @apply bg-[hsl(var(--risk-elevated))] text-[hsl(var(--risk-elevated-foreground))];
+    @apply bg-[hsl(var(--risk-elevated))] text-[hsl(var(--risk-elevated-foreground))] font-bold;
   }
   .risk-badge-high {
-    @apply bg-[hsl(var(--risk-high))] text-[hsl(var(--risk-high-foreground))];
+    @apply bg-[hsl(var(--risk-high))] text-[hsl(var(--risk-high-foreground))] font-bold;
   }
   .risk-badge-critical {
-    @apply bg-[hsl(var(--risk-critical))] text-[hsl(var(--risk-critical-foreground))];
+    @apply bg-[hsl(var(--risk-critical))] text-[hsl(var(--risk-critical-foreground))] font-bold;
   }
   
   .engagement-fara {
-    @apply bg-[hsl(var(--fara)/0.12)] text-[hsl(var(--fara))] border border-[hsl(var(--fara)/0.2)];
+    @apply bg-[hsl(var(--fara)/0.12)] text-[hsl(var(--fara))] border border-[hsl(var(--fara)/0.25)] font-medium;
   }
   .engagement-foreign-corp {
-    @apply bg-[hsl(var(--foreign-corp)/0.12)] text-[hsl(var(--foreign-corp)/0.85)] border border-[hsl(var(--foreign-corp)/0.2)];
+    @apply bg-[hsl(var(--foreign-corp)/0.12)] text-[hsl(var(--foreign-corp)/0.85)] border border-[hsl(var(--foreign-corp)/0.25)] font-medium;
   }
   .engagement-domestic-political {
-    @apply bg-[hsl(var(--domestic-political)/0.10)] text-[hsl(var(--domestic-political))] border border-[hsl(var(--domestic-political)/0.15)];
+    @apply bg-[hsl(var(--domestic-political)/0.10)] text-[hsl(var(--domestic-political))] border border-[hsl(var(--domestic-political)/0.20)] font-medium;
   }
   .engagement-domestic-corp {
-    @apply bg-[hsl(var(--domestic-corp)/0.10)] text-[hsl(var(--domestic-corp))] border border-[hsl(var(--domestic-corp)/0.15)];
+    @apply bg-[hsl(var(--domestic-corp)/0.10)] text-[hsl(var(--domestic-corp))] border border-[hsl(var(--domestic-corp)/0.20)] font-medium;
   }
 }
 
 @layer utilities {
   .glass-card {
-    @apply bg-card border border-border rounded-xl shadow-sm;
+    @apply bg-card border border-border rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200;
   }
   .page-container {
-    @apply p-6 lg:p-8 max-w-7xl mx-auto;
+    @apply px-6 lg:px-8 py-8 max-w-7xl mx-auto;
   }
   .section-title {
     @apply text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4;
