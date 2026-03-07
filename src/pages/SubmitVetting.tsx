@@ -16,7 +16,7 @@ import { Shield, Zap, Search, Microscope, Upload, AlertTriangle, Check, Loader2 
 
 export default function SubmitVetting() {
   const navigate = useNavigate();
-  const { addVetting } = useVettingStore();
+  const { addVetting, uploadResults } = useVettingStore();
   const { toast } = useToast();
 
   const [subjectName, setSubjectName] = useState("");
