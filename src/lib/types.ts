@@ -71,6 +71,7 @@ export interface VettingResultJSON {
     yellow: Flag[];
   };
   executive_summary: string;
+  sources?: { id: number; url: string; title: string; score: number }[];
   metadata: {
     pipeline_version: string;
     vetting_level: string;
