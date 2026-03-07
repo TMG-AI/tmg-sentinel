@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Trash2, CheckCircle, XCircle } from "lucide-react";
+import { Plus, Trash2, CheckCircle, XCircle, RefreshCw } from "lucide-react";
+import { checkHealth, type HealthResponse } from "@/lib/api";
 
 interface Client {
   id: string;
@@ -130,23 +131,82 @@ export default function SettingsPage() {
         </TabsContent>
 
         <TabsContent value="pipeline">
-          <div className="glass-card p-6">
-            <h2 className="section-title">Pipeline Status</h2>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 rounded-xl bg-muted">
-                <div>
-                  <p className="font-medium text-sm text-foreground">Python Pipeline Backend</p>
-                  <p className="text-xs text-muted-foreground">Connection to automated vetting engine</p>
-                </div>
-                <Badge variant="outline" className="text-[hsl(var(--risk-moderate))]">Not Connected</Badge>
-              </div>
-              <p className="text-xs text-muted-foreground">
-                The pipeline backend is not yet connected. Use the "Upload Results JSON" button on individual vetting detail pages to manually input results for testing.
-              </p>
-            </div>
-          </div>
+          <PipelineStatusPanel />
         </TabsContent>
       </Tabs>
+    </div>
+  );
+}
+
+function PipelineStatusPanel() {
+  const [health, setHealth] = useState<HealthResponse | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const ping = async () => {
+    setLoading(true);
+    setError(false);
+    try {
+      const data = await checkHealth();
+      setHealth(data);
+    } catch {
+      setHealth(null);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => { ping(); }, []);
+
+  const connected = health?.status === "ok";
+
+  return (
+    <div className="glass-card p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="section-title mb-0">Pipeline Status</h2>
+        <Button variant="outline" size="sm" onClick={ping} disabled={loading}>
+          <RefreshCw className={`w-3.5 h-3.5 mr-1.5 ${loading ? "animate-spin" : ""}`} /> Refresh
+        </Button>
+      </div>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between p-4 rounded-xl bg-muted">
+          <div>
+            <p className="font-medium text-sm text-foreground">Python Pipeline Backend</p>
+            <p className="text-xs text-muted-foreground">http://localhost:8000</p>
+          </div>
+          {connected ? (
+            <Badge variant="outline" className="bg-[hsl(var(--risk-low)/0.08)] text-risk-low border-[hsl(var(--risk-low)/0.15)]">
+              <CheckCircle className="w-3 h-3 mr-1" /> Connected
+            </Badge>
+          ) : (
+            <Badge variant="outline" className="text-destructive">
+              <XCircle className="w-3 h-3 mr-1" /> {error ? "Disconnected" : "Checking..."}
+            </Badge>
+          )}
+        </div>
+        {connected && health && (
+          <div className="grid grid-cols-3 gap-3">
+            <div className="p-3 rounded-lg bg-muted text-center">
+              <p className="text-lg font-bold text-foreground">{health.active_jobs}</p>
+              <p className="text-xs text-muted-foreground">Active Jobs</p>
+            </div>
+            <div className="p-3 rounded-lg bg-muted text-center">
+              <p className="text-lg font-bold text-foreground">{health.total_jobs}</p>
+              <p className="text-xs text-muted-foreground">Total Jobs</p>
+            </div>
+            <div className="p-3 rounded-lg bg-muted text-center">
+              <p className="text-lg font-bold text-foreground">{health.api_keys_configured ? "✓" : "✗"}</p>
+              <p className="text-xs text-muted-foreground">API Keys</p>
+            </div>
+          </div>
+        )}
+        {error && (
+          <p className="text-xs text-muted-foreground">
+            Cannot reach the pipeline backend. Make sure the server is running: <code className="text-xs bg-muted px-1.5 py-0.5 rounded">uvicorn server:app --reload --port 8000</code>
+          </p>
+        )}
+      </div>
     </div>
   );
 }
