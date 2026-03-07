@@ -17,7 +17,7 @@ export function VettingCard({ vetting: v, onClick }: Props) {
   return (
     <div
       onClick={onClick}
-      className="glass-card p-5 cursor-pointer hover:shadow-md transition-all hover:border-primary/20 group"
+      className="glass-card p-5 cursor-pointer hover:shadow-md transition-all duration-200 hover:border-primary/20 group"
     >
       <div className="flex flex-col lg:flex-row lg:items-center gap-4">
         {/* Left: Main info */}
@@ -26,7 +26,7 @@ export function VettingCard({ vetting: v, onClick }: Props) {
             <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors truncate">
               {v.subject_name}
             </h3>
-            <Badge variant="outline" className={v.subject_type === "individual" ? "bg-[hsl(var(--domestic-political)/0.1)] text-[hsl(var(--domestic-political))] border-[hsl(var(--domestic-political)/0.2)]" : "bg-purple-50 text-purple-600 border-purple-200"}>
+            <Badge variant="outline" className={v.subject_type === "individual" ? "bg-[hsl(var(--domestic-political)/0.08)] text-[hsl(var(--domestic-political))] border-[hsl(var(--domestic-political)/0.15)]" : "bg-[hsl(var(--accent)/0.08)] text-[hsl(var(--accent))] border-[hsl(var(--accent)/0.15)]"}>
               {v.subject_type === "individual" ? "Individual" : "Organization"}
             </Badge>
           </div>
@@ -58,8 +58,8 @@ export function VettingCard({ vetting: v, onClick }: Props) {
           {v.status === "running" && (
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2">
-                <Loader2 className="w-4 h-4 text-[hsl(var(--status-running))] animate-spin" />
-                <span className="text-sm text-[hsl(var(--status-running))] font-medium">
+                <Loader2 className="w-4 h-4 text-primary animate-spin" />
+                <span className="text-sm text-primary font-medium">
                   Step {progress.current}/{progress.total}
                 </span>
               </div>
@@ -70,7 +70,7 @@ export function VettingCard({ vetting: v, onClick }: Props) {
               )}
               <div className="w-32 h-1.5 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-[hsl(var(--status-running))] transition-all"
+                  className="h-full rounded-full bg-primary transition-all"
                   style={{ width: `${(progress.current / progress.total) * 100}%` }}
                 />
               </div>
@@ -115,7 +115,7 @@ export function VettingCard({ vetting: v, onClick }: Props) {
             </span>
           )}
           {v.status === "completed" && !v.decision && (
-            <span className="text-xs font-medium px-2.5 py-1 rounded bg-[hsl(var(--risk-moderate)/0.15)] text-[hsl(var(--risk-moderate)/0.9)] animate-pulse-slow">
+            <span className="text-xs font-medium px-2.5 py-1 rounded bg-[hsl(var(--risk-moderate)/0.12)] text-[hsl(var(--risk-moderate))] animate-pulse-slow">
               <AlertTriangle className="w-3 h-3 inline mr-1" />
               Needs Decision
             </span>

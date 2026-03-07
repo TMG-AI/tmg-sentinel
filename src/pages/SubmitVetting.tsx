@@ -81,41 +81,41 @@ export default function SubmitVetting() {
         <p className="text-sm text-muted-foreground mt-1">Enter details about the potential client to begin the vetting process</p>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-6">
         {/* Who are we vetting? */}
         <section className="glass-card p-6">
           <h2 className="section-title flex items-center gap-2"><Shield className="w-4 h-4" /> Who are we vetting?</h2>
           <div className="space-y-4">
             <div>
               <Label htmlFor="subject-name">Subject Name *</Label>
-              <Input id="subject-name" value={subjectName} onChange={(e) => setSubjectName(e.target.value)} placeholder="Full name of person or company" className="mt-1" />
+              <Input id="subject-name" value={subjectName} onChange={(e) => setSubjectName(e.target.value)} placeholder="Full name of person or company" className="mt-1.5 bg-background" />
             </div>
             <div>
               <Label>Subject Type</Label>
               <RadioGroup value={subjectType} onValueChange={(v) => setSubjectType(v as SubjectType)} className="flex gap-4 mt-2">
                 <div className="flex items-center gap-2">
                   <RadioGroupItem value="individual" id="individual" />
-                  <Label htmlFor="individual" className="cursor-pointer">Individual</Label>
+                  <Label htmlFor="individual" className="cursor-pointer font-normal">Individual</Label>
                 </div>
                 <div className="flex items-center gap-2">
                   <RadioGroupItem value="organization" id="organization" />
-                  <Label htmlFor="organization" className="cursor-pointer">Organization</Label>
+                  <Label htmlFor="organization" className="cursor-pointer font-normal">Organization</Label>
                 </div>
               </RadioGroup>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="company">Company Affiliation</Label>
-                <Input id="company" value={companyAffiliation} onChange={(e) => setCompanyAffiliation(e.target.value)} placeholder="Company or organization name" className="mt-1" />
+                <Input id="company" value={companyAffiliation} onChange={(e) => setCompanyAffiliation(e.target.value)} placeholder="Company or organization name" className="mt-1.5 bg-background" />
               </div>
               <div>
                 <Label htmlFor="country">Country</Label>
-                <Input id="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country of origin or primary operations" className="mt-1" />
+                <Input id="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country of origin or primary operations" className="mt-1.5 bg-background" />
               </div>
             </div>
             <div>
               <Label htmlFor="city">City</Label>
-              <Input id="city" value={city} onChange={(e) => setCity(e.target.value)} placeholder="City" className="mt-1 max-w-xs" />
+              <Input id="city" value={city} onChange={(e) => setCity(e.target.value)} placeholder="City" className="mt-1.5 max-w-xs bg-background" />
             </div>
           </div>
         </section>
@@ -126,16 +126,16 @@ export default function SubmitVetting() {
           <div className="space-y-4">
             <div>
               <Label htmlFor="bio">Brief Bio</Label>
-              <Textarea id="bio" value={briefBio} onChange={(e) => setBriefBio(e.target.value)} placeholder="Any background info, context about who they are, how they came to us, what we know so far..." rows={4} className="mt-1" />
+              <Textarea id="bio" value={briefBio} onChange={(e) => setBriefBio(e.target.value)} placeholder="Any background info, context about who they are, how they came to us, what we know so far..." rows={4} className="mt-1.5 bg-background" />
             </div>
             <div>
               <Label htmlFor="referral">Referral Source</Label>
-              <Input id="referral" value={referralSource} onChange={(e) => setReferralSource(e.target.value)} placeholder="Who referred them? How did they find TMG?" className="mt-1" />
+              <Input id="referral" value={referralSource} onChange={(e) => setReferralSource(e.target.value)} placeholder="Who referred them? How did they find TMG?" className="mt-1.5 bg-background" />
             </div>
             <div>
               <Label>Engagement Type *</Label>
               <Select value={engagementType} onValueChange={(v) => setEngagementType(v as EngagementType)}>
-                <SelectTrigger className="mt-1"><SelectValue /></SelectTrigger>
+                <SelectTrigger className="mt-1.5 bg-background"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {(Object.keys(ENGAGEMENT_LABELS) as EngagementType[]).map((key) => (
                     <SelectItem key={key} value={key}>
@@ -167,17 +167,17 @@ export default function SubmitVetting() {
                   key={card.key}
                   type="button"
                   onClick={() => setVettingLevel(card.key)}
-                  className={`text-left p-4 rounded-lg border-2 transition-all ${
+                  className={`text-left p-4 rounded-xl border-2 transition-all duration-200 ${
                     selected
-                      ? "border-primary bg-primary/5 shadow-sm"
-                      : "border-border hover:border-primary/30"
+                      ? "border-primary bg-[hsl(var(--primary)/0.04)] shadow-sm"
+                      : "border-border hover:border-primary/30 bg-card"
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <span className={selected ? "text-primary" : "text-muted-foreground"}>{card.icon}</span>
                     <span className="font-semibold text-sm text-foreground">{info.title}</span>
                     {card.key === "standard_vet" && (
-                      <span className="text-xs bg-primary/10 text-primary px-1.5 py-0.5 rounded">Recommended</span>
+                      <span className="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded-full font-medium">Recommended</span>
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground mb-1">{info.description}. {info.time}</p>
@@ -196,7 +196,7 @@ export default function SubmitVetting() {
         {/* Attachments */}
         <section className="glass-card p-6">
           <h2 className="section-title">Attachments (Optional)</h2>
-          <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary/30 transition-colors cursor-pointer">
+          <div className="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary/30 transition-colors cursor-pointer bg-background">
             <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
             <p className="text-sm text-muted-foreground">Drop resumes, bios, email chains, or any relevant documents here</p>
             <p className="text-xs text-muted-foreground mt-1">PDF, DOCX, images accepted</p>
@@ -210,14 +210,14 @@ export default function SubmitVetting() {
             <div>
               <Label>Your Name *</Label>
               <Select value={requestedBy} onValueChange={setRequestedBy}>
-                <SelectTrigger className="mt-1 max-w-xs"><SelectValue placeholder="Select your name" /></SelectTrigger>
+                <SelectTrigger className="mt-1.5 max-w-xs bg-background"><SelectValue placeholder="Select your name" /></SelectTrigger>
                 <SelectContent>
                   {TEAM_MEMBERS.map((m) => <SelectItem key={m} value={m}>{m}</SelectItem>)}
                   <SelectItem value="Other">Other</SelectItem>
                 </SelectContent>
               </Select>
               {requestedBy === "Other" && (
-                <Input value={otherName} onChange={(e) => setOtherName(e.target.value)} placeholder="Enter your name" className="mt-2 max-w-xs" />
+                <Input value={otherName} onChange={(e) => setOtherName(e.target.value)} placeholder="Enter your name" className="mt-2 max-w-xs bg-background" />
               )}
             </div>
             <div>
@@ -232,7 +232,7 @@ export default function SubmitVetting() {
                         setNotify(checked ? [...notify, m] : notify.filter((n) => n !== m));
                       }}
                     />
-                    <Label htmlFor={`notify-${m}`} className="cursor-pointer text-sm">{m}</Label>
+                    <Label htmlFor={`notify-${m}`} className="cursor-pointer text-sm font-normal">{m}</Label>
                   </div>
                 ))}
               </div>
@@ -244,7 +244,7 @@ export default function SubmitVetting() {
           size="lg"
           disabled={!canSubmit}
           onClick={() => setShowConfirm(true)}
-          className="w-full bg-[hsl(var(--risk-low))] hover:bg-[hsl(var(--risk-low)/0.9)] text-[hsl(var(--risk-low-foreground))] font-semibold text-base py-6"
+          className="w-full bg-[hsl(var(--risk-low))] hover:bg-[hsl(var(--risk-low)/0.9)] text-[hsl(var(--risk-low-foreground))] font-semibold text-base py-6 rounded-xl"
         >
           <Check className="w-5 h-5 mr-2" /> Start Vetting
         </Button>
@@ -264,7 +264,7 @@ export default function SubmitVetting() {
             <p><strong>Level:</strong> {VETTING_LEVEL_LABELS[vettingLevel].title}</p>
             <p><strong>Submitted by:</strong> {requestedBy === "Other" ? otherName : requestedBy}</p>
             {engagementType === "fara_foreign_political" && (
-              <div className="flex items-center gap-2 p-2 rounded bg-[hsl(var(--fara)/0.1)] text-[hsl(var(--fara))]">
+              <div className="flex items-center gap-2 p-2 rounded-lg bg-[hsl(var(--fara)/0.08)] text-[hsl(var(--fara))]">
                 <AlertTriangle className="w-4 h-4" />
                 <span className="text-xs font-medium">FARA engagement — 1.3x risk multiplier will be applied</span>
               </div>

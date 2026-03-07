@@ -14,9 +14,9 @@ export function getRiskTierColor(tier: RiskTier | null): string {
 export function getStatusColor(status: VettingStatus): string {
   switch (status) {
     case "pending": return "bg-muted text-muted-foreground";
-    case "running": return "bg-[hsl(var(--status-running)/0.12)] text-[hsl(var(--status-running))]";
+    case "running": return "bg-primary/10 text-primary";
     case "gates_failed": return "risk-badge-critical";
-    case "completed": return "bg-[hsl(var(--status-completed)/0.12)] text-[hsl(var(--status-completed))]";
+    case "completed": return "bg-[hsl(var(--risk-low)/0.10)] text-[hsl(var(--risk-low))]";
     case "error": return "bg-destructive/10 text-destructive";
   }
 }
@@ -32,18 +32,18 @@ export function getEngagementClass(type: EngagementType): string {
 
 export function getVettingLevelColor(level: VettingLevel): string {
   switch (level) {
-    case "quick_screen": return "bg-[hsl(var(--risk-low)/0.12)] text-[hsl(var(--risk-low))]";
-    case "standard_vet": return "bg-[hsl(var(--domestic-political)/0.12)] text-[hsl(var(--domestic-political))]";
-    case "deep_dive": return "bg-purple-100 text-purple-700";
+    case "quick_screen": return "bg-[hsl(var(--risk-low)/0.10)] text-[hsl(var(--risk-low))]";
+    case "standard_vet": return "bg-[hsl(var(--domestic-political)/0.10)] text-[hsl(var(--domestic-political))]";
+    case "deep_dive": return "bg-[hsl(var(--accent)/0.10)] text-[hsl(var(--accent))]";
   }
 }
 
 export function getDecisionColor(decision: Decision | null): string {
   switch (decision) {
-    case "approved": return "bg-[hsl(var(--risk-low)/0.12)] text-[hsl(var(--risk-low))]";
-    case "conditionally_approved": return "bg-[hsl(var(--risk-moderate)/0.15)] text-[hsl(var(--risk-moderate)/0.9)]";
+    case "approved": return "bg-[hsl(var(--risk-low)/0.10)] text-[hsl(var(--risk-low))]";
+    case "conditionally_approved": return "bg-[hsl(var(--risk-moderate)/0.12)] text-[hsl(var(--risk-moderate))]";
     case "rejected": return "bg-destructive/10 text-destructive";
-    case "pending_review": return "bg-[hsl(var(--domestic-political)/0.12)] text-[hsl(var(--domestic-political))]";
+    case "pending_review": return "bg-primary/10 text-primary";
     default: return "";
   }
 }
@@ -67,8 +67,8 @@ export function getScoreBarColor(score: number): string {
 
 export function getConfidenceColor(c: Confidence | null): string {
   switch (c) {
-    case "HIGH": return "bg-[hsl(var(--risk-low)/0.12)] text-[hsl(var(--risk-low))]";
-    case "MEDIUM": return "bg-[hsl(var(--risk-moderate)/0.15)] text-[hsl(var(--risk-moderate)/0.9)]";
+    case "HIGH": return "bg-[hsl(var(--risk-low)/0.10)] text-[hsl(var(--risk-low))]";
+    case "MEDIUM": return "bg-[hsl(var(--risk-moderate)/0.12)] text-[hsl(var(--risk-moderate))]";
     case "LOW": return "bg-destructive/10 text-destructive";
     default: return "";
   }
