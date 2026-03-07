@@ -32,12 +32,25 @@ export default function SubmitVetting() {
   const [otherName, setOtherName] = useState("");
   const [notify, setNotify] = useState<string[]>(["Tara"]);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Cleanup polling on unmount
+  useEffect(() => {
+    return () => {
+      if (pollingRef.current) clearInterval(pollingRef.current);
+    };
+  }, []);
 
   const canSubmit = subjectName.trim() && (requestedBy || otherName);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const by = requestedBy === "Other" ? otherName : requestedBy;
-    addVetting({
+    setIsSubmitting(true);
+    setShowConfirm(false);
+
+    // Create local vetting entry
+    const localId = addVetting({
       subject_name: subjectName.trim(),
       subject_type: subjectType,
       company_affiliation: companyAffiliation || null,
@@ -49,12 +62,63 @@ export default function SubmitVetting() {
       vetting_level: vettingLevel,
       requested_by: by,
     });
-    setShowConfirm(false);
-    toast({
-      title: "Vetting Submitted",
-      description: `Vetting request for ${subjectName} has been submitted successfully.`,
-    });
-    navigate("/");
+
+    try {
+      // Submit to backend API
+      const response = await submitVetting({
+        subject_name: subjectName.trim(),
+        subject_type: subjectType,
+        company_affiliation: companyAffiliation || null,
+        country: country || null,
+        city: city || null,
+        brief_bio: briefBio || null,
+        referral_source: referralSource || null,
+        engagement_type: engagementType,
+        vetting_level: vettingLevel,
+        requested_by: by,
+      });
+
+      toast({
+        title: "Vetting Submitted",
+        description: `Pipeline started for ${subjectName}. Polling for results...`,
+      });
+
+      // Navigate to detail page immediately
+      navigate(`/vetting/${localId}`);
+
+      // Start polling for results
+      pollingRef.current = setInterval(async () => {
+        try {
+          const status = await pollVettingStatus(response.id);
+          if (status.status === "completed" || status.status === "gates_failed") {
+            if (pollingRef.current) clearInterval(pollingRef.current);
+            if (status.result_json) {
+              uploadResults(localId, status.result_json);
+              toast({
+                title: "Vetting Complete",
+                description: `Results are ready for ${subjectName}.`,
+              });
+            }
+          } else if (status.status === "error") {
+            if (pollingRef.current) clearInterval(pollingRef.current);
+            toast({
+              title: "Pipeline Error",
+              description: status.error || "An error occurred during vetting.",
+              variant: "destructive",
+            });
+          }
+        } catch {
+          // Silently retry on network errors
+        }
+      }, 5000);
+    } catch (err) {
+      setIsSubmitting(false);
+      toast({
+        title: "Submission Failed",
+        description: "Could not connect to the pipeline backend. Check that the server is running.",
+        variant: "destructive",
+      });
+    }
   };
 
   const vettingLevelCards: { key: VettingLevel; icon: React.ReactNode; steps: string[] }[] = [
