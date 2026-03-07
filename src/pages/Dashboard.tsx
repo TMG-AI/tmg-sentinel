@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useVettingStore } from "@/lib/vetting-store";
-import { Activity, Clock, CheckCircle, AlertTriangle } from "lucide-react";
+import { Activity, Clock, CheckCircle, AlertTriangle, Plus } from "lucide-react";
 import { VettingCard } from "@/components/VettingCard";
 import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const { vettings } = useVettingStore();
@@ -50,40 +52,77 @@ export default function Dashboard() {
   }, [vettings, search, statusFilter, sortBy]);
 
   const stats = [
-    { label: "Active Vettings", value: active, icon: Activity, colorClass: "text-primary" },
-    { label: "Awaiting Decision", value: awaiting, icon: AlertTriangle, colorClass: "text-[hsl(var(--risk-moderate))]" },
-    { label: "Completed This Month", value: completedMonth, icon: CheckCircle, colorClass: "text-[hsl(var(--risk-low))]" },
-    { label: "Avg. Turnaround", value: avgTurnaround, icon: Clock, colorClass: "text-muted-foreground" },
+    { 
+      label: "Active Vettings", 
+      value: active, 
+      icon: Activity, 
+      color: "text-primary",
+      bgColor: "bg-primary/8",
+    },
+    { 
+      label: "Awaiting Decision", 
+      value: awaiting, 
+      icon: AlertTriangle, 
+      color: "text-[hsl(var(--risk-moderate))]",
+      bgColor: "bg-[hsl(var(--risk-moderate)/0.08)]",
+    },
+    { 
+      label: "Completed This Month", 
+      value: completedMonth, 
+      icon: CheckCircle, 
+      color: "text-[hsl(var(--risk-low))]",
+      bgColor: "bg-[hsl(var(--risk-low)/0.08)]",
+    },
+    { 
+      label: "Avg. Turnaround", 
+      value: avgTurnaround, 
+      icon: Clock, 
+      color: "text-accent",
+      bgColor: "bg-accent/8",
+    },
   ];
 
   return (
     <div className="page-container">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-foreground">Active Vettings</h1>
-        <p className="text-sm text-muted-foreground mt-1">Monitor ongoing vetting requests and review results</p>
+      {/* Page Header */}
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">Active Vettings</h1>
+          <p className="text-sm text-muted-foreground mt-1">Monitor ongoing vetting requests and review results</p>
+        </div>
+        <Link to="/submit">
+          <Button className="gap-2">
+            <Plus className="w-4 h-4" />
+            New Vetting
+          </Button>
+        </Link>
       </div>
 
+      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {stats.map((s) => (
-          <div key={s.label} className="glass-card p-5">
-            <div className="flex flex-col items-center text-center gap-2">
-              <div className="p-2 rounded-lg bg-muted">
-                <s.icon className={`w-5 h-5 ${s.colorClass}`} />
+          <div key={s.label} className="glass-card p-5 group">
+            <div className="flex items-start justify-between mb-3">
+              <div className={`p-2.5 rounded-xl ${s.bgColor}`}>
+                <s.icon className={`w-5 h-5 ${s.color}`} />
               </div>
-              <p className="text-sm text-muted-foreground font-medium">{s.label}</p>
-              <p className={`text-3xl font-bold ${s.colorClass}`}>{s.value}</p>
             </div>
+            <p className={`text-3xl font-bold ${s.color}`}>{s.value}</p>
+            <p className="text-sm text-muted-foreground font-medium mt-1">{s.label}</p>
           </div>
         ))}
       </div>
 
+      {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3 mb-6">
-        <Input
-          placeholder="Search by subject name..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="max-w-xs bg-card"
-        />
+        <div className="relative flex-1 max-w-sm">
+          <Input
+            placeholder="Search by subject name..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="bg-card pl-4"
+          />
+        </div>
         <Select value={statusFilter} onValueChange={setStatusFilter}>
           <SelectTrigger className="w-[160px] bg-card"><SelectValue placeholder="Status" /></SelectTrigger>
           <SelectContent>
@@ -96,7 +135,7 @@ export default function Dashboard() {
           </SelectContent>
         </Select>
         <Select value={sortBy} onValueChange={setSortBy}>
-          <SelectTrigger className="w-[160px] bg-card"><SelectValue placeholder="Sort" /></SelectTrigger>
+          <SelectTrigger className="w-[180px] bg-card"><SelectValue placeholder="Sort" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="recent">Most Recent</SelectItem>
             <SelectItem value="risk">Highest Risk</SelectItem>
@@ -106,13 +145,20 @@ export default function Dashboard() {
         </Select>
       </div>
 
+      {/* Vetting Cards */}
       <div className="space-y-3">
         {filtered.map((v) => (
           <VettingCard key={v.id} vetting={v} onClick={() => navigate(`/vetting/${v.id}`)} />
         ))}
         {filtered.length === 0 && (
-          <div className="glass-card p-12 text-center text-muted-foreground">
-            No vetting requests found.
+          <div className="glass-card p-16 text-center">
+            <p className="text-muted-foreground text-lg">No vetting requests found.</p>
+            <Link to="/submit">
+              <Button className="mt-4 gap-2">
+                <Plus className="w-4 h-4" />
+                Submit New Vetting
+              </Button>
+            </Link>
           </div>
         )}
       </div>
