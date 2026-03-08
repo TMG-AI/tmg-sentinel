@@ -234,7 +234,8 @@ export default function VettingDetail() {
   const hasFlags = flags && (flags.red.length > 0 || flags.yellow.length > 0);
 
   // Primary recommendation comes from combined_decision if available
-  const primaryRecommendation = combined?.recommendation || v.recommendation;
+  const normalizeRecommendation = (r: string | null | undefined) => r?.replace("Conditional Approve", "Conditional Approval") ?? null;
+  const primaryRecommendation = normalizeRecommendation(combined?.recommendation || v.recommendation);
   const primaryTier = combined?.combined_tier || v.risk_tier;
 
   const tabs: TabDef[] = ([
