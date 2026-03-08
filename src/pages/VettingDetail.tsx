@@ -285,9 +285,7 @@ export default function VettingDetail() {
                 <span className="text-sm font-semibold text-foreground">{normalizeRecommendation(combined.recommendation)}</span>
               </div>
             )}
-            {combined?.driver_detail && (
-              <p className="text-xs text-muted-foreground mb-2">{combined.driver_detail}</p>
-            )}
+            {/* driver_detail removed — duplicative with summary */}
 
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Clock className="w-3.5 h-3.5" />
