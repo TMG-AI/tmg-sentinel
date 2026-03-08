@@ -341,21 +341,21 @@ export default function VettingDetail() {
               </h3>
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
                 <div className="p-3 rounded-lg bg-muted">
-                  <p className="text-xs font-medium text-foreground">Confidence</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{scoring.confidence_modifier === "none" ? "HIGH — as-is" : scoring.confidence_modifier}</p>
+                  <p className="text-sm font-medium text-foreground">Confidence</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">{scoring.confidence_modifier === "none" ? "HIGH — as-is" : scoring.confidence_modifier}</p>
                 </div>
                 <div className="p-3 rounded-lg bg-muted">
-                  <p className="text-xs font-medium text-foreground">Engagement</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{scoring.engagement_multiplier}x multiplier</p>
+                  <p className="text-sm font-medium text-foreground">Engagement</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">{scoring.engagement_multiplier}x multiplier</p>
                 </div>
                 <div className="p-3 rounded-lg bg-muted">
-                  <p className="text-xs font-medium text-foreground">Final Score</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{scoring.final_composite.toFixed(2)} → {scoring.risk_tier}</p>
+                  <p className="text-sm font-medium text-foreground">Final Score</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">{scoring.final_composite.toFixed(2)} → {scoring.risk_tier}</p>
                 </div>
                 {rca && (
                   <div className="p-3 rounded-lg bg-muted border border-[hsl(var(--risk-moderate)/0.2)]">
-                    <p className="text-xs font-medium text-foreground">RCS</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{rca.composite_rcs.toFixed(2)} — {rca.rcs_risk_tier}</p>
+                    <p className="text-sm font-medium text-foreground">RCS</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">{rca.composite_rcs.toFixed(2)} — {rca.rcs_risk_tier}</p>
                   </div>
                 )}
               </div>
