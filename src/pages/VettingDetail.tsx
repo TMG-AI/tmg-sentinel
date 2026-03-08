@@ -186,12 +186,12 @@ export default function VettingDetail() {
 
       {/* Divergence Alert — always visible */}
       {rca?.divergence_alert && (
-        <div className="p-4 border-x border-border bg-[hsl(var(--risk-moderate)/0.06)]">
+        <div className="p-4 border-x border-border bg-[hsl(var(--risk-elevated)/0.10)] border-t border-t-[hsl(var(--risk-elevated)/0.3)]">
           <div className="flex items-start gap-3">
-            <ShieldAlert className="w-5 h-5 text-[hsl(var(--risk-moderate))] flex-shrink-0 mt-0.5" />
+            <ShieldAlert className="w-5 h-5 text-[hsl(var(--risk-elevated))] flex-shrink-0 mt-0.5" />
             <div>
-              <span className="text-xs font-bold text-[hsl(var(--risk-moderate))] uppercase tracking-wide">Divergence Alert</span>
-              <p className="text-sm text-foreground mt-0.5">{rca.divergence_alert}</p>
+              <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] uppercase tracking-wide">⚠ Divergence Alert</span>
+              <p className="text-sm text-foreground mt-0.5 font-medium">{rca.divergence_alert}</p>
             </div>
           </div>
         </div>
