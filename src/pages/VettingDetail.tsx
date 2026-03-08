@@ -15,8 +15,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogD
 import {
   CheckCircle, XCircle, ArrowLeft, AlertTriangle, ExternalLink, Upload,
   Shield, Skull, FileText, Clock, Newspaper, ChevronDown, ShieldAlert,
+  BarChart3, Sliders, Flag, BookOpen, Link2, Layers,
 } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 function getRcsColor(score: number): string {
@@ -25,6 +26,13 @@ function getRcsColor(score: number): string {
   if (score <= 6.5) return "hsl(var(--risk-elevated))";
   if (score <= 8.0) return "hsl(var(--risk-high))";
   return "hsl(var(--risk-critical, var(--risk-high)))";
+}
+
+interface NavSection {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  show: boolean;
 }
 
 export default function VettingDetail() {
@@ -38,7 +46,34 @@ export default function VettingDetail() {
   const [decisionNotes, setDecisionNotes] = useState("");
   const [pendingDecision, setPendingDecision] = useState<Decision | null>(null);
   const [showDecisionDialog, setShowDecisionDialog] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("summary");
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const scrollToSection = useCallback((sectionId: string) => {
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(sectionId);
+    }
+  }, []);
+
+  // Track active section on scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-100px 0px -60% 0px", threshold: 0 }
+    );
+
+    const sections = document.querySelectorAll("[data-section]");
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [v]);
 
   if (!v) {
     return (
@@ -96,15 +131,29 @@ export default function VettingDetail() {
     ? Object.entries(dimensions).sort(([, a], [, b]) => b.weight - a.weight)
     : [];
 
+  const hasFlags = flags && (flags.red.length > 0 || flags.yellow.length > 0);
+
+  const navSections: NavSection[] = [
+    { id: "summary", label: "Summary", icon: <FileText className="w-3.5 h-3.5" />, show: !!result?.executive_summary },
+    { id: "gates", label: "Gates", icon: <Shield className="w-3.5 h-3.5" />, show: !!gates },
+    { id: "scorecard", label: "Scorecard", icon: <BarChart3 className="w-3.5 h-3.5" />, show: !!dimensions && !gatesFailed },
+    { id: "modifiers", label: "Modifiers", icon: <Sliders className="w-3.5 h-3.5" />, show: !!scoring && !gatesFailed },
+    { id: "rca", label: "Reputational Risk", icon: <ShieldAlert className="w-3.5 h-3.5" />, show: !!rca && !gatesFailed },
+    { id: "flags", label: `Flags`, icon: <Flag className="w-3.5 h-3.5" />, show: !!flags },
+    { id: "evidence", label: "Evidence", icon: <Layers className="w-3.5 h-3.5" />, show: !!dimensions && !gatesFailed },
+    { id: "sources", label: "Sources", icon: <Link2 className="w-3.5 h-3.5" />, show: !!(result?.sources && result.sources.length > 0) },
+    { id: "decision", label: "Decision", icon: <CheckCircle className="w-3.5 h-3.5" />, show: v.status === "completed" || v.status === "gates_failed" },
+  ].filter((s) => s.show);
+
   return (
     <div className="page-container max-w-5xl">
       {/* Back */}
-      <button onClick={() => navigate(-1)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
+      <button onClick={() => navigate(-1)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-4 transition-colors">
         <ArrowLeft className="w-4 h-4" /> Back
       </button>
 
       {/* Header */}
-      <div className="glass-card p-6 mb-6">
+      <div className="glass-card p-6 mb-0 rounded-b-none border-b-0">
         <div className="flex flex-col lg:flex-row lg:items-start gap-6">
           <div className="flex-1">
             <h1 className="text-3xl font-bold text-foreground mb-3">{v.subject_name}</h1>
@@ -167,6 +216,26 @@ export default function VettingDetail() {
         )}
       </div>
 
+      {/* Sticky Section Nav */}
+      <div className="sticky top-0 z-20 bg-card border border-border rounded-b-xl mb-6 overflow-x-auto">
+        <div className="flex items-center gap-1 px-3 py-2">
+          {navSections.map((s) => (
+            <button
+              key={s.id}
+              onClick={() => scrollToSection(s.id)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
+                activeSection === s.id
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
+              }`}
+            >
+              {s.icon}
+              {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Divergence Alert */}
       {rca?.divergence_alert && (
         <div className="mb-6 p-5 rounded-xl border-2 border-[hsl(var(--risk-moderate))] bg-[hsl(var(--risk-moderate)/0.06)]">
@@ -182,9 +251,25 @@ export default function VettingDetail() {
         </div>
       )}
 
+      {/* Executive Summary — first content section */}
+      {result?.executive_summary && (
+        <div id="summary" data-section className="glass-card p-6 mb-6 scroll-mt-16">
+          <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
+          <div className="prose prose-sm max-w-none text-foreground">
+            {result.executive_summary.split("\n").map((line, i) => {
+              if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-4 mb-2 text-foreground">{line.replace("## ", "")}</h3>;
+              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground">{line.replace(/\*\*/g, "")}</p>;
+              if (line.startsWith("- ")) return <li key={i} className="text-sm text-muted-foreground ml-4 mb-1">{line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "$1")}</li>;
+              if (line.trim() === "") return <br key={i} />;
+              return <p key={i} className="text-sm text-muted-foreground mb-2">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Gates */}
       {gates && (
-        <div className="mb-6">
+        <div id="gates" data-section className="mb-6 scroll-mt-16">
           {gatesFailed && (
             <div className="risk-badge-critical p-4 rounded-xl mb-4 flex items-center gap-3">
               <Skull className="w-6 h-6 flex-shrink-0" />
@@ -203,7 +288,7 @@ export default function VettingDetail() {
 
       {/* Dimensions */}
       {dimensions && !gatesFailed && dimensionOrder.length > 0 && (
-        <div className="glass-card p-6 mb-6">
+        <div id="scorecard" data-section className="glass-card p-6 mb-6 scroll-mt-16">
           <h2 className="section-title">Risk Dimension Scorecard</h2>
           <div className="space-y-5">
             {dimensionOrder.map(([key, dim]) => (
@@ -227,7 +312,7 @@ export default function VettingDetail() {
 
       {/* Modifiers */}
       {scoring && !gatesFailed && (
-        <div className="glass-card p-6 mb-6">
+        <div id="modifiers" data-section className="glass-card p-6 mb-6 scroll-mt-16">
           <h2 className="section-title">Scoring Modifiers</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
             <div className="p-4 rounded-xl bg-muted">
@@ -245,7 +330,7 @@ export default function VettingDetail() {
             {rca && (
               <div className="p-4 rounded-xl bg-muted border border-[hsl(var(--risk-moderate)/0.2)]">
                 <p className="font-medium text-foreground mb-1">RCS Score</p>
-                <p className="text-xs text-muted-foreground">{rca.composite_rcs.toFixed(2)} / 10 — <span className={`font-bold ${getRiskTierColor(rca.rcs_risk_tier).includes('critical') ? 'text-destructive' : ''}`}>{rca.rcs_risk_tier}</span></p>
+                <p className="text-xs text-muted-foreground">{rca.composite_rcs.toFixed(2)} / 10 — <span className="font-bold">{rca.rcs_risk_tier}</span></p>
               </div>
             )}
           </div>
@@ -254,7 +339,7 @@ export default function VettingDetail() {
 
       {/* RCA Section */}
       {rca && !gatesFailed && (
-        <div className="glass-card p-6 mb-6">
+        <div id="rca" data-section className="glass-card p-6 mb-6 scroll-mt-16">
           <div className="flex items-center justify-between mb-4">
             <h2 className="section-title flex items-center gap-2 mb-0">
               <ShieldAlert className="w-4 h-4" /> Reputational Contagion Analysis
@@ -300,97 +385,63 @@ export default function VettingDetail() {
       )}
 
       {/* Flags */}
-      {flags && (flags.red.length > 0 || flags.yellow.length > 0) && (
-        <div className="mb-6">
-          <h2 className="section-title">Flags Inventory</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <h3 className="text-xs font-semibold text-destructive uppercase mb-2">Red Flags ({flags.red.length})</h3>
-              {flags.red.length === 0 ? (
-                <p className="text-xs text-muted-foreground p-3 bg-muted rounded-xl">No red flags</p>
-              ) : (
-                <div className="space-y-2">
-                  {flags.red.map((f, i) => (
-                    <div key={i} className="p-3 rounded-xl border border-destructive/15 bg-[hsl(var(--destructive)/0.04)]">
-                      <div className="flex items-center gap-2 mb-1">
-                        <AlertTriangle className="w-3.5 h-3.5 text-destructive" />
-                        <span className="text-sm font-medium text-foreground">{f.title}</span>
+      <div id="flags" data-section className="mb-6 scroll-mt-16">
+        {hasFlags && (
+          <>
+            <h2 className="section-title">Flags Inventory</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <h3 className="text-xs font-semibold text-destructive uppercase mb-2">Red Flags ({flags!.red.length})</h3>
+                {flags!.red.length === 0 ? (
+                  <p className="text-xs text-muted-foreground p-3 bg-muted rounded-xl">No red flags</p>
+                ) : (
+                  <div className="space-y-2">
+                    {flags!.red.map((f, i) => (
+                      <div key={i} className="p-3 rounded-xl border border-destructive/15 bg-[hsl(var(--destructive)/0.04)]">
+                        <div className="flex items-center gap-2 mb-1">
+                          <AlertTriangle className="w-3.5 h-3.5 text-destructive" />
+                          <span className="text-sm font-medium text-foreground">{f.title}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground">{f.description}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{f.source} · {f.date}</p>
                       </div>
-                      <p className="text-xs text-muted-foreground">{f.description}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{f.source} · {f.date}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-            <div>
-              <h3 className="text-xs font-semibold text-[hsl(var(--risk-moderate))] uppercase mb-2">Yellow Flags ({flags.yellow.length})</h3>
-              {flags.yellow.length === 0 ? (
-                <p className="text-xs text-muted-foreground p-3 bg-muted rounded-xl">No yellow flags</p>
-              ) : (
-                <div className="space-y-2">
-                  {flags.yellow.map((f, i) => (
-                    <div key={i} className="p-3 rounded-xl border border-[hsl(var(--risk-moderate)/0.15)] bg-[hsl(var(--risk-moderate)/0.04)]">
-                      <div className="flex items-center gap-2 mb-1">
-                        <AlertTriangle className="w-3.5 h-3.5 text-[hsl(var(--risk-moderate))]" />
-                        <span className="text-sm font-medium text-foreground">{f.title}</span>
-                      </div>
-                      <p className="text-xs text-muted-foreground">{f.description}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{f.source} · {f.date}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-      {flags && flags.red.length === 0 && flags.yellow.length === 0 && (
-        <div className="glass-card p-4 mb-6 flex items-center gap-3 bg-[hsl(var(--risk-low)/0.04)] border-[hsl(var(--risk-low)/0.15)]">
-          <CheckCircle className="w-5 h-5 text-risk-low flex-shrink-0" />
-          <span className="text-sm text-foreground font-medium">No flags identified</span>
-        </div>
-      )}
-
-      {/* Executive Summary */}
-      {result?.executive_summary && (
-        <div className="glass-card p-6 mb-6">
-          <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
-          <div className="prose prose-sm max-w-none text-foreground">
-            {result.executive_summary.split("\n").map((line, i) => {
-              if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-4 mb-2 text-foreground">{line.replace("## ", "")}</h3>;
-              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground">{line.replace(/\*\*/g, "")}</p>;
-              if (line.startsWith("- ")) return <li key={i} className="text-sm text-muted-foreground ml-4 mb-1">{line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "$1")}</li>;
-              if (line.trim() === "") return <br key={i} />;
-              return <p key={i} className="text-sm text-muted-foreground mb-2">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Sources */}
-      {result?.sources && result.sources.length > 0 && (
-        <div className="glass-card p-6 mb-6">
-          <h2 className="section-title flex items-center gap-2"><ExternalLink className="w-4 h-4" /> Sources ({result.sources.length})</h2>
-          <div className="space-y-2">
-            {[...result.sources].sort((a, b) => b.score - a.score).map((src) => (
-              <div key={src.id} className="flex items-center gap-3 p-2.5 rounded-lg bg-muted text-sm">
-                <span className="text-xs font-mono text-muted-foreground w-6 text-right flex-shrink-0">{src.id}</span>
-                <a href={src.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline truncate flex-1">
-                  {src.title}
-                </a>
-                <Badge variant="outline" className="text-xs flex-shrink-0 bg-primary/5 text-primary border-primary/20">
-                  {(src.score * 100).toFixed(0)}%
-                </Badge>
+                    ))}
+                  </div>
+                )}
               </div>
-            ))}
+              <div>
+                <h3 className="text-xs font-semibold text-[hsl(var(--risk-moderate))] uppercase mb-2">Yellow Flags ({flags!.yellow.length})</h3>
+                {flags!.yellow.length === 0 ? (
+                  <p className="text-xs text-muted-foreground p-3 bg-muted rounded-xl">No yellow flags</p>
+                ) : (
+                  <div className="space-y-2">
+                    {flags!.yellow.map((f, i) => (
+                      <div key={i} className="p-3 rounded-xl border border-[hsl(var(--risk-moderate)/0.15)] bg-[hsl(var(--risk-moderate)/0.04)]">
+                        <div className="flex items-center gap-2 mb-1">
+                          <AlertTriangle className="w-3.5 h-3.5 text-[hsl(var(--risk-moderate))]" />
+                          <span className="text-sm font-medium text-foreground">{f.title}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground">{f.description}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{f.source} · {f.date}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+        {flags && flags.red.length === 0 && flags.yellow.length === 0 && (
+          <div className="glass-card p-4 flex items-center gap-3 bg-[hsl(var(--risk-low)/0.04)] border-[hsl(var(--risk-low)/0.15)]">
+            <CheckCircle className="w-5 h-5 text-risk-low flex-shrink-0" />
+            <span className="text-sm text-foreground font-medium">No flags identified</span>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Evidence Accordion */}
       {dimensions && !gatesFailed && (
-        <div className="glass-card p-6 mb-6">
+        <div id="evidence" data-section className="glass-card p-6 mb-6 scroll-mt-16">
           <h2 className="section-title">Evidence by Dimension</h2>
           <Accordion type="multiple">
             {dimensionOrder.map(([key, dim]) => (
@@ -454,9 +505,29 @@ export default function VettingDetail() {
         </div>
       )}
 
+      {/* Sources */}
+      {result?.sources && result.sources.length > 0 && (
+        <div id="sources" data-section className="glass-card p-6 mb-6 scroll-mt-16">
+          <h2 className="section-title flex items-center gap-2"><Link2 className="w-4 h-4" /> Sources ({result.sources.length})</h2>
+          <div className="space-y-2 max-h-96 overflow-y-auto">
+            {[...result.sources].sort((a, b) => b.score - a.score).map((src) => (
+              <div key={src.id} className="flex items-center gap-3 p-2.5 rounded-lg bg-muted text-sm">
+                <span className="text-xs font-mono text-muted-foreground w-6 text-right flex-shrink-0">{src.id}</span>
+                <a href={src.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline truncate flex-1">
+                  {src.title}
+                </a>
+                <Badge variant="outline" className="text-xs flex-shrink-0 bg-primary/5 text-primary border-primary/20">
+                  {(src.score * 100).toFixed(0)}%
+                </Badge>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Decision Section */}
       {(v.status === "completed" || v.status === "gates_failed") && (
-        <div className="glass-card p-6 mb-6">
+        <div id="decision" data-section className="glass-card p-6 mb-6 scroll-mt-16">
           <h2 className="section-title flex items-center gap-2"><Shield className="w-4 h-4" /> Decision</h2>
           {v.decision ? (
             <div>
