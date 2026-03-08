@@ -1,6 +1,8 @@
 {
   "files": [
     "peter_thiel.json",
-    "palantir_technologies.json"
+    "palantir_technologies.json",
+    "peter_thiel_deep.json",
+    "palantir_technologies_deep.json"
   ]
 }
