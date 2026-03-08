@@ -497,16 +497,16 @@ export default function VettingDetail() {
                 {v.recommendation && <>Pipeline recommends: <strong>{v.recommendation}</strong></>}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <Button onClick={() => handleDecisionClick("approved")} className="bg-[hsl(var(--risk-low))] hover:bg-[hsl(var(--risk-low)/0.9)] text-[hsl(var(--risk-low-foreground))]">
-                  Approve
+                <Button onClick={() => handleDecisionClick("approved")} className="bg-[hsl(var(--risk-low))] hover:bg-[hsl(var(--risk-low)/0.85)] text-white font-bold shadow-sm">
+                  ✓ Approve
                 </Button>
-                <Button onClick={() => handleDecisionClick("conditionally_approved")} className="bg-[hsl(var(--risk-moderate))] hover:bg-[hsl(var(--risk-moderate)/0.9)] text-[hsl(var(--risk-moderate-foreground))]">
+                <Button onClick={() => handleDecisionClick("conditionally_approved")} className="bg-[hsl(var(--risk-elevated))] hover:bg-[hsl(var(--risk-elevated)/0.85)] text-white font-bold shadow-sm">
                   Conditional
                 </Button>
-                <Button onClick={() => handleDecisionClick("rejected")} variant="destructive">
-                  Reject
+                <Button onClick={() => handleDecisionClick("rejected")} className="bg-[hsl(var(--risk-high))] hover:bg-[hsl(var(--risk-high)/0.85)] text-white font-bold shadow-sm">
+                  ✕ Reject
                 </Button>
-                <Button onClick={() => handleDecisionClick("pending_review")} variant="outline" className="border-primary text-primary">
+                <Button onClick={() => handleDecisionClick("pending_review")} className="bg-[hsl(var(--gov-affairs))] hover:bg-[hsl(var(--gov-affairs)/0.85)] text-white font-bold shadow-sm">
                   Further Review
                 </Button>
               </div>
