@@ -43,7 +43,7 @@ export function VettingCard({ vetting: v, onClick }: Props) {
               {v.subject_type === "individual" ? "Individual" : "Organization"}
             </Badge>
             {hasDivergence && (
-              <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--risk-moderate)/0.12)] text-[hsl(var(--risk-moderate))]">
+              <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--risk-elevated)/0.10)] text-[hsl(var(--risk-elevated))] border border-[hsl(var(--risk-elevated)/0.20)]">
                 <ShieldAlert className="w-3 h-3" /> Divergence
               </span>
             )}
