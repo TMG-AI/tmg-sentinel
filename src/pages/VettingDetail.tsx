@@ -291,11 +291,13 @@ export default function VettingDetail() {
       )}
 
       {activeTab === "rca" && rca && !gatesFailed && (
-        <div className="glass-card p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="section-title flex items-center gap-2 mb-0">
-              <ShieldAlert className="w-4 h-4" /> Reputational Contagion Analysis
-            </h2>
+        <div className="mb-6">
+          {/* Header with composite score */}
+          <div className="glass-card p-4 mb-4 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <ShieldAlert className="w-4 h-4 text-foreground" />
+              <span className="text-sm font-semibold text-foreground">Reputational Contagion Score</span>
+            </div>
             <div className="flex items-center gap-2">
               <span className="text-lg font-bold text-foreground">{rca.composite_rcs.toFixed(2)}</span>
               <span className="text-xs text-muted-foreground">/ 10</span>
@@ -304,24 +306,30 @@ export default function VettingDetail() {
               </span>
             </div>
           </div>
-          <p className="text-sm text-muted-foreground mb-5">{rca.rcs_recommendation}</p>
 
-          <div className="space-y-4 mb-6">
+          {rca.rcs_recommendation && (
+            <p className="text-sm text-muted-foreground mb-4 px-1">{rca.rcs_recommendation}</p>
+          )}
+
+          {/* Card grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
             {(Object.keys(RCS_QUESTION_LABELS) as Array<keyof typeof RCS_QUESTION_LABELS>).map((qKey) => {
-              const q = rca[qKey as keyof ReputationalContagion] as { score: number; weight: number; evidence: string } | undefined;
+              const q = rca[qKey as keyof ReputationalContagion] as { score: number; weight: number; evidence: string; damaging_headline?: string } | undefined;
               if (!q || typeof q !== 'object' || !('score' in q)) return null;
               return (
-                <RCSQuestionRow
+                <RCSCard
                   key={qKey}
                   label={RCS_QUESTION_LABELS[qKey]}
                   weight={q.weight}
                   score={q.score}
                   evidence={q.evidence}
+                  damagingHeadline={qKey === "q3_narrative_vulnerability" ? q.damaging_headline : undefined}
                 />
               );
             })}
           </div>
 
+          {/* Most damaging headline callout */}
           {rca.most_damaging_headline && (
             <div className="border-l-4 border-[hsl(var(--risk-elevated))] bg-[hsl(var(--risk-elevated)/0.04)] rounded-r-xl p-4">
               <div className="flex items-center gap-2 mb-2">
