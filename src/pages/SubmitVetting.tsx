@@ -27,7 +27,7 @@ export default function SubmitVetting() {
   const [vettingLevel, setVettingLevel] = useState<VettingLevel>("standard_vet");
   const [requestedBy, setRequestedBy] = useState("");
   const [otherName, setOtherName] = useState("");
-  const [notify, setNotify] = useState<string[]>(["Tara"]);
+  
   const [showConfirm, setShowConfirm] = useState(false);
 
   const canSubmit = subjectName.trim() && (requestedBy || otherName);
