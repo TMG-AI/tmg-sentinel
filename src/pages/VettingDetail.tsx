@@ -677,7 +677,7 @@ export default function VettingDetail() {
           {hasFlags ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <h3 className="text-xs font-semibold text-destructive uppercase mb-2">Red Flags ({flags!.red.length})</h3>
+                 <h3 className="text-xs font-semibold text-destructive mb-2">Red Flags ({flags!.red.length})</h3>
                 {flags!.red.length === 0 ? (
                   <p className="text-xs text-muted-foreground p-3 bg-muted rounded-xl">No red flags</p>
                 ) : (
@@ -689,7 +689,7 @@ export default function VettingDetail() {
                 )}
               </div>
               <div>
-                <h3 className="text-xs font-semibold text-[hsl(var(--risk-moderate))] uppercase mb-2">Yellow Flags ({flags!.yellow.length})</h3>
+                <h3 className="text-xs font-semibold text-[hsl(var(--risk-moderate))] mb-2">Yellow Flags ({flags!.yellow.length})</h3>
                 {flags!.yellow.length === 0 ? (
                   <p className="text-xs text-muted-foreground p-3 bg-muted rounded-xl">No yellow flags</p>
                 ) : (
