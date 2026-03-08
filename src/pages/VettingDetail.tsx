@@ -463,8 +463,7 @@ export default function VettingDetail() {
           <div className="space-y-1">
             {[...result.sources].sort((a, b) => b.score - a.score).map((src) => (
               <div key={src.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors text-sm">
-                <span className="text-xs font-mono text-muted-foreground w-6 text-right flex-shrink-0">{src.id}</span>
-                <a href={src.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline truncate flex-1">
+                <a href={src.url} target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary hover:underline truncate flex-1">
                   {src.title}
                 </a>
                 <ExternalLink className="w-3 h-3 text-muted-foreground flex-shrink-0" />
