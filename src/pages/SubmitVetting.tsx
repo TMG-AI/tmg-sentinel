@@ -50,7 +50,7 @@ export default function SubmitVetting() {
       `Requested By: ${by}`,
     ].join("\n");
 
-    window.location.href = `mailto:shannonwheatman@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:shannon@themessinagroup.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     toast({
       title: "Vetting request emailed to Shannon.",
