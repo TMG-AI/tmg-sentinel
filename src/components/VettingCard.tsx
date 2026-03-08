@@ -3,7 +3,7 @@ import {
   getRiskTierColor, getEngagementClass, getVettingLevelColor,
   getDecisionColor, getDecisionLabel, formatDateTime, getPipelineProgress,
 } from "@/lib/vetting-utils";
-import { CheckCircle, XCircle, Loader2, AlertTriangle, Skull, Clock, ChevronRight, ShieldAlert } from "lucide-react";
+import { CheckCircle, XCircle, Loader2, AlertTriangle, Skull, Clock, ChevronRight, ShieldAlert, Landmark } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface Props {
@@ -11,10 +11,22 @@ interface Props {
   onClick: () => void;
 }
 
+function formatUSD(amount: number): string {
+  if (amount >= 1e9) return `$${(amount / 1e9).toFixed(2)}B`;
+  if (amount >= 1e6) return `$${(amount / 1e6).toFixed(1)}M`;
+  if (amount >= 1e3) return `$${(amount / 1e3).toFixed(0)}K`;
+  return `$${amount.toLocaleString()}`;
+}
+
 export function VettingCard({ vetting: v, onClick }: Props) {
   const progress = getPipelineProgress(v.pipeline_progress);
   const rca = v.result_json?.reputational_contagion;
+  const combined = v.result_json?.combined_decision;
+  const contracts = v.result_json?.government_contracts;
   const hasDivergence = !!rca?.divergence_alert;
+
+  // Primary recommendation from combined_decision
+  const primaryTier = combined?.combined_tier || v.risk_tier;
 
   return (
     <div
@@ -22,10 +34,10 @@ export function VettingCard({ vetting: v, onClick }: Props) {
       className="glass-card p-5 cursor-pointer group border-l-4 transition-all duration-200"
       style={{
         borderLeftColor: v.status === "gates_failed" ? "hsl(var(--risk-critical))" 
-          : v.status === "completed" && v.risk_tier === "HIGH" ? "hsl(var(--risk-high))"
-          : v.status === "completed" && v.risk_tier === "CRITICAL" ? "hsl(var(--risk-critical))"
-          : v.status === "completed" && v.risk_tier === "ELEVATED" ? "hsl(var(--risk-elevated))"
-          : v.status === "completed" && v.risk_tier === "MODERATE" ? "hsl(var(--risk-moderate))"
+          : v.status === "completed" && primaryTier === "HIGH" ? "hsl(var(--risk-high))"
+          : v.status === "completed" && primaryTier === "CRITICAL" ? "hsl(var(--risk-critical))"
+          : v.status === "completed" && primaryTier === "ELEVATED" ? "hsl(var(--risk-elevated))"
+          : v.status === "completed" && primaryTier === "MODERATE" ? "hsl(var(--risk-moderate))"
           : v.status === "completed" ? "hsl(var(--risk-low))"
           : v.status === "running" ? "hsl(var(--primary))"
           : v.status === "error" ? "hsl(var(--destructive))"
@@ -48,6 +60,19 @@ export function VettingCard({ vetting: v, onClick }: Props) {
               </span>
             )}
           </div>
+
+          {/* Combined decision recommendation */}
+          {combined && (
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
+              <span className={`text-xs font-bold px-2 py-0.5 rounded ${getRiskTierColor(combined.combined_tier as any)}`}>
+                {combined.combined_tier}
+              </span>
+              <span className="text-xs font-medium text-foreground truncate max-w-xs">
+                {combined.recommendation.split("—")[0].trim()}
+              </span>
+            </div>
+          )}
+
           <div className="flex items-center gap-2 flex-wrap mb-2">
             <span className={`inline-flex items-center text-xs px-2.5 py-1 rounded-full ${getEngagementClass(v.engagement_type)}`}>
               {ENGAGEMENT_LABELS[v.engagement_type].split(" ").slice(0, 3).join(" ")}
@@ -55,6 +80,12 @@ export function VettingCard({ vetting: v, onClick }: Props) {
             <span className={`inline-flex items-center text-xs px-2.5 py-1 rounded-full ${getVettingLevelColor(v.vetting_level)}`}>
               {VETTING_LEVEL_LABELS[v.vetting_level].title}
             </span>
+            {contracts && (
+              <span className="inline-flex items-center gap-1 text-xs text-muted-foreground px-2 py-1 rounded-full bg-muted">
+                <Landmark className="w-3 h-3" />
+                {formatUSD(contracts.total_amount)} federal contracts
+              </span>
+            )}
             {v.country && (
               <span className="text-xs text-muted-foreground">{v.country}{v.city ? `, ${v.city}` : ""}</span>
             )}
@@ -128,14 +159,9 @@ export function VettingCard({ vetting: v, onClick }: Props) {
               <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">RCS</div>
             </div>
           )}
-          {v.risk_tier && (
-            <span className={`text-xs px-3 py-1.5 rounded-lg ${getRiskTierColor(v.risk_tier)}`}>
-              {v.risk_tier}
-            </span>
-          )}
-          {rca && rca.rcs_risk_tier !== v.risk_tier && (
-            <span className={`text-xs px-2 py-1 rounded-lg ${getRiskTierColor(rca.rcs_risk_tier)}`}>
-              RCS: {rca.rcs_risk_tier}
+          {primaryTier && (
+            <span className={`text-xs px-3 py-1.5 rounded-lg ${getRiskTierColor(primaryTier as any)}`}>
+              {primaryTier}
             </span>
           )}
           {v.decision && (
