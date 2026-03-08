@@ -152,15 +152,10 @@ function PipelineStatusPanel() {
   const ping = async () => {
     setLoading(true);
     setError(false);
-    try {
-      const data = await checkHealth();
-      setHealth(data);
-    } catch {
-      setHealth(null);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+    // Pipeline runs locally — no remote health check available
+    setHealth(null);
+    setError(true);
+    setLoading(false);
   };
 
   useEffect(() => { ping(); }, []);
