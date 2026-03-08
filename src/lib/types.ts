@@ -170,6 +170,9 @@ export const ENGAGEMENT_LABELS: Record<EngagementType, string> = {
 export const ENGAGEMENT_MULTIPLIERS: Record<EngagementType, string | null> = {
   fara_foreign_political: "1.3x risk multiplier",
   foreign_corporate: "1.15x risk multiplier",
+  government_affairs: "1.1x risk multiplier",
+  corporate_political_advisory: null,
+  campaign_electoral: "1.15x risk multiplier",
   domestic_political: null,
   domestic_corporate: "0.85x risk multiplier — lower risk context",
 };
