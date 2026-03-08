@@ -223,13 +223,12 @@ export default function VettingDetail() {
       {activeTab === "summary" && result?.executive_summary && (
         <div className="glass-card p-6 mb-6">
           <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
-          <div className="prose prose-sm max-w-none text-foreground">
-            {result.executive_summary.split("\n").map((line, i) => {
-              if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-4 mb-2 text-foreground">{line.replace("## ", "")}</h3>;
-              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground">{line.replace(/\*\*/g, "")}</p>;
-              if (line.startsWith("- ")) return <li key={i} className="text-sm text-muted-foreground ml-4 mb-1">{line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "$1")}</li>;
-              if (line.trim() === "") return <br key={i} />;
-              return <p key={i} className="text-sm text-muted-foreground mb-2">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
+          <div className="max-w-none text-foreground space-y-0">
+            {result.executive_summary.split("\n").filter(line => line.trim() !== "").map((line, i) => {
+              if (line.startsWith("## ")) return <h3 key={i} className="text-sm font-bold mt-3 mb-1 text-foreground">{line.replace("## ", "")}</h3>;
+              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-sm text-foreground mt-2 mb-0.5">{line.replace(/\*\*/g, "")}</p>;
+              if (line.startsWith("- ")) return <li key={i} className="text-sm text-muted-foreground ml-4 mb-0.5 leading-snug">{line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "$1")}</li>;
+              return <p key={i} className="text-sm text-muted-foreground mb-1 leading-snug">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
             })}
           </div>
 
@@ -311,8 +310,8 @@ export default function VettingDetail() {
             <p className="text-sm text-muted-foreground mb-4 px-1">{rca.rcs_recommendation}</p>
           )}
 
-          {/* Card grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+          {/* Card list */}
+          <div className="space-y-4 mb-4">
             {(Object.keys(RCS_QUESTION_LABELS) as Array<keyof typeof RCS_QUESTION_LABELS>).map((qKey) => {
               const q = rca[qKey as keyof ReputationalContagion] as { score: number; weight: number; evidence: string; damaging_headline?: string } | undefined;
               if (!q || typeof q !== 'object' || !('score' in q)) return null;
