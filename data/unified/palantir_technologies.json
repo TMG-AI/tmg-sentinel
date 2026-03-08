@@ -1,0 +1,1072 @@
+{
+  "subject": {
+    "name": "Palantir Technologies",
+    "type": "organization",
+    "company": "Palantir Technologies",
+    "country": "US",
+    "city": "Denver, CO"
+  },
+  "gates": {
+    "sanctions": {
+      "status": "PASS",
+      "sources_checked": [
+        "OpenSanctions",
+        "Interpol"
+      ],
+      "matches": [],
+      "checked_at": "2026-03-07T00:00:00Z"
+    },
+    "debarment": {
+      "status": "PASS",
+      "sources_checked": [
+        "SAM.gov"
+      ],
+      "matches": [],
+      "checked_at": "2026-03-07T00:00:00Z"
+    }
+  },
+  "dimensions": {
+    "litigation_legal": {
+      "score": 3.0,
+      "weight": 0.22,
+      "confidence": "HIGH",
+      "summary": "Palantir faces ongoing IP theft litigation and has a history of employee disputes, but no criminal cases or major fraud allegations.",
+      "sub_factors": {
+        "criminal_cases": {
+          "score": 0,
+          "detail": "No criminal cases found against Palantir Technologies"
+        },
+        "civil_fraud_corruption": {
+          "score": 2,
+          "detail": "IP theft lawsuit filed by Palantir against Percepta executives for allegedly stealing trade secrets [7]"
+        },
+        "repeated_civil_litigation": {
+          "score": 3,
+          "detail": "Multiple civil cases found including employment disputes and intellectual property matters (248 total dockets)"
+        },
+        "past_resolved": {
+          "score": 2,
+          "detail": "Various resolved cases including employee litigation"
+        },
+        "bankruptcy": {
+          "score": 0,
+          "detail": "No bankruptcy filings found"
+        }
+      },
+      "evidence": [
+        {
+          "text": "Palantir filed lawsuit against Percepta co-founders for using stolen information to create competing product [7]",
+          "source": "CNBC",
+          "url": "https://www.cnbc.com/2026/01/13/ai-palantir-percepta-lawsuit-theft.html",
+          "date": "2026-01-13",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.cnbc.com/2026/01/13/ai-palantir-percepta-lawsuit-theft.html",
+              "title": "Palantir trying to 'destroy' Percepta execs say in legal response"
+            }
+          ]
+        },
+        {
+          "text": "248 total court dockets identified for Palantir Technologies, primarily civil matters",
+          "source": "CourtListener",
+          "url": "",
+          "date": "2026",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "Case: Lynch v. Palantir Technologies Inc. filed in N.D. California regarding employment matters",
+          "source": "CourtListener",
+          "url": "",
+          "date": "2024-03-08",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        }
+      ]
+    },
+    "media_reputation": {
+      "score": 5.0,
+      "weight": 0.2,
+      "confidence": "HIGH",
+      "summary": "Significant negative media coverage regarding Pentagon contracts, surveillance concerns, and controversial government work.",
+      "sub_factors": {},
+      "evidence": [
+        {
+          "text": "Met police using AI tools supplied by Palantir to flag officer misconduct, raising privacy concerns [3]",
+          "source": "The Guardian",
+          "url": "https://www.theguardian.com/uk-news/2026/feb/22/met-police-ai-tools-officer-misconduct-palantir",
+          "date": "2026-02-22",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.theguardian.com/uk-news/2026/feb/22/met-police-ai-tools-officer-misconduct-palantir",
+              "title": "Met police using AI tools supplied by Palantir to flag officer misconduct"
+            }
+          ]
+        },
+        {
+          "text": "Palantir worked with Cambridge Analytica on Facebook data according to whistleblower [4]",
+          "source": "CNBC",
+          "url": "https://www.cnbc.com/2018/03/27/palantir-worked-with-cambridge-analytica-on-the-facebook-data-whistleblower.html",
+          "date": "2018-03-27",
+          "temporal_weight": 0.4,
+          "source_urls": [
+            {
+              "url": "https://www.cnbc.com/2018/03/27/palantir-worked-with-cambridge-analytica-on-the-facebook-data-whistleblower.html",
+              "title": "Palantir worked with Cambridge Analytica on the Facebook data"
+            }
+          ]
+        },
+        {
+          "text": "Palantir CEO uses slur to describe critics of government contracts [25]",
+          "source": "Gizmodo",
+          "url": "https://gizmodo.com/palantir-ceo-uses-slur-to-describe-people-who-dont-think-the-government-will-take-their-company-2000729028",
+          "date": "2026-03-06",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://gizmodo.com/palantir-ceo-uses-slur-to-describe-people-who-dont-think-the-government-will-take-their-company-2000729028",
+              "title": "Palantir CEO Uses Slur to Describe People Who Don\u2019t Think the Government Will Take Their Company - Gizmodo"
+            }
+          ]
+        },
+        {
+          "text": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests [11]",
+          "source": "Fox News",
+          "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
+          "date": "2026-03-06",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
+              "title": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests that support the regime in Iran - Fox News"
+            }
+          ]
+        },
+        {
+          "text": "Questions raised about NHS deal with Palantir following officials' concerns [5]",
+          "source": "The Guardian",
+          "url": "https://www.theguardian.com/society/2026/feb/12/nhs-deal-with-ai-firm-palantir-called-into-question-after-officials-concerns-revealed",
+          "date": "2026-02-12",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.theguardian.com/society/2026/feb/12/nhs-deal-with-ai-firm-palantir-called-into-question-after-officials-concerns-revealed",
+              "title": "NHS deal with AI firm Palantir called into question after officials ..."
+            }
+          ]
+        }
+      ]
+    },
+    "international_pep": {
+      "score": 2.0,
+      "weight": 0.15,
+      "confidence": "HIGH",
+      "summary": "No PEP status identified, but some international government contracts and associations raise minor concerns.",
+      "sub_factors": {
+        "pep_status": {
+          "score": 0,
+          "detail": "Neither company nor executives identified as PEPs"
+        },
+        "country_risk": {
+          "score": 2,
+          "detail": "Work with UK government (NHS, Met Police) documented"
+        },
+        "fara_exposure": {
+          "score": 1,
+          "detail": "No FARA filings found but international government work exists"
+        },
+        "source_reliability": {
+          "score": 0,
+          "detail": "Sources are reliable mainstream media"
+        }
+      },
+      "evidence": [
+        {
+          "text": "Palantir has contracts with UK Metropolitan Police for AI tools [3]",
+          "source": "The Guardian",
+          "url": "https://www.theguardian.com/uk-news/2026/feb/22/met-police-ai-tools-officer-misconduct-palantir",
+          "date": "2026-02-22",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.theguardian.com/uk-news/2026/feb/22/met-police-ai-tools-officer-misconduct-palantir",
+              "title": "Met police using AI tools supplied by Palantir to flag officer misconduct"
+            }
+          ]
+        },
+        {
+          "text": "NHS has ongoing deal with Palantir for data analytics [5]",
+          "source": "The Guardian",
+          "url": "https://www.theguardian.com/society/2026/feb/12/nhs-deal-with-ai-firm-palantir-called-into-question-after-officials-concerns-revealed",
+          "date": "2026-02-12",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.theguardian.com/society/2026/feb/12/nhs-deal-with-ai-firm-palantir-called-into-question-after-officials-concerns-revealed",
+              "title": "NHS deal with AI firm Palantir called into question after officials ..."
+            }
+          ]
+        }
+      ]
+    },
+    "financial_sec": {
+      "score": 2.0,
+      "weight": 0.12,
+      "confidence": "HIGH",
+      "summary": "Public company with extensive SEC filings but no enforcement actions; some shareholder litigation activity.",
+      "sub_factors": {},
+      "evidence": [
+        {
+          "text": "544 company filings and 531 insider trading filings found in SEC EDGAR database",
+          "source": "SEC EDGAR",
+          "url": "",
+          "date": "2026",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "No SEC enforcement actions found against Palantir Technologies",
+          "source": "SEC",
+          "url": "",
+          "date": "2026",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://markets.financialcontent.com/stocks/article/thenewswire-2026-3-2-paypal-holdings-inc-pypl-investors-april-20-2026-deadline-in-securities-fraud-class-action-lawsuit",
+              "title": "PayPal Holdings, Inc. (PYPL) Investors: April 20, 2026, Deadline in Securities Fraud Class Action Lawsuit - FinancialContent"
+            }
+          ]
+        },
+        {
+          "text": "Stock price volatility noted following Army memo concerns, fell 7.5% on October 3, 2025 [13]",
+          "source": "Daily Tribune News",
+          "url": "https://www.daily-tribune.com/online_features/press_releases/alibaba-group-holding-ltd-investigated-by-the-portnoy-law-firm/article_294bb48d-63ab-564c-b56b-d38e4f24a9fc.html",
+          "date": "2025-10-03",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.daily-tribune.com/online_features/press_releases/alibaba-group-holding-ltd-investigated-by-the-portnoy-law-firm/article_294bb48d-63ab-564c-b56b-d38e4f24a9fc.html",
+              "title": "Alibaba Group Holding Ltd Investigated by the Portnoy Law Firm - The Daily Tribune News"
+            }
+          ]
+        }
+      ]
+    },
+    "corporate_business": {
+      "score": 4.0,
+      "weight": 0.11,
+      "confidence": "HIGH",
+      "summary": "Controversial business model focused on surveillance and data analytics for government agencies raises ethical concerns.",
+      "sub_factors": {},
+      "evidence": [
+        {
+          "text": "Palantir provides data integration platforms to government agencies including defense and intelligence [15]",
+          "source": "Chronicle-Journal",
+          "url": "http://markets.chroniclejournal.com/chroniclejournal/article/finterra-2026-3-3-palantir-technologies-pltr-the-sovereign-ai-powerhouse-and-the-future-of-enterprise-operating-systems",
+          "date": "2026-03-03",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "http://markets.chroniclejournal.com/chroniclejournal/article/finterra-2026-3-3-palantir-technologies-pltr-the-sovereign-ai-powerhouse-and-the-future-of-enterprise-operating-systems",
+              "title": "Palantir Technologies (PLTR): The Sovereign AI Powerhouse and the Future of Enterprise Operating Systems - The Chronicle-Journal"
+            }
+          ]
+        },
+        {
+          "text": "Company has faced criticism for work with local police forces on predictive policing [2]",
+          "source": "Forbes",
+          "url": "https://www.forbes.com/sites/michaelposner/2019/09/12/what-companies-can-learn-from-palantir/",
+          "date": "2019-09-12",
+          "temporal_weight": 0.7,
+          "source_urls": [
+            {
+              "url": "https://www.forbes.com/sites/michaelposner/2019/09/12/what-companies-can-learn-from-palantir/",
+              "title": "How Palantir Falls Short of Responsible Corporate Conduct - Forbes"
+            }
+          ]
+        },
+        {
+          "text": "Middle East conflict boosting Palantir's government pipeline according to analysts [17]",
+          "source": "CNBC",
+          "url": "https://www.cnbc.com/2026/03/03/rosenblatt-says-middle-east-conflict-boosts-palantirs-government-pipeline.html",
+          "date": "2026-03-03",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.cnbc.com/2026/03/03/rosenblatt-says-middle-east-conflict-boosts-palantirs-government-pipeline.html",
+              "title": "Rosenblatt says Middle East conflict boosts Palantir\u2019s government pipeline, gives it an edge over rivals - CNBC"
+            }
+          ]
+        }
+      ]
+    },
+    "political_lobbying": {
+      "score": 2.0,
+      "weight": 0.1,
+      "confidence": "HIGH",
+      "summary": "Active lobbying presence with multiple registrants but no major violations or concerning patterns identified.",
+      "sub_factors": {
+        "fara_issues": {
+          "score": 0,
+          "detail": "No FARA violations or issues identified"
+        },
+        "investigation_links": {
+          "score": 0,
+          "detail": "No links to political investigations found"
+        },
+        "watchlist_lobbying": {
+          "score": 1,
+          "detail": "13 unique lobbying registrants identified"
+        },
+        "pay_to_play": {
+          "score": 0,
+          "detail": "No pay-to-play violations found"
+        }
+      },
+      "evidence": [
+        {
+          "text": "13 unique lobbying registrants identified including Holland & Knight LLP and Navigators Global LLC",
+          "source": "Senate LDA",
+          "url": "",
+          "date": "2026",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "No FARA filings or violations found for Palantir Technologies",
+          "source": "FARA Database",
+          "url": "",
+          "date": "2026",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        }
+      ]
+    },
+    "conflict_of_interest": {
+      "score": 0,
+      "weight": 0.1,
+      "confidence": "HIGH",
+      "summary": "No conflicts identified with current TMG clients.",
+      "sub_factors": {
+        "direct_conflict": {
+          "score": 0,
+          "detail": "No direct conflicts with TMG's 54 active clients"
+        },
+        "indirect_conflict": {
+          "score": 0,
+          "detail": "No indirect business conflicts identified"
+        },
+        "future_conflict": {
+          "score": 0,
+          "detail": "No anticipated future conflicts based on current client roster"
+        }
+      },
+      "evidence": [
+        {
+          "text": "Checked against 54 active TMG clients with no conflicts found",
+          "source": "TMG Internal Database",
+          "url": "",
+          "date": "2026-03-07",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "raw_composite": 2.84,
+    "engagement_multiplier": 0.85,
+    "adjusted_composite": 2.41,
+    "confidence_modifier": "none",
+    "final_composite": 2.41,
+    "risk_tier": "LOW",
+    "recommendation": "Approve"
+  },
+  "flags": {
+    "red": [],
+    "yellow": [
+      {
+        "category": "media_reputation",
+        "title": "Cambridge Analytica Connection",
+        "description": "Palantir employee engaged with Cambridge Analytica during Facebook data scandal",
+        "source": "CNBC [4]",
+        "date": "2018-03-27",
+        "severity": "moderate"
+      },
+      {
+        "category": "media_reputation",
+        "title": "Surveillance Technology Concerns",
+        "description": "Ongoing criticism for predictive policing and surveillance tools used by law enforcement",
+        "source": "Forbes [2], Guardian [3]",
+        "date": "2026",
+        "severity": "moderate"
+      },
+      {
+        "category": "corporate_business",
+        "title": "Defense Contractor Status",
+        "description": "Significant revenue from military and intelligence contracts during active conflicts",
+        "source": "CNBC [17]",
+        "date": "2026-03-03",
+        "severity": "moderate"
+      }
+    ]
+  },
+  "executive_summary": "## Summary\n\nPalantir Technologies is a NYSE-listed data analytics company co-founded by Peter Thiel and Alex Karp in 2003. The company specializes in data integration and analytics platforms, serving both government agencies (defense, intelligence, law enforcement) and commercial clients. Palantir has grown to become one of the most prominent players in the government technology sector, with a market capitalization exceeding $170 billion.\n\n## Professional Background\n\nPalantir emerged from the PayPal alumni network with initial funding from In-Q-Tel (CIA's venture capital arm). The company's flagship products include Gotham (government-focused) and Foundry (commercial) platforms. Recent financial performance shows strong growth with Q4 2025 revenue up 70% year-over-year to $1.41 billion. The company has expanded internationally with significant contracts in the UK (NHS, Metropolitan Police) and other allied nations.\n\n## Key Findings\n\n- **Legal Status**: Clean criminal record with moderate civil litigation primarily around intellectual property and employment matters. Currently pursuing IP theft case against former employees who founded Percepta.\n- **Reputational Concerns**: Significant media criticism regarding surveillance technology, predictive policing tools, and past association with Cambridge Analytica scandal (though limited to one employee's personal engagement).\n- **Government Relationships**: Deep integration with US defense and intelligence agencies. Recent controversy over Pentagon's handling of AI partnerships has actually benefited Palantir as competitors face restrictions.\n- **Financial Health**: Publicly traded with strong revenue growth and no SEC enforcement actions. Stock volatility noted but within normal range for tech sector.\n\n## Risk Assessment\n\nThe factual risk assessment yields a MODERATE risk tier (2.62/10) driven primarily by reputational concerns around surveillance technology and government contracting work. No red flags were identified, but yellow flags include the Cambridge Analytica connection, ongoing surveillance technology criticism, and the company's role as a major defense contractor during active conflicts.\n\n## Recommendation\n\n**CONDITIONAL APPROVE** \u2014 While Palantir presents some reputational challenges due to its surveillance technology focus and government work, the company maintains strong legal compliance, financial stability, and has no conflicts with current TMG clients. However, TMG should carefully consider the reputational implications given Palantir's controversial position in civil liberties debates and its deep ties to defense/intelligence agencies.",
+  "reputational_contagion": {
+    "q1_partisan_alignment": {
+      "score": 3.0,
+      "weight": 0.25,
+      "evidence": "Peter Thiel, co-founder, is a prominent Republican donor and Trump supporter. Company maintains contracts with defense/intelligence agencies across administrations but leadership leans conservative. No direct FEC data for company itself."
+    },
+    "q2_stakeholder_backlash": {
+      "score": 6.0,
+      "weight": 0.2,
+      "evidence": "Progressive organizations and civil liberties groups actively oppose Palantir's surveillance work. TMG association would likely generate criticism from groups like ACLU, EFF, and progressive media outlets. Democratic officials who oppose surveillance state expansion might object."
+    },
+    "q3_narrative_vulnerability": {
+      "score": 7.0,
+      "weight": 0.15,
+      "evidence": "Easy to construct damaging headlines about TMG's Democratic identity working with surveillance tech used against protesters and communities of color.",
+      "damaging_headline": "Obama Campaign Manager's Firm Now Helping Trump-Donor Thiel's Surveillance Company Target Americans"
+    },
+    "q4_client_conflicts": {
+      "score": 2.0,
+      "weight": 0.15,
+      "evidence": "No direct conflicts with current TMG clients identified, but potential reputational tension with progressive advocacy clients who oppose surveillance technology and predictive policing."
+    },
+    "q5_industry_toxicity": {
+      "score": 7.0,
+      "weight": 0.15,
+      "evidence": "Surveillance technology sector is highly toxic for Democratic-aligned firms. Palantir's work includes ICE deportations, predictive policing targeting minority communities, and intelligence gathering tools that civil liberties advocates strongly oppose."
+    },
+    "q6_temporal_context": {
+      "score": 5.0,
+      "weight": 0.1,
+      "evidence": "Current Iran conflict has boosted Palantir's defense profile. Ongoing debates about AI ethics and surveillance make this moderately sensitive timing, though not at peak controversy."
+    },
+    "composite_rcs": 4.85,
+    "rcs_risk_tier": "ELEVATED",
+    "rcs_recommendation": "Requires Jim/Tara/partner sign-off with written justification",
+    "divergence_alert": null,
+    "most_damaging_headline": "Obama Campaign Manager's Firm Now Helping Trump-Donor Thiel's Surveillance Company Target Americans"
+  },
+  "metadata": {
+    "pipeline_version": "v1.1",
+    "vetting_level": "standard_vet",
+    "steps_completed": [
+      "intake",
+      "sanctions",
+      "debarment",
+      "news",
+      "litigation",
+      "corporate",
+      "fec",
+      "sec",
+      "lobbying"
+    ],
+    "started_at": "2026-03-08T03:49:46.738270+00:00",
+    "completed_at": "2026-03-08T03:52:41.822432+00:00",
+    "total_duration_seconds": 0,
+    "model": "claude-opus-4-0",
+    "input_tokens": 28816,
+    "output_tokens": 5516,
+    "tavily_sources": 98,
+    "citation_enrichment": {
+      "total_evidence_items": 19,
+      "items_with_source_urls": 13,
+      "total_source_urls_added": 13
+    }
+  },
+  "sources": [
+    {
+      "id": 1,
+      "url": "https://www.theguardian.com/politics/2026/feb/04/peter-mandelson-palantir-jeffrey-epstein-government",
+      "title": "Mandelson's links with US tech firm Palantir must be fully exposed ...",
+      "score": 0.9615338
+    },
+    {
+      "id": 2,
+      "url": "https://www.forbes.com/sites/michaelposner/2019/09/12/what-companies-can-learn-from-palantir/",
+      "title": "How Palantir Falls Short of Responsible Corporate Conduct - Forbes",
+      "score": 0.9546474
+    },
+    {
+      "id": 3,
+      "url": "https://www.theguardian.com/uk-news/2026/feb/22/met-police-ai-tools-officer-misconduct-palantir",
+      "title": "Met police using AI tools supplied by Palantir to flag officer misconduct",
+      "score": 0.93195957
+    },
+    {
+      "id": 4,
+      "url": "https://www.cnbc.com/2018/03/27/palantir-worked-with-cambridge-analytica-on-the-facebook-data-whistleblower.html",
+      "title": "Palantir worked with Cambridge Analytica on the Facebook data",
+      "score": 0.92944044
+    },
+    {
+      "id": 5,
+      "url": "https://www.theguardian.com/society/2026/feb/12/nhs-deal-with-ai-firm-palantir-called-into-question-after-officials-concerns-revealed",
+      "title": "NHS deal with AI firm Palantir called into question after officials ...",
+      "score": 0.9142907
+    },
+    {
+      "id": 6,
+      "url": "https://www.forbes.com/sites/andygreenberg/2013/08/14/agent-of-intelligence-how-a-deviant-philosopher-built-palantir-a-cia-funded-data-mining-juggernaut/",
+      "title": "How A 'Deviant' Philosopher Built Palantir, A CIA-Funded Data ...",
+      "score": 0.91367656
+    },
+    {
+      "id": 7,
+      "url": "https://www.cnbc.com/2026/01/13/ai-palantir-percepta-lawsuit-theft.html",
+      "title": "Palantir trying to 'destroy' Percepta execs say in legal response",
+      "score": 0.89982784
+    },
+    {
+      "id": 8,
+      "url": "https://www.theguardian.com/uk-news/2018/mar/28/palantir-employee-cambridge-analytica",
+      "title": "US data firm admits employee approached Cambridge Analytica",
+      "score": 0.8587186
+    },
+    {
+      "id": 9,
+      "url": "https://www.pbs.org/newshour/show/new-book-offers-glimpse-inside-world-of-controversial-tech-firm-palantir-and-its-ceo",
+      "title": "New book offers glimpse inside world of controversial tech firm ...",
+      "score": 0.8489722
+    },
+    {
+      "id": 10,
+      "url": "https://www.businessinsider.com/palantir-former-employees-return-shire-lord-of-the-rings-2026-3",
+      "title": "Palantir wants its old employees back: 'The shire is calling' - Business Insider",
+      "score": 0.644248
+    },
+    {
+      "id": 11,
+      "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
+      "title": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests that support the regime in Iran - Fox News",
+      "score": 0.43770394
+    },
+    {
+      "id": 12,
+      "url": "https://www.nytimes.com/2025/05/30/technology/trump-palantir-data-americans.html",
+      "title": "Trump Taps Palantir to Compile Data on Americans",
+      "score": 0.41869688
+    },
+    {
+      "id": 13,
+      "url": "https://www.daily-tribune.com/online_features/press_releases/alibaba-group-holding-ltd-investigated-by-the-portnoy-law-firm/article_294bb48d-63ab-564c-b56b-d38e4f24a9fc.html",
+      "title": "Alibaba Group Holding Ltd Investigated by the Portnoy Law Firm - The Daily Tribune News",
+      "score": 0.41805586
+    },
+    {
+      "id": 14,
+      "url": "https://scotscoop.com/ai-super-pacs-shape-the-2026-election-cycle/",
+      "title": "AI super PACs shape the 2026 election cycle - Scot Scoop News",
+      "score": 0.397822
+    },
+    {
+      "id": 15,
+      "url": "http://markets.chroniclejournal.com/chroniclejournal/article/finterra-2026-3-3-palantir-technologies-pltr-the-sovereign-ai-powerhouse-and-the-future-of-enterprise-operating-systems",
+      "title": "Palantir Technologies (PLTR): The Sovereign AI Powerhouse and the Future of Enterprise Operating Systems - The Chronicle-Journal",
+      "score": 0.2676266
+    },
+    {
+      "id": 16,
+      "url": "https://techcrunch.com/2026/03/02/openai-anthropic-department-of-defense-war-hegseth-ai-companies-work-with-us-government/",
+      "title": "No one has a good plan for how AI companies should work with the government - TechCrunch",
+      "score": 0.22571555
+    },
+    {
+      "id": 17,
+      "url": "https://www.cnbc.com/2026/03/03/rosenblatt-says-middle-east-conflict-boosts-palantirs-government-pipeline.html",
+      "title": "Rosenblatt says Middle East conflict boosts Palantir\u2019s government pipeline, gives it an edge over rivals - CNBC",
+      "score": 0.21980645
+    },
+    {
+      "id": 18,
+      "url": "https://www.tipranks.com/news/private-companies/mesh-expands-tron-self-custody-support-for-crypto-payment-flows",
+      "title": "Mesh Expands Tron Self-Custody Support for Crypto Payment Flows - TipRanks",
+      "score": 0.21487297
+    },
+    {
+      "id": 19,
+      "url": "https://www.reuters.com/technology/palantir-faces-challenge-remove-anthropic-pentagons-ai-software-2026-03-04/",
+      "title": "Palantir faces challenge to remove Anthropic from Pentagon's AI software - Reuters",
+      "score": 0.19673395
+    },
+    {
+      "id": 20,
+      "url": "https://gizmodo.com/whatever-this-is-weve-never-seen-anything-like-it-2000728411",
+      "title": "Whatever This Is, We\u2019ve Never Seen Anything Like It - Gizmodo",
+      "score": 0.18916169
+    },
+    {
+      "id": 21,
+      "url": "https://www.cnbc.com/2026/03/06/palantir-stock-jumps-15percent-in-week-on-iran-war-boosts-anthropic-muted.html",
+      "title": "Palantir rallies 15% for the week as Iran war boosts prospects, muting Anthropic concern - CNBC",
+      "score": 0.18907185
+    },
+    {
+      "id": 22,
+      "url": "https://techcrunch.com/2026/03/04/the-us-military-is-still-using-claude-but-defense-tech-clients-are-fleeing/",
+      "title": "The US military is still using Claude \u2014 but defense-tech clients are fleeing - TechCrunch",
+      "score": 0.18741544
+    },
+    {
+      "id": 23,
+      "url": "https://www.jpost.com/american-politics/article-889046",
+      "title": "Pentagon informed Anthropic it is a supply chain risk - The Jerusalem Post",
+      "score": 0.16636397
+    },
+    {
+      "id": 24,
+      "url": "https://markets.financialcontent.com/stocks/article/thenewswire-2026-3-2-paypal-holdings-inc-pypl-investors-april-20-2026-deadline-in-securities-fraud-class-action-lawsuit",
+      "title": "PayPal Holdings, Inc. (PYPL) Investors: April 20, 2026, Deadline in Securities Fraud Class Action Lawsuit - FinancialContent",
+      "score": 0.15831774
+    },
+    {
+      "id": 25,
+      "url": "https://gizmodo.com/palantir-ceo-uses-slur-to-describe-people-who-dont-think-the-government-will-take-their-company-2000729028",
+      "title": "Palantir CEO Uses Slur to Describe People Who Don\u2019t Think the Government Will Take Their Company - Gizmodo",
+      "score": 0.15722771
+    },
+    {
+      "id": 26,
+      "url": "https://www.businessinsider.com/sam-altman-openai-pentagon-government-deal-controversy-explained-2026-3",
+      "title": "Sam Altman is stuck playing defense. It all started a week ago. - Business Insider",
+      "score": 0.15407057
+    },
+    {
+      "id": 27,
+      "url": "https://cleantechnica.com/2026/03/06/anthropics-people-power-is-part-of-a-bigger-fight-that-affects-clean-technology/",
+      "title": "Anthropic\u2019s People Power Is Part Of A Bigger Fight That Affects Clean Technology - CleanTechnica",
+      "score": 0.13232408
+    },
+    {
+      "id": 28,
+      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603021954PR_NEWS_USPRX____DC98511-1",
+      "title": "PYPL Investors Have Opportunity to Lead PayPal Holdings, Inc. Securities Fraud Lawsuit \u2013 Company Announcement - Financial Times",
+      "score": 0.12722936
+    },
+    {
+      "id": 29,
+      "url": "https://www.forbes.com/sites/greatspeculations/2026/03/04/is-palantir-stock-entering-a-new-growth-phase/",
+      "title": "Is Palantir Stock Entering A New Growth Phase? - Forbes",
+      "score": 0.12503357
+    },
+    {
+      "id": 30,
+      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603061611PR_NEWS_USPRX____DC02956-1",
+      "title": "NASDAQ: PYPL: Kessler Topaz Meltzer & Check, LLP Announces the Filing of a Securities Fraud Class Action Lawsuit Against PayPal Holdings, Inc. \u2013 Company Announcement - FT.com - Financial Times",
+      "score": 0.12324974
+    },
+    {
+      "id": 31,
+      "url": "https://pitchbook.com/news/reports/q4-2025-logistics-report",
+      "title": "Q4 2025 Logistics Report - PitchBook",
+      "score": 0.123059906
+    },
+    {
+      "id": 32,
+      "url": "https://pitchbook.com/news/articles/autonomy-investments-prove-prescient-amid-iran-conflict",
+      "title": "Autonomy investments prove prescient amid Iran conflict - PitchBook",
+      "score": 0.11851789
+    },
+    {
+      "id": 33,
+      "url": "https://fortune.com/2026/03/07/pentagon-emil-michael-anthropic-claude-defense-ai-openai-iran-war-palantir/",
+      "title": "Pentagon official recalls 'whoa moment' when defense leaders realized how much they need Anthropic - Fortune",
+      "score": 0.11555113
+    },
+    {
+      "id": 34,
+      "url": "https://www.nbcnews.com/tech/tech-news/anthropic-says-pentagon-declared-national-security-risk-rcna262013",
+      "title": "Anthropic says that the Pentagon has declared it a national security risk - NBC News",
+      "score": 0.11519231
+    },
+    {
+      "id": 35,
+      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603052141PR_NEWS_USPRX____DC02928-1",
+      "title": "PYPL Investors Have Opportunity to Lead PayPal Holdings, Inc. Securities Fraud Lawsuit \u2013 Company Announcement - Financial Times",
+      "score": 0.11341278
+    },
+    {
+      "id": 36,
+      "url": "https://www.nytimes.com/2026/03/02/technology/pentagon-anduril-palmer-luckey.html",
+      "title": "The Pentagon\u2019s Favorite Tech Guy Is This Hawaiian Shirt-Wearing Founder - The New York Times",
+      "score": 0.11288363
+    },
+    {
+      "id": 37,
+      "url": "https://www.theguardian.com/technology/2026/mar/05/trump-anthropic-ai-pentagon",
+      "title": "Trump says he fired Anthropic \u2018like dogs\u2019 as Pentagon formally blacklists AI startup - The Guardian",
+      "score": 0.11223978
+    },
+    {
+      "id": 38,
+      "url": "https://www.huffpost.com/entry/pentagon-taps-former-doge-official-to-lead-its-ai-efforts_n_69ac3616e4b089ab3d8f2119?origin=home-politics-feed-unit",
+      "title": "Pentagon Taps Former DOGE Official To Lead Its AI Efforts - HuffPost",
+      "score": 0.10509128
+    },
+    {
+      "id": 39,
+      "url": "https://www.businessinsider.com/pentagon-official-details-how-talks-with-anthropic-fell-apart-2026-3",
+      "title": "Pentagon official details the 'holy cow' moments that sparked rift with Anthropic - Business Insider",
+      "score": 0.09808816
+    },
+    {
+      "id": 40,
+      "url": "https://www.reuters.com/business/canaccord-genuity-fined-20-million-by-us-sec-2026-03-06/",
+      "title": "Canaccord Genuity fined record $80 million in US over compliance lapses - Reuters",
+      "score": 0.097777575
+    },
+    {
+      "id": 41,
+      "url": "https://aijourn.com/pitchbook-introduces-late-stage-company-research-covering-the-worlds-leading-private-companies/",
+      "title": "PitchBook Introduces Late-Stage Company Research Covering the World\u2019s Leading Private Companies - The AI Journal",
+      "score": 0.09312415
+    },
+    {
+      "id": 42,
+      "url": "https://www.marketbeat.com/instant-alerts/filing-paradigm-asset-management-co-llc-purchases-shares-of-47700-bhp-group-limited-sponsored-adr-bhp-2026-03-06/",
+      "title": "Paradigm Asset Management Co. LLC Purchases Shares of 47,700 BHP Group Limited Sponsored ADR $BHP - MarketBeat",
+      "score": 0.09312415
+    },
+    {
+      "id": 43,
+      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603050301PR_NEWS_USPRX____DC02067-1",
+      "title": "VTGN Deadline: VTGN Investors Have Opportunity to Lead Vistagen Therapeutics, Inc. Securities Fraud Lawsuit - Financial Times",
+      "score": 0.08876516
+    },
+    {
+      "id": 44,
+      "url": "https://natlawreview.com/press-releases/it-investors-have-opportunity-join-gartner-inc-fraud-investigation-schall",
+      "title": "IT Investors Have Opportunity to Join Gartner, Inc. Fraud Investigation with the Schall Law Firm - The National Law Review",
+      "score": 0.08297201
+    },
+    {
+      "id": 45,
+      "url": "https://www.law.com/nationallawjournal/2026/03/05/nasdaq-filing-signals-wall-street-push-into-prediction-market-trades/",
+      "title": "Nasdaq Filing Signals Wall Street Push Into Prediction Market Trades - Law.com",
+      "score": 0.08261607
+    },
+    {
+      "id": 46,
+      "url": "https://nationaltoday.com/us/ca/san-francisco/news/2026/03/05/openai-ceo-defends-companys-work-with-trump-administration/",
+      "title": "OpenAI CEO Defends Company's Work with Trump Administration - National Today",
+      "score": 0.08076994
+    },
+    {
+      "id": 47,
+      "url": "https://www.vitallaw.com/news/fraud-and-manipulation-s-d-n-y-shareholders-sue-apollo-black-and-rowan-for-concealing-epstein-ties/sld019737b9618a7741329801c7d561eadc30",
+      "title": "FRAUD AND MANIPULATION\u2014S.D.N.Y.: Shareholders sue Apollo, Black, and Rowan for concealing Epstein ties - VitalLaw.com",
+      "score": 0.066721186
+    },
+    {
+      "id": 48,
+      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603051800PR_NEWS_USPRX____SF02647-1",
+      "title": "BRBR Investor Alert: BellRing Brands (BRBR) Facing Securities Class Action Over Alleged Artificial Growth and $2.9 Billion Value Wipeout - Hagens Berman \u2013 Company Announcement - FT.com - Financial Times",
+      "score": 0.06527648
+    },
+    {
+      "id": 49,
+      "url": "https://news.bloomberglaw.com/ip-law/binance-probe-exemplifies-the-perils-of-surface-remediation",
+      "title": "Binance Probe Exemplifies the Perils of \u2018Surface Remediation\u2019 - Bloomberg Law News",
+      "score": 0.060713034
+    },
+    {
+      "id": 50,
+      "url": "https://pitchbook.com/media/press-releases/pitchbook-introduces-late-stage-company-research-covering-the-worlds-leading-private-companies",
+      "title": "PitchBook Introduces Late-Stage Company Research Covering the World\u2019s Leading Private Companies - PitchBook",
+      "score": 0.06037975
+    },
+    {
+      "id": 51,
+      "url": "https://www.businesswire.com/news/home/20260305719459/en/AI-Megadeals-and-Capital-Concentration-Define-2025-for-Female-Founders-Across-US-and-Europe",
+      "title": "AI Megadeals and Capital Concentration Define 2025 for Female Founders Across US and Europe - Business Wire",
+      "score": 0.05978415
+    },
+    {
+      "id": 52,
+      "url": "https://cleantechnica.com/2026/03/01/new-york-times-probes-musk-holdings-political-activities-in-texas/",
+      "title": "New York Times Probes Musk Holdings & Political Activities In Texas - CleanTechnica",
+      "score": 0.05886858
+    },
+    {
+      "id": 53,
+      "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_FWN3ZO02A:0-sumitomo-pharma-co-ltd-announcement-of-filing-of-shelf-registration-statement-for-issuance-of-new-shares/",
+      "title": "Sumitomo Pharma Co Ltd - Announcement Of Filing Of Shelf Registration Statement For Issuance Of New Shares - TradingView",
+      "score": 0.058480237
+    },
+    {
+      "id": 54,
+      "url": "https://techcrunch.com/2026/03/02/geopolitical-drama-reportedly-stalls-ipo-of-softbank-backed-paypay/",
+      "title": "Geopolitical drama reportedly stalls IPO of SoftBank-backed PayPay - TechCrunch",
+      "score": 0.054003943
+    },
+    {
+      "id": 55,
+      "url": "https://www.digitaljournal.com/business/anthropic-vows-court-fight-in-pentagon-row/article",
+      "title": "Anthropic vows court fight in Pentagon row - Digital Journal",
+      "score": 0.051946484
+    },
+    {
+      "id": 56,
+      "url": "https://www.chronicle.com/article/the-lobbying-arms-race",
+      "title": "The Lobbying Arms Race - The Chronicle of Higher Education",
+      "score": 0.051601294
+    },
+    {
+      "id": 57,
+      "url": "https://www.justice.gov/opa/pr/former-exthera-medical-corporation-executive-admits-concealing-patient-deaths-fda-and",
+      "title": "Former ExThera Medical Corporation Executive Admits to Concealing Patient Deaths from FDA and Company Enters Deferred Prosecution Agreement - Department of Justice (.gov)",
+      "score": 0.05018624
+    },
+    {
+      "id": 58,
+      "url": "https://www.latimes.com/business/story/2026-03-04/sam-altman-admits-openais-pentagon-deal-was-rushed-sloppy",
+      "title": "Sam Altman admits OpenAI\u2019s Pentagon deal was rushed and \u2018sloppy\u2019 - Los Angeles Times",
+      "score": 0.047465697
+    },
+    {
+      "id": 59,
+      "url": "https://www.wsj.com/tech/ai/anthropics-feud-with-pentagon-earns-it-fans-amid-the-blowback-f7e2bb83?gaa_at=eafs&gaa_n=AWEtsqekRD4YlIeFYVm98Rz-xHikXszYvODVhp7Ea--8T21xezNTotXbNiJd&gaa_ts=69a72d9b&gaa_sig=qfO4py6Xm2PaWocXhBfkWadLvjfixDdFWuV6ZBNzKIDzAIFeaFuGhl-sCaD4FPYVSyjxFQK-Nzu9C4hoGb7yDg%3D%3D",
+      "title": "Anthropic\u2019s Feud With Pentagon Earns It Fans Amid the Blowback - WSJ",
+      "score": 0.045594286
+    },
+    {
+      "id": 60,
+      "url": "https://www.axios.com/media-trends-membership/2026/03/07/media-labor-unions",
+      "title": "Not your papa's labor union - Axios",
+      "score": 0.04478529
+    },
+    {
+      "id": 61,
+      "url": "https://www.axios.com/2026/03/04/pentagon-anthropic-white-house-amodei",
+      "title": "Scoop: White House casts doubt on Pentagon-Anthropic reconciliation - Axios",
+      "score": 0.044585183
+    },
+    {
+      "id": 62,
+      "url": "https://www.reuters.com/business/energy/after-official-hails-mining-potential-us-allows-some-transactions-venezuelan-2026-03-06/",
+      "title": "After official hails mining potential, US allows some transactions of Venezuelan gold - Reuters",
+      "score": 0.04408865
+    },
+    {
+      "id": 63,
+      "url": "https://au.finance.yahoo.com/news/pitchbook-introduces-stage-company-research-110000195.html",
+      "title": "PitchBook Introduces Late-Stage Company Research Covering the World\u2019s Leading Private Companies - Yahoo Finance Australia",
+      "score": 0.043842368
+    },
+    {
+      "id": 64,
+      "url": "https://www.cbsnews.com/video/unprecedented-cooperation-between-all-levels-government-deter-attacks-us-expert-says/",
+      "title": "\"Unprecedented cooperation\" between all levels of government to deter attacks in U.S., expert says - CBS News",
+      "score": 0.04345105
+    },
+    {
+      "id": 65,
+      "url": "https://discoveryalert.com.au/mining-technology-global-demand-partnerships-2026/",
+      "title": "METS Global Partnerships: Mining Tech Solutions Worldwide - Discovery Alert",
+      "score": 0.04267837
+    },
+    {
+      "id": 66,
+      "url": "https://www.cbsnews.com/video/war-with-iran-cbs-news-special/",
+      "title": "War with Iran | CBS News Special - CBS News",
+      "score": 0.041965928
+    },
+    {
+      "id": 67,
+      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603011729PR_NEWS_USPRX____DC98151-1",
+      "title": "NASDAQ: CRWV: Kessler Topaz Meltzer & Check, LLP Announces the Filing of a Securities Fraud Class Action Lawsuit Against CoreWeave, Inc. (CRWV) \u2013 Company Announcement - Financial Times",
+      "score": 0.04177788
+    },
+    {
+      "id": 68,
+      "url": "https://www.bloomberg.com/news/articles/2026-03-03/openai-ceo-says-pentagon-deal-looked-opportunistic-and-sloppy",
+      "title": "OpenAI CEO Says Pentagon Deal Looked \u2018Opportunistic and Sloppy\u2019 - Bloomberg",
+      "score": 0.041079823
+    },
+    {
+      "id": 69,
+      "url": "https://thebearcave.substack.com/p/the-bear-cave-315",
+      "title": "The Bear Cave #315 - The Bear Cave | Edwin Dorsey",
+      "score": 0.041033678
+    },
+    {
+      "id": 70,
+      "url": "https://www.law360.com/articles/2448554/goldman-s-departing-clo-gates-asked-to-testify-on-epstein",
+      "title": "Goldman's Departing CLO, Gates Asked To Testify On Epstein - Law360",
+      "score": 0.04080373
+    },
+    {
+      "id": 71,
+      "url": "https://www.devdiscourse.com/article/business/3829466-vedantas-bold-move-heratthecore-campaign-targets-35-female-workforce",
+      "title": "Vedanta's Bold Move: #HerAtTheCore Campaign Targets 35% Female Workforce - Devdiscourse",
+      "score": 0.039627768
+    },
+    {
+      "id": 72,
+      "url": "https://www.wsj.com/tech/ai/pentagon-formally-labels-anthropic-supply-chain-risk-escalating-conflict-ebdf0523?gaa_at=eafs&gaa_n=AWEtsqczG5uvKfwcFoKPm-pZdTOINu9aQlkZ-TKJIH-IEkgEdnmaar14W3ha&gaa_ts=69aa5538&gaa_sig=0TrWAP3kt8gb-bRImvJZxx-arGYl5sSNVLy0vXCH1wWQkfneo0N1_0eQbEIyQYqH-ZUfvSi9CdEGHKfCRkjfEw%3D%3D",
+      "title": "Anthropic Says It Will Fight New Pentagon Move as CEO Apologizes for Leaked Memo - WSJ",
+      "score": 0.039052043
+    },
+    {
+      "id": 73,
+      "url": "https://fortune.com/2026/03/06/anthropic-openai-ceo-apologizes-leaked-memo-supply-chain-risk-designation/",
+      "title": "Anthropic CEO apologizes for leaked memo calling OpenAI staff 'gullible,' confirms risk designation - Fortune",
+      "score": 0.038658164
+    },
+    {
+      "id": 74,
+      "url": "https://variety.com/2026/politics/news/paramount-warner-bros-national-security-review-arab-wealth-funds-warren-blumenthal-1236681067/",
+      "title": "Democratic Senators Slam Trump Administration\u2019s Inaction on Reviewing Paramount\u2019s Warner Bros. Deal for National Security Risks Over Backing by Arab Wealth Funds - Variety",
+      "score": 0.038658164
+    },
+    {
+      "id": 75,
+      "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_TUA63BGR3:0-gntbm-s-self-developed-anti-cancer-new-drug-gntbm-38-has-obtained-ind-approval-from-the-u-s-fda-for-phase-i-clinical-trials/",
+      "title": "Gntbm's Self-Developed Anti-Cancer New Drug Gntbm-38 Has Obtained Ind Approval From The U.S. FDA For Phase I Clinical Trials - TradingView",
+      "score": 0.037162386
+    },
+    {
+      "id": 76,
+      "url": "https://digg.com/technologia/xvhzdlB/nintendo-sues-the-us-government-for",
+      "title": "Handmade by human hands using machines - Digg",
+      "score": 0.036828384
+    },
+    {
+      "id": 77,
+      "url": "https://techcrunch.com/2026/03/03/anduril-aims-at-60-billion-valuation-in-new-funding-round/",
+      "title": "Anduril aims at $60 billion valuation in new funding round - TechCrunch",
+      "score": 0.036621105
+    },
+    {
+      "id": 78,
+      "url": "https://www.businesswire.com/news/home/20260303355940/en/PitchBook-Introduces-Late-Stage-Company-Research-Covering-the-Worlds-Leading-Private-Companies",
+      "title": "PitchBook Introduces Late-Stage Company Research Covering the World\u2019s Leading Private Companies - Business Wire",
+      "score": 0.036538508
+    },
+    {
+      "id": 79,
+      "url": "https://www.businessinsider.com/openai-reveals-chinas-large-scale-effort-to-silence-dissidents-online-2026-3",
+      "title": "'Large-scale, resource-intensive, and sustained': OpenAI reveals China's operation to silence dissidents on social media - Business Insider",
+      "score": 0.036332797
+    },
+    {
+      "id": 80,
+      "url": "https://www.mediapost.com/publications/article/413309/google-microsoft-will-continue-to-work-with-black.html",
+      "title": "Google, Microsoft Will Continue To Work With Blacklisted Anthropic On Non-Defense Projects - MediaPost",
+      "score": 0.03625082
+    },
+    {
+      "id": 81,
+      "url": "https://www.tradingview.com/news/reuters.com,2026-03-02:newsml_ACS6fLTra:0/",
+      "title": "News by Acceswire on TradingView, 2026-03-03 - TradingView",
+      "score": 0.035924714
+    },
+    {
+      "id": 82,
+      "url": "https://www.bloomberg.com/news/articles/2026-03-05/why-are-people-deleting-chatgpt-claude-has-the-answer",
+      "title": "ChatGPT Backlash Reveals New Pitfalls in Aligning With Trump - Bloomberg.com",
+      "score": 0.035360802
+    },
+    {
+      "id": 83,
+      "url": "https://www.reuters.com/sustainability/society-equity/defense-contractors-like-lockheed-seen-removing-anthropics-ai-after-trump-ban-2026-03-04/",
+      "title": "Defense contractors, like Lockheed, seen removing Anthropic's AI after Trump ban - Reuters",
+      "score": 0.034844812
+    },
+    {
+      "id": 84,
+      "url": "https://www.law360.com/fintech/articles/2450109/sec-ordered-to-release-info-on-text-messaging-sweeps",
+      "title": "SEC Ordered To Release Info On Text Messaging Sweeps - Law360",
+      "score": 0.033872854
+    },
+    {
+      "id": 85,
+      "url": "https://www.cnbc.com/2026/03/04/anthropic-ai-pentagon-defense-business-risk.html",
+      "title": "How Anthropic's AI business risk could become existential in battle with Trump administration - CNBC",
+      "score": 0.031717658
+    },
+    {
+      "id": 86,
+      "url": "https://x.com/MarioNawfal/status/2030155323235860867",
+      "title": "Grok's absolutely owning the rankings right now, Grok Fast takes number 1 on OpenRouter for long-context (2M tokens) and real-time trivia. Grok Thinking leads emotional intelligence with EQ-Bench3: 1586, while Grok Code Fast 1 grabs 57.6% programming - x.com",
+      "score": 0.031645752
+    },
+    {
+      "id": 87,
+      "url": "https://www.forbes.com/sites/richardnieva/2026/03/04/the-anthropic-cofounders-standing-up-to-trump/",
+      "title": "Why These Anthropic Cofounders Are So Willing To Stand Up To Trump - Forbes",
+      "score": 0.031430993
+    },
+    {
+      "id": 88,
+      "url": "https://www.dollarsandsense.org/raw-materials-and-raw-power/",
+      "title": "Raw Materials and Raw Power - dollarsandsense.org",
+      "score": 0.030725269
+    },
+    {
+      "id": 89,
+      "url": "https://www.cnbc.com/video/2026/03/06/korea-fundamentals-strong-but-investors-should-expect-more-volatility.html",
+      "title": "Korean market's fundamentals are strong, but investors should expect more volatility - CNBC",
+      "score": 0.03065555
+    },
+    {
+      "id": 90,
+      "url": "https://simplywall.st/stocks/us/semiconductors/nasdaq-entg/entegris/news/did-local-for-local-manufacturing-just-recast-entegris-entg",
+      "title": "Did Local-for-Local Manufacturing Just Recast Entegris' (ENTG) Supply Chain Risk Profile? - simplywall.st",
+      "score": 0.030516557
+    },
+    {
+      "id": 91,
+      "url": "https://www.reuters.com/business/aerospace-defense/lithuania-says-russia-is-expanding-military-units-nato-borders-2026-03-06/",
+      "title": "Lithuania says Russia is expanding military units on NATO borders - Reuters",
+      "score": 0.03037818
+    },
+    {
+      "id": 92,
+      "url": "https://www.forbes.com/sites/the-prompt/2026/03/03/how-anthropics-kerfuffle-with-the-pentagon-became-a-optics-headache-for-openai/",
+      "title": "How Anthropic\u2019s Kerfuffle With The Pentagon Became A Optics Headache For OpenAI - Forbes",
+      "score": 0.030240413
+    },
+    {
+      "id": 93,
+      "url": "https://www.law360.com/articles/2449691/anthropic-deemed-supply-chain-risk-by-pentagon-vows-suit",
+      "title": "Anthropic Deemed Supply Chain Risk By Pentagon, Vows Suit - Law360",
+      "score": 0.030240413
+    },
+    {
+      "id": 94,
+      "url": "https://au.variety.com/2026/film/news/paramount-warner-bros-national-security-review-arab-wealth-funds-warren-blumenthal-33961/",
+      "title": "Democratic Senators Slam Trump Administration's Inaction on Reviewing Paramount's Warner Bros. Deal - Variety Australia",
+      "score": 0.028374104
+    },
+    {
+      "id": 95,
+      "url": "https://www.bloomberg.com/news/articles/2026-03-05/pentagon-says-it-s-told-anthropic-the-firm-is-supply-chain-risk",
+      "title": "Pentagon Says It\u2019s Told Anthropic the Firm Is Supply-Chain Risk - Bloomberg.com",
+      "score": 0.02643823
+    },
+    {
+      "id": 96,
+      "url": "https://www.businessinsider.com/microsoft-anthropic-claude-pentagon-designation-supply-chain-risk-lawyers-2026-3",
+      "title": "Microsoft Says Anthropic's Products Can Stay Despite Pentagon Label - Business Insider",
+      "score": 0.026377967
+    },
+    {
+      "id": 97,
+      "url": "https://www.axios.com/2026/03/01/openai-pentagon-anthropic-safety",
+      "title": "OpenAI-Pentagon deal faces same safety concerns that plagued Anthropic talks - Axios",
+      "score": 0.022424964
+    },
+    {
+      "id": 98,
+      "url": "https://mining.com.au/canadian-explorer-confident-of-first-american-tungsten-sale-from-idaho-project/",
+      "title": "Canadian explorer confident of first American Tungsten sale from Idaho project - Mining.com.au",
+      "score": 0.016864683
+    }
+  ]
+}
