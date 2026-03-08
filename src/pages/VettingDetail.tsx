@@ -1,6 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useVettingStore } from "@/lib/vetting-store";
-import { ENGAGEMENT_LABELS, VETTING_LEVEL_LABELS, DIMENSION_LABELS, RCS_QUESTION_LABELS, Decision, ReputationalContagion } from "@/lib/types";
+import { ENGAGEMENT_LABELS, VETTING_LEVEL_LABELS, RCS_QUESTION_LABELS, Decision, ReputationalContagion } from "@/lib/types";
+import { DimensionCard } from "@/components/DimensionCard";
+import { RCSCard } from "@/components/RCSCard";
 import {
   getRiskTierColor, getEngagementClass, getVettingLevelColor,
   getDecisionColor, getDecisionLabel, getScoreBarColor,
