@@ -385,7 +385,7 @@ export default function VettingDetail() {
             <div className="risk-badge-critical p-4 rounded-xl mb-4 flex items-center gap-3">
               <Skull className="w-6 h-6 flex-shrink-0" />
               <div>
-                <p className="font-bold text-sm">AUTO-REJECTED — {gates.sanctions.status === "FAIL" ? "Sanctions" : "Debarment"} match found</p>
+                <p className="font-bold text-sm">Auto-Rejected — {gates.sanctions.status === "FAIL" ? "Sanctions" : "Debarment"} match found</p>
                 <p className="text-xs opacity-90 mt-0.5">Legal counsel required to override.</p>
               </div>
             </div>
