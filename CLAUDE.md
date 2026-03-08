@@ -154,8 +154,24 @@ If factual risk is LOW but RCS is HIGH, a **DIVERGENCE ALERT** is flagged. This 
 - **Standard vet**: 114 Tavily sources, synthesis running
 - **Data files**: `data/intake/peter_thiel.json`, `data/sanctions/peter_thiel.json`, `data/debarment/peter_thiel.json`, `data/news/peter_thiel.json`, `data/litigation/peter_thiel.json`, `data/corporate/peter_thiel.json`, `data/fec/peter_thiel.json`, `data/sec/peter_thiel.json`, `data/lobbying/peter_thiel.json`, `data/unified/peter_thiel.json`
 
+## Palantir Technologies Test Data (Session 5)
+- **Subject ID**: `palantir_technologies`
+- **Type**: organization
+- **Engagement**: domestic_corporate (0.85x multiplier)
+- **Level**: standard_vet
+- **Factual Risk: 2.41/10 LOW** — Approve
+- **RCS: 4.85/10 ELEVATED** — Requires Jim/Tara/partner sign-off
+- Key RCS scores: Partisan Alignment 3, Stakeholder Backlash 6, Narrative Vulnerability 7, Client Conflicts 2, Industry Toxicity 7, Temporal Context 5
+- Most Damaging Headline: "Obama Campaign Manager's Firm Now Helping Trump-Donor Thiel's Surveillance Company Target Americans"
+- 98 Tavily sources, 248 dockets, 3166 EDGAR filings, 10000+ SEC filings
+
+## Lovable Integration Status
+- `LOVABLE_RCA_PROMPT.md` — Full prompt for Lovable to add RCA display, dual scores, divergence alerts, mailto form
+- `public/data/vettings-index.json` — Lists peter_thiel.json and palantir_technologies.json
+- `public/data/vettings/*.json` — Copies of unified JSONs where Lovable's store reads from
+- Shannon should paste `LOVABLE_RCA_PROMPT.md` contents into Lovable chat to implement
+
 ## What's Next
-1. **Re-run Peter Thiel synthesis** with the new RCA module to see both scores side by side
-2. **Lovable integration** — Dashboard needs to read from JSON files, show RCS alongside factual score
-3. **Submit form → email** — mailto link instead of API call
-4. **Update Lovable types.ts** to include `reputational_contagion` section in the TypeScript type
+1. **Give Lovable the RCA prompt** — paste LOVABLE_RCA_PROMPT.md content into Lovable
+2. **Re-run Peter Thiel synthesis** with RCA module (current peter_thiel.json has RCA from pre-Session-5 synthesis)
+3. **Test more subjects** — run standard_vet on realistic potential clients
