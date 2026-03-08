@@ -108,15 +108,15 @@ export default function VettingDetail() {
 
   const hasFlags = flags && (flags.red.length > 0 || flags.yellow.length > 0);
 
-  const tabs: TabDef[] = [
-    { id: "summary", label: "Summary", icon: <FileText className="w-3.5 h-3.5" />, show: !!result?.executive_summary },
-    { id: "gates", label: "Gates", icon: <Shield className="w-3.5 h-3.5" />, show: !!gates },
-    { id: "scorecard", label: "Scorecard", icon: <BarChart3 className="w-3.5 h-3.5" />, show: !!dimensions && !gatesFailed },
-    { id: "rca", label: "Reputational Risk", icon: <ShieldAlert className="w-3.5 h-3.5" />, show: !!rca && !gatesFailed },
-    { id: "flags", label: `Flags${hasFlags ? ` (${(flags?.red.length || 0) + (flags?.yellow.length || 0)})` : ""}`, icon: <Flag className="w-3.5 h-3.5" />, show: !!flags },
-    { id: "sources", label: `Sources${result?.sources ? ` (${result.sources.length})` : ""}`, icon: <Link2 className="w-3.5 h-3.5" />, show: !!(result?.sources && result.sources.length > 0) },
-    { id: "decision", label: "Decision", icon: <CheckCircle className="w-3.5 h-3.5" />, show: v.status === "completed" || v.status === "gates_failed" },
-  ].filter((t) => t.show);
+  const tabs: TabDef[] = ([
+    { id: "summary" as const, label: "Summary", icon: <FileText className="w-3.5 h-3.5" />, show: !!result?.executive_summary },
+    { id: "gates" as const, label: "Gates", icon: <Shield className="w-3.5 h-3.5" />, show: !!gates },
+    { id: "scorecard" as const, label: "Scorecard", icon: <BarChart3 className="w-3.5 h-3.5" />, show: !!dimensions && !gatesFailed },
+    { id: "rca" as const, label: "Reputational Risk", icon: <ShieldAlert className="w-3.5 h-3.5" />, show: !!rca && !gatesFailed },
+    { id: "flags" as const, label: `Flags${hasFlags ? ` (${(flags?.red.length || 0) + (flags?.yellow.length || 0)})` : ""}`, icon: <Flag className="w-3.5 h-3.5" />, show: !!flags },
+    { id: "sources" as const, label: `Sources${result?.sources ? ` (${result.sources.length})` : ""}`, icon: <Link2 className="w-3.5 h-3.5" />, show: !!(result?.sources && result.sources.length > 0) },
+    { id: "decision" as const, label: "Decision", icon: <CheckCircle className="w-3.5 h-3.5" />, show: v.status === "completed" || v.status === "gates_failed" },
+  ] satisfies TabDef[]).filter((t) => t.show);
 
   return (
     <div className="page-container max-w-5xl">
