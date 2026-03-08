@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { VettingRequest, Decision, VettingResultJSON } from "./types";
+import { VettingRequest, Decision, VettingResultJSON, EngagementType } from "./types";
 
 interface VettingStore {
   vettings: VettingRequest[];
@@ -9,6 +9,14 @@ interface VettingStore {
   makeDecision: (id: string, decision: Decision, decided_by: string, notes: string) => void;
   reopenVetting: (id: string, performed_by: string) => void;
   uploadResults: (id: string, result: VettingResultJSON) => void;
+}
+
+function inferEngagementType(result: VettingResultJSON): EngagementType {
+  const multiplier = result.scoring.engagement_multiplier;
+  if (multiplier >= 1.25) return "fara_foreign_political";
+  if (multiplier >= 1.1) return "foreign_corporate";
+  if (multiplier <= 0.9) return "domestic_corporate";
+  return "domestic_political";
 }
 
 function resultToVettingRequest(result: VettingResultJSON, filename: string): VettingRequest {
@@ -22,7 +30,7 @@ function resultToVettingRequest(result: VettingResultJSON, filename: string): Ve
     city: result.subject.city || null,
     brief_bio: null,
     referral_source: null,
-    engagement_type: (result.metadata?.vetting_level?.includes("fara") ? "fara_foreign_political" : "domestic_political") as any,
+    engagement_type: inferEngagementType(result),
     vetting_level: (result.metadata?.vetting_level as any) || "standard_vet",
     requested_by: "Pipeline",
     requested_at: result.metadata?.started_at || new Date().toISOString(),
