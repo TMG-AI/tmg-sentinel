@@ -125,19 +125,19 @@
 
 @layer components {
   .risk-badge-low {
-    @apply bg-[hsl(var(--risk-low)/0.12)] text-[hsl(var(--risk-low))] font-bold border border-[hsl(var(--risk-low)/0.20)];
+    @apply bg-white text-[hsl(152,69%,28%)] font-bold border-2 border-[hsl(var(--risk-low)/0.40)];
   }
   .risk-badge-moderate {
-    @apply bg-[hsl(var(--risk-moderate)/0.12)] text-[hsl(var(--risk-moderate)/0.85)] font-bold border border-[hsl(var(--risk-moderate)/0.20)];
+    @apply bg-white text-[hsl(25,70%,30%)] font-bold border-2 border-[hsl(var(--risk-moderate)/0.40)];
   }
   .risk-badge-elevated {
-    @apply bg-[hsl(var(--risk-elevated)/0.12)] text-[hsl(var(--risk-elevated))] font-bold border border-[hsl(var(--risk-elevated)/0.20)];
+    @apply bg-white text-[hsl(25,80%,32%)] font-bold border-2 border-[hsl(var(--risk-elevated)/0.50)];
   }
   .risk-badge-high {
-    @apply bg-[hsl(var(--risk-high)/0.12)] text-[hsl(var(--risk-high))] font-bold border border-[hsl(var(--risk-high)/0.20)];
+    @apply bg-white text-[hsl(0,72%,38%)] font-bold border-2 border-[hsl(var(--risk-high)/0.50)];
   }
   .risk-badge-critical {
-    @apply bg-[hsl(var(--risk-critical)/0.12)] text-[hsl(var(--risk-critical))] font-bold border border-[hsl(var(--risk-critical)/0.25)];
+    @apply bg-[hsl(var(--risk-critical))] text-white font-bold border-2 border-[hsl(var(--risk-critical))];
   }
   
   .engagement-fara {
