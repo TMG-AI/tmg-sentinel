@@ -4,20 +4,19 @@ import { ENGAGEMENT_LABELS, VETTING_LEVEL_LABELS, DIMENSION_LABELS, RCS_QUESTION
 import {
   getRiskTierColor, getEngagementClass, getVettingLevelColor,
   getDecisionColor, getDecisionLabel, getScoreBarColor,
-  getConfidenceColor, formatDateTime,
+  formatDateTime,
 } from "@/lib/vetting-utils";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   CheckCircle, XCircle, ArrowLeft, AlertTriangle, ExternalLink, Upload,
   Shield, Skull, FileText, Clock, Newspaper, ChevronDown, ShieldAlert,
-  BarChart3, Sliders, Flag, BookOpen, Link2, Layers,
+  BarChart3, Sliders, Flag, Link2,
 } from "lucide-react";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 function getRcsColor(score: number): string {
@@ -28,8 +27,10 @@ function getRcsColor(score: number): string {
   return "hsl(var(--risk-critical, var(--risk-high)))";
 }
 
-interface NavSection {
-  id: string;
+type TabId = "summary" | "gates" | "scorecard" | "rca" | "flags" | "sources" | "decision";
+
+interface TabDef {
+  id: TabId;
   label: string;
   icon: React.ReactNode;
   show: boolean;
@@ -46,34 +47,8 @@ export default function VettingDetail() {
   const [decisionNotes, setDecisionNotes] = useState("");
   const [pendingDecision, setPendingDecision] = useState<Decision | null>(null);
   const [showDecisionDialog, setShowDecisionDialog] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("summary");
+  const [activeTab, setActiveTab] = useState<TabId>("summary");
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const scrollToSection = useCallback((sectionId: string) => {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      setActiveSection(sectionId);
-    }
-  }, []);
-
-  // Track active section on scroll
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-100px 0px -60% 0px", threshold: 0 }
-    );
-
-    const sections = document.querySelectorAll("[data-section]");
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, [v]);
 
   if (!v) {
     return (
@@ -108,7 +83,7 @@ export default function VettingDetail() {
 
   const handleReopen = () => {
     reopenVetting(v.id, "Admin");
-    toast({ title: "Vetting Reopened", description: "Decision has been cleared. The vetting is now open for a new decision." });
+    toast({ title: "Vetting Reopened", description: "Decision has been cleared." });
   };
 
   const handleUploadJSON = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,7 +94,7 @@ export default function VettingDetail() {
       try {
         const json = JSON.parse(ev.target?.result as string);
         uploadResults(v.id, json);
-        toast({ title: "Results Uploaded", description: "Vetting results have been processed and applied." });
+        toast({ title: "Results Uploaded", description: "Vetting results have been processed." });
       } catch {
         toast({ title: "Error", description: "Invalid JSON file.", variant: "destructive" });
       }
@@ -133,17 +108,15 @@ export default function VettingDetail() {
 
   const hasFlags = flags && (flags.red.length > 0 || flags.yellow.length > 0);
 
-  const navSections: NavSection[] = [
-    { id: "summary", label: "Summary", icon: <FileText className="w-3.5 h-3.5" />, show: !!result?.executive_summary },
-    { id: "gates", label: "Gates", icon: <Shield className="w-3.5 h-3.5" />, show: !!gates },
-    { id: "scorecard", label: "Scorecard", icon: <BarChart3 className="w-3.5 h-3.5" />, show: !!dimensions && !gatesFailed },
-    { id: "modifiers", label: "Modifiers", icon: <Sliders className="w-3.5 h-3.5" />, show: !!scoring && !gatesFailed },
-    { id: "rca", label: "Reputational Risk", icon: <ShieldAlert className="w-3.5 h-3.5" />, show: !!rca && !gatesFailed },
-    { id: "flags", label: `Flags`, icon: <Flag className="w-3.5 h-3.5" />, show: !!flags },
-    { id: "evidence", label: "Evidence", icon: <Layers className="w-3.5 h-3.5" />, show: !!dimensions && !gatesFailed },
-    { id: "sources", label: "Sources", icon: <Link2 className="w-3.5 h-3.5" />, show: !!(result?.sources && result.sources.length > 0) },
-    { id: "decision", label: "Decision", icon: <CheckCircle className="w-3.5 h-3.5" />, show: v.status === "completed" || v.status === "gates_failed" },
-  ].filter((s) => s.show);
+  const tabs: TabDef[] = ([
+    { id: "summary" as const, label: "Summary", icon: <FileText className="w-3.5 h-3.5" />, show: !!result?.executive_summary },
+    { id: "gates" as const, label: "Gates", icon: <Shield className="w-3.5 h-3.5" />, show: !!gates },
+    { id: "scorecard" as const, label: "Scorecard", icon: <BarChart3 className="w-3.5 h-3.5" />, show: !!dimensions && !gatesFailed },
+    { id: "rca" as const, label: "Reputational Risk", icon: <ShieldAlert className="w-3.5 h-3.5" />, show: !!rca && !gatesFailed },
+    { id: "flags" as const, label: `Flags${hasFlags ? ` (${(flags?.red.length || 0) + (flags?.yellow.length || 0)})` : ""}`, icon: <Flag className="w-3.5 h-3.5" />, show: !!flags },
+    { id: "sources" as const, label: `Sources${result?.sources ? ` (${result.sources.length})` : ""}`, icon: <Link2 className="w-3.5 h-3.5" />, show: !!(result?.sources && result.sources.length > 0) },
+    { id: "decision" as const, label: "Decision", icon: <CheckCircle className="w-3.5 h-3.5" />, show: v.status === "completed" || v.status === "gates_failed" },
+  ] satisfies TabDef[]).filter((t) => t.show);
 
   return (
     <div className="page-container max-w-5xl">
@@ -173,7 +146,6 @@ export default function VettingDetail() {
               <Clock className="w-3.5 h-3.5" />
               <span>Requested by {v.requested_by} on {formatDateTime(v.requested_at)}</span>
             </div>
-            {v.brief_bio && <p className="text-sm text-muted-foreground mt-3 max-w-2xl">{v.brief_bio}</p>}
           </div>
 
           {/* Dual Scores */}
@@ -187,9 +159,6 @@ export default function VettingDetail() {
                     {v.risk_tier}
                   </span>
                 )}
-                {v.recommendation && (
-                  <p className="text-xs font-semibold text-foreground mt-1">{v.recommendation}</p>
-                )}
               </div>
             )}
             {rca && (
@@ -199,61 +168,58 @@ export default function VettingDetail() {
                 <span className={`inline-block text-xs font-bold px-3 py-1 rounded mt-1 ${getRiskTierColor(rca.rcs_risk_tier)}`}>
                   {rca.rcs_risk_tier}
                 </span>
-                <p className="text-xs font-semibold text-foreground mt-1">{rca.rcs_recommendation.split(';')[0]}</p>
               </div>
             )}
           </div>
         </div>
 
-        {/* Upload JSON button for testing */}
+        {/* Upload JSON for testing */}
         {(v.status === "pending" || v.status === "running") && (
           <div className="mt-4 pt-4 border-t">
             <input ref={fileInputRef} type="file" accept=".json" onChange={handleUploadJSON} className="hidden" />
             <Button variant="outline" size="sm" onClick={() => fileInputRef.current?.click()}>
-              <Upload className="w-3.5 h-3.5 mr-2" /> Upload Results JSON (Testing)
+              <Upload className="w-3.5 h-3.5 mr-2" /> Upload Results JSON
             </Button>
           </div>
         )}
       </div>
 
-      {/* Sticky Section Nav */}
-      <div className="sticky top-0 z-20 bg-card border border-border rounded-b-xl mb-6 overflow-x-auto">
-        <div className="flex items-center gap-1 px-3 py-2">
-          {navSections.map((s) => (
-            <button
-              key={s.id}
-              onClick={() => scrollToSection(s.id)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
-                activeSection === s.id
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
-              }`}
-            >
-              {s.icon}
-              {s.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Divergence Alert */}
+      {/* Divergence Alert — always visible */}
       {rca?.divergence_alert && (
-        <div className="mb-6 p-5 rounded-xl border-2 border-[hsl(var(--risk-moderate))] bg-[hsl(var(--risk-moderate)/0.06)]">
+        <div className="p-4 border-x border-border bg-[hsl(var(--risk-moderate)/0.06)]">
           <div className="flex items-start gap-3">
-            <div className="p-2 rounded-lg bg-[hsl(var(--risk-moderate)/0.15)]">
-              <ShieldAlert className="w-5 h-5 text-[hsl(var(--risk-moderate))]" />
-            </div>
+            <ShieldAlert className="w-5 h-5 text-[hsl(var(--risk-moderate))] flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="text-sm font-bold text-[hsl(var(--risk-moderate))] uppercase tracking-wide mb-1">Divergence Alert</h3>
-              <p className="text-sm text-foreground">{rca.divergence_alert}</p>
+              <span className="text-xs font-bold text-[hsl(var(--risk-moderate))] uppercase tracking-wide">Divergence Alert</span>
+              <p className="text-sm text-foreground mt-0.5">{rca.divergence_alert}</p>
             </div>
           </div>
         </div>
       )}
 
-      {/* Executive Summary — first content section */}
-      {result?.executive_summary && (
-        <div id="summary" data-section className="glass-card p-6 mb-6 scroll-mt-16">
+      {/* Tab Navigation */}
+      <div className="sticky top-0 z-20 bg-card border border-border rounded-b-xl mb-6 overflow-x-auto">
+        <div className="flex items-center gap-1 px-3 py-2">
+          {tabs.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setActiveTab(t.id)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
+                activeTab === t.id
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
+              }`}
+            >
+              {t.icon}
+              {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Tab Content */}
+      {activeTab === "summary" && result?.executive_summary && (
+        <div className="glass-card p-6 mb-6">
           <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
           <div className="prose prose-sm max-w-none text-foreground">
             {result.executive_summary.split("\n").map((line, i) => {
@@ -264,18 +230,46 @@ export default function VettingDetail() {
               return <p key={i} className="text-sm text-muted-foreground mb-2">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
             })}
           </div>
+
+          {/* Scoring modifiers inline in summary */}
+          {scoring && !gatesFailed && (
+            <div className="mt-6 pt-6 border-t border-border">
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3 flex items-center gap-2">
+                <Sliders className="w-3.5 h-3.5" /> Scoring Modifiers
+              </h3>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                <div className="p-3 rounded-lg bg-muted">
+                  <p className="text-xs font-medium text-foreground">Confidence</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{scoring.confidence_modifier === "none" ? "HIGH — as-is" : scoring.confidence_modifier}</p>
+                </div>
+                <div className="p-3 rounded-lg bg-muted">
+                  <p className="text-xs font-medium text-foreground">Engagement</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{scoring.engagement_multiplier}x multiplier</p>
+                </div>
+                <div className="p-3 rounded-lg bg-muted">
+                  <p className="text-xs font-medium text-foreground">Final Score</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{scoring.final_composite.toFixed(2)} → {scoring.risk_tier}</p>
+                </div>
+                {rca && (
+                  <div className="p-3 rounded-lg bg-muted border border-[hsl(var(--risk-moderate)/0.2)]">
+                    <p className="text-xs font-medium text-foreground">RCS</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{rca.composite_rcs.toFixed(2)} — {rca.rcs_risk_tier}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
-      {/* Gates */}
-      {gates && (
-        <div id="gates" data-section className="mb-6 scroll-mt-16">
+      {activeTab === "gates" && gates && (
+        <div className="mb-6">
           {gatesFailed && (
             <div className="risk-badge-critical p-4 rounded-xl mb-4 flex items-center gap-3">
               <Skull className="w-6 h-6 flex-shrink-0" />
               <div>
                 <p className="font-bold text-sm">AUTO-REJECTED — {gates.sanctions.status === "FAIL" ? "Sanctions" : "Debarment"} match found</p>
-                <p className="text-xs opacity-90 mt-0.5">No composite score calculated. Legal counsel required to override.</p>
+                <p className="text-xs opacity-90 mt-0.5">Legal counsel required to override.</p>
               </div>
             </div>
           )}
@@ -286,60 +280,88 @@ export default function VettingDetail() {
         </div>
       )}
 
-      {/* Dimensions */}
-      {dimensions && !gatesFailed && dimensionOrder.length > 0 && (
-        <div id="scorecard" data-section className="glass-card p-6 mb-6 scroll-mt-16">
-          <h2 className="section-title">Risk Dimension Scorecard</h2>
-          <div className="space-y-5">
-            {dimensionOrder.map(([key, dim]) => (
-              <div key={key}>
-                <div className="flex items-center justify-between mb-1.5">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-foreground">{DIMENSION_LABELS[key] || key}</span>
-                    <span className="text-xs text-muted-foreground">({(dim.weight * 100).toFixed(0)}%)</span>
-                  </div>
-                  <span className="text-sm font-bold text-foreground">{dim.score.toFixed(1)}</span>
+      {activeTab === "scorecard" && dimensions && !gatesFailed && (
+        <div className="space-y-4 mb-6">
+          {dimensionOrder.map(([key, dim]) => (
+            <div key={key} className="glass-card p-5">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-semibold text-foreground">{DIMENSION_LABELS[key] || key}</span>
+                  <span className="text-xs text-muted-foreground">Weight: {(dim.weight * 100).toFixed(0)}%</span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
-                  <div className={`h-full rounded-full transition-all ${getScoreBarColor(dim.score)}`} style={{ width: `${(dim.score / 10) * 100}%` }} />
-                </div>
-                <p className="text-xs text-muted-foreground mt-1">{dim.summary}</p>
+                <span className="text-lg font-bold text-foreground">{dim.score.toFixed(1)}<span className="text-xs text-muted-foreground font-normal">/10</span></span>
               </div>
-            ))}
-          </div>
+              <div className="w-full h-2.5 rounded-full bg-muted overflow-hidden mb-3">
+                <div className={`h-full rounded-full transition-all ${getScoreBarColor(dim.score)}`} style={{ width: `${(dim.score / 10) * 100}%` }} />
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">{dim.summary}</p>
+
+              {/* Sub-factors — clean table layout */}
+              {Object.keys(dim.sub_factors).length > 0 && (
+                <div className="rounded-lg border border-border overflow-hidden">
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr className="bg-muted">
+                        <th className="text-left py-2 px-3 font-medium text-muted-foreground">Sub-factor</th>
+                        <th className="text-right py-2 px-3 font-medium text-muted-foreground w-16">Score</th>
+                        <th className="text-left py-2 px-3 font-medium text-muted-foreground">Detail</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {Object.entries(dim.sub_factors).map(([sk, sf]) => (
+                        <tr key={sk} className="border-t border-border">
+                          <td className="py-2 px-3 text-foreground capitalize whitespace-nowrap">{sk.replace(/_/g, " ")}</td>
+                          <td className="py-2 px-3 text-right font-medium text-foreground">{sf.score}/10</td>
+                          <td className="py-2 px-3 text-muted-foreground">{sf.detail}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              {/* Evidence items linked to this dimension */}
+              {dim.evidence.length > 0 && (
+                <Collapsible>
+                  <CollapsibleTrigger className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground mt-3 cursor-pointer transition-colors">
+                    <ChevronDown className="w-3 h-3" />
+                    {dim.evidence.length} supporting source{dim.evidence.length !== 1 ? "s" : ""}
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <div className="mt-2 space-y-2">
+                      {dim.evidence.map((ev, i) => (
+                        <div key={i} className="p-3 rounded-lg bg-muted text-sm">
+                          <p className="text-foreground">{ev.text}</p>
+                          {ev.source_urls && ev.source_urls.length > 0 ? (
+                            <div className="flex items-center gap-2 flex-wrap mt-2">
+                              {ev.source_urls.map((su, si) => (
+                                <a key={si} href={su.url} target="_blank" rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-primary/8 text-primary border border-primary/15 hover:bg-primary/15 transition-colors">
+                                  {su.title} <ExternalLink className="w-2.5 h-2.5" />
+                                </a>
+                              ))}
+                            </div>
+                          ) : ev.url ? (
+                            <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
+                              <span>{ev.source}</span>
+                              <a href={ev.url} target="_blank" rel="noopener noreferrer" className="text-primary flex items-center gap-1 hover:underline">
+                                View source <ExternalLink className="w-3 h-3" />
+                              </a>
+                            </div>
+                          ) : null}
+                        </div>
+                      ))}
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
+              )}
+            </div>
+          ))}
         </div>
       )}
 
-      {/* Modifiers */}
-      {scoring && !gatesFailed && (
-        <div id="modifiers" data-section className="glass-card p-6 mb-6 scroll-mt-16">
-          <h2 className="section-title">Scoring Modifiers</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-            <div className="p-4 rounded-xl bg-muted">
-              <p className="font-medium text-foreground mb-1">Confidence</p>
-              <p className="text-xs text-muted-foreground">{scoring.confidence_modifier === "none" ? "HIGH confidence — score used as-is" : `${scoring.confidence_modifier} applied`}</p>
-            </div>
-            <div className="p-4 rounded-xl bg-muted">
-              <p className="font-medium text-foreground mb-1">Engagement Context</p>
-              <p className="text-xs text-muted-foreground">{scoring.engagement_multiplier}x multiplier{scoring.engagement_multiplier !== 1 ? ` (${scoring.raw_composite.toFixed(2)} → ${scoring.adjusted_composite.toFixed(2)})` : ""}</p>
-            </div>
-            <div className="p-4 rounded-xl bg-muted">
-              <p className="font-medium text-foreground mb-1">Final Score</p>
-              <p className="text-xs text-muted-foreground">{scoring.final_composite.toFixed(2)} → {scoring.risk_tier}</p>
-            </div>
-            {rca && (
-              <div className="p-4 rounded-xl bg-muted border border-[hsl(var(--risk-moderate)/0.2)]">
-                <p className="font-medium text-foreground mb-1">RCS Score</p>
-                <p className="text-xs text-muted-foreground">{rca.composite_rcs.toFixed(2)} / 10 — <span className="font-bold">{rca.rcs_risk_tier}</span></p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* RCA Section */}
-      {rca && !gatesFailed && (
-        <div id="rca" data-section className="glass-card p-6 mb-6 scroll-mt-16">
+      {activeTab === "rca" && rca && !gatesFailed && (
+        <div className="glass-card p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="section-title flex items-center gap-2 mb-0">
               <ShieldAlert className="w-4 h-4" /> Reputational Contagion Analysis
@@ -354,7 +376,6 @@ export default function VettingDetail() {
           </div>
           <p className="text-sm text-muted-foreground mb-5">{rca.rcs_recommendation}</p>
 
-          {/* 6-question scorecard */}
           <div className="space-y-4 mb-6">
             {(Object.keys(RCS_QUESTION_LABELS) as Array<keyof typeof RCS_QUESTION_LABELS>).map((qKey) => {
               const q = rca[qKey as keyof ReputationalContagion] as { score: number; weight: number; evidence: string } | undefined;
@@ -371,7 +392,6 @@ export default function VettingDetail() {
             })}
           </div>
 
-          {/* Most Damaging Headline */}
           {rca.most_damaging_headline && (
             <div className="border-l-4 border-[hsl(var(--risk-elevated))] bg-[hsl(var(--risk-elevated)/0.04)] rounded-r-xl p-4">
               <div className="flex items-center gap-2 mb-2">
@@ -384,11 +404,9 @@ export default function VettingDetail() {
         </div>
       )}
 
-      {/* Flags */}
-      <div id="flags" data-section className="mb-6 scroll-mt-16">
-        {hasFlags && (
-          <>
-            <h2 className="section-title">Flags Inventory</h2>
+      {activeTab === "flags" && (
+        <div className="mb-6">
+          {hasFlags ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <h3 className="text-xs font-semibold text-destructive uppercase mb-2">Red Flags ({flags!.red.length})</h3>
@@ -397,7 +415,7 @@ export default function VettingDetail() {
                 ) : (
                   <div className="space-y-2">
                     {flags!.red.map((f, i) => (
-                      <div key={i} className="p-3 rounded-xl border border-destructive/15 bg-[hsl(var(--destructive)/0.04)]">
+                      <div key={i} className="glass-card p-3 border-l-4 border-l-destructive">
                         <div className="flex items-center gap-2 mb-1">
                           <AlertTriangle className="w-3.5 h-3.5 text-destructive" />
                           <span className="text-sm font-medium text-foreground">{f.title}</span>
@@ -416,7 +434,7 @@ export default function VettingDetail() {
                 ) : (
                   <div className="space-y-2">
                     {flags!.yellow.map((f, i) => (
-                      <div key={i} className="p-3 rounded-xl border border-[hsl(var(--risk-moderate)/0.15)] bg-[hsl(var(--risk-moderate)/0.04)]">
+                      <div key={i} className="glass-card p-3 border-l-4 border-l-[hsl(var(--risk-moderate))]">
                         <div className="flex items-center gap-2 mb-1">
                           <AlertTriangle className="w-3.5 h-3.5 text-[hsl(var(--risk-moderate))]" />
                           <span className="text-sm font-medium text-foreground">{f.title}</span>
@@ -429,105 +447,35 @@ export default function VettingDetail() {
                 )}
               </div>
             </div>
-          </>
-        )}
-        {flags && flags.red.length === 0 && flags.yellow.length === 0 && (
-          <div className="glass-card p-4 flex items-center gap-3 bg-[hsl(var(--risk-low)/0.04)] border-[hsl(var(--risk-low)/0.15)]">
-            <CheckCircle className="w-5 h-5 text-risk-low flex-shrink-0" />
-            <span className="text-sm text-foreground font-medium">No flags identified</span>
-          </div>
-        )}
-      </div>
-
-      {/* Evidence Accordion */}
-      {dimensions && !gatesFailed && (
-        <div id="evidence" data-section className="glass-card p-6 mb-6 scroll-mt-16">
-          <h2 className="section-title">Evidence by Dimension</h2>
-          <Accordion type="multiple">
-            {dimensionOrder.map(([key, dim]) => (
-              <AccordionItem key={key} value={key}>
-                <AccordionTrigger className="text-sm font-medium text-foreground hover:no-underline">
-                  {DIMENSION_LABELS[key] || key} ({dim.evidence.length} items)
-                </AccordionTrigger>
-                <AccordionContent>
-                  {dim.evidence.length === 0 ? (
-                    <p className="text-xs text-muted-foreground py-2">No evidence items collected for this dimension.</p>
-                  ) : (
-                     <div className="space-y-2">
-                      {dim.evidence.map((ev, i) => (
-                        <div key={i} className="p-3 rounded-lg bg-muted text-sm">
-                          <p className="text-foreground">{ev.text}</p>
-                          {ev.source_urls && ev.source_urls.length > 0 ? (
-                            <div className="flex items-center gap-2 flex-wrap mt-2">
-                              {ev.source_urls.map((su, si) => (
-                                <a key={si} href={su.url} target="_blank" rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-primary/8 text-primary border border-primary/15 hover:bg-primary/15 transition-colors">
-                                  {su.title} <ExternalLink className="w-2.5 h-2.5" />
-                                </a>
-                              ))}
-                            </div>
-                          ) : (
-                            <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
-                              <span>{ev.source}</span>
-                              <span>{ev.date}</span>
-                              {ev.url && (
-                                <a href={ev.url} target="_blank" rel="noopener noreferrer" className="text-primary flex items-center gap-1 hover:underline">
-                                  View <ExternalLink className="w-3 h-3" />
-                                </a>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {/* Sub-factors */}
-                  {Object.keys(dim.sub_factors).length > 0 && (
-                    <div className="mt-3 pt-3 border-t">
-                      <p className="text-xs font-semibold text-muted-foreground mb-2">Sub-factors</p>
-                      <div className="space-y-1">
-                        {Object.entries(dim.sub_factors).map(([sk, sf]) => (
-                          <div key={sk} className="flex items-center justify-between text-xs">
-                            <span className="text-muted-foreground capitalize">{sk.replace(/_/g, " ")}</span>
-                            <div className="flex items-center gap-2">
-                              <span className="text-foreground font-medium">{sf.score}/10</span>
-                              <span className="text-muted-foreground">— {sf.detail}</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          ) : (
+            <div className="glass-card p-4 flex items-center gap-3 bg-[hsl(var(--risk-low)/0.04)] border-[hsl(var(--risk-low)/0.15)]">
+              <CheckCircle className="w-5 h-5 text-risk-low flex-shrink-0" />
+              <span className="text-sm text-foreground font-medium">No flags identified</span>
+            </div>
+          )}
         </div>
       )}
 
-      {/* Sources */}
-      {result?.sources && result.sources.length > 0 && (
-        <div id="sources" data-section className="glass-card p-6 mb-6 scroll-mt-16">
-          <h2 className="section-title flex items-center gap-2"><Link2 className="w-4 h-4" /> Sources ({result.sources.length})</h2>
-          <div className="space-y-2 max-h-96 overflow-y-auto">
+      {activeTab === "sources" && result?.sources && result.sources.length > 0 && (
+        <div className="glass-card p-6 mb-6">
+          <h2 className="section-title flex items-center gap-2"><Link2 className="w-4 h-4" /> All Research Sources ({result.sources.length})</h2>
+          <p className="text-xs text-muted-foreground mb-4">Complete list of sources researched by the pipeline. Individual sources are linked to specific findings in the Scorecard tab.</p>
+          <div className="space-y-1">
             {[...result.sources].sort((a, b) => b.score - a.score).map((src) => (
-              <div key={src.id} className="flex items-center gap-3 p-2.5 rounded-lg bg-muted text-sm">
+              <div key={src.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors text-sm">
                 <span className="text-xs font-mono text-muted-foreground w-6 text-right flex-shrink-0">{src.id}</span>
                 <a href={src.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline truncate flex-1">
                   {src.title}
                 </a>
-                <Badge variant="outline" className="text-xs flex-shrink-0 bg-primary/5 text-primary border-primary/20">
-                  {(src.score * 100).toFixed(0)}%
-                </Badge>
+                <ExternalLink className="w-3 h-3 text-muted-foreground flex-shrink-0" />
               </div>
             ))}
           </div>
         </div>
       )}
 
-      {/* Decision Section */}
-      {(v.status === "completed" || v.status === "gates_failed") && (
-        <div id="decision" data-section className="glass-card p-6 mb-6 scroll-mt-16">
+      {activeTab === "decision" && (v.status === "completed" || v.status === "gates_failed") && (
+        <div className="glass-card p-6 mb-6">
           <h2 className="section-title flex items-center gap-2"><Shield className="w-4 h-4" /> Decision</h2>
           {v.decision ? (
             <div>
@@ -546,7 +494,10 @@ export default function VettingDetail() {
             </div>
           ) : (
             <div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+              <p className="text-sm text-muted-foreground mb-4">
+                {v.recommendation && <>Pipeline recommends: <strong>{v.recommendation}</strong></>}
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <Button onClick={() => handleDecisionClick("approved")} className="bg-[hsl(var(--risk-low))] hover:bg-[hsl(var(--risk-low)/0.9)] text-[hsl(var(--risk-low-foreground))]">
                   Approve
                 </Button>
@@ -576,7 +527,7 @@ export default function VettingDetail() {
             <Textarea
               value={decisionNotes}
               onChange={(e) => setDecisionNotes(e.target.value)}
-              placeholder="Explain the rationale for this decision..."
+              placeholder="Explain the rationale..."
               rows={4}
               className="bg-background"
             />
@@ -604,12 +555,8 @@ function ScoreCircle({ score, color }: { score: number; color: string }) {
     <div className="relative w-24 h-24 mx-auto">
       <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
         <circle cx="50" cy="50" r="42" fill="none" stroke="hsl(var(--border))" strokeWidth="8" />
-        <circle
-          cx="50" cy="50" r="42" fill="none"
-          stroke={color}
-          strokeWidth="8" strokeLinecap="round"
-          strokeDasharray={`${(score / 10) * 264} 264`}
-        />
+        <circle cx="50" cy="50" r="42" fill="none" stroke={color} strokeWidth="8" strokeLinecap="round"
+          strokeDasharray={`${(score / 10) * 264} 264`} />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-xl font-bold text-foreground">{score.toFixed(1)}</span>

@@ -25,6 +25,9 @@ export function getEngagementClass(type: EngagementType): string {
   switch (type) {
     case "fara_foreign_political": return "engagement-fara";
     case "foreign_corporate": return "engagement-foreign-corp";
+    case "government_affairs": return "engagement-gov-affairs";
+    case "corporate_political_advisory": return "engagement-corp-advisory";
+    case "campaign_electoral": return "engagement-campaign";
     case "domestic_political": return "engagement-domestic-political";
     case "domestic_corporate": return "engagement-domestic-corp";
   }
