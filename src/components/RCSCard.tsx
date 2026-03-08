@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { getScoreBarColor } from "@/lib/vetting-utils";
+
+type SourceItem = { id: number; url: string; title: string; score: number };
 
 interface RCSCardProps {
   label: string;
@@ -10,6 +12,7 @@ interface RCSCardProps {
   weight: number;
   evidence: string;
   damagingHeadline?: string;
+  sources?: SourceItem[];
 }
 
 function getScoreColor(score: number) {
@@ -26,9 +29,36 @@ function getRiskBadge(score: number) {
   return { label: "HIGH", className: "risk-badge-high" };
 }
 
-export function RCSCard({ label, score, weight, evidence, damagingHeadline }: RCSCardProps) {
+const SOURCE_KEYWORDS = [
+  "propublica", "guardian", "politico", "forbes", "nyt", "new york times",
+  "reuters", "bloomberg", "wsj", "wall street journal", "washington post",
+  "fec", "sec", "congress", "nbc", "cnn", "bbc", "ap news", "axios",
+  "wired", "techcrunch", "intercept", "chronicle", "times", "post",
+];
+
+function findSourcesInText(text: string, sources?: SourceItem[]): SourceItem[] {
+  if (!sources || !text) return [];
+  const lower = text.toLowerCase();
+  const matches: SourceItem[] = [];
+  for (const kw of SOURCE_KEYWORDS) {
+    if (lower.includes(kw)) {
+      const normalized = kw.replace(/\s+/g, '');
+      for (const s of sources) {
+        if (matches.includes(s)) continue;
+        if (s.url.toLowerCase().includes(normalized) || s.title.toLowerCase().includes(kw)) {
+          matches.push(s);
+        }
+      }
+    }
+  }
+  return matches.slice(0, 5);
+}
+
+export function RCSCard({ label, score, weight, evidence, damagingHeadline, sources }: RCSCardProps) {
   const [expanded, setExpanded] = useState(false);
   const badge = getRiskBadge(score);
+  const cleanEvidence = evidence.replace(/\s*\[\d+\]\s*/g, ' ').replace(/\s*\[\w+\]\s*$/g, '').trim();
+  const matchedSources = findSourcesInText(evidence, sources);
 
   return (
     <Card className="overflow-hidden">
@@ -54,7 +84,7 @@ export function RCSCard({ label, score, weight, evidence, damagingHeadline }: RC
         </div>
 
         {/* Evidence preview */}
-        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{evidence}</p>
+        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{cleanEvidence}</p>
       </div>
 
       {/* Expand button */}
@@ -71,7 +101,25 @@ export function RCSCard({ label, score, weight, evidence, damagingHeadline }: RC
         <div className="border-t px-4 py-4 space-y-3 bg-muted/20">
           <div className="rounded-lg bg-primary/5 border border-primary/10 p-3">
             <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Evidence</h5>
-            <p className="text-sm text-muted-foreground leading-relaxed">{evidence}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{cleanEvidence}</p>
+
+            {/* Source links */}
+            {matchedSources.length > 0 && (
+              <div className="flex flex-wrap gap-2 pt-2 mt-2 border-t border-border/50">
+                {matchedSources.map((src, i) => (
+                  <a
+                    key={i}
+                    href={src.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-full"
+                  >
+                    <ExternalLink className="h-2.5 w-2.5" />
+                    {src.title.length > 50 ? src.title.slice(0, 50) + "…" : src.title}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           {damagingHeadline && (

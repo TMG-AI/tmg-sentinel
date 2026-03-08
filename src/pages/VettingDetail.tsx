@@ -21,18 +21,50 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
-function findSourceUrl(sourceName: string, sources?: { id: number; url: string; title: string; score: number }[]): string | null {
-  if (!sources || !sourceName) return null;
-  const lower = sourceName.toLowerCase();
-  const match = sources.find(s =>
-    s.title.toLowerCase().includes(lower) || s.url.toLowerCase().includes(lower)
-  );
-  return match?.url || null;
+type SourceItem = { id: number; url: string; title: string; score: number };
+
+function findSourceUrls(sourceName: string, sources?: SourceItem[]): SourceItem[] {
+  if (!sources || !sourceName) return [];
+  // Handle "Multiple" or "FEC/Bio" style sources — search for each part
+  const parts = sourceName.split(/[\/,]/).map(s => s.trim().toLowerCase()).filter(Boolean);
+  const matches: SourceItem[] = [];
+  for (const part of parts) {
+    if (part === "multiple" || part === "bio" || part.length < 3) continue;
+    const normalized = part.replace(/\s+/g, '');
+    for (const s of sources) {
+      if (matches.includes(s)) continue;
+      const urlLower = s.url.toLowerCase();
+      const titleLower = s.title.toLowerCase();
+      if (titleLower.includes(part) || urlLower.includes(part) || urlLower.includes(normalized)) {
+        matches.push(s);
+      }
+    }
+  }
+  return matches.slice(0, 3); // max 3 links per flag
 }
 
-function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: { id: number; url: string; title: string; score: number }[]; variant: "red" | "yellow" }) {
+function findSourcesForEvidence(evidence: string, sources?: SourceItem[]): SourceItem[] {
+  if (!sources || !evidence) return [];
+  const matches: SourceItem[] = [];
+  // Match common source names mentioned in evidence text
+  const keywords = ["propublica", "guardian", "politico", "forbes", "nyt", "new york times", "reuters", "bloomberg", "wsj", "washington post", "fec", "sec", "congress"];
+  for (const kw of keywords) {
+    if (evidence.toLowerCase().includes(kw)) {
+      const normalized = kw.replace(/\s+/g, '');
+      for (const s of sources) {
+        if (matches.includes(s)) continue;
+        if (s.url.toLowerCase().includes(normalized) || s.title.toLowerCase().includes(kw)) {
+          matches.push(s);
+        }
+      }
+    }
+  }
+  return matches.slice(0, 5);
+}
+
+function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: SourceItem[]; variant: "red" | "yellow" }) {
   const cleanDesc = flag.description.replace(/\s*\[\d+\]\s*/g, '').replace(/\s*\[\w+\]\s*$/g, '');
-  const sourceUrl = findSourceUrl(flag.source, sources);
+  const matchedSources = findSourceUrls(flag.source, sources);
   const borderClass = variant === "red" ? "border-l-destructive" : "border-l-[hsl(var(--risk-moderate))]";
   const iconClass = variant === "red" ? "text-destructive" : "text-[hsl(var(--risk-moderate))]";
 
@@ -43,17 +75,20 @@ function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: { id: 
         <span className="text-sm font-medium text-foreground">{flag.title}</span>
       </div>
       <p className="text-xs text-muted-foreground">{cleanDesc}</p>
-      <div className="flex items-center gap-2 mt-2">
-        {sourceUrl ? (
-          <a
-            href={sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-full"
-          >
-            <ExternalLink className="h-2.5 w-2.5" />
-            {flag.source}
-          </a>
+      <div className="flex flex-wrap items-center gap-2 mt-2">
+        {matchedSources.length > 0 ? (
+          matchedSources.map((src, i) => (
+            <a
+              key={i}
+              href={src.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-full"
+            >
+              <ExternalLink className="h-2.5 w-2.5" />
+              {src.title.length > 40 ? src.title.slice(0, 40) + "…" : src.title}
+            </a>
+          ))
         ) : (
           <span className="text-[10px] text-muted-foreground">{flag.source}</span>
         )}
@@ -365,6 +400,7 @@ export default function VettingDetail() {
                   score={q.score}
                   evidence={q.evidence}
                   damagingHeadline={qKey === "q3_narrative_vulnerability" ? q.damaging_headline : undefined}
+                  sources={result?.sources}
                 />
               );
             })}
