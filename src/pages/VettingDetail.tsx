@@ -311,8 +311,8 @@ export default function VettingDetail() {
             <p className="text-sm text-muted-foreground mb-4 px-1">{rca.rcs_recommendation}</p>
           )}
 
-          {/* Card grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+          {/* Card list */}
+          <div className="space-y-4 mb-4">
             {(Object.keys(RCS_QUESTION_LABELS) as Array<keyof typeof RCS_QUESTION_LABELS>).map((qKey) => {
               const q = rca[qKey as keyof ReputationalContagion] as { score: number; weight: number; evidence: string; damaging_headline?: string } | undefined;
               if (!q || typeof q !== 'object' || !('score' in q)) return null;
