@@ -335,7 +335,7 @@ export default function VettingDetail() {
           <div className="flex items-start gap-3">
             <ShieldAlert className="w-5 h-5 text-[hsl(var(--risk-elevated))] flex-shrink-0 mt-0.5" />
             <div>
-              <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] uppercase tracking-wide">⚠ Divergence Alert</span>
+              <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] tracking-wide">⚠ Divergence Alert</span>
               <p className="text-sm text-foreground mt-0.5 font-medium">{rca.divergence_alert}</p>
             </div>
           </div>
