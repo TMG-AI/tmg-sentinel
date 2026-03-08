@@ -29,29 +29,34 @@ function getRiskBadge(score: number) {
   return { label: "HIGH", className: "risk-badge-high" };
 }
 
-const SOURCE_KEYWORDS = [
-  "propublica", "guardian", "politico", "forbes", "nyt", "new york times",
-  "reuters", "bloomberg", "wsj", "wall street journal", "washington post",
-  "fec", "sec", "congress", "nbc", "cnn", "bbc", "ap news", "axios",
-  "wired", "techcrunch", "intercept", "chronicle", "times", "post",
-];
+function extractDomain(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '').split('.')[0];
+  } catch { return ''; }
+}
 
 function findSourcesInText(text: string, sources?: SourceItem[]): SourceItem[] {
   if (!sources || !text) return [];
   const lower = text.toLowerCase();
   const matches: SourceItem[] = [];
-  for (const kw of SOURCE_KEYWORDS) {
-    if (lower.includes(kw)) {
-      const normalized = kw.replace(/\s+/g, '');
-      for (const s of sources) {
-        if (matches.includes(s)) continue;
-        if (s.url.toLowerCase().includes(normalized) || s.title.toLowerCase().includes(kw)) {
-          matches.push(s);
-        }
+  for (const s of sources) {
+    if (matches.length >= 5) break;
+    if (matches.includes(s)) continue;
+    const domain = extractDomain(s.url);
+    if (domain && domain.length > 2) {
+      const stripped = domain.replace(/^the/, '');
+      if (lower.includes(domain) || (stripped.length > 2 && lower.includes(stripped))) {
+        matches.push(s);
+        continue;
       }
     }
+    // Check key title words
+    const titleWords = s.title.toLowerCase().split(/[\s\-:]+/).filter(w => w.length > 5);
+    if (titleWords.some(w => lower.includes(w))) {
+      matches.push(s);
+    }
   }
-  return matches.slice(0, 5);
+  return matches;
 }
 
 export function RCSCard({ label, score, weight, evidence, damagingHeadline, sources }: RCSCardProps) {
@@ -62,48 +67,42 @@ export function RCSCard({ label, score, weight, evidence, damagingHeadline, sour
 
   return (
     <Card className="overflow-hidden">
-      {/* Top row: title, score, weight, badge, expand toggle */}
       <div className="p-4">
         <div className="flex items-center justify-between gap-3 mb-2">
           <div className="flex items-center gap-3 flex-1 min-w-0">
-            <h4 className="text-sm font-semibold text-foreground truncate">{label}</h4>
-            <span className={cn("text-[10px] px-2 py-0.5 rounded-md uppercase tracking-wide whitespace-nowrap", badge.className)}>
+            <h4 className="font-semibold text-foreground truncate">{label}</h4>
+            <span className={cn("text-[11px] px-2 py-0.5 rounded-md uppercase tracking-wide whitespace-nowrap", badge.className)}>
               {badge.label}
             </span>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
             <span className={cn("text-xl font-bold", getScoreColor(score))}>{score.toFixed(1)}</span>
-            <span className="text-xs text-muted-foreground">/ 10</span>
-            <span className="text-xs text-muted-foreground ml-1">({(weight * 100).toFixed(0)}%)</span>
+            <span className="text-sm text-muted-foreground">/ 10</span>
+            <span className="text-sm text-muted-foreground ml-1">({(weight * 100).toFixed(0)}%)</span>
           </div>
         </div>
 
-        {/* Score bar */}
         <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden mb-2">
           <div className={`h-full rounded-full transition-all ${getScoreBarColor(score)}`} style={{ width: `${(score / 10) * 100}%` }} />
         </div>
 
-        {/* Evidence preview */}
-        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{cleanEvidence}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">{cleanEvidence}</p>
       </div>
 
-      {/* Expand button */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full px-4 py-2 border-t text-xs font-medium text-primary hover:bg-muted/50 transition-colors flex items-center justify-center gap-1"
+        className="w-full px-4 py-2.5 border-t text-sm font-medium text-primary hover:bg-muted/50 transition-colors flex items-center justify-center gap-1"
       >
         {expanded ? "Hide Details" : "View Evidence"}
         {expanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
       </button>
 
-      {/* Expanded evidence */}
       {expanded && (
         <div className="border-t px-4 py-4 space-y-3 bg-muted/20">
           <div className="rounded-lg bg-primary/5 border border-primary/10 p-3">
             <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Evidence</h5>
             <p className="text-sm text-muted-foreground leading-relaxed">{cleanEvidence}</p>
 
-            {/* Source links */}
             {matchedSources.length > 0 && (
               <div className="flex flex-wrap gap-2 pt-2 mt-2 border-t border-border/50">
                 {matchedSources.map((src, i) => (
@@ -112,9 +111,9 @@ export function RCSCard({ label, score, weight, evidence, damagingHeadline, sour
                     href={src.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-full"
+                    className="inline-flex items-center gap-1 text-xs text-primary hover:underline bg-primary/5 px-2.5 py-1 rounded-full"
                   >
-                    <ExternalLink className="h-2.5 w-2.5" />
+                    <ExternalLink className="h-3 w-3" />
                     {src.title.length > 50 ? src.title.slice(0, 50) + "…" : src.title}
                   </a>
                 ))}
