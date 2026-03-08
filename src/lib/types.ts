@@ -87,7 +87,9 @@ export interface KeyExecutive {
   fec_top_recipients: { name: string; total: number; count: number }[];
   news_count: number;
   news_headlines: string[];
+  news_urls?: string[];
   sanctions_flag: boolean;
+  sanctions_datasets?: string[];
 }
 
 export interface GovernmentContracts {
