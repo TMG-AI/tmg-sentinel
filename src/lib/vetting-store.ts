@@ -1,39 +1,77 @@
 import { create } from "zustand";
 import { VettingRequest, Decision, VettingResultJSON } from "./types";
-import { MOCK_VETTINGS } from "./mock-data";
 
 interface VettingStore {
   vettings: VettingRequest[];
-  addVetting: (v: Omit<VettingRequest, "id" | "requested_at" | "status" | "pipeline_progress" | "result_json" | "composite_score" | "risk_tier" | "recommendation" | "confidence" | "decision" | "decided_by" | "decided_at" | "decision_notes" | "completed_at" | "flags">) => string;
+  loading: boolean;
+  loaded: boolean;
+  loadVettings: () => Promise<void>;
   makeDecision: (id: string, decision: Decision, decided_by: string, notes: string) => void;
   reopenVetting: (id: string, performed_by: string) => void;
   uploadResults: (id: string, result: VettingResultJSON) => void;
 }
 
+function resultToVettingRequest(result: VettingResultJSON, filename: string): VettingRequest {
+  const id = filename.replace(".json", "");
+  return {
+    id,
+    subject_name: result.subject.name,
+    subject_type: (result.subject.type as "individual" | "organization") || "individual",
+    company_affiliation: result.subject.company || null,
+    country: result.subject.country || null,
+    city: result.subject.city || null,
+    brief_bio: null,
+    referral_source: null,
+    engagement_type: (result.metadata?.vetting_level?.includes("fara") ? "fara_foreign_political" : "domestic_political") as any,
+    vetting_level: (result.metadata?.vetting_level as any) || "standard_vet",
+    requested_by: "Pipeline",
+    requested_at: result.metadata?.started_at || new Date().toISOString(),
+    status: result.gates.sanctions.status === "FAIL" || result.gates.debarment.status === "FAIL" ? "gates_failed" : "completed",
+    pipeline_progress: null,
+    result_json: result,
+    composite_score: result.scoring.final_composite,
+    risk_tier: result.scoring.risk_tier,
+    recommendation: result.scoring.recommendation,
+    confidence: "HIGH",
+    decision: null,
+    decided_by: null,
+    decided_at: null,
+    decision_notes: null,
+    completed_at: result.metadata?.completed_at || new Date().toISOString(),
+    flags: result.flags,
+  };
+}
+
 export const useVettingStore = create<VettingStore>((set, get) => ({
-  vettings: MOCK_VETTINGS,
-  addVetting: (v) => {
-    const id = crypto.randomUUID();
-    const newVetting: VettingRequest = {
-      ...v,
-      id,
-      requested_at: new Date().toISOString(),
-      status: "pending",
-      pipeline_progress: null,
-      result_json: null,
-      composite_score: null,
-      risk_tier: null,
-      recommendation: null,
-      confidence: null,
-      decision: null,
-      decided_by: null,
-      decided_at: null,
-      decision_notes: null,
-      completed_at: null,
-      flags: null,
-    };
-    set((s) => ({ vettings: [newVetting, ...s.vettings] }));
-    return id;
+  vettings: [],
+  loading: false,
+  loaded: false,
+  loadVettings: async () => {
+    if (get().loaded || get().loading) return;
+    set({ loading: true });
+    try {
+      const indexRes = await fetch("/data/vettings-index.json");
+      if (!indexRes.ok) {
+        set({ loading: false, loaded: true });
+        return;
+      }
+      const index: { files: string[] } = await indexRes.json();
+      const results = await Promise.all(
+        index.files.map(async (file) => {
+          try {
+            const res = await fetch(`/data/vettings/${file}`);
+            if (!res.ok) return null;
+            const result: VettingResultJSON = await res.json();
+            return resultToVettingRequest(result, file);
+          } catch {
+            return null;
+          }
+        })
+      );
+      set({ vettings: results.filter(Boolean) as VettingRequest[], loading: false, loaded: true });
+    } catch {
+      set({ loading: false, loaded: true });
+    }
   },
   makeDecision: (id, decision, decided_by, notes) => {
     set((s) => ({

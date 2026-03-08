@@ -1,8 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useVettingStore } from "@/lib/vetting-store";
 import { SubjectType, EngagementType, VettingLevel, TEAM_MEMBERS, ENGAGEMENT_LABELS, ENGAGEMENT_MULTIPLIERS, VETTING_LEVEL_LABELS } from "@/lib/types";
-import { submitVetting, pollVettingStatus } from "@/lib/api";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -12,11 +10,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { Shield, Zap, Search, Microscope, Upload, AlertTriangle, Check, Loader2 } from "lucide-react";
+import { Shield, Zap, Search, Microscope, Upload, AlertTriangle, Check } from "lucide-react";
 
 export default function SubmitVetting() {
   const navigate = useNavigate();
-  const { addVetting, uploadResults } = useVettingStore();
   const { toast } = useToast();
 
   const [subjectName, setSubjectName] = useState("");
@@ -32,93 +29,35 @@ export default function SubmitVetting() {
   const [otherName, setOtherName] = useState("");
   const [notify, setNotify] = useState<string[]>(["Tara"]);
   const [showConfirm, setShowConfirm] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  // Cleanup polling on unmount
-  useEffect(() => {
-    return () => {
-      if (pollingRef.current) clearInterval(pollingRef.current);
-    };
-  }, []);
 
   const canSubmit = subjectName.trim() && (requestedBy || otherName);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const by = requestedBy === "Other" ? otherName : requestedBy;
-    setIsSubmitting(true);
     setShowConfirm(false);
 
-    // Create local vetting entry
-    const localId = addVetting({
-      subject_name: subjectName.trim(),
-      subject_type: subjectType,
-      company_affiliation: companyAffiliation || null,
-      country: country || null,
-      city: city || null,
-      brief_bio: briefBio || null,
-      referral_source: referralSource || null,
-      engagement_type: engagementType,
-      vetting_level: vettingLevel,
-      requested_by: by,
+    const subject = `New Vetting Request: ${subjectName.trim()}`;
+    const body = [
+      `Subject Name: ${subjectName.trim()}`,
+      `Subject Type: ${subjectType}`,
+      `Company Affiliation: ${companyAffiliation || "N/A"}`,
+      `Country: ${country || "N/A"}`,
+      `City: ${city || "N/A"}`,
+      `Brief Bio: ${briefBio || "N/A"}`,
+      `Referral Source: ${referralSource || "N/A"}`,
+      `Engagement Type: ${ENGAGEMENT_LABELS[engagementType]}`,
+      `Vetting Level: ${VETTING_LEVEL_LABELS[vettingLevel].title}`,
+      `Requested By: ${by}`,
+    ].join("\n");
+
+    window.location.href = `mailto:shannonwheatman@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    toast({
+      title: "Vetting request emailed to Shannon.",
+      description: `Request for ${subjectName.trim()} has been prepared.`,
     });
 
-    try {
-      // Submit to backend API
-      const response = await submitVetting({
-        subject_name: subjectName.trim(),
-        subject_type: subjectType,
-        company_affiliation: companyAffiliation || null,
-        country: country || null,
-        city: city || null,
-        brief_bio: briefBio || null,
-        referral_source: referralSource || null,
-        engagement_type: engagementType,
-        vetting_level: vettingLevel,
-        requested_by: by,
-      });
-
-      toast({
-        title: "Vetting Submitted",
-        description: `Pipeline started for ${subjectName}. Polling for results...`,
-      });
-
-      // Navigate to detail page immediately
-      navigate(`/vetting/${localId}`);
-
-      // Start polling for results
-      pollingRef.current = setInterval(async () => {
-        try {
-          const status = await pollVettingStatus(response.id);
-          if (status.status === "completed" || status.status === "gates_failed") {
-            if (pollingRef.current) clearInterval(pollingRef.current);
-            if (status.result_json) {
-              uploadResults(localId, status.result_json);
-              toast({
-                title: "Vetting Complete",
-                description: `Results are ready for ${subjectName}.`,
-              });
-            }
-          } else if (status.status === "error") {
-            if (pollingRef.current) clearInterval(pollingRef.current);
-            toast({
-              title: "Pipeline Error",
-              description: status.error || "An error occurred during vetting.",
-              variant: "destructive",
-            });
-          }
-        } catch {
-          // Silently retry on network errors
-        }
-      }, 5000);
-    } catch (err) {
-      setIsSubmitting(false);
-      toast({
-        title: "Submission Failed",
-        description: "Could not connect to the pipeline backend. Check that the server is running.",
-        variant: "destructive",
-      });
-    }
+    setTimeout(() => navigate("/"), 500);
   };
 
   const vettingLevelCards: { key: VettingLevel; icon: React.ReactNode; steps: string[] }[] = [
@@ -307,11 +246,11 @@ export default function SubmitVetting() {
 
         <Button
           size="lg"
-          disabled={!canSubmit || isSubmitting}
+          disabled={!canSubmit}
           onClick={() => setShowConfirm(true)}
           className="w-full bg-[hsl(var(--risk-low))] hover:bg-[hsl(var(--risk-low)/0.9)] text-[hsl(var(--risk-low-foreground))] font-semibold text-base py-6 rounded-xl"
         >
-          {isSubmitting ? <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Submitting...</> : <><Check className="w-5 h-5 mr-2" /> Start Vetting</>}
+          <Check className="w-5 h-5 mr-2" /> Start Vetting
         </Button>
       </div>
 
