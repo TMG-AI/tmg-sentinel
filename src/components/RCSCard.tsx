@@ -70,7 +70,7 @@ export function RCSCard({ label, score, weight, evidence, damagingHeadline, sour
       <div className="p-4">
         <div className="flex items-center justify-between gap-3 mb-2">
           <div className="flex items-center gap-3 flex-1 min-w-0">
-            <h4 className="font-semibold text-foreground truncate">{label}</h4>
+            <h4 className="font-semibold text-foreground">{label}</h4>
             <span className={cn("text-[11px] px-2 py-0.5 rounded-md uppercase tracking-wide whitespace-nowrap", badge.className)}>
               {badge.label}
             </span>
