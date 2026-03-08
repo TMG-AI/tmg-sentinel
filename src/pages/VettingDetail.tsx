@@ -283,81 +283,9 @@ export default function VettingDetail() {
       )}
 
       {activeTab === "scorecard" && dimensions && !gatesFailed && (
-        <div className="space-y-4 mb-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           {dimensionOrder.map(([key, dim]) => (
-            <div key={key} className="glass-card p-5">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-semibold text-foreground">{DIMENSION_LABELS[key] || key}</span>
-                  <span className="text-xs text-muted-foreground">Weight: {(dim.weight * 100).toFixed(0)}%</span>
-                </div>
-                <span className="text-lg font-bold text-foreground">{dim.score.toFixed(1)}<span className="text-xs text-muted-foreground font-normal">/10</span></span>
-              </div>
-              <div className="w-full h-2.5 rounded-full bg-muted overflow-hidden mb-3">
-                <div className={`h-full rounded-full transition-all ${getScoreBarColor(dim.score)}`} style={{ width: `${(dim.score / 10) * 100}%` }} />
-              </div>
-              <p className="text-sm text-muted-foreground mb-3">{dim.summary}</p>
-
-              {/* Sub-factors — clean table layout */}
-              {Object.keys(dim.sub_factors).length > 0 && (
-                <div className="rounded-lg border border-border overflow-hidden">
-                  <table className="w-full text-xs">
-                    <thead>
-                      <tr className="bg-muted">
-                        <th className="text-left py-2 px-3 font-medium text-muted-foreground">Sub-factor</th>
-                        <th className="text-right py-2 px-3 font-medium text-muted-foreground w-16">Score</th>
-                        <th className="text-left py-2 px-3 font-medium text-muted-foreground">Detail</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {Object.entries(dim.sub_factors).map(([sk, sf]) => (
-                        <tr key={sk} className="border-t border-border">
-                          <td className="py-2 px-3 text-foreground capitalize whitespace-nowrap">{sk.replace(/_/g, " ")}</td>
-                          <td className="py-2 px-3 text-right font-medium text-foreground">{sf.score}/10</td>
-                          <td className="py-2 px-3 text-muted-foreground">{sf.detail}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-
-              {/* Evidence items linked to this dimension */}
-              {dim.evidence.length > 0 && (
-                <Collapsible>
-                  <CollapsibleTrigger className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground mt-3 cursor-pointer transition-colors">
-                    <ChevronDown className="w-3 h-3" />
-                    {dim.evidence.length} supporting source{dim.evidence.length !== 1 ? "s" : ""}
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <div className="mt-2 space-y-2">
-                      {dim.evidence.map((ev, i) => (
-                        <div key={i} className="p-3 rounded-lg bg-muted text-sm">
-                          <p className="text-foreground">{ev.text.replace(/\[\d+\]/g, "")}</p>
-                          {ev.source_urls && ev.source_urls.length > 0 ? (
-                            <div className="flex items-center gap-2 flex-wrap mt-2">
-                              {ev.source_urls.map((su, si) => (
-                                <a key={si} href={su.url} target="_blank" rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-primary/8 text-primary border border-primary/15 hover:bg-primary/15 transition-colors">
-                                  {su.title} <ExternalLink className="w-2.5 h-2.5" />
-                                </a>
-                              ))}
-                            </div>
-                          ) : ev.url ? (
-                            <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
-                              <span>{ev.source}</span>
-                              <a href={ev.url} target="_blank" rel="noopener noreferrer" className="text-primary flex items-center gap-1 hover:underline">
-                                View source <ExternalLink className="w-3 h-3" />
-                              </a>
-                            </div>
-                          ) : null}
-                        </div>
-                      ))}
-                    </div>
-                  </CollapsibleContent>
-                </Collapsible>
-              )}
-            </div>
+            <DimensionCard key={key} dimensionKey={key} dimension={dim} />
           ))}
         </div>
       )}
