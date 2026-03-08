@@ -224,23 +224,6 @@ export default function SubmitVetting() {
                 <Input value={otherName} onChange={(e) => setOtherName(e.target.value)} placeholder="Enter your name" className="mt-2 max-w-xs bg-background" />
               )}
             </div>
-            <div>
-              <Label>CC / Notify</Label>
-              <div className="flex gap-4 mt-2">
-                {TEAM_MEMBERS.map((m) => (
-                  <div key={m} className="flex items-center gap-2">
-                    <Checkbox
-                      id={`notify-${m}`}
-                      checked={notify.includes(m)}
-                      onCheckedChange={(checked) => {
-                        setNotify(checked ? [...notify, m] : notify.filter((n) => n !== m));
-                      }}
-                    />
-                    <Label htmlFor={`notify-${m}`} className="cursor-pointer text-sm font-normal">{m}</Label>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
