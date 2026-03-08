@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useVettingStore } from "@/lib/vetting-store";
 import { SubjectType, EngagementType, VettingLevel, TEAM_MEMBERS, ENGAGEMENT_LABELS, ENGAGEMENT_MULTIPLIERS, VETTING_LEVEL_LABELS } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,7 +14,6 @@ import { Shield, Zap, Search, Microscope, Upload, AlertTriangle, Check } from "l
 
 export default function SubmitVetting() {
   const navigate = useNavigate();
-  const { addVetting } = useVettingStore();
   const { toast } = useToast();
 
   const [subjectName, setSubjectName] = useState("");
@@ -36,24 +34,30 @@ export default function SubmitVetting() {
 
   const handleSubmit = () => {
     const by = requestedBy === "Other" ? otherName : requestedBy;
-    addVetting({
-      subject_name: subjectName.trim(),
-      subject_type: subjectType,
-      company_affiliation: companyAffiliation || null,
-      country: country || null,
-      city: city || null,
-      brief_bio: briefBio || null,
-      referral_source: referralSource || null,
-      engagement_type: engagementType,
-      vetting_level: vettingLevel,
-      requested_by: by,
-    });
     setShowConfirm(false);
+
+    const subject = `New Vetting Request: ${subjectName.trim()}`;
+    const body = [
+      `Subject Name: ${subjectName.trim()}`,
+      `Subject Type: ${subjectType}`,
+      `Company Affiliation: ${companyAffiliation || "N/A"}`,
+      `Country: ${country || "N/A"}`,
+      `City: ${city || "N/A"}`,
+      `Brief Bio: ${briefBio || "N/A"}`,
+      `Referral Source: ${referralSource || "N/A"}`,
+      `Engagement Type: ${ENGAGEMENT_LABELS[engagementType]}`,
+      `Vetting Level: ${VETTING_LEVEL_LABELS[vettingLevel].title}`,
+      `Requested By: ${by}`,
+    ].join("\n");
+
+    window.location.href = `mailto:shannon@themessinagroup.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
     toast({
-      title: "Vetting Submitted",
-      description: `Vetting request for ${subjectName} has been submitted successfully.`,
+      title: "Vetting request emailed to Shannon.",
+      description: `Request for ${subjectName.trim()} has been prepared.`,
     });
-    navigate("/");
+
+    setTimeout(() => navigate("/"), 500);
   };
 
   const vettingLevelCards: { key: VettingLevel; icon: React.ReactNode; steps: string[] }[] = [

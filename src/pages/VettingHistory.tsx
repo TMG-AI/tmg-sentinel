@@ -4,10 +4,11 @@ import { ENGAGEMENT_LABELS, VETTING_LEVEL_LABELS } from "@/lib/types";
 import { getRiskTierColor, getDecisionColor, getDecisionLabel, formatDate } from "@/lib/vetting-utils";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 export default function VettingHistory() {
-  const { vettings } = useVettingStore();
+  const { vettings, loadVettings } = useVettingStore();
+  useEffect(() => { loadVettings(); }, [loadVettings]);
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
 

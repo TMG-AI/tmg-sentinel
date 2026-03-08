@@ -15,13 +15,14 @@ import {
   CheckCircle, XCircle, ArrowLeft, AlertTriangle, ExternalLink, Upload,
   Shield, Skull, FileText, Clock,
 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function VettingDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { vettings, makeDecision, reopenVetting, uploadResults } = useVettingStore();
+  const { vettings, makeDecision, reopenVetting, uploadResults, loadVettings } = useVettingStore();
+  useEffect(() => { loadVettings(); }, [loadVettings]);
   const { toast } = useToast();
 
   const v = vettings.find((x) => x.id === id);
