@@ -1,4 +1,4 @@
-import { Plus, LayoutDashboard, Clock, Settings, Shield } from "lucide-react";
+import { Plus, LayoutDashboard, Clock, Shield } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { cn } from "@/lib/utils";
 
@@ -6,7 +6,6 @@ const navItems = [
   { title: "New Vetting", url: "/submit", icon: Plus },
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "History", url: "/history", icon: Clock },
-  { title: "Settings", url: "/settings", icon: Settings },
 ];
 
 export function TopNav() {

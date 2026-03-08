@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import SubmitVetting from "./pages/SubmitVetting";
 import VettingDetail from "./pages/VettingDetail";
 import VettingHistory from "./pages/VettingHistory";
-import SettingsPage from "./pages/SettingsPage";
+
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,7 +25,7 @@ const App = () => (
             <Route path="/submit" element={<SubmitVetting />} />
             <Route path="/vetting/:id" element={<VettingDetail />} />
             <Route path="/history" element={<VettingHistory />} />
-            <Route path="/settings" element={<SettingsPage />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AppLayout>
