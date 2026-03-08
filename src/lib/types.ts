@@ -6,7 +6,7 @@ export type RiskTier = "LOW" | "MODERATE" | "ELEVATED" | "HIGH" | "CRITICAL";
 export type RCSTier = "LOW" | "MODERATE" | "ELEVATED" | "HIGH" | "CRITICAL";
 export type Decision = "approved" | "conditionally_approved" | "rejected" | "pending_review";
 export type Confidence = "HIGH" | "MEDIUM" | "LOW";
-export type Recommendation = "Approve" | "Conditional Approve" | "Further Review" | "Recommend Reject" | "Auto-Reject";
+export type Recommendation = "Approve" | "Conditional Approval" | "Conditional Approve" | "Further Review" | "Recommend Reject" | "Auto-Reject";
 
 export interface VettingRequest {
   id: string;
