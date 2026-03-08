@@ -91,14 +91,14 @@ export function DimensionCard({ dimensionKey, dimension }: DimensionCardProps) {
         <div className="border-t px-4 py-4 space-y-4 bg-muted/20">
           {/* Full summary */}
           <div className="rounded-lg bg-primary/5 border border-primary/10 p-3">
-            <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Summary</h5>
+            <h5 className="text-xs font-semibold text-primary tracking-wider mb-1.5">Summary</h5>
             <p className="text-sm text-muted-foreground leading-relaxed">{dimension.summary}</p>
           </div>
 
           {/* All sub-factors */}
           {subFactorEntries.length > 0 && (
             <div>
-              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Sub-Factors</h5>
+              <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-2">Sub-Factors</h5>
               <div className="rounded-lg border border-border overflow-hidden">
                 <table className="w-full text-xs">
                   <thead>
@@ -125,7 +125,7 @@ export function DimensionCard({ dimensionKey, dimension }: DimensionCardProps) {
           {/* Evidence items */}
           {dimension.evidence.length > 0 && (
             <div>
-              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+               <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-2">
                 Evidence ({dimension.evidence.length})
               </h5>
               <div className="space-y-2">

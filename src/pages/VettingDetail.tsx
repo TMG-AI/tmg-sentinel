@@ -285,9 +285,7 @@ export default function VettingDetail() {
                 <span className="text-sm font-semibold text-foreground">{normalizeRecommendation(combined.recommendation)}</span>
               </div>
             )}
-            {combined?.driver_detail && (
-              <p className="text-xs text-muted-foreground mb-2">{combined.driver_detail}</p>
-            )}
+            {/* driver_detail removed — duplicative with summary */}
 
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Clock className="w-3.5 h-3.5" />
@@ -337,7 +335,7 @@ export default function VettingDetail() {
           <div className="flex items-start gap-3">
             <ShieldAlert className="w-5 h-5 text-[hsl(var(--risk-elevated))] flex-shrink-0 mt-0.5" />
             <div>
-              <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] uppercase tracking-wide">⚠ Divergence Alert</span>
+              <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] tracking-wide">⚠ Divergence Alert</span>
               <p className="text-sm text-foreground mt-0.5 font-medium">{rca.divergence_alert}</p>
             </div>
           </div>
@@ -387,7 +385,7 @@ export default function VettingDetail() {
             <div className="risk-badge-critical p-4 rounded-xl mb-4 flex items-center gap-3">
               <Skull className="w-6 h-6 flex-shrink-0" />
               <div>
-                <p className="font-bold text-sm">AUTO-REJECTED — {gates.sanctions.status === "FAIL" ? "Sanctions" : "Debarment"} match found</p>
+                <p className="font-bold text-sm">Auto-Rejected — {gates.sanctions.status === "FAIL" ? "Sanctions" : "Debarment"} match found</p>
                 <p className="text-xs opacity-90 mt-0.5">Legal counsel required to override.</p>
               </div>
             </div>
@@ -451,7 +449,7 @@ export default function VettingDetail() {
             <div className="border-l-4 border-[hsl(var(--risk-elevated))] bg-[hsl(var(--risk-elevated)/0.04)] rounded-r-xl p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Newspaper className="w-4 h-4 text-[hsl(var(--risk-elevated))]" />
-                <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] uppercase tracking-wide">Potential Damaging Headline</span>
+                <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] tracking-wide">Potential Damaging Headline</span>
               </div>
               <p className="text-sm italic text-foreground font-medium">"{rca.most_damaging_headline}"</p>
             </div>
@@ -507,7 +505,7 @@ export default function VettingDetail() {
           {/* Evidence items for conflict dimension */}
           {conflictDim.evidence.length > 0 && (
             <div className="glass-card p-5">
-              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Supporting Evidence ({conflictDim.evidence.length})</h3>
+              <h3 className="text-xs font-semibold text-muted-foreground tracking-wider mb-3">Supporting Evidence ({conflictDim.evidence.length})</h3>
               <div className="space-y-2">
                 {conflictDim.evidence.map((ev, i) => {
                   const hasSourceUrls = ev.source_urls && ev.source_urls.length > 0;
@@ -546,7 +544,7 @@ export default function VettingDetail() {
           {rca?.q4_client_conflicts && (
             <div className="glass-card p-4 border border-[hsl(var(--risk-moderate)/0.2)]">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-muted-foreground uppercase tracking-wide">Reputational Conflict Assessment</span>
+                <span className="text-xs font-bold text-muted-foreground tracking-wide">Reputational Conflict Assessment</span>
                 <span className={`text-sm font-bold px-2 py-0.5 rounded ${getSubScoreBg(rca.q4_client_conflicts.score)} ${getSubScoreColor(rca.q4_client_conflicts.score)}`}>
                   {rca.q4_client_conflicts.score}/10
                 </span>
@@ -616,7 +614,7 @@ export default function VettingDetail() {
           {/* Top Agencies */}
           {contracts.top_agencies.length > 0 && (
             <div className="glass-card p-5">
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Top Agencies</h3>
+              <h3 className="text-xs font-semibold tracking-wider text-muted-foreground mb-3">Top Agencies</h3>
               <div className="space-y-2">
                 {contracts.top_agencies.slice(0, 10).map((a, i) => {
                   const pct = (a.total / contracts.total_amount) * 100;
@@ -639,7 +637,7 @@ export default function VettingDetail() {
           {/* Top Awards Table */}
           {contracts.top_awards.length > 0 && (
             <div className="glass-card p-5">
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Largest Awards</h3>
+              <h3 className="text-xs font-semibold tracking-wider text-muted-foreground mb-3">Largest Awards</h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
@@ -679,7 +677,7 @@ export default function VettingDetail() {
           {hasFlags ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <h3 className="text-xs font-semibold text-destructive uppercase mb-2">Red Flags ({flags!.red.length})</h3>
+                 <h3 className="text-xs font-semibold text-destructive mb-2">Red Flags ({flags!.red.length})</h3>
                 {flags!.red.length === 0 ? (
                   <p className="text-xs text-muted-foreground p-3 bg-muted rounded-xl">No red flags</p>
                 ) : (
@@ -691,7 +689,7 @@ export default function VettingDetail() {
                 )}
               </div>
               <div>
-                <h3 className="text-xs font-semibold text-[hsl(var(--risk-moderate))] uppercase mb-2">Yellow Flags ({flags!.yellow.length})</h3>
+                <h3 className="text-xs font-semibold text-[hsl(var(--risk-moderate))] mb-2">Yellow Flags ({flags!.yellow.length})</h3>
                 {flags!.yellow.length === 0 ? (
                   <p className="text-xs text-muted-foreground p-3 bg-muted rounded-xl">No yellow flags</p>
                 ) : (
@@ -818,21 +816,29 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
           <div className="flex items-center gap-2 flex-wrap mb-1">
-            <span className="font-semibold text-foreground">{exec.name}</span>
+             <span className="font-semibold text-foreground">{exec.name}</span>
             {exec.sanctions_flag && !isFalsePositive && (
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--risk-high)/0.10)] text-[hsl(var(--risk-high))] border border-[hsl(var(--risk-high)/0.25)]">
-                ⚠ SANCTIONS MATCH
+                ⚠ Sanctions Match
               </span>
             )}
             {exec.sanctions_flag && isFalsePositive && (
               <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border">
-                PEP/Public Figure
+                PEP / Public Figure
               </span>
             )}
             {!exec.sanctions_flag && (
               <CheckCircle className="w-3.5 h-3.5 text-[hsl(var(--risk-low))]" />
             )}
           </div>
+          {/* Sanctions explanation */}
+          {exec.sanctions_flag && exec.sanctions_datasets && exec.sanctions_datasets.length > 0 && (
+            <p className="text-[11px] text-muted-foreground mb-1">
+              {isFalsePositive
+                ? `Matched in public-figure databases: ${exec.sanctions_datasets.join(", ")}. Not an actual sanctions listing.`
+                : `Matched in: ${exec.sanctions_datasets.join(", ")}`}
+            </p>
+          )}
           <p className="text-xs text-muted-foreground mb-2">
             {exec.title && exec.title !== "See Remarks" ? exec.title : ""}
             {exec.is_officer && exec.is_director ? (exec.title && exec.title !== "See Remarks" ? " · " : "") + "Officer & Director" : exec.is_officer ? (exec.title && exec.title !== "See Remarks" ? " · " : "") + "Officer" : exec.is_director ? (exec.title && exec.title !== "See Remarks" ? " · " : "") + "Director" : ""}
@@ -847,6 +853,17 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
               {exec.news_count} news hits
             </span>
           </div>
+          {/* Top headline always visible */}
+          {exec.news_headlines.length > 0 && (
+            <div className="mt-2 text-xs text-muted-foreground">
+              <span className="mr-1">•</span>
+              {exec.news_urls?.[0] ? (
+                <a href={exec.news_urls[0]} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  {exec.news_headlines[0]}
+                </a>
+              ) : exec.news_headlines[0]}
+            </div>
+          )}
         </div>
       </div>
 
@@ -864,7 +881,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
         <div className="mt-3 space-y-3">
           {exec.fec_top_recipients.length > 0 && (
             <div>
-              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Top FEC Recipients</h5>
+              <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-1.5">Top FEC Recipients</h5>
               <div className="space-y-1">
                 {exec.fec_top_recipients.slice(0, 5).map((r, i) => (
                   <div key={i} className="flex items-center justify-between text-xs p-1.5 rounded bg-muted/50">
@@ -877,7 +894,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
           )}
           {exec.news_headlines.length > 0 && (
             <div>
-              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Top Headlines</h5>
+              <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-1.5">Headlines</h5>
               <ul className="space-y-1">
                 {exec.news_headlines.slice(0, 3).map((h, i) => {
                   const url = exec.news_urls?.[i];
