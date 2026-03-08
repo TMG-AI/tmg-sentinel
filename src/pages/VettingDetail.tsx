@@ -15,7 +15,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogD
 import {
   CheckCircle, XCircle, ArrowLeft, AlertTriangle, ExternalLink, Upload,
   Shield, Skull, FileText, Clock, Newspaper, ChevronDown, ShieldAlert,
-  BarChart3, Sliders, Flag, Link2, Users, Landmark, ChevronUp, DollarSign,
+  BarChart3, Flag, Link2, Users, Landmark, ChevronUp, DollarSign,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
