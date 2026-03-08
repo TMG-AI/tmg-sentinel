@@ -1,5 +1,5 @@
 export type SubjectType = "individual" | "organization";
-export type EngagementType = "fara_foreign_political" | "foreign_corporate" | "domestic_political" | "domestic_corporate";
+export type EngagementType = "fara_foreign_political" | "foreign_corporate" | "government_affairs" | "corporate_political_advisory" | "campaign_electoral" | "domestic_political" | "domestic_corporate";
 export type VettingLevel = "quick_screen" | "standard_vet" | "deep_dive";
 export type VettingStatus = "pending" | "running" | "gates_failed" | "completed" | "error";
 export type RiskTier = "LOW" | "MODERATE" | "ELEVATED" | "HIGH" | "CRITICAL";
