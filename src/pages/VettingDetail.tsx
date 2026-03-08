@@ -816,21 +816,29 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
           <div className="flex items-center gap-2 flex-wrap mb-1">
-            <span className="font-semibold text-foreground">{exec.name}</span>
+             <span className="font-semibold text-foreground">{exec.name}</span>
             {exec.sanctions_flag && !isFalsePositive && (
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--risk-high)/0.10)] text-[hsl(var(--risk-high))] border border-[hsl(var(--risk-high)/0.25)]">
-                ⚠ SANCTIONS MATCH
+                ⚠ Sanctions Match
               </span>
             )}
             {exec.sanctions_flag && isFalsePositive && (
               <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border">
-                PEP/Public Figure
+                PEP / Public Figure
               </span>
             )}
             {!exec.sanctions_flag && (
               <CheckCircle className="w-3.5 h-3.5 text-[hsl(var(--risk-low))]" />
             )}
           </div>
+          {/* Sanctions explanation */}
+          {exec.sanctions_flag && exec.sanctions_datasets && exec.sanctions_datasets.length > 0 && (
+            <p className="text-[11px] text-muted-foreground mb-1">
+              {isFalsePositive
+                ? `Matched in public-figure databases: ${exec.sanctions_datasets.join(", ")}. Not an actual sanctions listing.`
+                : `Matched in: ${exec.sanctions_datasets.join(", ")}`}
+            </p>
+          )}
           <p className="text-xs text-muted-foreground mb-2">
             {exec.title && exec.title !== "See Remarks" ? exec.title : ""}
             {exec.is_officer && exec.is_director ? (exec.title && exec.title !== "See Remarks" ? " · " : "") + "Officer & Director" : exec.is_officer ? (exec.title && exec.title !== "See Remarks" ? " · " : "") + "Officer" : exec.is_director ? (exec.title && exec.title !== "See Remarks" ? " · " : "") + "Director" : ""}
@@ -845,6 +853,17 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
               {exec.news_count} news hits
             </span>
           </div>
+          {/* Top headline always visible */}
+          {exec.news_headlines.length > 0 && (
+            <div className="mt-2 text-xs text-muted-foreground">
+              <span className="mr-1">•</span>
+              {exec.news_urls?.[0] ? (
+                <a href={exec.news_urls[0]} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  {exec.news_headlines[0]}
+                </a>
+              ) : exec.news_headlines[0]}
+            </div>
+          )}
         </div>
       </div>
 
