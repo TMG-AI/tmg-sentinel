@@ -771,15 +771,23 @@ export default function VettingDetail() {
 /* ===== Executive Card Component ===== */
 function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
   const [expanded, setExpanded] = useState(false);
+  const isFalsePositive = exec.sanctions_flag && exec.sanctions_datasets && exec.sanctions_datasets.every(
+    ds => ["wikidata", "wd_categories", "wd_peps", "us_congress", "everypolitician", "ann_pep_positions"].includes(ds)
+  );
   return (
     <div className="glass-card p-4">
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
           <div className="flex items-center gap-2 flex-wrap mb-1">
             <span className="font-semibold text-foreground">{exec.name}</span>
-            {exec.sanctions_flag && (
+            {exec.sanctions_flag && !isFalsePositive && (
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--risk-high)/0.10)] text-[hsl(var(--risk-high))] border border-[hsl(var(--risk-high)/0.25)]">
-                ⚠ SANCTIONS
+                ⚠ SANCTIONS MATCH
+              </span>
+            )}
+            {exec.sanctions_flag && isFalsePositive && (
+              <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border">
+                PEP/Public Figure
               </span>
             )}
             {!exec.sanctions_flag && (
@@ -787,8 +795,8 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
             )}
           </div>
           <p className="text-xs text-muted-foreground mb-2">
-            {exec.title}
-            {exec.is_officer && exec.is_director ? " · Officer & Director" : exec.is_officer ? " · Officer" : exec.is_director ? " · Director" : ""}
+            {exec.title && exec.title !== "See Remarks" ? exec.title : ""}
+            {exec.is_officer && exec.is_director ? (exec.title && exec.title !== "See Remarks" ? " · " : "") + "Officer & Director" : exec.is_officer ? (exec.title && exec.title !== "See Remarks" ? " · " : "") + "Officer" : exec.is_director ? (exec.title && exec.title !== "See Remarks" ? " · " : "") + "Director" : ""}
           </p>
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
@@ -832,9 +840,19 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
             <div>
               <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Top Headlines</h5>
               <ul className="space-y-1">
-                {exec.news_headlines.slice(0, 3).map((h, i) => (
-                  <li key={i} className="text-xs text-muted-foreground leading-relaxed">• {h}</li>
-                ))}
+                {exec.news_headlines.slice(0, 3).map((h, i) => {
+                  const url = exec.news_urls?.[i];
+                  return (
+                    <li key={i} className="text-xs text-muted-foreground leading-relaxed flex items-start gap-1.5">
+                      <span className="mt-0.5">•</span>
+                      {url ? (
+                        <a href={url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                          {h}
+                        </a>
+                      ) : h}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           )}
