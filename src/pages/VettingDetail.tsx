@@ -205,8 +205,8 @@ export default function VettingDetail() {
               key={t.id}
               onClick={() => setActiveTab(t.id)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
-                activeTab === t.id
-                  ? "bg-primary text-primary-foreground"
+              activeTab === t.id
+                  ? "bg-foreground text-background"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
             >
