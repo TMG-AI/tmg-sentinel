@@ -161,7 +161,7 @@ export default function Dashboard() {
         {!loading && filtered.length === 0 && (
           <div className="glass-card p-16 text-center">
             <p className="text-muted-foreground text-lg">No vetting requests found.</p>
-            <p className="text-sm text-muted-foreground mt-1">Add JSON files to <code className="text-xs bg-muted px-1.5 py-0.5 rounded">public/data/vettings/</code> and list them in <code className="text-xs bg-muted px-1.5 py-0.5 rounded">public/data/vettings-index.json</code></p>
+            
             <Link to="/submit">
               <Button className="mt-4 gap-2">
                 <Plus className="w-4 h-4" />
