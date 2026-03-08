@@ -98,7 +98,7 @@ export function DimensionCard({ dimensionKey, dimension }: DimensionCardProps) {
           {/* All sub-factors */}
           {subFactorEntries.length > 0 && (
             <div>
-              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Sub-Factors</h5>
+              <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-2">Sub-Factors</h5>
               <div className="rounded-lg border border-border overflow-hidden">
                 <table className="w-full text-xs">
                   <thead>
