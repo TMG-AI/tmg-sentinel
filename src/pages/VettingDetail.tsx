@@ -544,7 +544,7 @@ export default function VettingDetail() {
           {rca?.q4_client_conflicts && (
             <div className="glass-card p-4 border border-[hsl(var(--risk-moderate)/0.2)]">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-muted-foreground uppercase tracking-wide">Reputational Conflict Assessment</span>
+                <span className="text-xs font-bold text-muted-foreground tracking-wide">Reputational Conflict Assessment</span>
                 <span className={`text-sm font-bold px-2 py-0.5 rounded ${getSubScoreBg(rca.q4_client_conflicts.score)} ${getSubScoreColor(rca.q4_client_conflicts.score)}`}>
                   {rca.q4_client_conflicts.score}/10
                 </span>
