@@ -160,6 +160,9 @@ export const TEAM_MEMBERS = ["Liza", "Jim", "Ben", "Tara"] as const;
 export const ENGAGEMENT_LABELS: Record<EngagementType, string> = {
   fara_foreign_political: "FARA-Registerable Foreign Political Work",
   foreign_corporate: "Foreign Corporate Engagement",
+  government_affairs: "Government Affairs / Political Strategy",
+  corporate_political_advisory: "Corporate Political Advisory",
+  campaign_electoral: "Campaign / Electoral",
   domestic_political: "Domestic Political Engagement",
   domestic_corporate: "Routine Domestic Corporate",
 };
