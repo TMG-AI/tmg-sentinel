@@ -293,9 +293,18 @@ export default function VettingDetail() {
             </div>
           </div>
 
-          {/* Dual Scores */}
+          {/* Scores — Combined first when available */}
           <div className="flex gap-6 flex-shrink-0">
-            {v.composite_score != null && (
+            {combined && (
+              <div className="text-center">
+                <ScoreCircle score={Math.max(combined.factual_score, combined.rcs_score)} color={combined.combined_tier === "LOW" ? "hsl(var(--risk-low))" : combined.combined_tier === "MODERATE" ? "hsl(var(--risk-moderate))" : combined.combined_tier === "ELEVATED" ? "hsl(var(--risk-elevated))" : "hsl(var(--risk-high))"} />
+                <p className="text-xs font-semibold text-muted-foreground mt-1">Overall Risk</p>
+                <span className={`inline-block text-xs font-bold px-3 py-1 rounded mt-1 ${getRiskTierColor(combined.combined_tier as any)}`}>
+                  {combined.combined_tier}
+                </span>
+              </div>
+            )}
+            {!combined && v.composite_score != null && (
               <div className="text-center">
                 <ScoreCircle score={v.composite_score} color={v.composite_score <= 2.5 ? "hsl(var(--risk-low))" : v.composite_score <= 4.5 ? "hsl(var(--risk-moderate))" : v.composite_score <= 6.5 ? "hsl(var(--risk-elevated))" : "hsl(var(--risk-high))"} />
                 <p className="text-xs font-semibold text-muted-foreground mt-1">Factual Risk</p>
@@ -306,13 +315,16 @@ export default function VettingDetail() {
                 )}
               </div>
             )}
+            {combined && v.composite_score != null && (
+              <div className="text-center opacity-70">
+                <ScoreCircle score={v.composite_score} color={v.composite_score <= 2.5 ? "hsl(var(--risk-low))" : v.composite_score <= 4.5 ? "hsl(var(--risk-moderate))" : v.composite_score <= 6.5 ? "hsl(var(--risk-elevated))" : "hsl(var(--risk-high))"} />
+                <p className="text-xs font-semibold text-muted-foreground mt-1">Factual</p>
+              </div>
+            )}
             {rca && (
-              <div className="text-center">
+              <div className={`text-center ${combined ? "opacity-70" : ""}`}>
                 <ScoreCircle score={rca.composite_rcs} color={getRcsColor(rca.composite_rcs)} />
-                <p className="text-xs font-semibold text-muted-foreground mt-1">Reputational Risk</p>
-                <span className={`inline-block text-xs font-bold px-3 py-1 rounded mt-1 ${getRiskTierColor(rca.rcs_risk_tier)}`}>
-                  {rca.rcs_risk_tier}
-                </span>
+                <p className="text-xs font-semibold text-muted-foreground mt-1">Reputational</p>
               </div>
             )}
           </div>
