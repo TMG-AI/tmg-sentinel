@@ -142,31 +142,15 @@ export function DimensionCard({ dimensionKey, dimension }: DimensionCardProps) {
 }
 
 function EvidenceItem({ evidence }: { evidence: DimensionResult["evidence"][0] }) {
-  const [showSources, setShowSources] = useState(false);
   const hasSourceUrls = evidence.source_urls && evidence.source_urls.length > 0;
   const hasUrl = !!evidence.url;
-  const hasLinks = hasSourceUrls || hasUrl;
 
   return (
     <div className="rounded-lg border bg-muted/30 p-3">
-      <div className="flex items-start gap-2">
-        <p className="text-sm text-foreground/80 leading-relaxed flex-1">
-          {evidence.text.replace(/\[\d+\]/g, "")}
-        </p>
-        {hasLinks && (
-          <button
-            onClick={() => setShowSources(!showSources)}
-            className={cn(
-              "flex-shrink-0 p-1 rounded-md transition-colors",
-              showSources ? "bg-primary/10 text-primary" : "text-muted-foreground hover:text-primary hover:bg-primary/5"
-            )}
-            title="View sources"
-          >
-            <ExternalLink className="h-3.5 w-3.5" />
-          </button>
-        )}
-      </div>
-      {showSources && hasLinks && (
+      <p className="text-sm text-foreground/80 leading-relaxed">
+        {evidence.text.replace(/\s*\[\w+\]\s*$/g, '').replace(/\s*\[\d+\]\s*/g, '')}
+      </p>
+      {(hasSourceUrls || hasUrl) && (
         <div className="flex flex-wrap gap-2 pt-2 mt-2 border-t border-border/50">
           {hasSourceUrls && evidence.source_urls!.map((src, i) => (
             <a
