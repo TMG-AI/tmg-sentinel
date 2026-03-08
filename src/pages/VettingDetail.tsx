@@ -326,10 +326,10 @@ export default function VettingDetail() {
           <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
           <div className="max-w-none text-foreground space-y-0">
             {result.executive_summary.split("\n").filter(line => line.trim() !== "").map((line, i) => {
-              if (line.startsWith("## ")) return <h3 key={i} className="text-sm font-bold mt-3 mb-1 text-foreground">{line.replace("## ", "")}</h3>;
-              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-sm text-foreground mt-2 mb-0.5">{line.replace(/\*\*/g, "")}</p>;
-              if (line.startsWith("- ")) return <li key={i} className="text-sm text-muted-foreground ml-4 mb-0.5 leading-snug">{line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "$1")}</li>;
-              return <p key={i} className="text-sm text-muted-foreground mb-1 leading-snug">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
+              if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-4 mb-1.5 text-foreground">{line.replace("## ", "")}</h3>;
+              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground mt-3 mb-1">{line.replace(/\*\*/g, "")}</p>;
+              if (line.startsWith("- ")) return <li key={i} className="text-muted-foreground ml-4 mb-1 leading-relaxed">{line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "$1")}</li>;
+              return <p key={i} className="text-muted-foreground mb-1.5 leading-relaxed">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
             })}
           </div>
 
