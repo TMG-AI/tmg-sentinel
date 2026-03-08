@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useVettingStore } from "@/lib/vetting-store";
-import { ENGAGEMENT_LABELS, VETTING_LEVEL_LABELS, RCS_QUESTION_LABELS, Decision, ReputationalContagion } from "@/lib/types";
+import { ENGAGEMENT_LABELS, VETTING_LEVEL_LABELS, RCS_QUESTION_LABELS, Decision, ReputationalContagion, Flag as FlagType } from "@/lib/types";
 import { DimensionCard } from "@/components/DimensionCard";
 import { RCSCard } from "@/components/RCSCard";
 import {
@@ -20,6 +20,48 @@ import {
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
+
+function findSourceUrl(sourceName: string, sources?: { id: number; url: string; title: string; score: number }[]): string | null {
+  if (!sources || !sourceName) return null;
+  const lower = sourceName.toLowerCase();
+  const match = sources.find(s =>
+    s.title.toLowerCase().includes(lower) || s.url.toLowerCase().includes(lower)
+  );
+  return match?.url || null;
+}
+
+function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: { id: number; url: string; title: string; score: number }[]; variant: "red" | "yellow" }) {
+  const cleanDesc = flag.description.replace(/\s*\[\d+\]\s*/g, '').replace(/\s*\[\w+\]\s*$/g, '');
+  const sourceUrl = findSourceUrl(flag.source, sources);
+  const borderClass = variant === "red" ? "border-l-destructive" : "border-l-[hsl(var(--risk-moderate))]";
+  const iconClass = variant === "red" ? "text-destructive" : "text-[hsl(var(--risk-moderate))]";
+
+  return (
+    <div className={`glass-card p-3 border-l-4 ${borderClass}`}>
+      <div className="flex items-center gap-2 mb-1">
+        <AlertTriangle className={`w-3.5 h-3.5 ${iconClass}`} />
+        <span className="text-sm font-medium text-foreground">{flag.title}</span>
+      </div>
+      <p className="text-xs text-muted-foreground">{cleanDesc}</p>
+      <div className="flex items-center gap-2 mt-2">
+        {sourceUrl ? (
+          <a
+            href={sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-full"
+          >
+            <ExternalLink className="h-2.5 w-2.5" />
+            {flag.source}
+          </a>
+        ) : (
+          <span className="text-[10px] text-muted-foreground">{flag.source}</span>
+        )}
+        <span className="text-[10px] text-muted-foreground">· {flag.date}</span>
+      </div>
+    </div>
+  );
+}
 
 function getRcsColor(score: number): string {
   if (score <= 2.5) return "hsl(var(--risk-low))";
@@ -352,14 +394,7 @@ export default function VettingDetail() {
                 ) : (
                   <div className="space-y-2">
                     {flags!.red.map((f, i) => (
-                      <div key={i} className="glass-card p-3 border-l-4 border-l-destructive">
-                        <div className="flex items-center gap-2 mb-1">
-                          <AlertTriangle className="w-3.5 h-3.5 text-destructive" />
-                          <span className="text-sm font-medium text-foreground">{f.title}</span>
-                        </div>
-                        <p className="text-xs text-muted-foreground">{f.description}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{f.source} · {f.date}</p>
-                      </div>
+                      <FlagCard key={i} flag={f} sources={result?.sources} variant="red" />
                     ))}
                   </div>
                 )}
@@ -371,14 +406,7 @@ export default function VettingDetail() {
                 ) : (
                   <div className="space-y-2">
                     {flags!.yellow.map((f, i) => (
-                      <div key={i} className="glass-card p-3 border-l-4 border-l-[hsl(var(--risk-moderate))]">
-                        <div className="flex items-center gap-2 mb-1">
-                          <AlertTriangle className="w-3.5 h-3.5 text-[hsl(var(--risk-moderate))]" />
-                          <span className="text-sm font-medium text-foreground">{f.title}</span>
-                        </div>
-                        <p className="text-xs text-muted-foreground">{f.description}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{f.source} · {f.date}</p>
-                      </div>
+                      <FlagCard key={i} flag={f} sources={result?.sources} variant="yellow" />
                     ))}
                   </div>
                 )}
