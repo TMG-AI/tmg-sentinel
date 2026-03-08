@@ -367,42 +367,15 @@ export default function VettingDetail() {
       {activeTab === "summary" && result?.executive_summary && (
         <div className="glass-card p-6 mb-6">
           <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
-          <div className="max-w-none text-foreground space-y-0">
+          <div className="max-w-none text-foreground space-y-2">
             {result.executive_summary.split("\n").filter(line => line.trim() !== "").map((line, i) => {
-              if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-4 mb-1.5 text-foreground">{line.replace("## ", "")}</h3>;
-              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground mt-3 mb-1">{line.replace(/\*\*/g, "")}</p>;
-              if (line.startsWith("- ")) return <li key={i} className="text-muted-foreground ml-4 mb-1 leading-relaxed">{line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "$1")}</li>;
-              return <p key={i} className="text-muted-foreground mb-1.5 leading-relaxed">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
+              const clean = (s: string) => s.replace(/\s*\[\d+\]\s*/g, ' ').replace(/\*\*(.*?)\*\*/g, "$1").trim();
+              if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-5 mb-2 text-foreground">{clean(line.replace("## ", ""))}</h3>;
+              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground mt-4 mb-1.5">{clean(line)}</p>;
+              if (line.startsWith("- ")) return <li key={i} className="text-muted-foreground ml-4 mb-1.5 leading-relaxed">{clean(line.replace("- ", ""))}</li>;
+              return <p key={i} className="text-muted-foreground mb-2 leading-relaxed">{clean(line)}</p>;
             })}
           </div>
-
-          {scoring && !gatesFailed && (
-            <div className="mt-6 pt-6 border-t border-border">
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3 flex items-center gap-2">
-                <Sliders className="w-3.5 h-3.5" /> Scoring Modifiers
-              </h3>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                <div className="p-3 rounded-lg bg-muted">
-                  <p className="text-sm font-medium text-foreground">Confidence</p>
-                  <p className="text-sm text-muted-foreground mt-0.5">{scoring.confidence_modifier === "none" ? "HIGH — as-is" : scoring.confidence_modifier}</p>
-                </div>
-                <div className="p-3 rounded-lg bg-muted">
-                  <p className="text-sm font-medium text-foreground">Engagement</p>
-                  <p className="text-sm text-muted-foreground mt-0.5">{scoring.engagement_multiplier}x multiplier</p>
-                </div>
-                <div className="p-3 rounded-lg bg-muted">
-                  <p className="text-sm font-medium text-foreground">Final Score</p>
-                  <p className="text-sm text-muted-foreground mt-0.5">{scoring.final_composite.toFixed(2)} → {scoring.risk_tier}</p>
-                </div>
-                {rca && (
-                  <div className="p-3 rounded-lg bg-muted border border-[hsl(var(--risk-moderate)/0.2)]">
-                    <p className="text-sm font-medium text-foreground">RCS</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">{rca.composite_rcs.toFixed(2)} — {rca.rcs_risk_tier}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
         </div>
       )}
 
