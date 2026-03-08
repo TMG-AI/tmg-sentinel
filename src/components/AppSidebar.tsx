@@ -1,4 +1,4 @@
-import { Plus, LayoutDashboard, Clock, Settings, Shield } from "lucide-react";
+import { Plus, LayoutDashboard, Clock, Shield } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import {
@@ -18,7 +18,6 @@ const navItems = [
   { title: "New Vetting", url: "/submit", icon: Plus },
   { title: "Active Vettings", url: "/", icon: LayoutDashboard },
   { title: "History", url: "/history", icon: Clock },
-  { title: "Settings", url: "/settings", icon: Settings },
 ];
 
 export function AppSidebar() {

@@ -25,7 +25,7 @@ const App = () => (
             <Route path="/submit" element={<SubmitVetting />} />
             <Route path="/vetting/:id" element={<VettingDetail />} />
             <Route path="/history" element={<VettingHistory />} />
-            <Route path="/settings" element={<SettingsPage />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AppLayout>
