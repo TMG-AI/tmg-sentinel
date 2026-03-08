@@ -282,7 +282,7 @@ export default function VettingDetail() {
                 <span className={`text-sm font-bold px-3 py-1 rounded ${getRiskTierColor(combined.combined_tier as any)}`}>
                   {combined.combined_tier}
                 </span>
-                <span className="text-sm font-semibold text-foreground">{combined.recommendation}</span>
+                <span className="text-sm font-semibold text-foreground">{normalizeRecommendation(combined.recommendation)}</span>
               </div>
             )}
             {combined?.driver_detail && (
