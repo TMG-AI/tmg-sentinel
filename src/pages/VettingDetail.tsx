@@ -400,6 +400,7 @@ export default function VettingDetail() {
                   score={q.score}
                   evidence={q.evidence}
                   damagingHeadline={qKey === "q3_narrative_vulnerability" ? q.damaging_headline : undefined}
+                  sources={result?.sources}
                 />
               );
             })}
