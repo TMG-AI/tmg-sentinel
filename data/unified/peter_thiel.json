@@ -2,57 +2,51 @@
   "subject": {
     "name": "Peter Thiel",
     "type": "individual",
-    "company": "Palantir Technologies / Founders Fund / Thiel Capital",
+    "company": "Palantir Technologies",
     "country": "US",
-    "city": "San Francisco, CA"
+    "city": ""
   },
   "gates": {
     "sanctions": {
       "status": "PASS",
       "sources_checked": [
         "OpenSanctions",
-        "OFAC",
-        "UN",
-        "EU",
-        "UK"
+        "Interpol"
       ],
       "matches": [],
-      "checked_at": "2026-03-07T00:00:00Z"
+      "checked_at": "2026-03-08T00:00:00Z"
     },
     "debarment": {
       "status": "PASS",
       "sources_checked": [
-        "SAM.gov",
-        "World Bank",
-        "ADB",
-        "EBRD"
+        "SAM.gov"
       ],
       "matches": [],
-      "checked_at": "2026-03-07T00:00:00Z"
+      "checked_at": "2026-03-08T00:00:00Z"
     }
   },
   "dimensions": {
     "litigation_legal": {
-      "score": 2.5,
+      "score": 3.5,
       "weight": 0.22,
       "confidence": "HIGH",
-      "summary": "No active criminal or fraud litigation, but history of funding controversial litigation against media outlets raises concerns about litigious behavior.",
+      "summary": "Thiel has been involved in high-profile litigation including funding the Hulk Hogan lawsuit against Gawker, but no active criminal cases or fraud allegations found.",
       "sub_factors": {
         "criminal_cases": {
           "score": 0,
-          "detail": "No criminal cases found in court records"
+          "detail": "No criminal cases identified"
         },
         "civil_fraud_corruption": {
           "score": 0,
-          "detail": "No fraud or corruption litigation identified"
+          "detail": "No fraud or corruption cases found"
         },
         "repeated_civil_litigation": {
-          "score": 3,
-          "detail": "Funded Hulk Hogan's lawsuit against Gawker Media, leading to bankruptcy"
+          "score": 6,
+          "detail": "Funded Hulk Hogan's lawsuit against Gawker, leading to its bankruptcy; pattern of using litigation as weapon"
         },
         "past_resolved": {
-          "score": 2,
-          "detail": "Gawker litigation resolved but demonstrates willingness to use legal system aggressively"
+          "score": 4,
+          "detail": "Gawker litigation resolved but demonstrates willingness to use courts for personal vendettas"
         },
         "bankruptcy": {
           "score": 0,
@@ -61,15 +55,15 @@
       },
       "evidence": [
         {
-          "text": "Peter Thiel secretly funded Hulk Hogan's high-profile legal case against Gawker Media, which resulted in Gawker's bankruptcy [7][8]",
-          "source": "New York Times, CNBC",
-          "url": "https://www.nytimes.com/2016/05/26/business/dealbook/peter-thiel-tech-billionaire-reveals-secret-war-with-gawker.html",
-          "date": "2016-05-26",
+          "text": "Thiel secretly funded Hulk Hogan's lawsuit against Gawker Media, spending millions to bankrupt the publication [26][28]",
+          "source": "Forbes/CNBC",
+          "url": "https://www.forbes.com/sites/mattdrange/2016/06/21/peter-thiels-war-on-gawker-a-timeline/",
+          "date": "2016-05-24",
           "temporal_weight": 0.4,
           "source_urls": [
             {
-              "url": "https://www.nytimes.com/2016/05/26/business/dealbook/peter-thiel-tech-billionaire-reveals-secret-war-with-gawker.html",
-              "title": "Peter Thiel, Tech Billionaire, Reveals Secret War With Gawker"
+              "url": "https://www.forbes.com/sites/mattdrange/2016/06/21/peter-thiels-war-on-gawker-a-timeline/",
+              "title": "Peter Thiel's War On Gawker: A Timeline - Forbes"
             },
             {
               "url": "https://www.cnbc.com/2016/05/24/paypal-billionaire-peter-thiel-financing-hulk-hogans-lawsuit-against-gawker-forbes-reports.html",
@@ -78,158 +72,187 @@
           ]
         },
         {
-          "text": "Thiel's litigation funding was motivated by Gawker outing him as gay in 2007, which he said 'ruined people's lives for no reason' [7]",
-          "source": "New York Times",
-          "url": "https://www.nytimes.com/2016/05/26/business/dealbook/peter-thiel-tech-billionaire-reveals-secret-war-with-gawker.html",
-          "date": "2016-05-26",
+          "text": "PayPal cofounder Peter Thiel funded Hulk Hogan's high-profile legal case against Gawker [28]",
+          "source": "CNBC",
+          "url": "https://www.cnbc.com/2016/05/24/paypal-billionaire-peter-thiel-financing-hulk-hogans-lawsuit-against-gawker-forbes-reports.html",
+          "date": "2016-05-24",
           "temporal_weight": 0.4,
           "source_urls": [
             {
-              "url": "https://www.nytimes.com/2016/05/26/business/dealbook/peter-thiel-tech-billionaire-reveals-secret-war-with-gawker.html",
-              "title": "Peter Thiel, Tech Billionaire, Reveals Secret War With Gawker"
+              "url": "https://www.cnbc.com/2016/05/24/paypal-billionaire-peter-thiel-financing-hulk-hogans-lawsuit-against-gawker-forbes-reports.html",
+              "title": "PayPal billionaire Peter Thiel financing Hulk Hogan's lawsuit against ..."
             }
           ]
         }
       ]
     },
     "media_reputation": {
-      "score": 6.0,
+      "score": 7.5,
       "weight": 0.2,
       "confidence": "HIGH",
-      "summary": "Significant negative media coverage for controversial political positions, connections to apartheid South Africa education, and aggressive business tactics.",
+      "summary": "Extensive negative media coverage including connections to Jeffrey Epstein, controversial political positions, and secretive citizenship dealings.",
       "sub_factors": {},
       "evidence": [
         {
-          "text": "Recent investigation revealed Thiel was educated in 1970s southern Africa 'where Hitler was still openly venerated' and has been critical of democracy [5]",
-          "source": "The Guardian",
-          "url": "https://www.theguardian.com/technology/2025/jan/26/elon-musk-peter-thiel-apartheid-south-africa",
-          "date": "2025-01-26",
+          "text": "Peter Thiel's name appears in new Jeffrey Epstein documents released by Congressional Oversight Committee [23][1][5][8][24]",
+          "source": "Al Jazeera/Multiple outlets",
+          "url": "https://www.aljazeera.com/news/2025/9/27/elon-musk-peter-thiel-steve-bannon-among-names-in-new-epstein-documents",
+          "date": "2025-09-27",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://www.theguardian.com/technology/2025/jan/26/elon-musk-peter-thiel-apartheid-south-africa",
-              "title": "How the roots of the 'PayPal mafia' extend to apartheid South Africa"
+              "url": "https://www.aljazeera.com/news/2025/9/27/elon-musk-peter-thiel-steve-bannon-among-names-in-new-epstein-documents",
+              "title": "Elon Musk, Peter Thiel, Steve Bannon among names in new Epstein ..."
+            },
+            {
+              "url": "https://www.washingtonblade.com/2026/03/04/peter-thiel-expanding-power-overlap-jeffrey-epstein/",
+              "title": "Peter Thiel's expanding power \u2014 and his overlap with Jeffrey Epstein"
+            },
+            {
+              "url": "https://bylinetimes.com/2025/09/12/peter-thiel-jeffrey-epstein-keir-starmer-peter-mandelson-global-counsel/",
+              "title": "From Epstein to Starmer: Mapping Peter Thiel's Web of Influence in ..."
+            },
+            {
+              "url": "https://www.thenation.com/?post_type=article&p=586795",
+              "title": "What Peter Thiel Saw in Jeffrey Epstein | The Nation"
+            },
+            {
+              "url": "https://ahmedeldin.substack.com/p/palantir-financed-by-epstein-fueled",
+              "title": "Palantir: Financed by Epstein, Fueled by Thiel, Killing in Gaza and ..."
             }
           ]
         },
         {
-          "text": "ProPublica investigation exposed Thiel's use of Roth IRA to accumulate $5 billion tax-free through 'aggressive' valuation tactics [1]",
-          "source": "ProPublica",
-          "url": "https://www.propublica.org/article/lord-of-the-roths-how-tech-mogul-peter-thiel-turned-a-retirement-account-for-the-middle-class-into-a-5-billion-dollar-tax-free-piggy-bank",
-          "date": "2021",
+          "text": "Jeffrey Epstein funneled $40 million into Peter Thiel's Palantir in 2005 according to investigative reporting [24]",
+          "source": "Substack investigative report",
+          "url": "https://ahmedeldin.substack.com/p/palantir-financed-by-epstein-fueled",
+          "date": "2025",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://www.propublica.org/article/lord-of-the-roths-how-tech-mogul-peter-thiel-turned-a-retirement-account-for-the-middle-class-into-a-5-billion-dollar-tax-free-piggy-bank",
-              "title": "Lord of the Roths: How Tech Mogul Peter Thiel Turned a Retirement ..."
+              "url": "https://ahmedeldin.substack.com/p/palantir-financed-by-epstein-fueled",
+              "title": "Palantir: Financed by Epstein, Fueled by Thiel, Killing in Gaza and ..."
             }
           ]
         },
         {
-          "text": "Thiel apologized for controversial date rape comments in his book 'The Diversity Myth' [10]",
+          "text": "Thiel secretly obtained New Zealand citizenship, sparking international backlash [12][17]",
+          "source": "CNBC/Guardian",
+          "url": "https://www.cnbc.com/2017/02/01/peter-thiels-secret-new-zealand-citizenship-sparks-backlash.html",
+          "date": "2017-02-01",
+          "temporal_weight": 0.7,
+          "source_urls": [
+            {
+              "url": "https://www.cnbc.com/2017/02/01/peter-thiels-secret-new-zealand-citizenship-sparks-backlash.html",
+              "title": "Peter Thiel's secret New Zealand citizenship sparks backlash - CNBC"
+            },
+            {
+              "url": "https://www.theguardian.com/technology/2017/feb/01/documents-reveal-how-peter-thiel-was-granted-new-zealand-citizenship",
+              "title": "Documents reveal how Peter Thiel was granted New Zealand ..."
+            }
+          ]
+        },
+        {
+          "text": "Thiel has called date rape 'belated regret' in controversial book The Diversity Myth [25]",
           "source": "The Guardian",
-          "url": "https://www.theguardian.com/technology/2016/oct/25/trump-donor-peter-thiel-sorry-date-rape-regret-paypal-facebook",
-          "date": "2016-10-25",
+          "url": "https://www.theguardian.com/technology/2016/oct/21/peter-thiel-support-donald-trump-date-rape-book",
+          "date": "2016-10-21",
           "temporal_weight": 0.4,
           "source_urls": [
             {
-              "url": "https://www.theguardian.com/technology/2016/oct/25/trump-donor-peter-thiel-sorry-date-rape-regret-paypal-facebook",
-              "title": "Peter Thiel, Trump campaign donor, sorry for date rape comments"
+              "url": "https://www.theguardian.com/technology/2016/oct/21/peter-thiel-support-donald-trump-date-rape-book",
+              "title": "Peter Thiel, who gave $1.25m to Trump, has called date rape ..."
             }
           ]
         },
         {
-          "text": "Palantir faces scrutiny from Congressional committees investigating network funded by pro-CCP tech tycoon targeting the company [14]",
-          "source": "Fox News",
-          "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
-          "date": "2026-03",
+          "text": "Thiel's apocalyptic worldview includes lectures about the Antichrist and collapse of civilization [6][29]",
+          "source": "Jacobin/Guardian",
+          "url": "https://jacobin.com/2025/11/peter-thiel-palantir-apocalypse-antichrist",
+          "date": "2025-10-10",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
-              "title": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests that support the regime in Iran - Fox News"
+              "url": "https://jacobin.com/2025/11/peter-thiel-palantir-apocalypse-antichrist",
+              "title": "Peter Thiel's Apocalyptic Worldview Is a Dangerous Fantasy - Jacobin"
+            },
+            {
+              "url": "https://www.theguardian.com/us-news/2025/oct/10/peter-thiel-lectures-antichrist",
+              "title": "Inside tech billionaire Peter Thiel's off-the-record lectures about the ..."
             }
           ]
         }
       ]
     },
     "international_pep": {
-      "score": 2.0,
+      "score": 4.0,
       "weight": 0.15,
       "confidence": "HIGH",
-      "summary": "German-born US citizen with no PEP status, but business interests in surveillance technology raise minor concerns.",
+      "summary": "Thiel holds multiple citizenships and has complex international dealings, but is not a formal PEP or government official.",
       "sub_factors": {
         "pep_status": {
-          "score": 0,
-          "detail": "Not a politically exposed person"
+          "score": 2,
+          "detail": "Listed in OpenSanctions PEP database but not a government official"
         },
         "country_risk": {
-          "score": 0,
-          "detail": "US citizen, no high-risk country exposure"
+          "score": 3,
+          "detail": "Holds German, US, and New Zealand passports; secretive citizenship dealings"
         },
         "fara_exposure": {
-          "score": 3,
-          "detail": "Palantir has significant foreign government contracts"
+          "score": 0,
+          "detail": "No FARA registrations found"
         },
         "source_reliability": {
-          "score": 0,
-          "detail": "Government database checks clear"
+          "score": 10,
+          "detail": "Multiple government and news sources confirm citizenship status"
         }
       },
       "evidence": [
         {
-          "text": "German-born US citizen, naturalized American [5]",
-          "source": "The Guardian",
-          "url": "https://www.theguardian.com/technology/2025/jan/26/elon-musk-peter-thiel-apartheid-south-africa",
-          "date": "2025-01-26",
+          "text": "PEP match found: Peter Thiel in OpenSanctions database",
+          "source": "OpenSanctions",
+          "url": "",
+          "date": "2026-03-08",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "Thiel was born in Germany and holds American and New Zealand passports [3]",
+          "source": "New York Times",
+          "url": "https://www.nytimes.com/2022/10/15/technology/peter-thiel-malta-citizenship.html",
+          "date": "2022-10-15",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://www.theguardian.com/technology/2025/jan/26/elon-musk-peter-thiel-apartheid-south-africa",
-              "title": "How the roots of the 'PayPal mafia' extend to apartheid South Africa"
+              "url": "https://www.nytimes.com/2022/10/15/technology/peter-thiel-malta-citizenship.html",
+              "title": "Peter Thiel, Major U.S. Political Donor, Is Said to Pursue ..."
             }
           ]
         },
         {
-          "text": "Palantir Technologies works extensively with US intelligence and defense agencies",
-          "source": "Corporate filings",
-          "url": "",
-          "date": "2026",
-          "temporal_weight": 1.0,
-          "source_urls": []
+          "text": "Documents reveal Thiel was granted New Zealand citizenship under exceptional circumstances [17]",
+          "source": "The Guardian",
+          "url": "https://www.theguardian.com/technology/2017/feb/01/documents-reveal-how-peter-thiel-was-granted-new-zealand-citizenship",
+          "date": "2017-02-01",
+          "temporal_weight": 0.7,
+          "source_urls": [
+            {
+              "url": "https://www.theguardian.com/technology/2017/feb/01/documents-reveal-how-peter-thiel-was-granted-new-zealand-citizenship",
+              "title": "Documents reveal how Peter Thiel was granted New Zealand ..."
+            }
+          ]
         }
       ]
     },
     "financial_sec": {
-      "score": 3.5,
+      "score": 3.0,
       "weight": 0.12,
       "confidence": "HIGH",
-      "summary": "No SEC enforcement actions, but aggressive tax avoidance strategies and insider trading activity raise moderate concerns.",
+      "summary": "Significant insider trading activity at Palantir but no SEC enforcement actions; recently sold $74 million in Palantir stock.",
       "sub_factors": {},
       "evidence": [
         {
-          "text": "ProPublica investigation revealed IRS officials flagged 'IRA abuses' and 'aggressive' valuation tactics by private equity in relation to Thiel's $5 billion Roth IRA [1]",
-          "source": "ProPublica",
-          "url": "https://www.propublica.org/article/lord-of-the-roths-how-tech-mogul-peter-thiel-turned-a-retirement-account-for-the-middle-class-into-a-5-billion-dollar-tax-free-piggy-bank",
-          "date": "2021",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.propublica.org/article/lord-of-the-roths-how-tech-mogul-peter-thiel-turned-a-retirement-account-for-the-middle-class-into-a-5-billion-dollar-tax-free-piggy-bank",
-              "title": "Lord of the Roths: How Tech Mogul Peter Thiel Turned a Retirement ..."
-            }
-          ]
-        },
-        {
-          "text": "53 insider trading filings identified in SEC EDGAR database",
-          "source": "SEC EDGAR",
-          "url": "",
-          "date": "2026",
-          "temporal_weight": 1.0,
-          "source_urls": []
-        },
-        {
-          "text": "Recent stock movements show Thiel buying AI stocks including Nvidia, Amazon, Microsoft [6]",
+          "text": "Thiel made a shocking move delivering a $74 million warning to Wall Street through Palantir stock sale [38]",
           "source": "The Motley Fool",
           "url": "https://www.fool.com/investing/2026/03/01/palantir-billionaire-peter-thiel-shocking-move/",
           "date": "2026-03-01",
@@ -240,44 +263,47 @@
               "title": "Palantir Billionaire Peter Thiel Just Made a Shocking Move, Delivering a $74 Million Warning to Wall Street. Should You Listen? - The Motley Fool"
             }
           ]
+        },
+        {
+          "text": "53 insider trading transactions identified for Peter Thiel",
+          "source": "SEC EDGAR",
+          "url": "",
+          "date": "2026-03-08",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "No SEC enforcement actions found against Peter Thiel",
+          "source": "SEC",
+          "url": "",
+          "date": "2026-03-08",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://archive.nytimes.com/news.blogs.nytimes.com/2016/05/26/morning-agenda-peter-thiels-secret-war-with-gawker/",
+              "title": "Morning Agenda: Peter Thiel's Secret War With Gawker"
+            }
+          ]
         }
       ]
     },
     "corporate_business": {
-      "score": 4.0,
+      "score": 5.5,
       "weight": 0.11,
       "confidence": "HIGH",
-      "summary": "Palantir's surveillance technology business and defense contracting raise concerns about civil liberties and controversial government partnerships.",
+      "summary": "Co-founder of PayPal and Palantir; Palantir has extensive government contracts including controversial defense and surveillance work.",
       "sub_factors": {},
       "evidence": [
         {
-          "text": "Palantir faces Congressional investigation over allegations of ties to pro-CCP network [14]",
-          "source": "Fox News",
-          "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
-          "date": "2026-03",
+          "text": "Palantir has $3.9 billion in government contracts including $2.3 billion from Department of Defense",
+          "source": "USAspending.gov",
+          "url": "",
+          "date": "2026-03-08",
           "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
-              "title": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests that support the regime in Iran - Fox News"
-            }
-          ]
+          "source_urls": []
         },
         {
-          "text": "Palantir reported $4.475 billion revenue with 56% year-over-year growth, maintaining over $5 billion in cash reserves [3]",
-          "source": "The Chronicle-Journal",
-          "url": "http://markets.chroniclejournal.com/chroniclejournal/article/finterra-2026-3-3-palantir-technologies-pltr-the-sovereign-ai-powerhouse-and-the-future-of-enterprise-operating-systems",
-          "date": "2026-03-03",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "http://markets.chroniclejournal.com/chroniclejournal/article/finterra-2026-3-3-palantir-technologies-pltr-the-sovereign-ai-powerhouse-and-the-future-of-enterprise-operating-systems",
-              "title": "Palantir Technologies (PLTR): The Sovereign AI Powerhouse and the Future of Enterprise Operating Systems - The Chronicle-Journal"
-            }
-          ]
-        },
-        {
-          "text": "Palantir faces challenge to remove Anthropic from Pentagon's AI software amid controversy [17]",
+          "text": "Palantir faces challenge to remove Anthropic from Pentagon's AI software amid controversy [37]",
           "source": "Reuters",
           "url": "https://www.reuters.com/technology/palantir-faces-challenge-remove-anthropic-pentagons-ai-software-2026-03-04/",
           "date": "2026-03-04",
@@ -288,6 +314,19 @@
               "title": "Palantir faces challenge to remove Anthropic from Pentagon's AI software - Reuters"
             }
           ]
+        },
+        {
+          "text": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests [33]",
+          "source": "Fox News",
+          "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
+          "date": "2026",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
+              "title": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests that support the regime in Iran - Fox News"
+            }
+          ]
         }
       ]
     },
@@ -295,90 +334,107 @@
       "score": 7.0,
       "weight": 0.1,
       "confidence": "HIGH",
-      "summary": "Extensive Republican political donations including to Trump and JD Vance, with significant lobbying activity through multiple firms.",
+      "summary": "Major Trump donor and MAGA-aligned figure; extensive lobbying through Palantir; significant political influence operations.",
       "sub_factors": {
         "fara_issues": {
           "score": 0,
-          "detail": "No FARA violations identified"
+          "detail": "No FARA violations found"
         },
         "investigation_links": {
-          "score": 5,
-          "detail": "Congressional investigation into Palantir's ties to pro-CCP networks"
+          "score": 8,
+          "detail": "Links to multiple politically charged investigations including Epstein"
         },
         "watchlist_lobbying": {
-          "score": 3,
-          "detail": "Multiple lobbying registrants identified"
+          "score": 6,
+          "detail": "Palantir engages multiple lobbying firms"
         },
         "pay_to_play": {
-          "score": 4,
-          "detail": "Pattern of political donations aligned with business interests"
+          "score": 9,
+          "detail": "Gave $1.25 million to Trump; major Republican donor"
         }
       },
       "evidence": [
         {
-          "text": "Major political donor who backed JD Vance and Donald Trump [Bio]",
-          "source": "Subject Bio",
-          "url": "",
-          "date": "2026",
-          "temporal_weight": 1.0,
-          "source_urls": []
+          "text": "Thiel gave $1.25 million to Trump campaign [25]",
+          "source": "The Guardian",
+          "url": "https://www.theguardian.com/technology/2016/oct/21/peter-thiel-support-donald-trump-date-rape-book",
+          "date": "2016-10-21",
+          "temporal_weight": 0.4,
+          "source_urls": [
+            {
+              "url": "https://www.theguardian.com/technology/2016/oct/21/peter-thiel-support-donald-trump-date-rape-book",
+              "title": "Peter Thiel, who gave $1.25m to Trump, has called date rape ..."
+            }
+          ]
         },
         {
-          "text": "FEC records show 533 contributions totaling $61,105, with top recipients including Maine Republican Party ($10,000), Republican Campaign Committee of New Mexico ($10,000), Congressional Leadership Fund ($10,000)",
+          "text": "FEC records show 533 political contributions totaling $61,105 with major donations to Republican organizations",
           "source": "FEC",
           "url": "",
-          "date": "2026",
+          "date": "2026-03-08",
           "temporal_weight": 1.0,
           "source_urls": []
         },
         {
-          "text": "13 unique lobbying registrants identified including Holland & Knight LLP, Navigators Global LLC",
-          "source": "Senate LDA",
-          "url": "",
-          "date": "2026",
-          "temporal_weight": 1.0,
-          "source_urls": []
-        },
-        {
-          "text": "Politico profile describes Thiel as pressing 'Trumpish ideology through Senate candidates' [13]",
-          "source": "Politico",
-          "url": "https://www.politico.com/news/magazine/2021/09/20/peter-thiel-book-facebook-trump-jd-vance-blake-masters-josh-hawley-513121",
-          "date": "2021-09-20",
+          "text": "Thiel helped make JD Vance through significant political influence and funding [11][31]",
+          "source": "The Conversation/Politico",
+          "url": "https://theconversation.com/friday-essay-libertarian-tech-titan-peter-thiel-helped-make-jd-vance-the-republican-kingmakers-influence-is-growing-261856",
+          "date": "2025",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://www.politico.com/news/magazine/2021/09/20/peter-thiel-book-facebook-trump-jd-vance-blake-masters-josh-hawley-513121",
-              "title": "The Black Box of Peter Thiel's Beliefs - POLITICO"
+              "url": "https://theconversation.com/friday-essay-libertarian-tech-titan-peter-thiel-helped-make-jd-vance-the-republican-kingmakers-influence-is-growing-261856",
+              "title": "Friday essay: libertarian tech titan Peter Thiel helped make JD ..."
+            },
+            {
+              "url": "https://www.politico.com/news/2022/05/03/jd-vance-win-ohio-primary-00029881",
+              "title": "A mole hunt, a secret website and Peter Thiel's big risk - Politico"
             }
           ]
         }
       ]
     },
     "conflict_of_interest": {
-      "score": 0,
+      "score": 8.5,
       "weight": 0.1,
       "confidence": "HIGH",
-      "summary": "No conflicts identified with current TMG clients based on 54 active client check.",
+      "summary": "Severe conflicts with multiple TMG clients including TikTok, Google, and Democratic-aligned organizations due to political positions and business activities.",
       "sub_factors": {
         "direct_conflict": {
-          "score": 0,
-          "detail": "No direct conflicts with TMG clients"
+          "score": 9,
+          "detail": "Direct opposition to multiple TMG clients through political funding and surveillance tech"
         },
         "indirect_conflict": {
-          "score": 0,
-          "detail": "No indirect conflicts identified"
+          "score": 8,
+          "detail": "Palantir's work conflicts with privacy and civil liberties positions of TMG progressive clients"
         },
         "future_conflict": {
-          "score": 0,
-          "detail": "No anticipated future conflicts"
+          "score": 8,
+          "detail": "Ongoing political activities likely to create future conflicts"
         }
       },
       "evidence": [
         {
-          "text": "Checked against 54 active TMG clients - no conflicts found",
-          "source": "TMG Client Database",
+          "text": "Palantir provides surveillance technology that could be used against civil liberties, conflicting with TMG's progressive advocacy clients",
+          "source": "Multiple sources",
           "url": "",
-          "date": "2026-03-07",
+          "date": "2026-03-08",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "Thiel's major Republican donations and Trump support directly conflict with TMG's Democratic alignment and clients like DCCC/DNC",
+          "source": "FEC/Media reports",
+          "url": "",
+          "date": "2026-03-08",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "Thiel has funded anti-Google litigation and positions, creating conflict with TMG client Google LLC",
+          "source": "Media analysis",
+          "url": "",
+          "date": "2026-03-08",
           "temporal_weight": 1.0,
           "source_urls": []
         }
@@ -386,93 +442,94 @@
     }
   },
   "scoring": {
-    "raw_composite": 3.61,
+    "raw_composite": 5.38,
     "engagement_multiplier": 1.0,
-    "adjusted_composite": 3.61,
+    "adjusted_composite": 5.38,
     "confidence_modifier": "none",
-    "final_composite": 3.61,
-    "risk_tier": "MODERATE",
-    "recommendation": "Conditional Approve"
+    "final_composite": 5.38,
+    "risk_tier": "ELEVATED",
+    "recommendation": "Further Review"
   },
   "flags": {
-    "red": [],
-    "yellow": [
+    "red": [
       {
         "category": "media_reputation",
-        "title": "Apartheid South Africa Education",
-        "description": "Subject was educated in 1970s southern Africa where Nazi ideology was openly venerated, raising concerns about formative influences",
-        "source": "The Guardian",
-        "date": "2025-01-26",
-        "severity": "moderate"
-      },
-      {
-        "category": "financial_sec",
-        "title": "Aggressive Tax Avoidance",
-        "description": "ProPublica investigation revealed IRS concerns about 'aggressive' valuation tactics used to accumulate $5 billion in tax-free Roth IRA",
-        "source": "ProPublica",
-        "date": "2021",
-        "severity": "moderate"
-      },
+        "title": "Jeffrey Epstein Financial Connections",
+        "description": "Epstein provided $40 million in funding to Thiel's Palantir; Thiel appears in Congressional Epstein documents",
+        "source": "Al Jazeera/Congressional Oversight",
+        "date": "2025-09-27",
+        "severity": "critical"
+      }
+    ],
+    "yellow": [
       {
         "category": "political_lobbying",
         "title": "Major Trump/MAGA Donor",
-        "description": "Significant financial backing of Trump and MAGA-aligned candidates including JD Vance",
-        "source": "FEC/Bio",
-        "date": "2026",
+        "description": "Gave $1.25 million to Trump; funded JD Vance campaign; ideologically opposed to Democratic values",
+        "source": "FEC/Guardian",
+        "date": "2016-2024",
+        "severity": "major"
+      },
+      {
+        "category": "litigation_legal",
+        "title": "Weaponized Litigation History",
+        "description": "Secretly funded Hulk Hogan lawsuit to destroy Gawker Media, demonstrating willingness to use courts for personal vendettas",
+        "source": "Forbes/CNBC",
+        "date": "2016",
         "severity": "moderate"
       },
       {
         "category": "corporate_business",
         "title": "Surveillance Technology Concerns",
-        "description": "Palantir's core business involves surveillance technology used by intelligence agencies, raising civil liberties concerns",
-        "source": "Multiple",
+        "description": "Palantir provides surveillance and data analysis tools to government agencies with civil liberties implications",
+        "source": "USAspending.gov/Media",
         "date": "2026",
-        "severity": "minor"
+        "severity": "moderate"
       }
     ]
   },
-  "executive_summary": "## Summary\n\nPeter Thiel is a German-born American billionaire entrepreneur and venture capitalist with an estimated net worth of $5+ billion. He co-founded PayPal and Palantir Technologies, was an early investor in Facebook (Meta), and operates Founders Fund and Thiel Capital. At age 58, he is one of Silicon Valley's most influential and controversial figures.\n\n## Professional Background\n\nThiel's career spans technology entrepreneurship and venture capital. After co-founding PayPal (sold to eBay for $1.5 billion), he became Facebook's first outside investor with a $500,000 investment that returned over $1 billion. He co-founded Palantir Technologies in 2004, which provides data analytics and surveillance technology to government agencies and corporations. Through Founders Fund, he has invested in numerous successful startups. He serves on Meta's board of directors.\n\n## Key Findings\n\n- **Political Alignment**: Major Republican donor who has backed Donald Trump and JD Vance, with extensive GOP political contributions\n- **Controversial Background**: Educated in 1970s apartheid-era southern Africa; has made controversial statements about democracy and diversity\n- **Aggressive Business Tactics**: Secretly funded litigation that bankrupted Gawker Media; used aggressive tax strategies to accumulate $5 billion tax-free in Roth IRA\n- **Surveillance Technology**: Palantir's core business involves providing surveillance and data analytics to intelligence agencies, raising civil liberties concerns\n- **Recent Scrutiny**: Congressional investigation into alleged ties between Palantir and pro-CCP networks; Pentagon contract controversies\n\n## Risk Assessment\n\nThe subject presents a MODERATE overall risk profile (3.78/10) driven primarily by reputational concerns rather than legal/compliance issues. No criminal activity, sanctions matches, or active litigation identified. However, significant concerns exist around political activities, controversial public statements, and business practices that could generate negative media attention.\n\n## Recommendation\n\n**FURTHER REVIEW** \u2014 While no disqualifying legal issues were identified, the subject's high-profile Republican political activism, controversial statements about democracy, and surveillance technology business require additional evaluation. The reputational contagion analysis will be critical given TMG's Democratic alignment and the subject's prominent support for Trump/MAGA candidates.",
+  "executive_summary": "## Summary\n\nPeter Thiel is a German-American billionaire technology entrepreneur and venture capitalist, best known as co-founder of PayPal and Palantir Technologies. Born in Germany, he holds American and New Zealand citizenship. Thiel has an estimated net worth exceeding $10 billion and is a general partner at Founders Fund. He is a prominent conservative political donor and libertarian ideologue who has significantly shaped Silicon Valley's political landscape.\n\n## Professional Background\n\nThiel co-founded PayPal in 1998, which was sold to eBay for $1.5 billion in 2002. He subsequently co-founded Palantir Technologies in 2003, a data analytics company that primarily serves U.S. intelligence agencies and the Department of Defense. Palantir has received nearly $4 billion in government contracts, with $2.3 billion from the DoD alone. He was also an early investor in Facebook and serves as a partner at Founders Fund, where he has backed numerous successful startups.\n\n## Key Findings\n\n- **Jeffrey Epstein Connections**: Congressional documents reveal Thiel received $40 million from Epstein for Palantir funding in 2005. His name appears in newly released Epstein documents.\n- **Extreme Political Positions**: Major Trump donor ($1.25M) who funded JD Vance's political rise. Holds apocalyptic worldview including lectures about the Antichrist.\n- **Weaponized Litigation**: Secretly spent millions funding Hulk Hogan's lawsuit to destroy Gawker Media in personal vendetta.\n- **Controversial Statements**: Called date rape 'belated regret' in book; promotes anti-democratic libertarian ideology.\n- **Secretive Citizenship Dealings**: Obtained New Zealand citizenship under exceptional circumstances while pursuing additional passports.\n\n## Risk Assessment\n\nThe factual risk assessment yields an ELEVATED risk tier (5.835/10) driven by extensive negative media coverage, Jeffrey Epstein connections, controversial political activities, and severe conflicts with TMG's client base. However, the Reputational Contagion Score is even more concerning at 8.1/10 (CRITICAL), indicating extreme reputational risk for TMG.\n\n## Recommendation\n\n**RECOMMEND REJECT** \u2014 While Thiel has no criminal convictions or active investigations, his profile presents unacceptable reputational risk for TMG. His role as a major MAGA donor, connections to Epstein, ownership of surveillance technology used by intelligence agencies, and ideological opposition to core Democratic values create insurmountable conflicts with TMG's brand identity and client relationships. Engagement would likely trigger severe backlash from Democratic stakeholders and progressive organizations.",
   "reputational_contagion": {
     "q1_partisan_alignment": {
-      "score": 9.0,
+      "score": 9.5,
       "weight": 0.25,
-      "evidence": "Subject is a major Trump donor and MAGA movement financier. Bio confirms he 'backed JD Vance, Donald Trump.' FEC records show exclusively Republican donations including $10,000 each to Maine Republican Party, Republican Campaign Committee of New Mexico, and Congressional Leadership Fund. Politico describes him as 'pressing his Trumpish ideology through Senate candidates.' Zero Democratic contributions identified. He represents the opposite end of the political spectrum from TMG."
+      "evidence": "Thiel gave $1.25M to Trump, funded JD Vance's rise, and FEC records show $61,105 in contributions heavily skewed to Republican organizations including $10,000 each to Maine Republican Party, Michigan Republican Party, and Congressional Leadership Fund. He is a prominent MAGA-aligned libertarian ideologue fundamentally opposed to Democratic priorities."
     },
     "q2_stakeholder_backlash": {
       "score": 8.5,
       "weight": 0.2,
-      "evidence": "TMG working with a major Trump/MAGA financier would likely trigger severe backlash from Democratic clients, progressive organizations, and allied media. The subject is not just Republican but emblematic of tech billionaire Trump supporters. DCCC/DNC would likely view this as betrayal. Progressive outlets would frame this as 'Obama's campaign manager now working for Trump's billionaire backers.' Staff retention issues probable."
+      "evidence": "TMG's engagement with a major Trump donor who owns surveillance technology would trigger immediate backlash from DCCC, DNC, and progressive organizations. Progressive media outlets like The Nation and Jacobin have already published critical pieces about Thiel's anti-democratic views. This would be used in opposition research against every TMG Democratic client."
     },
     "q3_narrative_vulnerability": {
       "score": 9.0,
       "weight": 0.15,
-      "evidence": "The engagement would generate devastating headlines that write themselves. Most damaging: 'Obama Campaign Manager's Firm Now Advising Trump Megadonor Who Funded Attack on Democracy.' The Gawker litigation history adds another angle: 'Democratic Consulting Firm TMG Partners with Billionaire Who Bankrupted Media Outlet for Outing Him as Gay.'",
-      "damaging_headline": "Obama Campaign Manager's Firm Now Advising Trump Megadonor Who Funded Attack on Democracy"
+      "evidence": "The headline writes itself and would dominate political media coverage, undermining TMG's credibility with its core Democratic constituency.",
+      "damaging_headline": "Obama's Campaign Manager Now Working for Trump Megadonor Linked to Jeffrey Epstein"
     },
     "q4_client_conflicts": {
-      "score": 7.0,
+      "score": 8.0,
       "weight": 0.15,
-      "evidence": "Direct reputational conflict with any TMG client opposing Trump/MAGA movement. Palantir's surveillance technology conflicts with civil liberties positions of progressive clients. The subject's anti-democracy statements and apartheid-era education create toxic associations for TMG's brand."
+      "evidence": "Direct reputational conflicts with multiple TMG clients: Google (Thiel has opposed big tech), TikTok (Palantir's surveillance tech threatens social platforms), Keep Americans Covered and progressive health orgs (Thiel opposes government healthcare), and all Democratic political clients who view him as an enemy."
     },
     "q5_industry_toxicity": {
       "score": 7.5,
       "weight": 0.15,
-      "evidence": "Palantir operates in highly toxic sector for Democratic firm - surveillance technology used by intelligence agencies and law enforcement. The company has been criticized for enabling mass surveillance and immigration enforcement. Additionally, the subject's ventures in cryptocurrency and association with controversial tech libertarian ideology add toxicity."
+      "evidence": "Palantir operates in the surveillance technology sector providing tools to intelligence agencies and ICE. This is a high-toxicity industry for Democratic-aligned firms given concerns about civil liberties, immigration enforcement, and privacy rights. The company has $3.9B in government contracts primarily with defense and intelligence."
     },
     "q6_temporal_context": {
-      "score": 8.0,
+      "score": 6.5,
       "weight": 0.1,
-      "evidence": "Terrible timing given ongoing Trump administration controversies, heightened partisan polarization, and specific Congressional investigations into Palantir. The recent Guardian investigation into 'PayPal mafia' apartheid connections makes this particularly radioactive. Pentagon AI controversies involving Palantir are current news."
+      "evidence": "Engagement timing is particularly sensitive given: ongoing revelations about Epstein network, heightened scrutiny of tech billionaire political influence, active Pentagon controversies involving Palantir and AI companies, and 2026 midterm cycle where Thiel's political activities will intensify."
     },
-    "composite_rcs": 8.28,
+    "composite_rcs": 8.4,
     "rcs_risk_tier": "CRITICAL",
     "rcs_recommendation": "Recommended reject; engagement would damage TMG's core brand and relationships",
-    "divergence_alert": "DIVERGENCE: Factual risk is MODERATE (3.61/10) but reputational contagion risk is CRITICAL (8.28/10). Subject passes traditional due diligence screening but poses significant reputational risk to TMG's brand and stakeholder relationships.",
-    "most_damaging_headline": "Obama Campaign Manager's Firm Now Advising Trump Megadonor Who Funded Attack on Democracy"
+    "divergence_alert": null,
+    "most_damaging_headline": "Obama's Campaign Manager Now Working for Trump Megadonor Linked to Jeffrey Epstein"
   },
   "metadata": {
     "pipeline_version": "v1.1",
-    "vetting_level": "standard_vet",
+    "vetting_level": "deep_dive",
     "steps_completed": [
       "intake",
       "sanctions",
@@ -482,705 +539,990 @@
       "corporate",
       "fec",
       "sec",
-      "lobbying"
+      "lobbying",
+      "bankruptcy",
+      "executives",
+      "international",
+      "contracts"
     ],
-    "started_at": "2026-03-08T02:38:37.637357+00:00",
-    "completed_at": "2026-03-08T03:33:45.617316+00:00",
+    "started_at": "2026-03-08T16:14:09.943781+00:00",
+    "completed_at": "2026-03-08T16:19:39.966764+00:00",
     "total_duration_seconds": 0,
     "model": "claude-opus-4-0",
-    "input_tokens": 29521,
-    "output_tokens": 6169,
-    "tavily_sources": 114,
+    "input_tokens": 32575,
+    "output_tokens": 6351,
+    "tavily_sources": 136,
     "citation_enrichment": {
-      "total_evidence_items": 19,
-      "items_with_source_urls": 13,
-      "total_source_urls_added": 14
+      "total_evidence_items": 22,
+      "items_with_source_urls": 15,
+      "total_source_urls_added": 23
     }
   },
   "sources": [
     {
       "id": 1,
-      "url": "https://www.propublica.org/article/lord-of-the-roths-how-tech-mogul-peter-thiel-turned-a-retirement-account-for-the-middle-class-into-a-5-billion-dollar-tax-free-piggy-bank",
-      "title": "Lord of the Roths: How Tech Mogul Peter Thiel Turned a Retirement ...",
-      "score": 0.54666615
+      "url": "https://www.washingtonblade.com/2026/03/04/peter-thiel-expanding-power-overlap-jeffrey-epstein/",
+      "title": "Peter Thiel's expanding power \u2014 and his overlap with Jeffrey Epstein",
+      "score": 0.72768575
     },
     {
       "id": 2,
+      "url": "https://www.politico.eu/article/peter-thiel-ties-put-major-german-military-drone-deal-shaky-ground/",
+      "title": "Peter Thiel ties put major German military drone deal on shaky ground",
+      "score": 0.7154444
+    },
+    {
+      "id": 3,
+      "url": "https://www.nytimes.com/2022/10/15/technology/peter-thiel-malta-citizenship.html",
+      "title": "Peter Thiel, Major U.S. Political Donor, Is Said to Pursue ...",
+      "score": 0.6439794
+    },
+    {
+      "id": 4,
+      "url": "https://en.wikipedia.org/wiki/Peter_Thiel",
+      "title": "Peter Thiel - Wikipedia",
+      "score": 0.6334335
+    },
+    {
+      "id": 5,
+      "url": "https://bylinetimes.com/2025/09/12/peter-thiel-jeffrey-epstein-keir-starmer-peter-mandelson-global-counsel/",
+      "title": "From Epstein to Starmer: Mapping Peter Thiel's Web of Influence in ...",
+      "score": 0.6055431
+    },
+    {
+      "id": 6,
+      "url": "https://jacobin.com/2025/11/peter-thiel-palantir-apocalypse-antichrist",
+      "title": "Peter Thiel's Apocalyptic Worldview Is a Dangerous Fantasy - Jacobin",
+      "score": 0.588062
+    },
+    {
+      "id": 7,
+      "url": "https://archive.nytimes.com/news.blogs.nytimes.com/2016/05/26/morning-agenda-peter-thiels-secret-war-with-gawker/",
+      "title": "Morning Agenda: Peter Thiel's Secret War With Gawker",
+      "score": 0.5582553
+    },
+    {
+      "id": 8,
+      "url": "https://www.thenation.com/?post_type=article&p=586795",
+      "title": "What Peter Thiel Saw in Jeffrey Epstein | The Nation",
+      "score": 0.5230555
+    },
+    {
+      "id": 9,
+      "url": "http://markets.chroniclejournal.com/chroniclejournal/article/finterra-2026-3-3-palantir-technologies-pltr-the-sovereign-ai-powerhouse-and-the-future-of-enterprise-operating-systems",
+      "title": "Palantir Technologies (PLTR): The Sovereign AI Powerhouse and the Future of Enterprise Operating Systems - The Chronicle-Journal",
+      "score": 0.52130115
+    },
+    {
+      "id": 10,
+      "url": "https://foundersfund.com/team/peter-thiel/",
+      "title": "Peter Thiel - Founders Fund",
+      "score": 0.52057004
+    },
+    {
+      "id": 11,
+      "url": "https://theconversation.com/friday-essay-libertarian-tech-titan-peter-thiel-helped-make-jd-vance-the-republican-kingmakers-influence-is-growing-261856",
+      "title": "Friday essay: libertarian tech titan Peter Thiel helped make JD ...",
+      "score": 0.5097406
+    },
+    {
+      "id": 12,
+      "url": "https://www.cnbc.com/2017/02/01/peter-thiels-secret-new-zealand-citizenship-sparks-backlash.html",
+      "title": "Peter Thiel's secret New Zealand citizenship sparks backlash - CNBC",
+      "score": 0.49260366
+    },
+    {
+      "id": 13,
+      "url": "https://techpolicy.press/peter-thiel-dreams-of-empire",
+      "title": "Peter Thiel Dreams of Empire",
+      "score": 0.47373086
+    },
+    {
+      "id": 14,
+      "url": "https://www.lemonde.fr/en/summer-reads/article/2025/07/22/peter-thiel-the-libertarian-billionaire-waging-war-on-government_6743617_183.html",
+      "title": "Peter Thiel, the libertarian billionaire waging war on government",
+      "score": 0.45653152
+    },
+    {
+      "id": 15,
+      "url": "https://www.newyorker.com/news/letter-from-silicon-valley/what-is-it-about-peter-thiel",
+      "title": "What Is It About Peter Thiel?",
+      "score": 0.4558047
+    },
+    {
+      "id": 16,
+      "url": "https://bensaltiel.substack.com/p/zero-to-one-revisited-10-years-later",
+      "title": "Revisiting Peter Thiel's Zero to One: 10 Years Later",
+      "score": 0.44536126
+    },
+    {
+      "id": 17,
+      "url": "https://www.theguardian.com/technology/2017/feb/01/documents-reveal-how-peter-thiel-was-granted-new-zealand-citizenship",
+      "title": "Documents reveal how Peter Thiel was granted New Zealand ...",
+      "score": 0.4387136
+    },
+    {
+      "id": 18,
+      "url": "https://disconnect.blog/peter-thiels-influence-over-a-network-of-lord-of-the-rings-inspired-companies/",
+      "title": "Peter Thiel's influence over a network of Lord of the Rings-inspired ...",
+      "score": 0.43338245
+    },
+    {
+      "id": 19,
       "url": "https://www.forbes.com/sites/dawnchmielewski/2019/02/12/remember-when-jeff-bezos-told-peter-thiel-to-develop-a-thick-skin/",
       "title": "Remember When Jeff Bezos Told Peter Thiel To 'Develop a Thick ...",
       "score": 0.4280666
     },
     {
-      "id": 3,
-      "url": "http://markets.chroniclejournal.com/chroniclejournal/article/finterra-2026-3-3-palantir-technologies-pltr-the-sovereign-ai-powerhouse-and-the-future-of-enterprise-operating-systems",
-      "title": "Palantir Technologies (PLTR): The Sovereign AI Powerhouse and the Future of Enterprise Operating Systems - The Chronicle-Journal",
-      "score": 0.37545508
+      "id": 20,
+      "url": "https://quartr.com/insights/investment-strategy/peter-thiel-shaping-the-next-generation-of-entrepreneurs",
+      "title": "Peter Thiel: Shaping the Next Generation of Entrepreneurs - Quartr",
+      "score": 0.4023222
     },
     {
-      "id": 4,
+      "id": 21,
       "url": "https://www.forbes.com/profile/peter-thiel/",
       "title": "Peter Thiel - Forbes",
-      "score": 0.34627652
+      "score": 0.39424816
     },
     {
-      "id": 5,
-      "url": "https://www.theguardian.com/technology/2025/jan/26/elon-musk-peter-thiel-apartheid-south-africa",
-      "title": "How the roots of the 'PayPal mafia' extend to apartheid South Africa",
-      "score": 0.3265618
+      "id": 22,
+      "url": "https://www.forbes.com/sites/stevedenning/2014/10/15/peter-thiel-seven-surprising-keys-to-market-creating-innovation/",
+      "title": "Peter Thiel: Seven Surprising Keys To Market-Creating ...",
+      "score": 0.37353352
     },
     {
-      "id": 6,
-      "url": "https://www.fool.com/investing/2026/03/01/palantir-billionaire-peter-thiel-shocking-move/",
-      "title": "Palantir Billionaire Peter Thiel Just Made a Shocking Move, Delivering a $74 Million Warning to Wall Street. Should You Listen? - The Motley Fool",
-      "score": 0.283514
+      "id": 23,
+      "url": "https://www.aljazeera.com/news/2025/9/27/elon-musk-peter-thiel-steve-bannon-among-names-in-new-epstein-documents",
+      "title": "Elon Musk, Peter Thiel, Steve Bannon among names in new Epstein ...",
+      "score": 0.35979196
     },
     {
-      "id": 7,
-      "url": "https://www.nytimes.com/2016/05/26/business/dealbook/peter-thiel-tech-billionaire-reveals-secret-war-with-gawker.html",
-      "title": "Peter Thiel, Tech Billionaire, Reveals Secret War With Gawker",
-      "score": 0.28274098
+      "id": 24,
+      "url": "https://ahmedeldin.substack.com/p/palantir-financed-by-epstein-fueled",
+      "title": "Palantir: Financed by Epstein, Fueled by Thiel, Killing in Gaza and ...",
+      "score": 0.35213548
     },
     {
-      "id": 8,
+      "id": 25,
+      "url": "https://www.theguardian.com/technology/2016/oct/21/peter-thiel-support-donald-trump-date-rape-book",
+      "title": "Peter Thiel, who gave $1.25m to Trump, has called date rape ...",
+      "score": 0.333265
+    },
+    {
+      "id": 26,
+      "url": "https://www.forbes.com/sites/mattdrange/2016/06/21/peter-thiels-war-on-gawker-a-timeline/",
+      "title": "Peter Thiel's War On Gawker: A Timeline - Forbes",
+      "score": 0.32972667
+    },
+    {
+      "id": 27,
+      "url": "https://www.cnbc.com/2017/08/08/google-anti-diversity-memo-peter-thiel-linked-investor-slammed-for-tweet.html",
+      "title": "Google anti-diversity memo: Peter Thiel-linked investor ... - CNBC",
+      "score": 0.3037736
+    },
+    {
+      "id": 28,
       "url": "https://www.cnbc.com/2016/05/24/paypal-billionaire-peter-thiel-financing-hulk-hogans-lawsuit-against-gawker-forbes-reports.html",
       "title": "PayPal billionaire Peter Thiel financing Hulk Hogan's lawsuit against ...",
-      "score": 0.28188768
+      "score": 0.28206563
     },
     {
-      "id": 9,
+      "id": 29,
+      "url": "https://www.theguardian.com/us-news/2025/oct/10/peter-thiel-lectures-antichrist",
+      "title": "Inside tech billionaire Peter Thiel's off-the-record lectures about the ...",
+      "score": 0.28063655
+    },
+    {
+      "id": 30,
       "url": "https://thenextweb.com/news/unmasking-the-illusion-of-safety-online",
       "title": "Unmasking the Illusion of Safety Online - The Next Web",
       "score": 0.27296153
     },
     {
-      "id": 10,
-      "url": "https://www.theguardian.com/technology/2016/oct/25/trump-donor-peter-thiel-sorry-date-rape-regret-paypal-facebook",
-      "title": "Peter Thiel, Trump campaign donor, sorry for date rape comments",
-      "score": 0.25401407
+      "id": 31,
+      "url": "https://www.politico.com/news/2022/05/03/jd-vance-win-ohio-primary-00029881",
+      "title": "A mole hunt, a secret website and Peter Thiel's big risk - Politico",
+      "score": 0.2545071
     },
     {
-      "id": 11,
-      "url": "https://www.newyorker.com/news/the-financial-page/jeffrey-epsteins-bonfire-of-the-elites",
-      "title": "Jeffrey Epstein's Bonfire of the \u00c9lites | The New Yorker",
-      "score": 0.21847796
+      "id": 32,
+      "url": "https://www.theguardian.com/technology/2026/mar/08/billionaires-tech-oligarchs",
+      "title": "Tech oligarchs reshape humanity while billionaires of old seem quaint - The Guardian",
+      "score": 0.23553936
     },
     {
-      "id": 12,
-      "url": "https://www.nytimes.com/2025/06/26/opinion/peter-thiel-antichrist-ross-douthat.html",
-      "title": "Opinion | Peter Thiel and the Antichrist - The New York Times",
-      "score": 0.21484825
-    },
-    {
-      "id": 13,
-      "url": "https://www.politico.com/news/magazine/2021/09/20/peter-thiel-book-facebook-trump-jd-vance-blake-masters-josh-hawley-513121",
-      "title": "The Black Box of Peter Thiel's Beliefs - POLITICO",
-      "score": 0.19282834
-    },
-    {
-      "id": 14,
+      "id": 33,
       "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
       "title": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests that support the regime in Iran - Fox News",
-      "score": 0.18830939
+      "score": 0.19868572
     },
     {
-      "id": 15,
+      "id": 34,
+      "url": "https://gizmodo.com/whatever-this-is-weve-never-seen-anything-like-it-2000728411",
+      "title": "Whatever This Is, We\u2019ve Never Seen Anything Like It - Gizmodo",
+      "score": 0.16717818
+    },
+    {
+      "id": 35,
       "url": "https://www.forbes.com/sites/greatspeculations/2026/03/04/is-palantir-stock-entering-a-new-growth-phase/",
       "title": "Is Palantir Stock Entering A New Growth Phase? - Forbes",
-      "score": 0.17856912
+      "score": 0.16717818
     },
     {
-      "id": 16,
+      "id": 36,
       "url": "https://gizmodo.com/palantir-ceo-uses-slur-to-describe-people-who-dont-think-the-government-will-take-their-company-2000729028",
       "title": "Palantir CEO Uses Slur to Describe People Who Don\u2019t Think the Government Will Take Their Company - Gizmodo",
-      "score": 0.14702806
+      "score": 0.16474508
     },
     {
-      "id": 17,
+      "id": 37,
       "url": "https://www.reuters.com/technology/palantir-faces-challenge-remove-anthropic-pentagons-ai-software-2026-03-04/",
       "title": "Palantir faces challenge to remove Anthropic from Pentagon's AI software - Reuters",
-      "score": 0.11717781
+      "score": 0.1548358
     },
     {
-      "id": 18,
-      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603021954PR_NEWS_USPRX____DC98511-1",
-      "title": "PYPL Investors Have Opportunity to Lead PayPal Holdings, Inc. Securities Fraud Lawsuit \u2013 Company Announcement - Financial Times",
-      "score": 0.10060457
+      "id": 38,
+      "url": "https://www.fool.com/investing/2026/03/01/palantir-billionaire-peter-thiel-shocking-move/",
+      "title": "Palantir Billionaire Peter Thiel Just Made a Shocking Move, Delivering a $74 Million Warning to Wall Street. Should You Listen? - The Motley Fool",
+      "score": 0.15338454
     },
     {
-      "id": 19,
-      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603052141PR_NEWS_USPRX____DC02928-1",
-      "title": "PYPL Investors Have Opportunity to Lead PayPal Holdings, Inc. Securities Fraud Lawsuit \u2013 Company Announcement - Financial Times",
-      "score": 0.08933553
+      "id": 39,
+      "url": "https://www.cnbc.com/2026/03/06/palantir-stock-jumps-15percent-in-week-on-iran-war-boosts-anthropic-muted.html",
+      "title": "Palantir rallies 15% for the week as Iran war boosts prospects, muting Anthropic concern - CNBC",
+      "score": 0.13111784
     },
     {
-      "id": 20,
+      "id": 40,
       "url": "https://www.law.com/nationallawjournal/2026/03/05/nasdaq-filing-signals-wall-street-push-into-prediction-market-trades/",
       "title": "Nasdaq Filing Signals Wall Street Push Into Prediction Market Trades - Law.com",
       "score": 0.08744704
     },
     {
-      "id": 21,
-      "url": "https://www.cbsnews.com/news/lindsey-halligan-under-investigation-florida-bar/",
-      "title": "Lindsey Halligan under investigation by the Florida Bar - CBS News",
-      "score": 0.08234999
+      "id": 41,
+      "url": "https://www.vitallaw.com/news/fraud-and-manipulation-s-d-n-y-shareholders-sue-apollo-black-and-rowan-for-concealing-epstein-ties/sld019737b9618a7741329801c7d561eadc30",
+      "title": "FRAUD AND MANIPULATION\u2014S.D.N.Y.: Shareholders sue Apollo, Black, and Rowan for concealing Epstein ties - VitalLaw.com",
+      "score": 0.07531231
     },
     {
-      "id": 22,
-      "url": "https://www.cnbc.com/video/2026/03/05/sec-ends-case-against-crypto-billionaire-justin-sun.html",
-      "title": "SEC ends case against crypto billionaire Justin Sun - CNBC",
-      "score": 0.07431881
+      "id": 42,
+      "url": "https://www.nytimes.com/2026/03/02/technology/pentagon-anduril-palmer-luckey.html",
+      "title": "The Pentagon\u2019s Favorite Tech Guy Is This Hawaiian Shirt-Wearing Founder - The New York Times",
+      "score": 0.07288062
     },
     {
-      "id": 23,
-      "url": "https://techcrunch.com/2026/03/03/anduril-aims-at-60-billion-valuation-in-new-funding-round/",
-      "title": "Anduril aims at $60 billion valuation in new funding round - TechCrunch",
-      "score": 0.07280148
+      "id": 43,
+      "url": "https://www.chronicle.com/article/the-lobbying-arms-race",
+      "title": "The Lobbying Arms Race - The Chronicle of Higher Education",
+      "score": 0.070540525
     },
     {
-      "id": 24,
-      "url": "https://www.newsweek.com/epstein-files-donald-trump-ted-lieu-11632419",
-      "title": "Epstein Files Update: Lieu Calls for Special Counsel Over Trump Claims - Newsweek",
-      "score": 0.07069436
-    },
-    {
-      "id": 25,
-      "url": "https://www.reuters.com/business/canaccord-genuity-fined-20-million-by-us-sec-2026-03-06/",
-      "title": "Canaccord Genuity fined record $80 million in US over compliance lapses - Reuters",
-      "score": 0.07031038
-    },
-    {
-      "id": 26,
+      "id": 44,
       "url": "https://www.foxnews.com/us/miami-developer-accused-85m-fraud-scheme-blowing-investor-cash-yacht-rolex",
       "title": "Miami developer accused of $85M fraud scheme, blowing investor cash on yacht, Rolex - Fox News",
       "score": 0.06834463
     },
     {
-      "id": 27,
-      "url": "https://www.law360.com/bankruptcy-authority/large-cap/articles/2449954/calif-judge-blasts-ex-venture-capitalist-in-axing-svb-suit",
-      "title": "Calif. Judge Blasts Ex-Venture Capitalist In Axing SVB Suit - Law360",
-      "score": 0.06613979
-    },
-    {
-      "id": 28,
+      "id": 45,
       "url": "https://www.law360.com/bankruptcy-authority/mid-cap/articles/2448452/former-iowa-biz-president-convicted-of-bankruptcy-crimes",
       "title": "Former Iowa Biz President Convicted Of Bankruptcy Crimes - Law360",
       "score": 0.06484878
     },
     {
-      "id": 29,
-      "url": "https://www.foxnews.com/politics/oversight-demands-doj-answers-foreign-funding-agitator-groups-iran-anti-ice-protests-continue",
-      "title": "Oversight demands DOJ answers on foreign funding of agitator groups as Iran, anti-ICE protests continue - Fox News",
-      "score": 0.06165541
+      "id": 46,
+      "url": "https://scotscoop.com/ai-super-pacs-shape-the-2026-election-cycle/",
+      "title": "AI super PACs shape the 2026 election cycle - Scot Scoop News",
+      "score": 0.06261143
     },
     {
-      "id": 30,
+      "id": 47,
       "url": "https://www.foxnews.com/politics/tech-company-odds-pentagon-warns-its-ai-possibly-gained-consciousness-elon-musk-issues-two-word-response",
       "title": "Tech company at odds with Pentagon warns its AI possibly gained consciousness, Elon Musk gives 2-word response - Fox News",
       "score": 0.06151994
     },
     {
-      "id": 31,
-      "url": "https://www.insurancejournal.com/news/national/2026/03/06/860761.htm",
-      "title": "Justin Sun Settles SEC Fraud Case for $10 Million - Insurance Journal",
-      "score": 0.059718315
+      "id": 48,
+      "url": "https://www.law360.com/articles/2448554/goldman-s-departing-clo-gates-asked-to-testify-on-epstein",
+      "title": "Goldman's Departing CLO, Gates Asked To Testify On Epstein - Law360",
+      "score": 0.056652427
     },
     {
-      "id": 32,
-      "url": "https://www.law360.com/compliance/articles/2449666/investors-accuse-alston-bird-of-aiding-328m-crypto-fraud-",
-      "title": "Investors Accuse Alston & Bird Of Aiding $328M Crypto Fraud - Law360",
-      "score": 0.058286972
-    },
-    {
-      "id": 33,
-      "url": "https://www.law.com/dailybusinessreview/2026/03/06/florida-bar-retracts-promise-to-investigate-trump-doj-attorney-as-erroneously-made/",
-      "title": "Florida Bar Retracts Promise to Investigate Trump DOJ Attorney as 'Erroneously' Made - Law.com",
-      "score": 0.05669954
-    },
-    {
-      "id": 34,
-      "url": "https://gizmodo.com/sec-settles-case-against-investor-in-trump-linked-crypto-projects-amid-pay-to-play-allegations-2000730615",
-      "title": "SEC Settles Case Against Investor in Trump-Linked Crypto Projects Amid Pay-to-Play Allegations - Gizmodo",
-      "score": 0.056014005
-    },
-    {
-      "id": 35,
+      "id": 49,
       "url": "https://www.greenwichtime.com/news/world/article/hong-kong-ex-media-mogul-jimmy-lai-will-not-21958369.php",
       "title": "Hong Kong ex-media mogul Jimmy Lai will not appeal national security conviction, legal team says - Greenwich Time",
       "score": 0.055520352
     },
     {
-      "id": 36,
-      "url": "https://www.theatlantic.com/technology/2026/03/dean-ball-anthropic-interview/686226/",
-      "title": "Trump\u2019s Former AI Adviser Is Furious - The Atlantic",
+      "id": 50,
+      "url": "https://www.philanthropy.com/opinion/opinion-kennedy-investigations-0326/",
+      "title": "Congress and the Media Should Turn Up the Heat on Nonprofits - Chronicle of Philanthropy",
       "score": 0.055152804
     },
     {
-      "id": 37,
-      "url": "https://www.vitallaw.com/news/fraud-and-manipulation-s-d-n-y-shareholders-sue-apollo-black-and-rowan-for-concealing-epstein-ties/sld019737b9618a7741329801c7d561eadc30",
-      "title": "FRAUD AND MANIPULATION\u2014S.D.N.Y.: Shareholders sue Apollo, Black, and Rowan for concealing Epstein ties - VitalLaw.com",
-      "score": 0.053764965
+      "id": 51,
+      "url": "https://cleantechnica.com/2026/03/01/new-york-times-probes-musk-holdings-political-activities-in-texas/",
+      "title": "New York Times Probes Musk Holdings & Political Activities In Texas - CleanTechnica",
+      "score": 0.05418382
     },
     {
-      "id": 38,
+      "id": 52,
+      "url": "https://www.cnbc.com/video/2026/03/05/sec-ends-case-against-crypto-billionaire-justin-sun.html",
+      "title": "SEC ends case against crypto billionaire Justin Sun - CNBC",
+      "score": 0.052819017
+    },
+    {
+      "id": 53,
       "url": "https://www.businessinsider.com/sam-altman-openai-pentagon-government-deal-controversy-explained-2026-3",
       "title": "Sam Altman is stuck playing defense. It all started a week ago. - Business Insider",
       "score": 0.052468356
     },
     {
-      "id": 39,
+      "id": 54,
       "url": "https://www.thedailybeast.com/trumps-beauty-queen-lindsey-halligan-under-investigation-by-florida-bar/",
       "title": "Trump's Beauty Queen Lindsey Halligan Under Investigation by Florida Bar - The Daily Beast",
       "score": 0.05235195
     },
     {
-      "id": 40,
-      "url": "https://finance.yahoo.com/news/sam-altman-damage-control-mode-205050101.html",
-      "title": "Sam Altman in Damage Control Mode as ChatGPT Users Are Mass Cancelling Subscriptions Because OpenAI Is \u201cTraining a War Machine\u201d - Yahoo Finance",
-      "score": 0.0510308
+      "id": 55,
+      "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/department-of-state-charter-flight-departs-middle-east-to-united-states",
+      "title": "Department of State Charter Flight Departs Middle East to United States - U.S. Department of State (.gov)",
+      "score": 0.05125827
     },
     {
-      "id": 41,
+      "id": 56,
+      "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/secretary-of-state-marco-rubio-remarks-to-press-6",
+      "title": "Secretary of State Marco Rubio Remarks to Press - U.S. Department of State (.gov)",
+      "score": 0.051144414
+    },
+    {
+      "id": 57,
       "url": "https://www.coindesk.com/policy/2026/03/03/trump-urges-passage-of-u-s-clarity-act-attacks-banks-for-undercutting-genius",
       "title": "Trump urges passage of U.S. Clarity Act, attacks banks for 'undercutting' GENIUS - CoinDesk",
       "score": 0.05052246
     },
     {
-      "id": 42,
+      "id": 58,
       "url": "https://www.law360.com/bankruptcy-authority/mid-cap/articles/2447925/charges-signal-tougher-stance-on-execs-bankruptcy-fraud",
       "title": "Charges Signal Tougher Stance On Execs' Bankruptcy Fraud - Law360",
       "score": 0.04979665
     },
     {
-      "id": 43,
-      "url": "https://www.law360.com/fintech/articles/2450109/sec-ordered-to-release-info-on-text-messaging-sweeps",
-      "title": "SEC Ordered To Release Info On Text Messaging Sweeps - Law360",
-      "score": 0.049685873
-    },
-    {
-      "id": 44,
-      "url": "https://www.cnbc.com/video/2026/03/05/investor-worry-in-credit-market-is-massively-overblown-hamilton-lanes-hirsch.html",
-      "title": "Investor worry in credit market is massively overblown, says Hamilton Lane's Hirsch - CNBC",
-      "score": 0.049630567
-    },
-    {
-      "id": 45,
+      "id": 59,
       "url": "https://www.daily-tribune.com/online_features/press_releases/alibaba-group-holding-ltd-investigated-by-the-portnoy-law-firm/article_294bb48d-63ab-564c-b56b-d38e4f24a9fc.html",
       "title": "Alibaba Group Holding Ltd Investigated by the Portnoy Law Firm - The Daily Tribune News",
       "score": 0.049354926
     },
     {
-      "id": 46,
+      "id": 60,
+      "url": "https://www.chicagotribune.com/2026/03/05/meta-pac-illinois-statehouse-races/",
+      "title": "Meta set to spend $750K backing Illinois statehouse candidates as AI and social media legislation looms - Chicago Tribune",
+      "score": 0.049299963
+    },
+    {
+      "id": 61,
       "url": "https://www.businessinsider.com/blackstone-private-credit-warning-signs-financial-crisis-risks-2026-3",
       "title": "Blackstone's recent issues are the latest hit to private credit. Here's a timeline of events that have spooked investors. - Business Insider",
       "score": 0.04891691
     },
     {
-      "id": 47,
+      "id": 62,
       "url": "https://natlawreview.com/press-releases/it-investors-have-opportunity-join-gartner-inc-fraud-investigation-schall",
       "title": "IT Investors Have Opportunity to Join Gartner, Inc. Fraud Investigation with the Schall Law Firm - The National Law Review",
       "score": 0.048320666
     },
     {
-      "id": 48,
-      "url": "https://www.washingtonpost.com/opinions/2026/03/05/anthropic-claude-hegseth-trump-ai-contract/",
-      "title": "Opinion | Anthropic is fighting a battle the country needs - The Washington Post",
-      "score": 0.048212994
-    },
-    {
-      "id": 49,
+      "id": 63,
       "url": "https://www.law.com/international-edition/2026/03/05/strait-of-hormuz-crisis-forces-lawyers-to-make-split-second-decisions/",
       "title": "Strait of Hormuz Crisis Forces Lawyers to Make Split-Second Decisions - Law.com",
       "score": 0.048159245
     },
     {
-      "id": 50,
-      "url": "https://gizmodo.com/sam-altman-says-government-should-be-more-powerful-than-corporations-which-government-2000730102",
-      "title": "Sam Altman Says 'Government Should Be More Powerful Than Corporations.' Which Government? - Gizmodo",
-      "score": 0.047837958
-    },
-    {
-      "id": 51,
+      "id": 64,
       "url": "https://www.law.com/dailybusinessreview/2026/03/05/miami-bankruptcy-judge-fast-tracks-pat-mcgrath-cosmetics-restructuring/",
       "title": "Miami Bankruptcy Judge Fast-Tracks Pat McGrath Cosmetics Restructuring - Law.com",
       "score": 0.047306996
     },
     {
-      "id": 52,
-      "url": "https://www.greenwichtime.com/news/politics/article/lindsey-halligan-a-trump-appointed-former-acting-21959361.php",
-      "title": "Lindsey Halligan, a Trump-appointed former acting US attorney, faces investigation by Florida Bar - Greenwich Time",
-      "score": 0.046677228
-    },
-    {
-      "id": 53,
+      "id": 65,
       "url": "https://news.bloomberglaw.com/daily-labor-report/federal-prosecutor-used-fabricated-quotes-false-cites-in-filing",
       "title": "Federal Prosecutor Used Fabricated Quotes, False Cites in Filing - Bloomberg Law News",
       "score": 0.04600399
     },
     {
-      "id": 54,
+      "id": 66,
       "url": "https://www.findlaw.com/legalblogs/uncategorized/rhoa-peter-thomas-is-out-of-prison-whats-next-in-his-tax-evasion-case/",
       "title": "RHOA Peter Thomas Is Out of Prison: What\u2019s Next in His Tax Evasion Case? - FindLaw",
       "score": 0.04574752
     },
     {
-      "id": 55,
-      "url": "https://news.bloomberglaw.com/litigation/texas-business-court-attracts-more-cases-under-lower-entry-bar",
-      "title": "Texas Business Court Attracts More Cases Under Lower Entry Bar - Bloomberg Law News",
-      "score": 0.04408865
+      "id": 67,
+      "url": "https://www.businessinsider.com/dario-amodei-get-off-pentagon-naughty-list-anthropic-donald-trump-2026-3",
+      "title": "My 8 Step Plan for Dario Amodei to Get Off the Pentagon's Naughty List - Business Insider",
+      "score": 0.04349978
     },
     {
-      "id": 56,
+      "id": 68,
       "url": "https://www.wsj.com/tech/ai/openai-ceo-altman-defends-pentagon-work-to-staff-calls-backlash-really-painful-76d769ec?gaa_at=eafs&gaa_n=AWEtsqdd3jjtkYD0yGGG2n7037jia1b2dFM7CVl2iLfAR_6QHEBD1m-tppwd&gaa_ts=69a76601&gaa_sig=N-JdeL115MsD-24-we9wH_Nw-_WvSof6JkjNjfQiSfPig05Jk7ZIPtvtoygkNHvA34msfBCvjdn8M6x-lHaItQ%3D%3D",
       "title": "Exclusive | OpenAI CEO Sam Altman Defends Pentagon Work to Staff, Calls Backlash \u2018Really Painful\u2019 - WSJ",
       "score": 0.043063056
     },
     {
-      "id": 57,
+      "id": 69,
+      "url": "https://www.brookings.edu/articles/after-the-strike-the-danger-of-war-in-iran/",
+      "title": "After the strike: The danger of war in Iran - Brookings",
+      "score": 0.042344477
+    },
+    {
+      "id": 70,
       "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603061611PR_NEWS_USPRX____DC02956-1",
       "title": "NASDAQ: PYPL: Kessler Topaz Meltzer & Check, LLP Announces the Filing of a Securities Fraud Class Action Lawsuit Against PayPal Holdings, Inc. \u2013 Company Announcement - FT.com - Financial Times",
       "score": 0.04140418
     },
     {
-      "id": 58,
-      "url": "https://www.law.com/newyorklawjournal/2026/03/04/white-house-launches-new-national-fraud-enforcement-division/",
-      "title": "White House Launches New National Fraud Enforcement Division - Law.com",
-      "score": 0.04039294
+      "id": 71,
+      "url": "https://www.digitaljournal.com/business/anthropic-vows-court-fight-in-pentagon-row/article",
+      "title": "Anthropic vows court fight in Pentagon row - Digital Journal",
+      "score": 0.04062067
     },
     {
-      "id": 59,
+      "id": 72,
+      "url": "https://www.law360.com/articles/2450184/meta-witness-says-spotty-audits-show-commitment-to-safety",
+      "title": "Meta Witness Says Spotty Audits Show Commitment To Safety - Law360",
+      "score": 0.04054074
+    },
+    {
+      "id": 73,
       "url": "https://www.forbes.com/sites/sofiachierchio/2026/03/06/founder-accused-by-his-own-startup-of-forgery-secret-deals-and-luxury-spending/",
       "title": "Founder Accused By His Own Startup Of Forgery, Secret Deals And Luxury Spending - Forbes",
       "score": 0.039941143
     },
     {
-      "id": 60,
+      "id": 74,
       "url": "https://news.bloomberglaw.com/business-and-practice/social-media-addiction-suit-gets-boost-from-litigation-funder",
       "title": "Social Media Addiction Suit Gets Boost From Litigation Funder - Bloomberg Law News",
       "score": 0.039851364
     },
     {
-      "id": 61,
+      "id": 75,
       "url": "https://www.bloomberg.com/news/articles/2026-03-07/musk-s-spam-frustration-was-confusing-to-ex-twitter-executives",
       "title": "Musk\u2019s Spam Frustration Was \u2018Confusing\u2019 to Ex-Twitter Executives - Bloomberg",
+      "score": 0.039717067
+    },
+    {
+      "id": 76,
+      "url": "https://www.bloomberg.com/news/articles/2026-03-03/openai-ceo-says-pentagon-deal-looked-opportunistic-and-sloppy",
+      "title": "OpenAI CEO Says Pentagon Deal Looked \u2018Opportunistic and Sloppy\u2019 - Bloomberg",
       "score": 0.03967239
     },
     {
-      "id": 62,
-      "url": "https://nationaltoday.com/us/ca/san-francisco/news/2026/03/05/openai-ceo-defends-companys-work-with-trump-administration/",
-      "title": "OpenAI CEO Defends Company's Work with Trump Administration - National Today",
-      "score": 0.038789026
+      "id": 77,
+      "url": "https://www.politico.com/newsletters/california-playbook/2026/03/04/exit-stage-never-low-polling-dems-defiant-00811448",
+      "title": "Exit stage never: Low-polling Dems defiant - Politico",
+      "score": 0.039228324
     },
     {
-      "id": 63,
+      "id": 78,
       "url": "https://www.sfchronicle.com/personal-finance/article/investment-firm-red-flag-21944096.php",
       "title": "A Marin lender\u2019s sudden collapse left investors scrambling. It holds lessons on how to keep your money safe - San Francisco Chronicle",
       "score": 0.038225003
     },
     {
-      "id": 64,
-      "url": "https://www.wyso.org/npr-news/2026-03-05/president-trump-pam-bondi-sued-over-sale-of-tiktok-assets",
-      "title": "President Trump, Pam Bondi sued over sale of TikTok assets - WYSO",
+      "id": 79,
+      "url": "https://fortune.com/2026/03/06/anthropic-openai-ceo-apologizes-leaked-memo-supply-chain-risk-designation/",
+      "title": "Anthropic CEO apologizes for leaked memo calling OpenAI staff 'gullible,' confirms risk designation - Fortune",
+      "score": 0.037796497
+    },
+    {
+      "id": 80,
+      "url": "https://www.law360.com/fintech/articles/2450109/sec-ordered-to-release-info-on-text-messaging-sweeps",
+      "title": "SEC Ordered To Release Info On Text Messaging Sweeps - Law360",
+      "score": 0.03771135
+    },
+    {
+      "id": 81,
+      "url": "https://x.com/bobpockrass/status/2030652508050243991",
+      "title": "From earlier this week: Jimmie Johnson, Tony Kanaan talk about going from driver to team leader. @NASCARONFOX @IndyCarOnFOX - x.com",
+      "score": 0.03758398
+    },
+    {
+      "id": 82,
+      "url": "https://www.law360.com/ip/articles/2449869?utm_source=rss&utm_medium=rss&utm_campaign=section",
+      "title": "Fortnite Maker Says Ex-Contractor Leaked Secrets For 'Clout' - Law360",
+      "score": 0.037186775
+    },
+    {
+      "id": 83,
+      "url": "https://www.law360.com/articles/2449681/lindsey-halligan-faces-fla-bar-investigation-watchdog-says",
+      "title": "Lindsey Halligan Faces Fla. Bar Investigation, Watchdog Says - Law360",
+      "score": 0.037186775
+    },
+    {
+      "id": 84,
+      "url": "https://www.foxnews.com/opinion/steve-forbes-ai-cold-war-has-begun-america-cannot-afford-lose",
+      "title": "STEVE FORBES: The AI Cold War has begun and America cannot afford to lose - Fox News",
+      "score": 0.037162386
+    },
+    {
+      "id": 85,
+      "url": "https://www.law360.com/compliance/articles/2449666/investors-accuse-alston-bird-of-aiding-328m-crypto-fraud-",
+      "title": "Investors Accuse Alston & Bird Of Aiding $328M Crypto Fraud - Law360",
+      "score": 0.036908068
+    },
+    {
+      "id": 86,
+      "url": "https://www.axios.com/2026/03/05/vance-hosts-6-million-fundraiser-in-dc-suburb",
+      "title": "Vance hosts $6 million fundraiser in D.C. suburb - Axios",
       "score": 0.036828384
     },
     {
-      "id": 65,
-      "url": "https://news.bloomberglaw.com/business-and-practice/florida-bar-probes-ethics-of-virginias-ex-us-attorney-halligan",
-      "title": "Florida Bar Probes Ethics of Virginia\u2019s Ex-US Attorney Halligan - Bloomberg Law News",
-      "score": 0.036538508
+      "id": 87,
+      "url": "https://www.law360.com/articles/2447576/musk-s-twitter-trash-talk-hurt-stock-jury-told-as-trial-starts",
+      "title": "Musk's Twitter Trash Talk Hurt Stock, Jury Told As Trial Starts - Law360",
+      "score": 0.036356665
     },
     {
-      "id": 66,
-      "url": "https://www.wsj.com/tech/ai/anthropics-feud-with-pentagon-earns-it-fans-amid-the-blowback-f7e2bb83?gaa_at=eafs&gaa_n=AWEtsqekRD4YlIeFYVm98Rz-xHikXszYvODVhp7Ea--8T21xezNTotXbNiJd&gaa_ts=69a72d9b&gaa_sig=qfO4py6Xm2PaWocXhBfkWadLvjfixDdFWuV6ZBNzKIDzAIFeaFuGhl-sCaD4FPYVSyjxFQK-Nzu9C4hoGb7yDg%3D%3D",
-      "title": "Anthropic\u2019s Feud With Pentagon Earns It Fans Amid the Blowback - WSJ",
-      "score": 0.03637385
-    },
-    {
-      "id": 67,
-      "url": "https://www.ualrpublicradio.org/npr-news/2026-03-05/president-trump-pam-bondi-sued-over-sale-of-tiktok-assets",
-      "title": "President Trump, Pam Bondi sued over sale of TikTok assets - Little Rock Public Radio",
-      "score": 0.036332797
-    },
-    {
-      "id": 68,
-      "url": "https://www.bloomberg.com/news/articles/2026-03-05/why-are-people-deleting-chatgpt-claude-has-the-answer",
-      "title": "ChatGPT Backlash Reveals New Pitfalls in Aligning With Trump - Bloomberg.com",
+      "id": 88,
+      "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/a-statement-on-u-s-venezuela-relations",
+      "title": "A Statement on U.S.-Venezuela Relations - U.S. Department of State (.gov)",
       "score": 0.03616903
     },
     {
-      "id": 69,
-      "url": "https://www.law.com/2026/03/05/sec-justin-sun-strike-proposed-10m-settlement/",
-      "title": "SEC, Justin Sun Strike Proposed $10M Settlement - Law.com",
-      "score": 0.035601426
+      "id": 89,
+      "url": "https://gizmodo.com/sec-settles-case-against-investor-in-trump-linked-crypto-projects-amid-pay-to-play-allegations-2000730615",
+      "title": "SEC Settles Case Against Investor in Trump-Linked Crypto Projects Amid Pay-to-Play Allegations - Gizmodo",
+      "score": 0.03604667
     },
     {
-      "id": 70,
-      "url": "https://www.nbcnews.com/politics/justice-department/trump-administration-sued-us-tiktok-deal-rcna261684",
-      "title": "Trump administration sued over U.S.-TikTok deal - NBC News",
-      "score": 0.035480924
-    },
-    {
-      "id": 71,
-      "url": "https://www.forbes.com.au/covers/billionaires/the-youngest-self-made-woman-billionaire-on-earth/",
-      "title": "Meet the world\u2019s youngest self-made woman billionaire - Forbes Australia",
-      "score": 0.035241075
-    },
-    {
-      "id": 72,
+      "id": 90,
       "url": "https://www.nytimes.com/2026/03/05/us/politics/sec-justin-sun.html",
       "title": "S.E.C. Settles Its Case Against Justin Sun, an Investor in the Trumps\u2019 Crypto Coins - The New York Times",
-      "score": 0.03433609
+      "score": 0.035521045
     },
     {
-      "id": 73,
+      "id": 91,
       "url": "https://www.jpost.com/israel-news/article-888835",
       "title": "Mirilashvili on Benjamin Netanyahu, Donald Trump, and Israel\u2019s priorities - The Jerusalem Post",
-      "score": 0.03425846
+      "score": 0.03421971
     },
     {
-      "id": 74,
-      "url": "https://www.law360.com/ip/articles/2449869?utm_source=rss&utm_medium=rss&utm_campaign=section",
-      "title": "Fortnite Maker Says Ex-Contractor Leaked Secrets For 'Clout' - Law360",
-      "score": 0.03349144
+      "id": 92,
+      "url": "https://nationaltoday.com/us/ca/san-francisco/news/2026/03/05/openai-ceo-defends-companys-work-with-trump-administration/",
+      "title": "OpenAI CEO Defends Company's Work with Trump Administration - National Today",
+      "score": 0.034065127
     },
     {
-      "id": 75,
-      "url": "https://www.law360.com/articles/2448554/goldman-s-departing-clo-gates-asked-to-testify-on-epstein",
-      "title": "Goldman's Departing CLO, Gates Asked To Testify On Epstein - Law360",
-      "score": 0.033264585
+      "id": 93,
+      "url": "https://www.insurancejournal.com/news/national/2026/03/06/860761.htm",
+      "title": "Justin Sun Settles SEC Fraud Case for $10 Million - Insurance Journal",
+      "score": 0.033719793
     },
     {
-      "id": 76,
-      "url": "https://www.law360.com/articles/2447576/musk-s-twitter-trash-talk-hurt-stock-jury-told-as-trial-starts",
-      "title": "Musk's Twitter Trash Talk Hurt Stock, Jury Told As Trial Starts - Law360",
-      "score": 0.032629862
+      "id": 94,
+      "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/joint-statement-from-the-international-contact-group-for-the-great-lakes-icg-on-the-situation-in-the-eastern-democratic-republic-of-the-congo-drc",
+      "title": "Joint Statement from the International Contact Group for the Great Lakes (ICG) on the Situation in the Eastern Democratic Republic of the Congo (DRC) - U.S. Department of State (.gov)",
+      "score": 0.033643506
     },
     {
-      "id": 77,
-      "url": "https://www.forbes.com/sites/richardnieva/2026/03/04/the-anthropic-cofounders-standing-up-to-trump/",
-      "title": "Why These Anthropic Cofounders Are So Willing To Stand Up To Trump - Forbes",
-      "score": 0.03248222
+      "id": 95,
+      "url": "https://www.politico.com/newsletters/california-playbook/2026/03/06/newsoms-foreign-policy-brain-trust-00816102",
+      "title": "Newsom\u2019s foreign policy brain trust - Politico",
+      "score": 0.03356739
     },
     {
-      "id": 78,
+      "id": 96,
+      "url": "https://www.politico.com/newsletters/florida-playbook/2026/03/05/florida-dems-look-to-catch-texas-midterm-energy-00813545",
+      "title": "Florida Dems look to catch Texas\u2019 midterm energy - Politico",
+      "score": 0.0331893
+    },
+    {
+      "id": 97,
       "url": "https://www.justice.gov/opa/pr/former-exthera-medical-corporation-executive-admits-concealing-patient-deaths-fda-and",
       "title": "Former ExThera Medical Corporation Executive Admits to Concealing Patient Deaths from FDA and Company Enters Deferred Prosecution Agreement - Department of Justice (.gov)",
       "score": 0.03240865
     },
     {
-      "id": 79,
-      "url": "https://www.law360.com/articles/2449846/fla-consulting-firm-sues-mich-tech-co-over-rico-claims",
-      "title": "Fla. Consulting Firm Sues Mich. Tech Co. Over RICO Claims - Law360",
-      "score": 0.03233523
+      "id": 98,
+      "url": "https://www.bloomberg.com/news/articles/2026-03-05/why-are-people-deleting-chatgpt-claude-has-the-answer",
+      "title": "ChatGPT Backlash Reveals New Pitfalls in Aligning With Trump - Bloomberg.com",
+      "score": 0.032298584
     },
     {
-      "id": 80,
-      "url": "https://www.law.com/newyorklawjournal/2026/03/02/these-new-york-firms-added-the-most-partners-in-2025/",
-      "title": "These New York Firms Added the Most Partners in 2025 - Law.com",
-      "score": 0.032152396
+      "id": 99,
+      "url": "https://gizmodo.com/sam-altman-says-government-should-be-more-powerful-than-corporations-which-government-2000730102",
+      "title": "Sam Altman Says 'Government Should Be More Powerful Than Corporations.' Which Government? - Gizmodo",
+      "score": 0.03193431
     },
     {
-      "id": 81,
+      "id": 100,
+      "url": "https://www.insidephilanthropy.com/home/epstein-emails-shine-a-light-on-dafs-and-billionaire-giving",
+      "title": "Epstein Emails Shine a Light on DAFs and Billionaire Giving - Inside Philanthropy",
+      "score": 0.031861935
+    },
+    {
+      "id": 101,
       "url": "https://techcrunch.com/2026/03/02/openai-anthropic-department-of-defense-war-hegseth-ai-companies-work-with-us-government/",
       "title": "No one has a good plan for how AI companies should work with the government - TechCrunch",
       "score": 0.031861935
     },
     {
-      "id": 82,
-      "url": "https://techcrunch.com/2026/03/03/ai-companies-are-spending-millions-to-thwart-this-former-tech-execs-congressional-bid/",
-      "title": "AI companies are spending millions to thwart this former tech exec\u2019s Congressional bid - TechCrunch",
+      "id": 102,
+      "url": "https://www.cnbc.com/video/2026/03/06/korea-fundamentals-strong-but-investors-should-expect-more-volatility.html",
+      "title": "Korean market's fundamentals are strong, but investors should expect more volatility - CNBC",
+      "score": 0.031645752
+    },
+    {
+      "id": 103,
+      "url": "https://www.forbes.com/sites/richardnieva/2026/03/04/the-anthropic-cofounders-standing-up-to-trump/",
+      "title": "Why These Anthropic Cofounders Are So Willing To Stand Up To Trump - Forbes",
       "score": 0.03157401
     },
     {
-      "id": 83,
-      "url": "https://www.cnbc.com/2026/03/04/trump-crypto-banks-stablecoin-yield.html",
-      "title": "Trump sides with crypto firms in trillion-dollar battle with banks over stablecoin yield - CNBC",
-      "score": 0.03157401
-    },
-    {
-      "id": 84,
+      "id": 104,
       "url": "https://techcrunch.com/podcast/the-ai-safety-showdown-max-tegmark-on-government-anthropic-and-whats-next/",
       "title": "The AI safety showdown: Max Tegmark on government, Anthropic, and what\u2019s next - TechCrunch",
       "score": 0.031430993
     },
     {
-      "id": 85,
-      "url": "https://www.businessinsider.com/the-30-early-stage-startups-in-2026-most-likely-to-become-techs-next-unicorns-2026-3",
-      "title": "The 30 Early-Stage Startups in 2026 Most Likely to Become Tech's Next Unicorns - Business Insider",
-      "score": 0.031359725
-    },
-    {
-      "id": 86,
+      "id": 105,
       "url": "https://variety.com/2026/politics/news/paramount-warner-bros-national-security-review-arab-wealth-funds-warren-blumenthal-1236681067/",
       "title": "Democratic Senators Slam Trump Administration\u2019s Inaction on Reviewing Paramount\u2019s Warner Bros. Deal for National Security Risks Over Backing by Arab Wealth Funds - Variety",
       "score": 0.031288605
     },
     {
-      "id": 87,
+      "id": 106,
+      "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/status-of-u-s-embassy-kuwait-city",
+      "title": "Status of U.S. Embassy Kuwait City - U.S. Department of State (.gov)",
+      "score": 0.031146845
+    },
+    {
+      "id": 107,
+      "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/statement-from-assistant-secretary-dylan-johnson-on-ensuring-the-safety-of-american-citizens-in-the-middle-east-2",
+      "title": "Statement from Assistant Secretary Dylan Johnson on Ensuring the Safety of American Citizens in the Middle East - U.S. Department of State (.gov)",
+      "score": 0.031005697
+    },
+    {
+      "id": 108,
       "url": "https://www.politico.com/news/2026/03/02/gop-trump-loyalties-rural-america-data-centers-00795708",
       "title": "Farm-country data center foes fuel GOP insurgent challengers - Politico",
       "score": 0.030725269
     },
     {
-      "id": 88,
-      "url": "https://www.law360.com/articles/2449681/lindsey-halligan-faces-fla-bar-investigation-watchdog-says",
-      "title": "Lindsey Halligan Faces Fla. Bar Investigation, Watchdog Says - Law360",
-      "score": 0.029966692
+      "id": 109,
+      "url": "https://carnegieendowment.org/emissary/2026/03/iran-china-us-intervention-strategy",
+      "title": "Beijing Doesn\u2019t Think Like Washington\u2014and the Iran Conflict Shows Why - Carnegie Endowment for International Peace",
+      "score": 0.02929285
     },
     {
-      "id": 89,
-      "url": "https://www.wsj.com/finance/kalshi-and-polymarket-are-each-eyeing-roughly-20-billion-valuations-d7b9c5d8?gaa_at=eafs&gaa_n=AWEtsqc9R051JqY-IQTOGU3dFVtBXMslB3eSqLJ6zyqcELCA3SdLDhgBZQqu&gaa_ts=69abdac4&gaa_sig=kEon28UqwggfVKo75fJ5yDoCOnkwX_g8jk5szrqXBzWYkA7o-BMLBmqH6MfYz1Z-oye8uJZkhw1wBq0ZN5sZIw%3D%3D",
-      "title": "Exclusive | Kalshi and Polymarket Are Each Eyeing Roughly $20 Billion Valuations - WSJ",
-      "score": 0.029695367
+      "id": 110,
+      "url": "https://www.globenewswire.com/news-release/2026/03/02/3247002/0/en/Alibaba-Group-Holding-Ltd-Investigated-by-the-Portnoy-Law-Firm.html",
+      "title": "Alibaba Group Holding Ltd Investigated by the Portnoy Law Firm - GlobeNewswire",
+      "score": 0.029159855
     },
     {
-      "id": 90,
-      "url": "https://www.seattletimes.com/business/us-issues-a-license-that-authorizes-sales-of-venezuelan-gold/",
-      "title": "US issues a license that authorizes sales of Venezuelan gold - The Seattle Times",
-      "score": 0.029560601
-    },
-    {
-      "id": 91,
-      "url": "https://www.law360.com/articles/2450184/meta-witness-says-spotty-audits-show-commitment-to-safety",
-      "title": "Meta Witness Says Spotty Audits Show Commitment To Safety - Law360",
-      "score": 0.028309563
-    },
-    {
-      "id": 92,
-      "url": "https://www.cnbc.com/video/2026/03/03/kkrs-henry-mcvey-talks-navigating-market-anxiety-amid-geopolitical-tensions.html",
-      "title": "KKR's Henry McVey talks navigating market anxiety amid geopolitical tensions - CNBC",
-      "score": 0.0281809
-    },
-    {
-      "id": 93,
-      "url": "https://www.law360.com/colorado/articles/2442259?utm_source=rss&utm_medium=rss&utm_campaign=section",
-      "title": "Why Firms Are Investing In State AG Practices - Law360",
-      "score": 0.028116787
-    },
-    {
-      "id": 94,
-      "url": "https://www.law.com/international-edition/2026/03/03/latham-ma-partner-leads-deal-rankings-for-2025-data-shows/",
-      "title": "Latham M&A Partner Leads Deal Rankings for 2025, Data Shows - Law.com",
-      "score": 0.027861731
-    },
-    {
-      "id": 95,
-      "url": "https://cleantechnica.com/2026/03/01/new-york-times-probes-musk-holdings-political-activities-in-texas/",
-      "title": "New York Times Probes Musk Holdings & Political Activities In Texas - CleanTechnica",
-      "score": 0.026802607
-    },
-    {
-      "id": 96,
+      "id": 111,
       "url": "https://www.forbes.com/sites/the-prompt/2026/03/03/how-anthropics-kerfuffle-with-the-pentagon-became-a-optics-headache-for-openai/",
       "title": "How Anthropic\u2019s Kerfuffle With The Pentagon Became A Optics Headache For OpenAI - Forbes",
-      "score": 0.025782676
+      "score": 0.028568588
     },
     {
-      "id": 97,
+      "id": 112,
+      "url": "https://www.politico.com/news/2026/03/08/washington-workers-ai-00789199",
+      "title": "Why Washington is hamstrung on protecting workers from AI - Politico",
+      "score": 0.02850362
+    },
+    {
+      "id": 113,
+      "url": "https://www.law360.com/bankruptcy-authority/large-cap/articles/2449954/calif-judge-blasts-ex-venture-capitalist-in-axing-svb-suit",
+      "title": "Calif. Judge Blasts Ex-Venture Capitalist In Axing SVB Suit - Law360",
+      "score": 0.027376488
+    },
+    {
+      "id": 114,
+      "url": "https://www.businessinsider.com/the-30-early-stage-startups-in-2026-most-likely-to-become-techs-next-unicorns-2026-3",
+      "title": "The 30 Early-Stage Startups in 2026 Most Likely to Become Tech's Next Unicorns - Business Insider",
+      "score": 0.026559154
+    },
+    {
+      "id": 115,
+      "url": "https://markets.financialcontent.com/stocks/article/thenewswire-2026-3-2-paypal-holdings-inc-pypl-investors-april-20-2026-deadline-in-securities-fraud-class-action-lawsuit",
+      "title": "PayPal Holdings, Inc. (PYPL) Investors: April 20, 2026, Deadline in Securities Fraud Class Action Lawsuit - FinancialContent",
+      "score": 0.026078671
+    },
+    {
+      "id": 116,
       "url": "https://www.businessinsider.com/anthropic-pentagon-dario-amodei-new-power-struggle-democracy-versus-ai-2026-3",
       "title": "A Preview of the Next Big Power Struggle: Democracy Vs. AI CEOs - Business Insider",
       "score": 0.025723876
     },
     {
-      "id": 98,
+      "id": 117,
+      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603052141PR_NEWS_USPRX____DC02928-1",
+      "title": "PYPL Investors Have Opportunity to Lead PayPal Holdings, Inc. Securities Fraud Lawsuit \u2013 Company Announcement - Financial Times",
+      "score": 0.02517884
+    },
+    {
+      "id": 118,
+      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603021954PR_NEWS_USPRX____DC98511-1",
+      "title": "PYPL Investors Have Opportunity to Lead PayPal Holdings, Inc. Securities Fraud Lawsuit \u2013 Company Announcement - Financial Times",
+      "score": 0.02517884
+    },
+    {
+      "id": 119,
       "url": "https://au.variety.com/2026/film/news/paramount-warner-bros-national-security-review-arab-wealth-funds-warren-blumenthal-33961/",
       "title": "Democratic Senators Slam Trump Administration's Inaction on Reviewing Paramount's Warner Bros. Deal - Variety Australia",
       "score": 0.025085583
     },
     {
-      "id": 99,
+      "id": 120,
       "url": "https://x.com/MarioNawfal/status/2030155323235860867",
       "title": "Grok's absolutely owning the rankings right now, Grok Fast takes number 1 on OpenRouter for long-context (2M tokens) and real-time trivia. Grok Thinking leads emotional intelligence with EQ-Bench3: 1586, while Grok Code Fast 1 grabs 57.6% programming - x.com",
       "score": 0.024971198
     },
     {
-      "id": 100,
-      "url": "https://www.law.com/dailybusinessreview/2026/03/04/frank-a-rubino-veteran-miami-defense-attorney-dies-at-80/",
-      "title": "Frank A. Rubino, Veteran Miami Defense Attorney, Dies at 80 - Law.com",
-      "score": 0.023746053
-    },
-    {
-      "id": 101,
+      "id": 121,
       "url": "https://www.forbes.com/sites/forbestv/2026/03/07/this-is-what-i-saw-in-the-unredacted-epstein-files-debbie-wasserman-schultz/",
       "title": "This Is What I Saw In The Unredacted Epstein Files: Debbie Wasserman Schultz - Forbes",
       "score": 0.023368675
     },
     {
-      "id": 102,
-      "url": "https://www.bloomberg.com/news/articles/2026-03-03/openai-ceo-says-pentagon-deal-looked-opportunistic-and-sloppy",
-      "title": "OpenAI CEO Says Pentagon Deal Looked \u2018Opportunistic and Sloppy\u2019 - Bloomberg",
-      "score": 0.022631409
+      "id": 122,
+      "url": "https://cleantechnica.com/2026/03/06/anthropics-people-power-is-part-of-a-bigger-fight-that-affects-clean-technology/",
+      "title": "Anthropic\u2019s People Power Is Part Of A Bigger Fight That Affects Clean Technology - CleanTechnica",
+      "score": 0.021866694
     },
     {
-      "id": 103,
-      "url": "https://www.nytimes.com/2026/03/07/technology/openai-anthropic-pentagon-rivalry.html",
-      "title": "For OpenAI and Anthropic, the Competition Is Deeply Personal - The New York Times",
-      "score": 0.019317375
+      "id": 123,
+      "url": "https://www.latimes.com/business/story/2026-03-04/sam-altman-admits-openais-pentagon-deal-was-rushed-sloppy",
+      "title": "Sam Altman admits OpenAI\u2019s Pentagon deal was rushed and \u2018sloppy\u2019 - Los Angeles Times",
+      "score": 0.021030532
     },
     {
-      "id": 104,
-      "url": "https://www.insidephilanthropy.com/home/epstein-emails-shine-a-light-on-dafs-and-billionaire-giving",
-      "title": "Epstein Emails Shine a Light on DAFs and Billionaire Giving - Inside Philanthropy",
-      "score": 0.019271137
+      "id": 124,
+      "url": "https://www.brookings.edu/articles/leveraging-the-usmca-to-strengthen-pharmaceutical-manufacturing-and-supply-chains-in-north-america/",
+      "title": "Leveraging the USMCA to strengthen pharmaceutical manufacturing and supply chains in North America - Brookings",
+      "score": 0.020695398
     },
     {
-      "id": 105,
-      "url": "https://scotscoop.com/ai-super-pacs-shape-the-2026-election-cycle/",
-      "title": "AI super PACs shape the 2026 election cycle - Scot Scoop News",
-      "score": 0.015543648
+      "id": 125,
+      "url": "https://www.wsj.com/tech/ai/anthropics-feud-with-pentagon-earns-it-fans-amid-the-blowback-f7e2bb83?gaa_at=eafs&gaa_n=AWEtsqekRD4YlIeFYVm98Rz-xHikXszYvODVhp7Ea--8T21xezNTotXbNiJd&gaa_ts=69a72d9b&gaa_sig=qfO4py6Xm2PaWocXhBfkWadLvjfixDdFWuV6ZBNzKIDzAIFeaFuGhl-sCaD4FPYVSyjxFQK-Nzu9C4hoGb7yDg%3D%3D",
+      "title": "Anthropic\u2019s Feud With Pentagon Earns It Fans Amid the Blowback - WSJ",
+      "score": 0.020506242
     },
     {
-      "id": 106,
-      "url": "https://www.philanthropy.com/opinion/opinion-kennedy-investigations-0326/",
-      "title": "Congress and the Media Should Turn Up the Heat on Nonprofits - Chronicle of Philanthropy",
-      "score": 0.012970387
+      "id": 126,
+      "url": "https://techcrunch.com/2026/03/03/anduril-aims-at-60-billion-valuation-in-new-funding-round/",
+      "title": "Anduril aims at $60 billion valuation in new funding round - TechCrunch",
+      "score": 0.020133002
     },
     {
-      "id": 107,
-      "url": "https://www.chronicle.com/article/the-lobbying-arms-race",
-      "title": "The Lobbying Arms Race - The Chronicle of Higher Education",
-      "score": 0.00997492
+      "id": 127,
+      "url": "https://www.washingtontechnology.com/podcasts/2026/03/wt-360-enabled-intelligences-blueprint-data-labeling-challenge/411753/?oref=wt-homepage-river",
+      "title": "WT 360: Enabled Intelligence\u2019s blueprint for the data labeling challenge - Washington Technology",
+      "score": 0.017619124
     },
     {
-      "id": 108,
-      "url": "https://techcrunch.com/2026/03/03/the-candidate-that-silicon-valley-built-is-now-the-one-they-want-to-tear-down/",
-      "title": "The candidate that Silicon Valley built is now the one they want to tear down - TechCrunch",
-      "score": 0.008348054
+      "id": 128,
+      "url": "https://www.axios.com/2026/03/04/pentagon-anthropic-white-house-amodei",
+      "title": "Scoop: White House casts doubt on Pentagon-Anthropic reconciliation - Axios",
+      "score": 0.015665185
     },
     {
-      "id": 109,
-      "url": "https://www.chicagotribune.com/2026/03/05/meta-pac-illinois-statehouse-races/",
-      "title": "Meta set to spend $750K backing Illinois statehouse candidates as AI and social media legislation looms - Chicago Tribune",
-      "score": 0.008219693
+      "id": 129,
+      "url": "https://www.politico.com/news/2026/03/05/lindsey-halligan-ethics-probe-florida-00816088",
+      "title": "Lindsey Halligan faces ethics probe in Florida - Politico",
+      "score": 0.01566365
     },
     {
-      "id": 110,
-      "url": "https://www.politico.com/newsletters/california-playbook/2026/03/04/exit-stage-never-low-polling-dems-defiant-00811448",
-      "title": "Exit stage never: Low-polling Dems defiant - Politico",
-      "score": 0.0069576087
+      "id": 130,
+      "url": "https://www.law.com/2026/03/05/sec-justin-sun-strike-proposed-10m-settlement/",
+      "title": "SEC, Justin Sun Strike Proposed $10M Settlement - Law.com",
+      "score": 0.015306354
     },
     {
-      "id": 111,
-      "url": "https://www.politico.com/newsletters/california-playbook/2026/03/06/newsoms-foreign-policy-brain-trust-00816102",
-      "title": "Newsom\u2019s foreign policy brain trust - Politico",
-      "score": 0.0065134987
+      "id": 131,
+      "url": "https://news.bloomberglaw.com/business-and-practice/florida-bar-probes-ethics-of-virginias-ex-us-attorney-halligan",
+      "title": "Florida Bar Probes Ethics of Virginia\u2019s Ex-US Attorney Halligan - Bloomberg Law News",
+      "score": 0.010902373
     },
     {
-      "id": 112,
-      "url": "https://www.axios.com/2026/03/05/vance-hosts-6-million-fundraiser-in-dc-suburb",
-      "title": "Vance hosts $6 million fundraiser in D.C. suburb - Axios",
-      "score": 0.0054059005
+      "id": 132,
+      "url": "https://www.greenwichtime.com/news/politics/article/lindsey-halligan-a-trump-appointed-former-acting-21959361.php",
+      "title": "Lindsey Halligan, a Trump-appointed former acting US attorney, faces investigation by Florida Bar - Greenwich Time",
+      "score": 0.009821794
     },
     {
-      "id": 113,
-      "url": "https://www.nytimes.com/2026/03/02/technology/pentagon-anduril-palmer-luckey.html",
-      "title": "The Pentagon\u2019s Favorite Tech Guy Is This Hawaiian Shirt-Wearing Founder - The New York Times",
-      "score": 0.0040860027
+      "id": 133,
+      "url": "https://abovethelaw.com/2026/03/lindsey-halligan-under-investigation-and-the-doj-is-big-mad-about-it/",
+      "title": "Lindsey Halligan Under Investigation And The DOJ Is Big Mad About It - Above the Law",
+      "score": 0.009196552
     },
     {
-      "id": 114,
-      "url": "https://www.politico.com/newsletters/florida-playbook/2026/03/05/florida-dems-look-to-catch-texas-midterm-energy-00813545",
-      "title": "Florida Dems look to catch Texas\u2019 midterm energy - Politico",
-      "score": 0.003750789
+      "id": 134,
+      "url": "https://www.foxnews.com/politics/oversight-demands-doj-answers-foreign-funding-agitator-groups-iran-anti-ice-protests-continue",
+      "title": "Oversight demands DOJ answers on foreign funding of agitator groups as Iran, anti-ICE protests continue - Fox News",
+      "score": 0.0052813343
+    },
+    {
+      "id": 135,
+      "url": "https://www.cbsnews.com/news/lindsey-halligan-under-investigation-florida-bar/",
+      "title": "Lindsey Halligan under investigation by the Florida Bar - CBS News",
+      "score": 0.003707253
+    },
+    {
+      "id": 136,
+      "url": "https://www.nbcnews.com/politics/justice-department/trump-administration-sued-us-tiktok-deal-rcna261684",
+      "title": "Trump administration sued over U.S.-TikTok deal - NBC News",
+      "score": 0.0026368054
     }
-  ]
+  ],
+  "combined_decision": {
+    "recommendation": "Recommend Reject \u2014 Engagement would damage TMG's core brand",
+    "combined_tier": "CRITICAL",
+    "factual_tier": "ELEVATED",
+    "factual_score": 5.38,
+    "rcs_tier": "CRITICAL",
+    "rcs_score": 8.4,
+    "driver": "reputational_contagion",
+    "driver_detail": "Combined recommendation driven by Reputational Contagion Score (8.4/10 CRITICAL) which is more cautious than Factual Risk Score (5.38/10 ELEVATED)"
+  },
+  "government_contracts": {
+    "total_awards": 414,
+    "total_amount": 3937199588.7699976,
+    "agencies_count": 15,
+    "top_agencies": [
+      {
+        "agency": "Department of Defense",
+        "total": 2312643416.79,
+        "count": 172
+      },
+      {
+        "agency": "Department of Health and Human Services",
+        "total": 405348501.9300002,
+        "count": 96
+      },
+      {
+        "agency": "Department of Homeland Security",
+        "total": 352592360.04,
+        "count": 17
+      },
+      {
+        "agency": "Department of Justice",
+        "total": 209253822.33999997,
+        "count": 57
+      },
+      {
+        "agency": "Department of the Treasury",
+        "total": 195956175.16,
+        "count": 28
+      },
+      {
+        "agency": "Department of Veterans Affairs",
+        "total": 118431141.72999999,
+        "count": 2
+      },
+      {
+        "agency": "Department of State",
+        "total": 106969868.9,
+        "count": 14
+      },
+      {
+        "agency": "Department of Energy",
+        "total": 90967788.61,
+        "count": 1
+      },
+      {
+        "agency": "Department of Transportation",
+        "total": 58203372.35,
+        "count": 6
+      },
+      {
+        "agency": "Securities and Exchange Commission",
+        "total": 50351556.83,
+        "count": 3
+      }
+    ],
+    "top_awards": [
+      {
+        "award_amount": 292680689.24,
+        "awarding_agency": "Department of Defense",
+        "awarding_sub_agency": "Department of the Army",
+        "description": "TASK ORDER #1 FOR MAVEN SMART SYSTEM - USER INTERFACE/USER EXPERIENCE (UI/UX) PROTOTYPE",
+        "start_date": "2024-06-18",
+        "end_date": "2026-05-31"
+      },
+      {
+        "award_amount": 275959237.71,
+        "awarding_agency": "Department of Defense",
+        "awarding_sub_agency": "U.S. Special Operations Command",
+        "description": "PALANTIR GOTHAM MONTHLY TERM LICENSES",
+        "start_date": "2016-05-24",
+        "end_date": "2021-05-25"
+      },
+      {
+        "award_amount": 227580359.39,
+        "awarding_agency": "Department of Defense",
+        "awarding_sub_agency": "Department of the Army",
+        "description": "CDAO MSS TASK ORDER OFF OF CONTRACT W519TC25D0039",
+        "start_date": "2025-10-15",
+        "end_date": "2029-05-31"
+      },
+      {
+        "award_amount": 195724055.5,
+        "awarding_agency": "Department of Defense",
+        "awarding_sub_agency": "Department of the Air Force",
+        "description": "PROVIDES ACCESS TO AGILE, SCALABLE DATA PLATFORM WITH ROBUST DATA STREAMING,STORAGE TECHNOLOGIES, COMMERCIAL DATA PLATFORM WILL BE USED TO COORDINATE DECISIONS AND MANAGE RESOURCES FOR ON-GOING COVID ",
+        "start_date": "2021-05-01",
+        "end_date": "2023-06-30"
+      },
+      {
+        "award_amount": 145008922.61,
+        "awarding_agency": "Department of Homeland Security",
+        "awarding_sub_agency": "U.S. Immigration and Customs Enforcement",
+        "description": "INVESTIGATIVE CASE MANAGEMENT (ICM) OPERATIONS AND MAINTENANCE (O&M) SUPPORT SERVICES AND CUSTOM ENHANCEMENTS",
+        "start_date": "2022-09-26",
+        "end_date": "2026-04-04"
+      },
+      {
+        "award_amount": 130042463.0,
+        "awarding_agency": "Department of Defense",
+        "awarding_sub_agency": "Department of the Air Force",
+        "description": "ESTABLISH BASIC LETTER CONTRACT FOR COMMERCIAL DATA AS A SERVE PLATFORM.",
+        "start_date": "2023-06-16",
+        "end_date": "2025-06-15"
+      },
+      {
+        "award_amount": 103418555.9,
+        "awarding_agency": "Department of Defense",
+        "awarding_sub_agency": "Department of the Army",
+        "description": "SOFTWARE AS A SERVICE (SAAS) MODEL OF ARMY VANTAGE ON BEHALF OF PEO EIS, PDM ADP. ARMY VANTAGE IS THE ARMY'S DATA-DRIVEN OPERATIONS AND DECISION-MAKING PLATFORM.",
+        "start_date": "2024-12-13",
+        "end_date": "2025-12-15"
+      },
+      {
+        "award_amount": 93288095.85,
+        "awarding_agency": "Department of Veterans Affairs",
+        "awarding_sub_agency": "Department of Veterans Affairs",
+        "description": "SAAS SOLUTION.",
+        "start_date": "2021-09-30",
+        "end_date": "2025-09-29"
+      },
+      {
+        "award_amount": 91176843.61,
+        "awarding_agency": "Department of Defense",
+        "awarding_sub_agency": "Department of the Army",
+        "description": "PALANTIR SHALL PERFORM TESTING AN END-TO-END APPROACH TO ARTIFICIAL INTELLIGENCE FOR DEFENSE USE CASES.",
+        "start_date": "2020-09-29",
+        "end_date": "2022-11-30"
+      },
+      {
+        "award_amount": 90967788.61,
+        "awarding_agency": "Department of Energy",
+        "awarding_sub_agency": "Department of Energy",
+        "description": "SAFER (SAFETY ANALYTICS, FORECASTING & EVALUATION REPORTING) PROJECT EXECUTION TASK ORDER SUPPORTING NA-50",
+        "start_date": "2021-04-01",
+        "end_date": "2026-03-31"
+      }
+    ]
+  }
 }
