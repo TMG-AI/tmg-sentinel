@@ -121,7 +121,7 @@ export function RCSCard({ label, score, weight, evidence, damagingHeadline, sour
 
           {damagingHeadline && (
             <div className="rounded-lg border-l-4 border-[hsl(var(--risk-elevated))] bg-[hsl(var(--risk-elevated)/0.04)] p-3">
-              <h5 className="text-xs font-bold text-[hsl(var(--risk-elevated))] uppercase tracking-wider mb-1.5">Potential Headline</h5>
+              <h5 className="text-xs font-bold text-[hsl(var(--risk-elevated))] tracking-wider mb-1.5">Potential Headline</h5>
               <p className="text-sm italic text-foreground font-medium">"{damagingHeadline}"</p>
             </div>
           )}

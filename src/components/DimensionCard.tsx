@@ -125,7 +125,7 @@ export function DimensionCard({ dimensionKey, dimension }: DimensionCardProps) {
           {/* Evidence items */}
           {dimension.evidence.length > 0 && (
             <div>
-              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+               <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-2">
                 Evidence ({dimension.evidence.length})
               </h5>
               <div className="space-y-2">

@@ -894,7 +894,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
           )}
           {exec.news_headlines.length > 0 && (
             <div>
-              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Top Headlines</h5>
+              <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-1.5">Headlines</h5>
               <ul className="space-y-1">
                 {exec.news_headlines.slice(0, 3).map((h, i) => {
                   const url = exec.news_urls?.[i];
