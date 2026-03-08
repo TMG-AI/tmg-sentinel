@@ -23,37 +23,34 @@ import { useToast } from "@/hooks/use-toast";
 
 type SourceItem = { id: number; url: string; title: string; score: number };
 
-function findSourceUrls(sourceName: string, sources?: SourceItem[]): SourceItem[] {
-  if (!sources || !sourceName) return [];
-  // Handle "Multiple" or "FEC/Bio" style sources — search for each part
-  const parts = sourceName.split(/[\/,]/).map(s => s.trim().toLowerCase()).filter(Boolean);
-  const matches: SourceItem[] = [];
-  for (const part of parts) {
-    if (part === "multiple" || part === "bio" || part.length < 3) continue;
-    const normalized = part.replace(/\s+/g, '');
-    for (const s of sources) {
-      if (matches.includes(s)) continue;
-      const urlLower = s.url.toLowerCase();
-      const titleLower = s.title.toLowerCase();
-      if (titleLower.includes(part) || urlLower.includes(part) || urlLower.includes(normalized)) {
-        matches.push(s);
-      }
-    }
-  }
-  return matches.slice(0, 3); // max 3 links per flag
+function extractDomain(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '').split('.')[0];
+  } catch { return ''; }
 }
 
-function findSourcesForEvidence(evidence: string, sources?: SourceItem[]): SourceItem[] {
-  if (!sources || !evidence) return [];
+/** Parse flag sources like "CNBC [4], Forbes [2], Guardian [3]" — bracket numbers are source IDs */
+function findFlagSources(sourceStr: string, sources?: SourceItem[]): SourceItem[] {
+  if (!sources || !sourceStr) return [];
   const matches: SourceItem[] = [];
-  // Match common source names mentioned in evidence text
-  const keywords = ["propublica", "guardian", "politico", "forbes", "nyt", "new york times", "reuters", "bloomberg", "wsj", "washington post", "fec", "sec", "congress"];
-  for (const kw of keywords) {
-    if (evidence.toLowerCase().includes(kw)) {
-      const normalized = kw.replace(/\s+/g, '');
+  // Extract [N] references — these are source IDs from the pipeline
+  const idPattern = /\[(\d+)\]/g;
+  let m;
+  while ((m = idPattern.exec(sourceStr)) !== null) {
+    const id = parseInt(m[1]);
+    const src = sources.find(s => s.id === id);
+    if (src && !matches.includes(src)) matches.push(src);
+  }
+  // Fallback: domain-based matching
+  if (matches.length === 0) {
+    const cleaned = sourceStr.replace(/\[\d+\]/g, '').replace(/[,\/]/g, ' ');
+    const parts = cleaned.split(/\s+/).map(s => s.trim().toLowerCase()).filter(p => p.length >= 3 && !['multiple', 'bio', 'the'].includes(p));
+    for (const part of parts) {
       for (const s of sources) {
         if (matches.includes(s)) continue;
-        if (s.url.toLowerCase().includes(normalized) || s.title.toLowerCase().includes(kw)) {
+        const domain = extractDomain(s.url);
+        if (domain.includes(part) || part.includes(domain) ||
+            s.title.toLowerCase().includes(part) || s.url.toLowerCase().includes(part)) {
           matches.push(s);
         }
       }
@@ -62,20 +59,47 @@ function findSourcesForEvidence(evidence: string, sources?: SourceItem[]): Sourc
   return matches.slice(0, 5);
 }
 
+/** For RCS evidence — match source domains against text content */
+function findSourcesForEvidence(evidence: string, sources?: SourceItem[]): SourceItem[] {
+  if (!sources || !evidence) return [];
+  const lower = evidence.toLowerCase();
+  const matches: SourceItem[] = [];
+  for (const s of sources) {
+    if (matches.length >= 5) break;
+    if (matches.includes(s)) continue;
+    const domain = extractDomain(s.url);
+    if (domain && domain.length > 2) {
+      // Check both full domain and without "the" prefix
+      const stripped = domain.replace(/^the/, '');
+      if (lower.includes(domain) || (stripped.length > 2 && lower.includes(stripped))) {
+        matches.push(s);
+        continue;
+      }
+    }
+    // Also check if key title words appear
+    const titleWords = s.title.toLowerCase().split(/[\s\-:]+/).filter(w => w.length > 5);
+    if (titleWords.some(w => lower.includes(w))) {
+      matches.push(s);
+    }
+  }
+  return matches;
+}
+
 function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: SourceItem[]; variant: "red" | "yellow" }) {
-  const cleanDesc = flag.description.replace(/\s*\[\d+\]\s*/g, '').replace(/\s*\[\w+\]\s*$/g, '');
-  const matchedSources = findSourceUrls(flag.source, sources);
+  const cleanDesc = flag.description.replace(/\s*\[\d+\]\s*/g, '').replace(/\s*\[\w+\]\s*$/g, '').trim();
+  const cleanSource = flag.source.replace(/\s*\[\d+\]\s*/g, '').replace(/[,\s]+$/, '').trim();
+  const matchedSources = findFlagSources(flag.source, sources);
   const borderClass = variant === "red" ? "border-l-destructive" : "border-l-[hsl(var(--risk-moderate))]";
   const iconClass = variant === "red" ? "text-destructive" : "text-[hsl(var(--risk-moderate))]";
 
   return (
-    <div className={`glass-card p-3 border-l-4 ${borderClass}`}>
-      <div className="flex items-center gap-2 mb-1">
-        <AlertTriangle className={`w-3.5 h-3.5 ${iconClass}`} />
-        <span className="text-sm font-medium text-foreground">{flag.title}</span>
+    <div className={`glass-card p-4 border-l-4 ${borderClass}`}>
+      <div className="flex items-center gap-2 mb-1.5">
+        <AlertTriangle className={`w-4 h-4 ${iconClass}`} />
+        <span className="font-semibold text-foreground">{flag.title}</span>
       </div>
-      <p className="text-xs text-muted-foreground">{cleanDesc}</p>
-      <div className="flex flex-wrap items-center gap-2 mt-2">
+      <p className="text-muted-foreground leading-relaxed">{cleanDesc}</p>
+      <div className="flex flex-wrap items-center gap-2 mt-3">
         {matchedSources.length > 0 ? (
           matchedSources.map((src, i) => (
             <a
@@ -83,16 +107,16 @@ function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: Source
               href={src.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-full"
+              className="inline-flex items-center gap-1 text-xs text-primary hover:underline bg-primary/5 px-2.5 py-1 rounded-full"
             >
-              <ExternalLink className="h-2.5 w-2.5" />
-              {src.title.length > 40 ? src.title.slice(0, 40) + "…" : src.title}
+              <ExternalLink className="h-3 w-3" />
+              {src.title.length > 50 ? src.title.slice(0, 50) + "…" : src.title}
             </a>
           ))
         ) : (
-          <span className="text-[10px] text-muted-foreground">{flag.source}</span>
+          <span className="text-xs text-muted-foreground">{cleanSource}</span>
         )}
-        <span className="text-[10px] text-muted-foreground">· {flag.date}</span>
+        <span className="text-xs text-muted-foreground">· {flag.date}</span>
       </div>
     </div>
   );
@@ -283,7 +307,7 @@ export default function VettingDetail() {
             <button
               key={t.id}
               onClick={() => setActiveTab(t.id)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
               activeTab === t.id
                   ? "bg-foreground text-background"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -302,10 +326,10 @@ export default function VettingDetail() {
           <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
           <div className="max-w-none text-foreground space-y-0">
             {result.executive_summary.split("\n").filter(line => line.trim() !== "").map((line, i) => {
-              if (line.startsWith("## ")) return <h3 key={i} className="text-sm font-bold mt-3 mb-1 text-foreground">{line.replace("## ", "")}</h3>;
-              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-sm text-foreground mt-2 mb-0.5">{line.replace(/\*\*/g, "")}</p>;
-              if (line.startsWith("- ")) return <li key={i} className="text-sm text-muted-foreground ml-4 mb-0.5 leading-snug">{line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "$1")}</li>;
-              return <p key={i} className="text-sm text-muted-foreground mb-1 leading-snug">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
+              if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-4 mb-1.5 text-foreground">{line.replace("## ", "")}</h3>;
+              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground mt-3 mb-1">{line.replace(/\*\*/g, "")}</p>;
+              if (line.startsWith("- ")) return <li key={i} className="text-muted-foreground ml-4 mb-1 leading-relaxed">{line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "$1")}</li>;
+              return <p key={i} className="text-muted-foreground mb-1.5 leading-relaxed">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
             })}
           </div>
 
@@ -317,21 +341,21 @@ export default function VettingDetail() {
               </h3>
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
                 <div className="p-3 rounded-lg bg-muted">
-                  <p className="text-xs font-medium text-foreground">Confidence</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{scoring.confidence_modifier === "none" ? "HIGH — as-is" : scoring.confidence_modifier}</p>
+                  <p className="text-sm font-medium text-foreground">Confidence</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">{scoring.confidence_modifier === "none" ? "HIGH — as-is" : scoring.confidence_modifier}</p>
                 </div>
                 <div className="p-3 rounded-lg bg-muted">
-                  <p className="text-xs font-medium text-foreground">Engagement</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{scoring.engagement_multiplier}x multiplier</p>
+                  <p className="text-sm font-medium text-foreground">Engagement</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">{scoring.engagement_multiplier}x multiplier</p>
                 </div>
                 <div className="p-3 rounded-lg bg-muted">
-                  <p className="text-xs font-medium text-foreground">Final Score</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{scoring.final_composite.toFixed(2)} → {scoring.risk_tier}</p>
+                  <p className="text-sm font-medium text-foreground">Final Score</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">{scoring.final_composite.toFixed(2)} → {scoring.risk_tier}</p>
                 </div>
                 {rca && (
                   <div className="p-3 rounded-lg bg-muted border border-[hsl(var(--risk-moderate)/0.2)]">
-                    <p className="text-xs font-medium text-foreground">RCS</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{rca.composite_rcs.toFixed(2)} — {rca.rcs_risk_tier}</p>
+                    <p className="text-sm font-medium text-foreground">RCS</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">{rca.composite_rcs.toFixed(2)} — {rca.rcs_risk_tier}</p>
                   </div>
                 )}
               </div>
