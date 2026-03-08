@@ -352,14 +352,7 @@ export default function VettingDetail() {
                 ) : (
                   <div className="space-y-2">
                     {flags!.red.map((f, i) => (
-                      <div key={i} className="glass-card p-3 border-l-4 border-l-destructive">
-                        <div className="flex items-center gap-2 mb-1">
-                          <AlertTriangle className="w-3.5 h-3.5 text-destructive" />
-                          <span className="text-sm font-medium text-foreground">{f.title}</span>
-                        </div>
-                        <p className="text-xs text-muted-foreground">{f.description}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{f.source} · {f.date}</p>
-                      </div>
+                      <FlagCard key={i} flag={f} sources={result?.sources} variant="red" />
                     ))}
                   </div>
                 )}
@@ -371,14 +364,7 @@ export default function VettingDetail() {
                 ) : (
                   <div className="space-y-2">
                     {flags!.yellow.map((f, i) => (
-                      <div key={i} className="glass-card p-3 border-l-4 border-l-[hsl(var(--risk-moderate))]">
-                        <div className="flex items-center gap-2 mb-1">
-                          <AlertTriangle className="w-3.5 h-3.5 text-[hsl(var(--risk-moderate))]" />
-                          <span className="text-sm font-medium text-foreground">{f.title}</span>
-                        </div>
-                        <p className="text-xs text-muted-foreground">{f.description}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{f.source} · {f.date}</p>
-                      </div>
+                      <FlagCard key={i} flag={f} sources={result?.sources} variant="yellow" />
                     ))}
                   </div>
                 )}
