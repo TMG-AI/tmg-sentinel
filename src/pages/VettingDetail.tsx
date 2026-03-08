@@ -21,13 +21,45 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
-function findSourceUrl(sourceName: string, sources?: { id: number; url: string; title: string; score: number }[]): string | null {
-  if (!sources || !sourceName) return null;
-  const lower = sourceName.toLowerCase();
-  const match = sources.find(s =>
-    s.title.toLowerCase().includes(lower) || s.url.toLowerCase().includes(lower)
-  );
-  return match?.url || null;
+type SourceItem = { id: number; url: string; title: string; score: number };
+
+function findSourceUrls(sourceName: string, sources?: SourceItem[]): SourceItem[] {
+  if (!sources || !sourceName) return [];
+  // Handle "Multiple" or "FEC/Bio" style sources — search for each part
+  const parts = sourceName.split(/[\/,]/).map(s => s.trim().toLowerCase()).filter(Boolean);
+  const matches: SourceItem[] = [];
+  for (const part of parts) {
+    if (part === "multiple" || part === "bio" || part.length < 3) continue;
+    const normalized = part.replace(/\s+/g, '');
+    for (const s of sources) {
+      if (matches.includes(s)) continue;
+      const urlLower = s.url.toLowerCase();
+      const titleLower = s.title.toLowerCase();
+      if (titleLower.includes(part) || urlLower.includes(part) || urlLower.includes(normalized)) {
+        matches.push(s);
+      }
+    }
+  }
+  return matches.slice(0, 3); // max 3 links per flag
+}
+
+function findSourcesForEvidence(evidence: string, sources?: SourceItem[]): SourceItem[] {
+  if (!sources || !evidence) return [];
+  const matches: SourceItem[] = [];
+  // Match common source names mentioned in evidence text
+  const keywords = ["propublica", "guardian", "politico", "forbes", "nyt", "new york times", "reuters", "bloomberg", "wsj", "washington post", "fec", "sec", "congress"];
+  for (const kw of keywords) {
+    if (evidence.toLowerCase().includes(kw)) {
+      const normalized = kw.replace(/\s+/g, '');
+      for (const s of sources) {
+        if (matches.includes(s)) continue;
+        if (s.url.toLowerCase().includes(normalized) || s.title.toLowerCase().includes(kw)) {
+          matches.push(s);
+        }
+      }
+    }
+  }
+  return matches.slice(0, 5);
 }
 
 function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: { id: number; url: string; title: string; score: number }[]; variant: "red" | "yellow" }) {
