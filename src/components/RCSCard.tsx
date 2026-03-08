@@ -86,7 +86,7 @@ export function RCSCard({ label, score, weight, evidence, damagingHeadline, sour
           <div className={`h-full rounded-full transition-all ${getScoreBarColor(score)}`} style={{ width: `${(score / 10) * 100}%` }} />
         </div>
 
-        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">{cleanEvidence}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed">{cleanEvidence}</p>
       </div>
 
       <button
