@@ -5,7 +5,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, Trash2, CheckCircle, XCircle, RefreshCw } from "lucide-react";
-import { checkHealth, type HealthResponse } from "@/lib/api";
+interface HealthResponse {
+  status: string;
+  api_keys_configured: boolean;
+  active_jobs: number;
+  total_jobs: number;
+}
+
 
 interface Client {
   id: string;
