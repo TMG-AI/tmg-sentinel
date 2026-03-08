@@ -637,7 +637,7 @@ export default function VettingDetail() {
           {/* Top Awards Table */}
           {contracts.top_awards.length > 0 && (
             <div className="glass-card p-5">
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Largest Awards</h3>
+              <h3 className="text-xs font-semibold tracking-wider text-muted-foreground mb-3">Largest Awards</h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
