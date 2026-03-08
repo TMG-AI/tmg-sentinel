@@ -14,7 +14,8 @@ interface VettingStore {
 function inferEngagementType(result: VettingResultJSON): EngagementType {
   const multiplier = result.scoring.engagement_multiplier;
   if (multiplier >= 1.25) return "fara_foreign_political";
-  if (multiplier >= 1.1) return "foreign_corporate";
+  if (multiplier >= 1.12) return "foreign_corporate";
+  if (multiplier >= 1.05) return "government_affairs";
   if (multiplier <= 0.9) return "domestic_corporate";
   return "domestic_political";
 }
