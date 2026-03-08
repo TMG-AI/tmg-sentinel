@@ -881,7 +881,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
         <div className="mt-3 space-y-3">
           {exec.fec_top_recipients.length > 0 && (
             <div>
-              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Top FEC Recipients</h5>
+              <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-1.5">Top FEC Recipients</h5>
               <div className="space-y-1">
                 {exec.fec_top_recipients.slice(0, 5).map((r, i) => (
                   <div key={i} className="flex items-center justify-between text-xs p-1.5 rounded bg-muted/50">
