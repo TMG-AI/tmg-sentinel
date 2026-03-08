@@ -1,22 +1,21 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useVettingStore } from "@/lib/vetting-store";
-import { ENGAGEMENT_LABELS, VETTING_LEVEL_LABELS, RCS_QUESTION_LABELS, Decision, ReputationalContagion, Flag as FlagType } from "@/lib/types";
+import { ENGAGEMENT_LABELS, VETTING_LEVEL_LABELS, RCS_QUESTION_LABELS, Decision, ReputationalContagion, Flag as FlagType, DIMENSION_LABELS, KeyExecutive } from "@/lib/types";
 import { DimensionCard } from "@/components/DimensionCard";
 import { RCSCard } from "@/components/RCSCard";
 import {
   getRiskTierColor, getEngagementClass, getVettingLevelColor,
   getDecisionColor, getDecisionLabel,
-  formatDateTime,
+  formatDateTime, getScoreBarColor,
 } from "@/lib/vetting-utils";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   CheckCircle, XCircle, ArrowLeft, AlertTriangle, ExternalLink, Upload,
   Shield, Skull, FileText, Clock, Newspaper, ChevronDown, ShieldAlert,
-  BarChart3, Sliders, Flag, Link2,
+  BarChart3, Sliders, Flag, Link2, Users, Landmark, ChevronUp, DollarSign,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -29,11 +28,9 @@ function extractDomain(url: string): string {
   } catch { return ''; }
 }
 
-/** Parse flag sources like "CNBC [4], Forbes [2], Guardian [3]" — bracket numbers are source IDs */
 function findFlagSources(sourceStr: string, sources?: SourceItem[]): SourceItem[] {
   if (!sources || !sourceStr) return [];
   const matches: SourceItem[] = [];
-  // Extract [N] references — these are source IDs from the pipeline
   const idPattern = /\[(\d+)\]/g;
   let m;
   while ((m = idPattern.exec(sourceStr)) !== null) {
@@ -41,7 +38,6 @@ function findFlagSources(sourceStr: string, sources?: SourceItem[]): SourceItem[
     const src = sources.find(s => s.id === id);
     if (src && !matches.includes(src)) matches.push(src);
   }
-  // Fallback: domain-based matching
   if (matches.length === 0) {
     const cleaned = sourceStr.replace(/\[\d+\]/g, '').replace(/[,\/]/g, ' ');
     const parts = cleaned.split(/\s+/).map(s => s.trim().toLowerCase()).filter(p => p.length >= 3 && !['multiple', 'bio', 'the'].includes(p));
@@ -59,7 +55,6 @@ function findFlagSources(sourceStr: string, sources?: SourceItem[]): SourceItem[
   return matches.slice(0, 5);
 }
 
-/** For RCS evidence — match source domains against text content */
 function findSourcesForEvidence(evidence: string, sources?: SourceItem[]): SourceItem[] {
   if (!sources || !evidence) return [];
   const lower = evidence.toLowerCase();
@@ -69,14 +64,12 @@ function findSourcesForEvidence(evidence: string, sources?: SourceItem[]): Sourc
     if (matches.includes(s)) continue;
     const domain = extractDomain(s.url);
     if (domain && domain.length > 2) {
-      // Check both full domain and without "the" prefix
       const stripped = domain.replace(/^the/, '');
       if (lower.includes(domain) || (stripped.length > 2 && lower.includes(stripped))) {
         matches.push(s);
         continue;
       }
     }
-    // Also check if key title words appear
     const titleWords = s.title.toLowerCase().split(/[\s\-:]+/).filter(w => w.length > 5);
     if (titleWords.some(w => lower.includes(w))) {
       matches.push(s);
@@ -102,13 +95,8 @@ function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: Source
       <div className="flex flex-wrap items-center gap-2 mt-3">
         {matchedSources.length > 0 ? (
           matchedSources.map((src, i) => (
-            <a
-              key={i}
-              href={src.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs text-primary hover:underline bg-primary/5 px-2.5 py-1 rounded-full"
-            >
+            <a key={i} href={src.url} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-primary hover:underline bg-primary/5 px-2.5 py-1 rounded-full">
               <ExternalLink className="h-3 w-3" />
               {src.title.length > 50 ? src.title.slice(0, 50) + "…" : src.title}
             </a>
@@ -130,7 +118,37 @@ function getRcsColor(score: number): string {
   return "hsl(var(--risk-critical, var(--risk-high)))";
 }
 
-type TabId = "summary" | "gates" | "scorecard" | "rca" | "flags" | "sources" | "decision";
+function formatUSD(amount: number): string {
+  if (amount >= 1e9) return `$${(amount / 1e9).toFixed(2)}B`;
+  if (amount >= 1e6) return `$${(amount / 1e6).toFixed(1)}M`;
+  if (amount >= 1e3) return `$${(amount / 1e3).toFixed(0)}K`;
+  return `$${amount.toLocaleString()}`;
+}
+
+/** Parse "ClientName (TIER)" patterns from text */
+function parseClientChips(text: string): { name: string; tier: string }[] {
+  const regex = /([^,;]+?)\s*\((HIGH|MEDIUM|LOW)\)/g;
+  const chips: { name: string; tier: string }[] = [];
+  let m;
+  while ((m = regex.exec(text)) !== null) {
+    chips.push({ name: m[1].trim(), tier: m[2] });
+  }
+  return chips;
+}
+
+function getSubScoreColor(score: number): string {
+  if (score >= 7) return "text-[hsl(var(--risk-high))]";
+  if (score >= 4) return "text-[hsl(var(--risk-elevated))]";
+  return "text-[hsl(var(--risk-low))]";
+}
+
+function getSubScoreBg(score: number): string {
+  if (score >= 7) return "bg-[hsl(var(--risk-high)/0.08)]";
+  if (score >= 4) return "bg-[hsl(var(--risk-elevated)/0.08)]";
+  return "bg-[hsl(var(--risk-low)/0.08)]";
+}
+
+type TabId = "summary" | "gates" | "scorecard" | "rca" | "conflicts" | "executives" | "contracts" | "flags" | "sources" | "decision";
 
 interface TabDef {
   id: TabId;
@@ -168,7 +186,11 @@ export default function VettingDetail() {
   const scoring = result?.scoring;
   const flags = result?.flags || v.flags;
   const rca = result?.reputational_contagion;
+  const combined = result?.combined_decision;
+  const executives = result?.key_executives;
+  const contracts = result?.government_contracts;
   const gatesFailed = gates?.sanctions.status === "FAIL" || gates?.debarment.status === "FAIL";
+  const conflictDim = dimensions?.conflict_of_interest;
 
   const handleDecisionClick = (d: Decision) => {
     setPendingDecision(d);
@@ -206,16 +228,23 @@ export default function VettingDetail() {
   };
 
   const dimensionOrder = dimensions
-    ? Object.entries(dimensions).sort(([, a], [, b]) => b.weight - a.weight)
+    ? Object.entries(dimensions).filter(([key]) => key !== "conflict_of_interest").sort(([, a], [, b]) => b.weight - a.weight)
     : [];
 
   const hasFlags = flags && (flags.red.length > 0 || flags.yellow.length > 0);
+
+  // Primary recommendation comes from combined_decision if available
+  const primaryRecommendation = combined?.recommendation || v.recommendation;
+  const primaryTier = combined?.combined_tier || v.risk_tier;
 
   const tabs: TabDef[] = ([
     { id: "summary" as const, label: "Summary", icon: <FileText className="w-3.5 h-3.5" />, show: !!result?.executive_summary },
     { id: "gates" as const, label: "Gates", icon: <Shield className="w-3.5 h-3.5" />, show: !!gates },
     { id: "scorecard" as const, label: "Scorecard", icon: <BarChart3 className="w-3.5 h-3.5" />, show: !!dimensions && !gatesFailed },
     { id: "rca" as const, label: "Reputational Risk", icon: <ShieldAlert className="w-3.5 h-3.5" />, show: !!rca && !gatesFailed },
+    { id: "conflicts" as const, label: "Client Conflicts", icon: <AlertTriangle className="w-3.5 h-3.5" />, show: !!conflictDim && !gatesFailed },
+    { id: "executives" as const, label: `Executives${executives?.length ? ` (${executives.length})` : ""}`, icon: <Users className="w-3.5 h-3.5" />, show: !!(executives && executives.length > 0) },
+    { id: "contracts" as const, label: "Gov Contracts", icon: <Landmark className="w-3.5 h-3.5" />, show: !!contracts },
     { id: "flags" as const, label: `Flags${hasFlags ? ` (${(flags?.red.length || 0) + (flags?.yellow.length || 0)})` : ""}`, icon: <Flag className="w-3.5 h-3.5" />, show: !!flags },
     { id: "sources" as const, label: `Sources${result?.sources ? ` (${result.sources.length})` : ""}`, icon: <Link2 className="w-3.5 h-3.5" />, show: !!(result?.sources && result.sources.length > 0) },
     { id: "decision" as const, label: "Decision", icon: <CheckCircle className="w-3.5 h-3.5" />, show: v.status === "completed" || v.status === "gates_failed" },
@@ -245,6 +274,20 @@ export default function VettingDetail() {
               </span>
               {v.country && <span className="text-xs text-muted-foreground">{v.country}{v.city ? `, ${v.city}` : ""}</span>}
             </div>
+
+            {/* Combined Decision — Primary Recommendation */}
+            {combined && (
+              <div className="flex items-center gap-2 flex-wrap mb-3">
+                <span className={`text-sm font-bold px-3 py-1 rounded ${getRiskTierColor(combined.combined_tier as any)}`}>
+                  {combined.combined_tier}
+                </span>
+                <span className="text-sm font-semibold text-foreground">{combined.recommendation}</span>
+              </div>
+            )}
+            {combined?.driver_detail && (
+              <p className="text-xs text-muted-foreground mb-2">{combined.driver_detail}</p>
+            )}
+
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Clock className="w-3.5 h-3.5" />
               <span>Requested by {v.requested_by} on {formatDateTime(v.requested_at)}</span>
@@ -320,7 +363,7 @@ export default function VettingDetail() {
         </div>
       </div>
 
-      {/* Tab Content */}
+      {/* ===== SUMMARY TAB ===== */}
       {activeTab === "summary" && result?.executive_summary && (
         <div className="glass-card p-6 mb-6">
           <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
@@ -333,7 +376,6 @@ export default function VettingDetail() {
             })}
           </div>
 
-          {/* Scoring modifiers inline in summary */}
           {scoring && !gatesFailed && (
             <div className="mt-6 pt-6 border-t border-border">
               <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3 flex items-center gap-2">
@@ -364,6 +406,7 @@ export default function VettingDetail() {
         </div>
       )}
 
+      {/* ===== GATES TAB ===== */}
       {activeTab === "gates" && gates && (
         <div className="mb-6">
           {gatesFailed && (
@@ -382,6 +425,7 @@ export default function VettingDetail() {
         </div>
       )}
 
+      {/* ===== SCORECARD TAB ===== */}
       {activeTab === "scorecard" && dimensions && !gatesFailed && (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           {dimensionOrder.map(([key, dim]) => (
@@ -390,9 +434,9 @@ export default function VettingDetail() {
         </div>
       )}
 
+      {/* ===== RCA TAB ===== */}
       {activeTab === "rca" && rca && !gatesFailed && (
         <div className="mb-6">
-          {/* Header with composite score */}
           <div className="glass-card p-4 mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ShieldAlert className="w-4 h-4 text-foreground" />
@@ -411,7 +455,6 @@ export default function VettingDetail() {
             <p className="text-sm text-muted-foreground mb-4 px-1">{rca.rcs_recommendation}</p>
           )}
 
-          {/* Card list */}
           <div className="space-y-4 mb-4">
             {(Object.keys(RCS_QUESTION_LABELS) as Array<keyof typeof RCS_QUESTION_LABELS>).map((qKey) => {
               const q = rca[qKey as keyof ReputationalContagion] as { score: number; weight: number; evidence: string; damaging_headline?: string } | undefined;
@@ -430,7 +473,6 @@ export default function VettingDetail() {
             })}
           </div>
 
-          {/* Most damaging headline callout */}
           {rca.most_damaging_headline && (
             <div className="border-l-4 border-[hsl(var(--risk-elevated))] bg-[hsl(var(--risk-elevated)/0.04)] rounded-r-xl p-4">
               <div className="flex items-center gap-2 mb-2">
@@ -443,6 +485,183 @@ export default function VettingDetail() {
         </div>
       )}
 
+      {/* ===== CLIENT CONFLICTS TAB ===== */}
+      {activeTab === "conflicts" && conflictDim && !gatesFailed && (
+        <div className="mb-6 space-y-4">
+          {/* Conflict overview */}
+          <div className="glass-card p-5">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="section-title mb-0 flex items-center gap-2"><AlertTriangle className="w-4 h-4" /> Client Conflict Analysis</h2>
+              <div className="flex items-center gap-2">
+                <span className={`text-xl font-bold ${getSubScoreColor(conflictDim.score)}`}>{conflictDim.score.toFixed(1)}</span>
+                <span className="text-xs text-muted-foreground">/ 10</span>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">{conflictDim.summary}</p>
+          </div>
+
+          {/* Sub-factor cards */}
+          {Object.entries(conflictDim.sub_factors).map(([key, sf]) => {
+            const label = key === "direct_conflict" ? "Direct Conflict" : key === "indirect_conflict" ? "Indirect Conflict" : "Future / Emerging Conflict";
+            const chips = parseClientChips(sf.detail);
+            return (
+              <div key={key} className={`glass-card p-4 border-l-4 ${sf.score >= 7 ? "border-l-[hsl(var(--risk-high))]" : sf.score >= 4 ? "border-l-[hsl(var(--risk-elevated))]" : "border-l-[hsl(var(--risk-low))]"}`}>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-semibold text-foreground">{label}</span>
+                  <span className={`text-sm font-bold px-2 py-0.5 rounded ${getSubScoreBg(sf.score)} ${getSubScoreColor(sf.score)}`}>
+                    {sf.score}/10
+                  </span>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-3">{sf.detail}</p>
+                {chips.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {chips.map((c, i) => (
+                      <span key={i} className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                        c.tier === "HIGH" ? "bg-[hsl(var(--risk-high)/0.10)] text-[hsl(var(--risk-high))] border border-[hsl(var(--risk-high)/0.25)]"
+                        : c.tier === "MEDIUM" ? "bg-[hsl(var(--risk-moderate)/0.10)] text-[hsl(var(--risk-moderate))] border border-[hsl(var(--risk-moderate)/0.25)]"
+                        : "bg-muted text-muted-foreground border border-border"
+                      }`}>
+                        {c.name} ({c.tier})
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+
+          {/* Reputational cross-reference */}
+          {rca?.q4_client_conflicts && (
+            <div className="glass-card p-4 border border-[hsl(var(--risk-moderate)/0.2)]">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-wide">Reputational Conflict Assessment</span>
+                <span className={`text-sm font-bold px-2 py-0.5 rounded ${getSubScoreBg(rca.q4_client_conflicts.score)} ${getSubScoreColor(rca.q4_client_conflicts.score)}`}>
+                  {rca.q4_client_conflicts.score}/10
+                </span>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">{rca.q4_client_conflicts.evidence}</p>
+            </div>
+          )}
+
+          {/* Divergence note */}
+          {conflictDim && rca?.q4_client_conflicts && Math.abs(conflictDim.score - rca.q4_client_conflicts.score) > 3 && (
+            <div className="p-3 rounded-lg bg-[hsl(var(--risk-moderate)/0.06)] border border-[hsl(var(--risk-moderate)/0.15)] flex items-start gap-2">
+              <AlertTriangle className="w-4 h-4 text-[hsl(var(--risk-moderate))] flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-muted-foreground">
+                Factual conflict score ({conflictDim.score}) differs significantly from reputational conflict score ({rca.q4_client_conflicts.score}) — review both assessments.
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ===== EXECUTIVES TAB ===== */}
+      {activeTab === "executives" && executives && executives.length > 0 && (
+        <div className="mb-6 space-y-4">
+          <div className="glass-card p-4">
+            <div className="flex items-center gap-2 mb-1">
+              <Users className="w-4 h-4 text-foreground" />
+              <span className="text-sm font-semibold text-foreground">
+                {executives.length} executives identified
+              </span>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {formatUSD(executives.reduce((sum, e) => sum + e.fec_total, 0))} total in political donations
+            </p>
+          </div>
+
+          {executives.map((exec, i) => (
+            <ExecutiveCard key={i} exec={exec} />
+          ))}
+        </div>
+      )}
+
+      {/* ===== GOVERNMENT CONTRACTS TAB ===== */}
+      {activeTab === "contracts" && contracts && (
+        <div className="mb-6 space-y-4">
+          {/* Summary */}
+          <div className="glass-card p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <Landmark className="w-4 h-4 text-foreground" />
+              <h2 className="text-sm font-semibold text-foreground">Government Contracts</h2>
+            </div>
+            <div className="flex items-center gap-4 flex-wrap">
+              <div className="text-center px-3">
+                <p className="text-2xl font-bold text-foreground">{contracts.total_awards}</p>
+                <p className="text-xs text-muted-foreground">Awards</p>
+              </div>
+              <div className="text-center px-3 border-l border-border">
+                <p className="text-2xl font-bold text-foreground">{formatUSD(contracts.total_amount)}</p>
+                <p className="text-xs text-muted-foreground">Total Value</p>
+              </div>
+              <div className="text-center px-3 border-l border-border">
+                <p className="text-2xl font-bold text-foreground">{contracts.agencies_count}</p>
+                <p className="text-xs text-muted-foreground">Agencies</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Top Agencies */}
+          {contracts.top_agencies.length > 0 && (
+            <div className="glass-card p-5">
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Top Agencies</h3>
+              <div className="space-y-2">
+                {contracts.top_agencies.slice(0, 10).map((a, i) => {
+                  const pct = (a.total / contracts.total_amount) * 100;
+                  return (
+                    <div key={i}>
+                      <div className="flex items-center justify-between text-sm mb-1">
+                        <span className="text-foreground font-medium truncate mr-2">{a.agency}</span>
+                        <span className="text-muted-foreground whitespace-nowrap">{formatUSD(a.total)} · {a.count} awards</span>
+                      </div>
+                      <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+                        <div className="h-full rounded-full bg-primary transition-all" style={{ width: `${pct}%` }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Top Awards Table */}
+          {contracts.top_awards.length > 0 && (
+            <div className="glass-card p-5">
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Largest Awards</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-2 pr-3 font-medium text-muted-foreground">Amount</th>
+                      <th className="text-left py-2 pr-3 font-medium text-muted-foreground">Agency</th>
+                      <th className="text-left py-2 pr-3 font-medium text-muted-foreground">Description</th>
+                      <th className="text-left py-2 font-medium text-muted-foreground">Period</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {contracts.top_awards.slice(0, 10).map((award, i) => (
+                      <tr key={i} className="border-b border-border/50">
+                        <td className="py-2 pr-3 font-semibold text-foreground whitespace-nowrap">{formatUSD(award.award_amount)}</td>
+                        <td className="py-2 pr-3 text-muted-foreground">
+                          <div className="text-foreground text-xs">{award.awarding_sub_agency || award.awarding_agency}</div>
+                        </td>
+                        <td className="py-2 pr-3 text-muted-foreground text-xs max-w-xs">
+                          {award.description.length > 120 ? award.description.slice(0, 120) + "…" : award.description}
+                        </td>
+                        <td className="py-2 text-xs text-muted-foreground whitespace-nowrap">
+                          {award.start_date} — {award.end_date}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ===== FLAGS TAB ===== */}
       {activeTab === "flags" && (
         <div className="mb-6">
           {hasFlags ? (
@@ -474,17 +693,18 @@ export default function VettingDetail() {
             </div>
           ) : (
             <div className="glass-card p-4 flex items-center gap-3 bg-[hsl(var(--risk-low)/0.04)] border-[hsl(var(--risk-low)/0.15)]">
-              <CheckCircle className="w-5 h-5 text-risk-low flex-shrink-0" />
+              <CheckCircle className="w-5 h-5 text-[hsl(var(--risk-low))] flex-shrink-0" />
               <span className="text-sm text-foreground font-medium">No flags identified</span>
             </div>
           )}
         </div>
       )}
 
+      {/* ===== SOURCES TAB ===== */}
       {activeTab === "sources" && result?.sources && result.sources.length > 0 && (
         <div className="glass-card p-6 mb-6">
           <h2 className="section-title flex items-center gap-2"><Link2 className="w-4 h-4" /> All Research Sources ({result.sources.length})</h2>
-          <p className="text-xs text-muted-foreground mb-4">Complete list of sources researched by the pipeline. Individual sources are linked to specific findings in the Scorecard tab.</p>
+          <p className="text-xs text-muted-foreground mb-4">Complete list of sources researched by the pipeline.</p>
           <div className="space-y-1">
             {[...result.sources].sort((a, b) => b.score - a.score).map((src) => (
               <div key={src.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors text-sm">
@@ -498,6 +718,7 @@ export default function VettingDetail() {
         </div>
       )}
 
+      {/* ===== DECISION TAB ===== */}
       {activeTab === "decision" && (v.status === "completed" || v.status === "gates_failed") && (
         <div className="glass-card p-6 mb-6">
           <h2 className="section-title flex items-center gap-2"><Shield className="w-4 h-4" /> Decision</h2>
@@ -519,7 +740,7 @@ export default function VettingDetail() {
           ) : (
             <div>
               <p className="text-sm text-muted-foreground mb-4">
-                {v.recommendation && <>Pipeline recommends: <strong>{v.recommendation}</strong></>}
+                {primaryRecommendation && <>Pipeline recommends: <strong>{primaryRecommendation}</strong></>}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <Button onClick={() => handleDecisionClick("approved")} className="bg-[hsl(var(--risk-low))] hover:bg-[hsl(var(--risk-low)/0.85)] text-white font-bold shadow-sm">
@@ -574,6 +795,82 @@ export default function VettingDetail() {
   );
 }
 
+/* ===== Executive Card Component ===== */
+function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div className="glass-card p-4">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1">
+          <div className="flex items-center gap-2 flex-wrap mb-1">
+            <span className="font-semibold text-foreground">{exec.name}</span>
+            {exec.sanctions_flag && (
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--risk-high)/0.10)] text-[hsl(var(--risk-high))] border border-[hsl(var(--risk-high)/0.25)]">
+                ⚠ SANCTIONS
+              </span>
+            )}
+            {!exec.sanctions_flag && (
+              <CheckCircle className="w-3.5 h-3.5 text-[hsl(var(--risk-low))]" />
+            )}
+          </div>
+          <p className="text-xs text-muted-foreground mb-2">
+            {exec.title}
+            {exec.is_officer && exec.is_director ? " · Officer & Director" : exec.is_officer ? " · Officer" : exec.is_director ? " · Director" : ""}
+          </p>
+          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1">
+              <DollarSign className="w-3 h-3" />
+              {formatUSD(exec.fec_total)} ({exec.fec_count} contributions)
+            </span>
+            <span className="flex items-center gap-1">
+              <Newspaper className="w-3 h-3" />
+              {exec.news_count} news hits
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {(exec.fec_top_recipients.length > 0 || exec.news_headlines.length > 0) && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="w-full mt-3 pt-2 border-t text-xs font-medium text-primary hover:text-primary/80 flex items-center justify-center gap-1"
+        >
+          {expanded ? "Hide Details" : "View Details"}
+          {expanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+        </button>
+      )}
+
+      {expanded && (
+        <div className="mt-3 space-y-3">
+          {exec.fec_top_recipients.length > 0 && (
+            <div>
+              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Top FEC Recipients</h5>
+              <div className="space-y-1">
+                {exec.fec_top_recipients.slice(0, 5).map((r, i) => (
+                  <div key={i} className="flex items-center justify-between text-xs p-1.5 rounded bg-muted/50">
+                    <span className="text-foreground truncate mr-2">{r.name}</span>
+                    <span className="text-muted-foreground whitespace-nowrap">{formatUSD(r.total)} · {r.count}x</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {exec.news_headlines.length > 0 && (
+            <div>
+              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Top Headlines</h5>
+              <ul className="space-y-1">
+                {exec.news_headlines.slice(0, 3).map((h, i) => (
+                  <li key={i} className="text-xs text-muted-foreground leading-relaxed">• {h}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ScoreCircle({ score, color }: { score: number; color: string }) {
   return (
     <div className="relative w-24 h-24 mx-auto">
@@ -590,15 +887,14 @@ function ScoreCircle({ score, color }: { score: number; color: string }) {
   );
 }
 
-
 function GateCard({ title, gate }: { title: string; gate: { status: "PASS" | "FAIL"; sources_checked: string[]; matches: any[] } }) {
   const pass = gate.status === "PASS";
   return (
-    <div className={`glass-card p-4 border-l-4 ${pass ? "border-l-risk-low" : "border-l-destructive"}`}>
+    <div className={`glass-card p-4 border-l-4 ${pass ? "border-l-[hsl(var(--risk-low))]" : "border-l-destructive"}`}>
       <div className="flex items-center gap-2 mb-2">
-        {pass ? <CheckCircle className="w-5 h-5 text-risk-low" /> : <XCircle className="w-5 h-5 text-destructive" />}
+        {pass ? <CheckCircle className="w-5 h-5 text-[hsl(var(--risk-low))]" /> : <XCircle className="w-5 h-5 text-destructive" />}
         <span className="font-semibold text-sm text-foreground">{title}</span>
-        <span className={`text-xs font-bold px-2 py-0.5 rounded ${pass ? "bg-[hsl(var(--risk-low)/0.10)] text-risk-low" : "bg-destructive/10 text-destructive"}`}>
+        <span className={`text-xs font-bold px-2 py-0.5 rounded ${pass ? "bg-[hsl(var(--risk-low)/0.10)] text-[hsl(var(--risk-low))]" : "bg-destructive/10 text-destructive"}`}>
           {gate.status}
         </span>
       </div>

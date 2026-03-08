@@ -66,6 +66,45 @@ export interface ReputationalContagion {
   most_damaging_headline: string;
 }
 
+export interface CombinedDecision {
+  recommendation: string;
+  combined_tier: string;
+  factual_tier: string;
+  factual_score: number;
+  rcs_tier: string;
+  rcs_score: number;
+  driver: string;
+  driver_detail: string;
+}
+
+export interface KeyExecutive {
+  name: string;
+  title: string;
+  is_officer: boolean;
+  is_director: boolean;
+  fec_total: number;
+  fec_count: number;
+  fec_top_recipients: { name: string; total: number; count: number }[];
+  news_count: number;
+  news_headlines: string[];
+  sanctions_flag: boolean;
+}
+
+export interface GovernmentContracts {
+  total_awards: number;
+  total_amount: number;
+  agencies_count: number;
+  top_agencies: { agency: string; total: number; count: number }[];
+  top_awards: {
+    award_amount: number;
+    awarding_agency: string;
+    awarding_sub_agency: string;
+    description: string;
+    start_date: string;
+    end_date: string;
+  }[];
+}
+
 export interface VettingResultJSON {
   subject: {
     name: string;
@@ -94,6 +133,9 @@ export interface VettingResultJSON {
   };
   executive_summary: string;
   reputational_contagion?: ReputationalContagion;
+  combined_decision?: CombinedDecision;
+  key_executives?: KeyExecutive[];
+  government_contracts?: GovernmentContracts;
   sources?: { id: number; url: string; title: string; score: number }[];
   metadata: {
     pipeline_version: string;
