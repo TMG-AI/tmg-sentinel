@@ -426,7 +426,7 @@
     },
     "composite_rcs": 6.4,
     "rcs_risk_tier": "ELEVATED",
-    "rcs_recommendation": "Requires Jim/Tara/partner sign-off with written justification",
+    "rcs_recommendation": "Requires partner sign-off with written justification",
     "divergence_alert": null,
     "most_damaging_headline": "Obama's Campaign Manager Now Helping ICE's Tech Partner Palantir"
   },
