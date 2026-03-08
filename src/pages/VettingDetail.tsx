@@ -5,7 +5,7 @@ import { DimensionCard } from "@/components/DimensionCard";
 import { RCSCard } from "@/components/RCSCard";
 import {
   getRiskTierColor, getEngagementClass, getVettingLevelColor,
-  getDecisionColor, getDecisionLabel, getScoreBarColor,
+  getDecisionColor, getDecisionLabel,
   formatDateTime,
 } from "@/lib/vetting-utils";
 import { Button } from "@/components/ui/button";
