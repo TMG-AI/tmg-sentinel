@@ -152,6 +152,15 @@
   .engagement-domestic-corp {
     @apply bg-[hsl(var(--domestic-corp)/0.10)] text-[hsl(var(--domestic-corp))] border border-[hsl(var(--domestic-corp)/0.20)] font-medium;
   }
+  .engagement-gov-affairs {
+    @apply bg-[hsl(var(--gov-affairs)/0.10)] text-[hsl(var(--gov-affairs))] border border-[hsl(var(--gov-affairs)/0.20)] font-medium;
+  }
+  .engagement-corp-advisory {
+    @apply bg-[hsl(var(--corp-advisory)/0.10)] text-[hsl(var(--corp-advisory))] border border-[hsl(var(--corp-advisory)/0.20)] font-medium;
+  }
+  .engagement-campaign {
+    @apply bg-[hsl(var(--campaign)/0.10)] text-[hsl(var(--campaign))] border border-[hsl(var(--campaign)/0.20)] font-medium;
+  }
 }
 
 @layer utilities {
