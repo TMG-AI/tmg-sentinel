@@ -59,6 +59,12 @@
     --domestic-political-foreground: 0 0% 100%;
     --domestic-corp: 220 15% 55%;
     --domestic-corp-foreground: 0 0% 100%;
+    --gov-affairs: 200 70% 45%;
+    --gov-affairs-foreground: 0 0% 100%;
+    --corp-advisory: 270 50% 55%;
+    --corp-advisory-foreground: 0 0% 100%;
+    --campaign: 330 65% 50%;
+    --campaign-foreground: 0 0% 100%;
 
     /* Status colors */
     --status-pending: 220 10% 60%;
