@@ -19,10 +19,7 @@ export function TopNav() {
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
               <Shield className="w-5 h-5 text-primary-foreground" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-bold text-foreground tracking-tight leading-none">The Messina Group</span>
-              <span className="text-[11px] text-muted-foreground mt-0.5">Client Vetting System</span>
-            </div>
+            <span className="text-sm font-bold text-foreground tracking-tight">Client Vetting System</span>
           </div>
 
           {/* Navigation */}
