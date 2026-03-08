@@ -396,7 +396,7 @@ export default function VettingDetail() {
             <div className="border-l-4 border-[hsl(var(--risk-elevated))] bg-[hsl(var(--risk-elevated)/0.04)] rounded-r-xl p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Newspaper className="w-4 h-4 text-[hsl(var(--risk-elevated))]" />
-                <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] uppercase tracking-wide">Most Damaging Headline</span>
+                <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] uppercase tracking-wide">Potential Damaging Headline</span>
               </div>
               <p className="text-sm italic text-foreground font-medium">"{rca.most_damaging_headline}"</p>
             </div>
