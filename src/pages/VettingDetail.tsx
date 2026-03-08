@@ -614,7 +614,7 @@ export default function VettingDetail() {
           {/* Top Agencies */}
           {contracts.top_agencies.length > 0 && (
             <div className="glass-card p-5">
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Top Agencies</h3>
+              <h3 className="text-xs font-semibold tracking-wider text-muted-foreground mb-3">Top Agencies</h3>
               <div className="space-y-2">
                 {contracts.top_agencies.slice(0, 10).map((a, i) => {
                   const pct = (a.total / contracts.total_amount) * 100;
