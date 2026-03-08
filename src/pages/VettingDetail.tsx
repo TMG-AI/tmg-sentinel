@@ -186,12 +186,12 @@ export default function VettingDetail() {
 
       {/* Divergence Alert — always visible */}
       {rca?.divergence_alert && (
-        <div className="p-4 border-x border-border bg-[hsl(var(--risk-moderate)/0.06)]">
+        <div className="p-4 border-x border-border bg-[hsl(var(--risk-elevated)/0.10)] border-t border-t-[hsl(var(--risk-elevated)/0.3)]">
           <div className="flex items-start gap-3">
-            <ShieldAlert className="w-5 h-5 text-[hsl(var(--risk-moderate))] flex-shrink-0 mt-0.5" />
+            <ShieldAlert className="w-5 h-5 text-[hsl(var(--risk-elevated))] flex-shrink-0 mt-0.5" />
             <div>
-              <span className="text-xs font-bold text-[hsl(var(--risk-moderate))] uppercase tracking-wide">Divergence Alert</span>
-              <p className="text-sm text-foreground mt-0.5">{rca.divergence_alert}</p>
+              <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] uppercase tracking-wide">⚠ Divergence Alert</span>
+              <p className="text-sm text-foreground mt-0.5 font-medium">{rca.divergence_alert}</p>
             </div>
           </div>
         </div>
@@ -205,8 +205,8 @@ export default function VettingDetail() {
               key={t.id}
               onClick={() => setActiveTab(t.id)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
-                activeTab === t.id
-                  ? "bg-primary text-primary-foreground"
+              activeTab === t.id
+                  ? "bg-foreground text-background"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
             >
@@ -331,7 +331,7 @@ export default function VettingDetail() {
                     <div className="mt-2 space-y-2">
                       {dim.evidence.map((ev, i) => (
                         <div key={i} className="p-3 rounded-lg bg-muted text-sm">
-                          <p className="text-foreground">{ev.text}</p>
+                          <p className="text-foreground">{ev.text.replace(/\[\d+\]/g, "")}</p>
                           {ev.source_urls && ev.source_urls.length > 0 ? (
                             <div className="flex items-center gap-2 flex-wrap mt-2">
                               {ev.source_urls.map((su, si) => (
@@ -396,7 +396,7 @@ export default function VettingDetail() {
             <div className="border-l-4 border-[hsl(var(--risk-elevated))] bg-[hsl(var(--risk-elevated)/0.04)] rounded-r-xl p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Newspaper className="w-4 h-4 text-[hsl(var(--risk-elevated))]" />
-                <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] uppercase tracking-wide">Most Damaging Headline</span>
+                <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] uppercase tracking-wide">Potential Damaging Headline</span>
               </div>
               <p className="text-sm italic text-foreground font-medium">"{rca.most_damaging_headline}"</p>
             </div>
@@ -463,8 +463,7 @@ export default function VettingDetail() {
           <div className="space-y-1">
             {[...result.sources].sort((a, b) => b.score - a.score).map((src) => (
               <div key={src.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors text-sm">
-                <span className="text-xs font-mono text-muted-foreground w-6 text-right flex-shrink-0">{src.id}</span>
-                <a href={src.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline truncate flex-1">
+                <a href={src.url} target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary hover:underline truncate flex-1">
                   {src.title}
                 </a>
                 <ExternalLink className="w-3 h-3 text-muted-foreground flex-shrink-0" />
@@ -498,16 +497,16 @@ export default function VettingDetail() {
                 {v.recommendation && <>Pipeline recommends: <strong>{v.recommendation}</strong></>}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <Button onClick={() => handleDecisionClick("approved")} className="bg-[hsl(var(--risk-low))] hover:bg-[hsl(var(--risk-low)/0.9)] text-[hsl(var(--risk-low-foreground))]">
-                  Approve
+                <Button onClick={() => handleDecisionClick("approved")} className="bg-[hsl(var(--risk-low))] hover:bg-[hsl(var(--risk-low)/0.85)] text-white font-bold shadow-sm">
+                  ✓ Approve
                 </Button>
-                <Button onClick={() => handleDecisionClick("conditionally_approved")} className="bg-[hsl(var(--risk-moderate))] hover:bg-[hsl(var(--risk-moderate)/0.9)] text-[hsl(var(--risk-moderate-foreground))]">
+                <Button onClick={() => handleDecisionClick("conditionally_approved")} className="bg-[hsl(var(--risk-elevated))] hover:bg-[hsl(var(--risk-elevated)/0.85)] text-white font-bold shadow-sm">
                   Conditional
                 </Button>
-                <Button onClick={() => handleDecisionClick("rejected")} variant="destructive">
-                  Reject
+                <Button onClick={() => handleDecisionClick("rejected")} className="bg-[hsl(var(--risk-high))] hover:bg-[hsl(var(--risk-high)/0.85)] text-white font-bold shadow-sm">
+                  ✕ Reject
                 </Button>
-                <Button onClick={() => handleDecisionClick("pending_review")} variant="outline" className="border-primary text-primary">
+                <Button onClick={() => handleDecisionClick("pending_review")} className="bg-[hsl(var(--gov-affairs))] hover:bg-[hsl(var(--gov-affairs)/0.85)] text-white font-bold shadow-sm">
                   Further Review
                 </Button>
               </div>
