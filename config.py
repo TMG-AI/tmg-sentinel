@@ -30,7 +30,9 @@ SEC_DIR = DATA_DIR / "sec"
 LOBBYING_DIR = DATA_DIR / "lobbying"
 BANKRUPTCY_DIR = DATA_DIR / "bankruptcy"
 SOCIAL_MEDIA_DIR = DATA_DIR / "social_media"
+EXECUTIVES_DIR = DATA_DIR / "executives"
 INTERNATIONAL_DIR = DATA_DIR / "international"
+CONTRACTS_DIR = DATA_DIR / "contracts"
 MANUAL_DIR = DATA_DIR / "manual"
 UNIFIED_DIR = DATA_DIR / "unified"
 CACHE_DIR = DATA_DIR / "cache"
@@ -38,7 +40,8 @@ CACHE_DIR = DATA_DIR / "cache"
 # Create all directories
 for d in [INTAKE_DIR, SANCTIONS_DIR, DEBARMENT_DIR, NEWS_DIR, LITIGATION_DIR,
           CORPORATE_DIR, FEC_DIR, SEC_DIR, LOBBYING_DIR, BANKRUPTCY_DIR,
-          SOCIAL_MEDIA_DIR, INTERNATIONAL_DIR, MANUAL_DIR, UNIFIED_DIR, CACHE_DIR]:
+          SOCIAL_MEDIA_DIR, EXECUTIVES_DIR, INTERNATIONAL_DIR, CONTRACTS_DIR,
+          MANUAL_DIR, UNIFIED_DIR, CACHE_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 # ─── SSL Context (macOS Python fix) ────────────────────────
@@ -95,6 +98,9 @@ ENDPOINTS = {
     # International (Step 12)
     "opensanctions_pep": "https://api.opensanctions.org/match/peps",
     "propublica_nonprofits": "https://projects.propublica.org/nonprofits/api/v2/search.json",
+
+    # Government Contracts (Step 14) — no API key needed
+    "usaspending_awards": "https://api.usaspending.gov/api/v2/search/spending_by_award/",
 }
 
 # ─── Vetting Levels ─────────────────────────────────────────
@@ -106,13 +112,13 @@ VETTING_LEVELS = {
     },
     "standard_vet": {
         "label": "Standard Vet",
-        "steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 13],  # + Litigation, Corporate, FEC, SEC, Lobbying, Deep News
-        "description": "Full domestic background check with deep news. ~15 minutes.",
+        "steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 14, 13],  # + Exec ID, Gov Contracts
+        "description": "Full domestic background check with deep news, executive vetting, gov contracts. ~20 minutes.",
     },
     "deep_dive": {
         "label": "Deep Dive",
-        "steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13],  # Everything (Step 11 folded into Step 10)
-        "description": "Comprehensive investigation. ~30 minutes.",
+        "steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 13],  # Everything
+        "description": "Comprehensive investigation with executive vetting and gov contracts. ~35 minutes.",
     },
 }
 
@@ -129,9 +135,10 @@ STEP_SCRIPTS = {
     8: "search_lobbying.py",
     9: "search_bankruptcy.py",
     10: "search_news.py",        # --deep mode
-    11: "search_social.py",
+    11: "search_executives.py",
     12: "search_international.py",
     13: "synthesize.py",
+    14: "search_contracts.py",
 }
 
 STEP_NAMES = {
@@ -146,9 +153,10 @@ STEP_NAMES = {
     8: "Lobbying Disclosures",
     9: "Bankruptcy Filings",
     10: "Expanded News/Media (Deep)",
-    11: "Social Media Review",
+    11: "Executive Identification & Mini-Vet",
     12: "International Checks",
     13: "Claude Synthesis",
+    14: "Government Contracts",
 }
 
 # ─── Risk Scoring Configuration ─────────────────────────────
@@ -271,9 +279,19 @@ TAVILY_DEEP_QUERIES = [
     "{name} facebook linkedin public posts",
 ]
 
+# Additional queries when subject_type == "organization"
+TAVILY_ORG_QUERIES = [
+    "{name} boycott protest activist opposition campaign",
+    "{name} CEO executive statements controversial remarks",
+    "{name} government contracts federal spending agency",
+    "{name} donations political money returned rejected",
+    "{name} employee dissent whistleblower internal opposition",
+    "{name} surveillance enforcement immigration civil liberties",
+]
+
 # ─── Pipeline Settings ──────────────────────────────────────
 REQUEST_DELAY = 0.5  # seconds between API calls (rate limiting)
-REQUEST_TIMEOUT = 15  # seconds
+REQUEST_TIMEOUT = 30  # seconds (bumped from 15 — CourtListener pagination was timing out)
 MAX_RETRIES = 2
 
 # Claude Synthesis Model

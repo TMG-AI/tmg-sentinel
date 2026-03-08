@@ -1,0 +1,10 @@
+{
+  "step": 11,
+  "step_name": "Executive Identification & Mini-Vet",
+  "subject_id": "peter_thiel",
+  "skipped": true,
+  "reason": "Subject type is 'individual', not 'organization'",
+  "metadata": {
+    "checked_at": "2026-03-08T16:16:53.770535+00:00"
+  }
+}

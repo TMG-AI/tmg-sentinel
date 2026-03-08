@@ -27,7 +27,9 @@ from search_fec import run_fec_search
 from search_sec import run_sec_search
 from search_lobbying import run_lobbying_search
 from search_bankruptcy import run_bankruptcy_search
+from search_executives import run_executive_search
 from search_international import run_international_search
+from search_contracts import run_contracts_search
 from synthesize import run_synthesis
 
 
@@ -168,12 +170,26 @@ def run_pipeline(
         print(f"{'─'*50}")
         news_deep = run_news_search(intake, deep=True)
 
+    # ─── STEP 11: Executive Identification ───────────
+    if 11 in steps_to_run and (from_step is None or from_step <= 11):
+        print(f"\n{'─'*50}")
+        print("STEP 11: EXECUTIVE IDENTIFICATION & MINI-VET")
+        print(f"{'─'*50}")
+        executives = run_executive_search(intake)
+
     # ─── STEP 12: International Checks ───────────────
     if 12 in steps_to_run and (from_step is None or from_step <= 12):
         print(f"\n{'─'*50}")
         print("STEP 12: INTERNATIONAL CHECKS")
         print(f"{'─'*50}")
         international = run_international_search(intake)
+
+    # ─── STEP 14: Government Contracts ─────────────────
+    if 14 in steps_to_run and (from_step is None or from_step <= 14):
+        print(f"\n{'─'*50}")
+        print("STEP 14: GOVERNMENT CONTRACTS")
+        print(f"{'─'*50}")
+        contracts = run_contracts_search(intake)
 
     # ─── STOP BEFORE SYNTHESIS (if --no-synthesis) ───
     if no_synthesis:

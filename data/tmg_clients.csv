@@ -1,55 +1,54 @@
-client_name
-AB (American Independent Media)
-AB Foundation
-AB (Democracy Matters)
-AHCV
-Albemarle
-Albertsons
-Arizona Public Service Company
-Ascension Health Services
-Barclays
-Bellhop Technologies (Obi)
-Blockchain.com
-CaptureRX (SisuRX)
-Coinbase
-College of Adaptive Arts
-Davidson Kempner Capital Management LP
-DaVita
-Delta Air Lines
-Duke Energy
-Eigen Labs
-EVgo
-Front Financial (Mesh)
-General Intelligence Agency of Mongolia
-Genesis Digital Assets
-Google LLC
-Guardant Health
-HongShan Capital Advisors
-Keep Americans Covered
-Kelvin Zero
-"Lyft, Inc."
-Mayday Health
-Methodic Labs
-Omnia Healthcare Group
-Online Lenders Alliance
-Rowland Huelin & Phil Romeril (Jersey)
-Santander
-SASCC
-Sequence
-Sharrow Marine
-Signal Interactive - Jones Walker (Archdiocese)
-Signal Interactive - Stretto
-Simpson Thacher & Bartlett LLP
-Skydance (Latham & Watkins)
-Sphinx Investment Corp.
-Stonington Global LLC
-Stonington Global (Genesis Healthcare)
-"Stubhub, Inc."
-Sui Foundation
-Suno
-Tidjane Thaim
-TikTok
-Trousdale Ventures LLC
-US Soccer Foundation
-Viz.ai
-ZTOTAL
+canonical_name,entity_type,sector_guess,issue_tags_guess,sensitivity_tier
+"AB (American Independent Media)","nonprofit/advocacy","media / democracy","independent media; democracy; civic engagement","HIGH"
+"AB Foundation","foundation","philanthropy","grants; democracy; civil society","HIGH"
+"AB (Democracy Matters)","nonprofit/advocacy","democracy advocacy","youth organizing; campaign finance reform; voting rights","HIGH"
+"AHCV","unknown/org","unknown","unknown; needs manual tagging","LOW"
+"Albemarle","corporation","chemicals / mining","lithium; mining; climate; environmental regulation","MEDIUM"
+"Albertsons","corporation","retail / grocery","labor; food supply; antitrust; consumer prices","MEDIUM"
+"Arizona Public Service Company","corporation","utility / energy","electricity; rates; clean energy transition; climate; state regulation","HIGH"
+"Ascension Health Services","nonprofit/health","healthcare system","hospital policy; Catholic health ethics; Medicaid/Medicare; charity care","HIGH"
+"Barclays","financial_firm","global banking","finance regulation; LIBOR legacy; ESG; sanctions; climate finance","MEDIUM"
+"Bellhop Technologies (Obi)","corporation","tech / logistics","gig work; labor; urban mobility","LOW"
+"Blockchain.com","corporation","crypto / fintech","crypto regulation; KYC/AML; sanctions; financial innovation","MEDIUM"
+"CaptureRX (SisuRX)","corporation","healthcare / pharma services","340B drug discounts; healthcare cost; regulation","MEDIUM"
+"Coinbase","corporation","crypto / exchange","SEC enforcement; crypto regulation; sanctions compliance; financial inclusion","HIGH"
+"College of Adaptive Arts","nonprofit","education / disability","disability rights; inclusive education; community programs","HIGH"
+"Davidson Kempner Capital Management LP","financial_firm","hedge fund / investment","private equity; distressed assets; corporate governance","MEDIUM"
+"DaVita","corporation","healthcare / dialysis","Medicare/Medicaid; kidney care; healthcare reimbursement; labor","HIGH"
+"Delta Air Lines","corporation","aviation / transportation","labor; unions; emissions; airport expansion; antitrust; consumer protection","HIGH"
+"Duke Energy","corporation","utility / energy","coal/gas/nuclear; climate; rates; environmental regulation; clean energy","HIGH"
+"Eigen Labs","corporation","blockchain / infrastructure","web3 infrastructure; scalability; crypto governance","MEDIUM"
+"EVgo","corporation","EV charging / energy","EV infrastructure; climate policy; utilities; public-private partnerships","MEDIUM"
+"Front Financial (Mesh)","fintech","fintech / financial data","open banking; consumer data; privacy; financial access","MEDIUM"
+"General Intelligence Agency of Mongolia","government/sovereign","intelligence / government","national security; foreign policy; surveillance; human rights","HIGH"
+"Genesis Digital Assets","corporation","crypto mining / energy","Bitcoin mining; energy use; climate; regulation","HIGH"
+"Google LLC","corporation","big tech / search / ads","antitrust; privacy; content moderation; AI; labor","HIGH"
+"Guardant Health","corporation","biotech / diagnostics","precision oncology; FDA regulation; healthcare cost; access","MEDIUM"
+"HongShan Capital Advisors","financial_firm","venture / private equity","tech investment; cross-border capital; China-US scrutiny","HIGH"
+"Keep Americans Covered","nonprofit/advocacy","health policy advocacy","ACA; Medicaid; coverage expansion; insurance markets","HIGH"
+"Kelvin Zero","corporation","cybersecurity / identity","digital identity; zero-trust security; privacy","MEDIUM"
+"Lyft, Inc.","corporation","gig platform / transportation","gig worker classification; labor; urban transport; emissions","HIGH"
+"Mayday Health","nonprofit/advocacy","public health / reproductive","abortion access information; post-Dobbs legal environment","HIGH"
+"Methodic Labs","corporation","AI / software (likely)","AI development; data use; privacy; needs refinement","MEDIUM"
+"Omnia Healthcare Group","corporation","healthcare services","clinics; healthcare access; payor mix; regulation","MEDIUM"
+"Online Lenders Alliance","trade_association","online lending / fintech","APR caps; consumer protection; financial regulation; small-dollar loans","HIGH"
+"Rowland Huelin & Phil Romeril (Jersey)","individuals/firms","finance / offshore (likely)","Jersey finance; trusts; cross-border structures; tax/regulation","MEDIUM"
+"Santander","financial_firm","global retail / commercial bank","consumer finance; auto lending; regulation; cross-border; ESG","MEDIUM"
+"SASCC","nonprofit/advocacy","unknown (likely civic/coalition)","coalition/committee; needs manual clarification","MEDIUM"
+"Sequence","corporation","healthcare / fertility / fintech","fertility/health benefits; insurance; reproductive health","MEDIUM"
+"Sharrow Marine","corporation","maritime / engineering","propeller tech; fuel efficiency; emissions","LOW"
+"Simpson Thacher & Bartlett LLP","law_firm","elite law firm","corporate law; M&A; restructuring; financial regulation","HIGH"
+"Skydance (Latham & Watkins)","corporation","media / entertainment","content/IP; streaming; labor (SAG-AFTRA/WGA); culture","MEDIUM"
+"Sphinx Investment Corp.","financial_firm","investment / holding","portfolio investments; corporate governance","MEDIUM"
+"Stonington Global LLC","consultancy","strategic advisory / lobbying","political risk; lobbying; foreign affairs","HIGH"
+"Stonington Global (Genesis Healthcare)","consultancy","healthcare advisory / lobbying","nursing homes; long-term care; healthcare regulation","HIGH"
+"Stubhub, Inc.","corporation","ticketing / marketplace","consumer protection; fees; antitrust; event industry","MEDIUM"
+"Sui Foundation","foundation","crypto protocol foundation","L1 blockchain; decentralization; governance; regulation","MEDIUM"
+"Suno","corporation","AI / generative audio","copyright; AI; creator economy; content moderation","MEDIUM"
+"Tidjane Thaim","individual","finance / politics","former CEO & political figure; governance; international finance","HIGH"
+"TikTok","corporation","social media / platform","content moderation; youth safety; China ties; national security; privacy","HIGH"
+"Trousdale Ventures LLC","financial_firm","venture / family office","tech startups; climate; health; philanthropy (portfolio-dependent)","MEDIUM"
+"US Soccer Foundation","nonprofit","sports / youth development","youth sports; equity; community development","MEDIUM"
+"Viz.ai","corporation","health tech / AI","AI diagnostics; FDA; healthcare liability; equity of access","MEDIUM"
+"ZTOTAL","corporation","unknown (likely tech/fintech)","unknown; needs manual tagging","LOW"
+"Paramount (Paramount Global / Pictures)","corporation","media / entertainment / streaming","film and TV production; streaming; content moderation; DEI and newsroom politics; Israel-Palestine stance; mergers/regulation","HIGH"

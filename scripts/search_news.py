@@ -45,7 +45,12 @@ def run_news_search(intake: dict, deep: bool = False) -> dict:
     print(f"  🔍 Step {step}: Searching news/media ({mode}) for '{name}'...")
 
     # Select query templates
-    templates = config.TAVILY_DEEP_QUERIES if deep else config.TAVILY_BASIC_QUERIES
+    subject_type = intake["subject"].get("type", "individual")
+    templates = list(config.TAVILY_DEEP_QUERIES if deep else config.TAVILY_BASIC_QUERIES)
+
+    # Add org-specific queries for deep searches of organizations
+    if deep and subject_type == "organization" and hasattr(config, "TAVILY_ORG_QUERIES"):
+        templates.extend(config.TAVILY_ORG_QUERIES)
 
     all_results = []
     all_sources = []

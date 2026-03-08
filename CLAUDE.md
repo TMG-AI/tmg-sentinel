@@ -1,6 +1,6 @@
 # Vetting Pipeline Project - Session Status
 
-## Last Updated: 2026-03-07 (Session 5 — in progress)
+## Last Updated: 2026-03-08 (Session 7)
 
 ## Architecture Decision (Session 4)
 **Lovable CANNOT run Python code.** The FastAPI server / localhost approach from Session 3 was wrong — Lovable previews run in the cloud and can't reach localhost. After evaluating options (Vercel, n8n, ngrok), we chose the **Palantir model**:
@@ -12,6 +12,22 @@
 5. The Submit Vetting form in Lovable sends an email (mailto) to Shannon instead of calling an API
 
 **The FastAPI server (`server.py`) is no longer used.**
+
+## Completed (Session 7)
+- **Executive Identification & Mini-Vet (Step 11)** — NEW. When vetting an organization, identifies top executives via SEC EDGAR Form 3/4 filings, then runs mini due diligence on each: FEC donations, targeted news search, and sanctions screening. Falls back to Tavily web search for private companies. Tested on Palantir: found 10 executives including Karp, Thiel, Sankar, Cohen, Glazer. Vetted 8 with FEC/news/sanctions.
+- **Government Contracts Search (Step 14)** — NEW. Searches USAspending.gov API (no API key needed) for federal contract awards by company name. Returns contract amounts, awarding agencies, descriptions. Tested on Palantir: 414 awards, $3.94B total across 15 agencies (DoD $2.3B, HHS $405M, DHS $353M, DOJ $209M).
+- **Org-Specific Tavily Queries** — When deep-searching an organization, 6 additional queries now run: boycott/protest activity, CEO/executive statements, government contracts, political donation returns, employee dissent/whistleblower, surveillance/enforcement/civil liberties.
+- **Pipeline integration** — Both new steps integrated into pipeline.py, config.py, and synthesize.py. Standard vet and deep dive levels now include Steps 11 and 14.
+- **Bug fix: EDGAR XML parsing** — Fixed XSL path filtering (was returning HTML instead of XML) and boolean parsing (EDGAR uses both "1" and "true" for flags).
+- **Request timeout bumped** — CourtListener pagination timeout increased from 15→30→45 seconds in config.py.
+
+## Completed (Session 6)
+- **Combined Decision logic** — `synthesize.py` now produces a `combined_decision` field that takes the MORE CAUTIOUS of factual risk vs RCS. Previously the `scoring.recommendation` only reflected factual risk, ignoring RCS entirely. Now the unified JSON has `combined_decision.recommendation`, `combined_decision.combined_tier`, and `combined_decision.driver` explaining which score drove the decision.
+- **Pagination added to CourtListener searches** — Both `search_litigation.py` (Step 4) and `search_bankruptcy.py` (Step 9) now paginate through ALL results (up to 500, safety cap 25 pages × 20). Previously they only fetched the first 20 results regardless of how many existed (e.g., 247 bankruptcy results but only 20 reviewed).
+- **Deep dive intake files created** — `peter_thiel_deep` and `palantir_technologies_deep` intake files in `data/intake/` for running deep_dive level (adds Step 9 bankruptcy + Step 12 international) while preserving original standard_vet data.
+- **TMG Vetting Pipeline Memo** — Comprehensive memo written for non-technical TMG leadership at `~/Downloads/TMG_Vetting_Pipeline_Memo.docx`. Covers: full pipeline methodology, scoring details (both factual and RCS), what's automated vs manual, what could be automated with paid APIs and estimated costs.
+- **Erik Prince test data cleaned up** — removed `data/unified/erik_prince.json` (was never a real pipeline run)
+- **Lovable RCA prompt created** — `LOVABLE_RCA_PROMPT.md` and copy at `~/Downloads/LOVABLE_RCA_PROMPT.md` for pasting into Lovable
 
 ## Completed (Session 5)
 - **TMG Client Conflict Check** — Pipeline reads `data/tmg_clients.csv` (54 clients from August 2025 Excel) and checks subject against client list during synthesis. Fuzzy matching with common-word filtering to reduce false positives.
@@ -46,12 +62,17 @@
 - `/Users/shannonwheatman/vetting/.env` — API keys (8 keys, all verified working)
 - `/Users/shannonwheatman/vetting/requirements.txt` — Python dependencies
 - `/Users/shannonwheatman/vetting/scripts/pipeline.py` — Main orchestrator (CLI entry point)
-- `/Users/shannonwheatman/vetting/scripts/synthesize.py` — Step 13: Claude synthesis (loads all step data + manual findings)
+- `/Users/shannonwheatman/vetting/scripts/synthesize.py` — Step 13: Claude synthesis with combined_decision (factual + RCS)
+- `/Users/shannonwheatman/vetting/scripts/search_litigation.py` — Step 4: CourtListener with full pagination
+- `/Users/shannonwheatman/vetting/scripts/search_bankruptcy.py` — Step 9: CourtListener bankruptcy with full pagination
+- `/Users/shannonwheatman/vetting/scripts/search_executives.py` — Step 11: Executive ID + mini-vet (EDGAR Form 3/4 → FEC, news, sanctions per exec)
+- `/Users/shannonwheatman/vetting/scripts/search_contracts.py` — Step 14: USAspending.gov government contracts (no API key)
 - `/Users/shannonwheatman/vetting/data/manual/_TEMPLATE.json` — Template for manual findings
 - `/Users/shannonwheatman/vetting/data/unified/` — Final output JSONs (this is what Lovable displays)
+- `/Users/shannonwheatman/vetting/LOVABLE_RCA_PROMPT.md` — OLD Lovable prompt (RCA only, Session 6)
+- `/Users/shannonwheatman/vetting/LOVABLE_DASHBOARD_PROMPT.md` — NEW comprehensive Lovable prompt (RCS + combined decision + executives + contracts). Also copied to ~/Downloads/
 - `/Users/shannonwheatman/vetting/src/lib/types.ts` — Lovable TypeScript types
-- `/Users/shannonwheatman/vetting/src/lib/vetting-store.ts` — Lovable Zustand store (currently uses mock data)
-- `/Users/shannonwheatman/vetting/src/pages/SubmitVetting.tsx` — Form (needs mailto change)
+- `/Users/shannonwheatman/vetting/src/lib/vetting-store.ts` — Lovable Zustand store
 - `/Users/shannonwheatman/vetting/server.py` — **DEPRECATED** FastAPI server (no longer used)
 
 ## How to Run a Vetting
@@ -104,15 +125,16 @@ git push
 
 ## Vetting Levels
 - **quick_screen**: Steps 0,1,2,3,13 — Sanctions, debarment, basic news (3 queries), synthesis
-- **standard_vet**: Steps 0,1,2,3,4,5,6,7,8,10,13 — All APIs + deep news (15 queries), synthesis
-- **deep_dive**: Steps 0,1,2,3,4,5,6,7,8,9,10,12,13 — Everything + bankruptcy + international
+- **standard_vet**: Steps 0,1,2,3,4,5,6,7,8,10,11,14,13 — All APIs + deep news + exec ID + gov contracts, synthesis
+- **deep_dive**: Steps 0,1,2,3,4,5,6,7,8,9,10,11,12,14,13 — Everything + bankruptcy + international + exec ID + gov contracts
 
 ## Pipeline Scripts (in `scripts/`)
 - `intake.py` (Step 0), `check_sanctions.py` (Step 1), `check_debarment.py` (Step 2)
-- `search_news.py` (Steps 3/10), `search_litigation.py` (Step 4), `search_corporate.py` (Step 5)
+- `search_news.py` (Steps 3/10), `search_litigation.py` (Step 4 — now with pagination), `search_corporate.py` (Step 5)
 - `search_fec.py` (Step 6), `search_sec.py` (Step 7), `search_lobbying.py` (Step 8)
-- `search_bankruptcy.py` (Step 9), `search_international.py` (Step 12)
-- `synthesize.py` (Step 13), `pipeline.py` (orchestrator)
+- `search_bankruptcy.py` (Step 9 — now with pagination), `search_executives.py` (Step 11 — orgs only)
+- `search_international.py` (Step 12), `search_contracts.py` (Step 14 — USAspending.gov)
+- `synthesize.py` (Step 13 — now with combined_decision), `pipeline.py` (orchestrator)
 
 ## Manual Findings Categories
 Use `data/manual/_TEMPLATE.json` as a starting point. Categories:
@@ -131,13 +153,92 @@ Use `data/manual/_TEMPLATE.json` as a starting point. Categories:
 1. **Submit form → email**: Change "Confirm & Start Vetting" to open a mailto link to Shannon's Gmail with all form fields in the body, instead of calling addVetting()
 2. **Dashboard reads from JSON files**: Remove mock data. Load vetting results from JSON files committed to the repo (in `public/data/` or similar). Each file follows the existing `VettingResultJSON` type in types.ts.
 3. **Sources section on VettingDetail page** — types are there, UI rendering may need work
+4. **Combined Decision display** — The unified JSON now has a `combined_decision` object. Lovable should display this as the PRIMARY recommendation, not just `scoring.recommendation`
+5. **Deep dive results** — Once `peter_thiel_deep.json` and `palantir_technologies_deep.json` are generated, copy them to `public/data/vettings/` and update `public/data/vettings-index.json`
 
-## Pipeline Output — Two Scores Side by Side
-The unified JSON now produces BOTH:
-1. **Factual Risk Score** (0-10) — Traditional due diligence: sanctions, litigation, SEC, FEC, news
-2. **Reputational Contagion Score** (0-10) — TMG-specific: partisan alignment, stakeholder backlash, narrative vulnerability, client conflicts, industry toxicity, temporal context
+## Pipeline Output — Three Decision Layers
+The unified JSON now produces:
+1. **Factual Risk Score** (0-10) — Traditional due diligence: sanctions, litigation, SEC, FEC, news → `scoring.recommendation`
+2. **Reputational Contagion Score** (0-10) — TMG-specific: partisan alignment, stakeholder backlash, narrative vulnerability, client conflicts, industry toxicity, temporal context → `reputational_contagion.rcs_recommendation`
+3. **Combined Decision** — Takes the MORE CAUTIOUS of the two → `combined_decision.recommendation` (THIS IS THE ONE TO DISPLAY)
 
-If factual risk is LOW but RCS is HIGH, a **DIVERGENCE ALERT** is flagged. This is the key innovation — catching "legally clean but reputationally toxic" subjects like Peter Thiel.
+If factual risk is LOW but RCS is HIGH, a **DIVERGENCE ALERT** is flagged. The combined decision will reflect the higher-risk signal.
+
+## Test Data — Standard Vet (original, preserved)
+
+### Peter Thiel (standard_vet)
+- **Subject ID**: `peter_thiel`
+- **Engagement**: domestic_political (1.0x multiplier)
+- **Level**: standard_vet
+- **Factual Risk**: 3.31/10 MODERATE — Conditional Approve (from quick screen; standard_vet synthesis was pre-RCA)
+- **NOTE**: This was synthesized BEFORE combined_decision and full RCA existed
+
+### Palantir Technologies (standard_vet)
+- **Subject ID**: `palantir_technologies`
+- **Type**: organization
+- **Engagement**: domestic_corporate (0.85x multiplier)
+- **Level**: standard_vet
+- **Factual Risk: 2.41/10 LOW** — Approve
+- **RCS: 4.85/10 ELEVATED** — Requires Jim/Tara/partner sign-off
+- **NOTE**: No combined_decision field (synthesized before Session 6 fix)
+
+## Test Data — Deep Dive (new, with combined_decision + pagination)
+
+### Peter Thiel (deep_dive)
+- **Subject ID**: `peter_thiel_deep`
+- **Engagement**: domestic_political (1.0x multiplier)
+- **Level**: deep_dive (adds bankruptcy Step 9, international Step 12)
+- **Status**: AWAITING RUN — Shannon needs to run in terminal
+
+### Palantir Technologies (deep_dive)
+- **Subject ID**: `palantir_technologies_deep`
+- **Type**: organization
+- **Engagement**: domestic_corporate (0.85x multiplier)
+- **Level**: deep_dive
+- **Status**: AWAITING RUN — Shannon needs to run in terminal after Peter Thiel
+
+## Lovable Integration Status
+- `LOVABLE_RCA_PROMPT.md` — Full prompt for Lovable to add RCA display, dual scores, divergence alerts, mailto form
+- `public/data/vettings-index.json` — Currently lists peter_thiel.json and palantir_technologies.json
+- `public/data/vettings/*.json` — Copies of unified JSONs where Lovable's store reads from
+- Shannon should paste `LOVABLE_RCA_PROMPT.md` contents into Lovable chat to implement
+- **After deep dives complete**: copy `_deep` JSONs to `public/data/vettings/` and update index
+
+## What's Next
+1. **Run deep dives in terminal** — commands need updating for new steps (11, 14)
+2. **Give Lovable the RCA prompt** — paste LOVABLE_RCA_PROMPT.md content into Lovable
+3. **Update Lovable to display combined_decision** — not just scoring.recommendation
+4. **Update Lovable to display executive findings and government contracts** — new data in unified JSON
+5. **Copy deep dive results to public/data/vettings/** and update index after runs complete
+6. **Test more subjects** — run pipeline on realistic potential clients
+7. **FEC limitation**: Karp's $1M MAGA Inc / inauguration donations not captured by schedule_a individual search — those are committee-level transfers. News searches will catch these, but consider adding PAC/committee contribution search in a future iteration.
+
+## Deep Dive Terminal Commands (Updated Session 7 — now includes Step 11 + Step 14)
+
+### Peter Thiel Deep Dive (individual — Step 11 will auto-skip)
+```bash
+cd /Users/shannonwheatman/vetting && python3 scripts/pipeline.py \
+  --name "Peter Thiel" \
+  --type individual \
+  --company "Palantir Technologies" \
+  --country US \
+  --engagement domestic_political \
+  --level deep_dive
+```
+Note: Step 11 (exec ID) auto-skips for individuals. Step 14 (contracts) will search "Palantir Technologies".
+
+### Palantir Deep Dive (organization — full exec + contracts)
+```bash
+cd /Users/shannonwheatman/vetting && python3 scripts/pipeline.py \
+  --name "Palantir Technologies" \
+  --type organization \
+  --company "Palantir Technologies" \
+  --country US \
+  --city "Denver, CO" \
+  --engagement domestic_corporate \
+  --level deep_dive
+```
+Note: Step 11 identifies executives via EDGAR, mini-vets each. Step 14 pulls gov contracts from USAspending.gov. Deep news now includes 6 org-specific queries (boycotts, exec statements, etc.).
 
 ## Perplexity Reports (in ~/Downloads/)
 - `TMG Vetting Pipeline  Tavily Domain Configuration & Quality Prompt.pdf`
@@ -146,32 +247,16 @@ If factual risk is LOW but RCS is HIGH, a **DIVERGENCE ALERT** is flagged. This 
 - `vetting_questionnaire.pdf` / `.docx`
 - `TMG Vetting Pipeline  Partisan Alignment & Reputational Contagion Analysis.pdf` — Framework for RCA (implemented in Session 5)
 
-## Peter Thiel Test Data
-- **Subject ID**: `peter_thiel`
-- **Engagement**: domestic_political (1.0x multiplier)
-- **Level**: standard_vet (with deep news)
-- **Quick screen result**: 3.31/10 MODERATE — Conditional Approve
-- **Standard vet**: 114 Tavily sources, synthesis running
-- **Data files**: `data/intake/peter_thiel.json`, `data/sanctions/peter_thiel.json`, `data/debarment/peter_thiel.json`, `data/news/peter_thiel.json`, `data/litigation/peter_thiel.json`, `data/corporate/peter_thiel.json`, `data/fec/peter_thiel.json`, `data/sec/peter_thiel.json`, `data/lobbying/peter_thiel.json`, `data/unified/peter_thiel.json`
+## Session 7 Code Changes Summary
+1. **NEW: `scripts/search_executives.py`** — Step 11. Identifies executives via SEC EDGAR Form 3/4 XML parsing (CIK lookup → submissions → parse ownership XML). For each executive: FEC donations, Tavily news, OpenSanctions. Falls back to Tavily for non-SEC companies. Auto-skips for individuals.
+2. **NEW: `scripts/search_contracts.py`** — Step 14. Searches USAspending.gov POST API for contracts + IDVs by company name. Paginates (up to 1000 results). Aggregates by agency. No API key needed.
+3. **`config.py`** — Added `EXECUTIVES_DIR`, `CONTRACTS_DIR`, `usaspending_awards` endpoint. Updated vetting levels to include Steps 11, 14. Added `TAVILY_ORG_QUERIES` (6 org-specific deep queries). Updated `STEP_SCRIPTS` and `STEP_NAMES`.
+4. **`scripts/search_news.py`** — Now appends `TAVILY_ORG_QUERIES` during deep search when subject_type == "organization".
+5. **`scripts/pipeline.py`** — Added Step 11 and Step 14 blocks. Imports `search_executives` and `search_contracts`.
+6. **`scripts/synthesize.py`** — Added `format_executives_for_prompt()` and `format_contracts_for_prompt()`. Updated `load_all_step_data()` to load executives and contracts. Updated prompt to include both new data sections.
 
-## Palantir Technologies Test Data (Session 5)
-- **Subject ID**: `palantir_technologies`
-- **Type**: organization
-- **Engagement**: domestic_corporate (0.85x multiplier)
-- **Level**: standard_vet
-- **Factual Risk: 2.41/10 LOW** — Approve
-- **RCS: 4.85/10 ELEVATED** — Requires Jim/Tara/partner sign-off
-- Key RCS scores: Partisan Alignment 3, Stakeholder Backlash 6, Narrative Vulnerability 7, Client Conflicts 2, Industry Toxicity 7, Temporal Context 5
-- Most Damaging Headline: "Obama Campaign Manager's Firm Now Helping Trump-Donor Thiel's Surveillance Company Target Americans"
-- 98 Tavily sources, 248 dockets, 3166 EDGAR filings, 10000+ SEC filings
-
-## Lovable Integration Status
-- `LOVABLE_RCA_PROMPT.md` — Full prompt for Lovable to add RCA display, dual scores, divergence alerts, mailto form
-- `public/data/vettings-index.json` — Lists peter_thiel.json and palantir_technologies.json
-- `public/data/vettings/*.json` — Copies of unified JSONs where Lovable's store reads from
-- Shannon should paste `LOVABLE_RCA_PROMPT.md` contents into Lovable chat to implement
-
-## What's Next
-1. **Give Lovable the RCA prompt** — paste LOVABLE_RCA_PROMPT.md content into Lovable
-2. **Re-run Peter Thiel synthesis** with RCA module (current peter_thiel.json has RCA from pre-Session-5 synthesis)
-3. **Test more subjects** — run standard_vet on realistic potential clients
+## Session 6 Code Changes Summary
+1. **`scripts/synthesize.py`** — Added `combined_decision` block after RCS computation (~line 970). Takes max severity of factual tier vs RCS tier. New fields: `recommendation`, `combined_tier`, `factual_tier`, `factual_score`, `rcs_tier`, `rcs_score`, `driver`, `driver_detail`.
+2. **`scripts/search_litigation.py`** — Replaced single-page `search_courtlistener()` with paginated version. MAX_PAGES=25 (500 results cap). Both dockets and opinions now fully paginated. Removed `[:10]` cap on opinions and `[:5]` cap on output.
+3. **`scripts/search_bankruptcy.py`** — Same pagination treatment. MAX_PAGES=25. Gracefully handles errors mid-pagination (returns what was collected).
+4. **`data/intake/peter_thiel_deep.json`** and **`data/intake/palantir_technologies_deep.json`** — Deep dive intake files with `_deep` suffix subject IDs.

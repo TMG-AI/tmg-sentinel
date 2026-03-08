@@ -146,66 +146,46 @@ def enrich_evidence_with_sources(synthesized: dict, sources: list) -> dict:
 
 # ─── TMG Client Conflict Check ─────────────────────────────
 
-def check_client_conflicts(name: str, company: str = "") -> dict:
-    """Check vetting subject against TMG client list for conflicts."""
+def load_tmg_clients() -> list[dict]:
+    """Load enriched TMG client list from CSV."""
     client_csv = config.PROJECT_ROOT / "data" / "tmg_clients.csv"
     if not client_csv.exists():
-        return {"checked": False, "reason": "No client list found at data/tmg_clients.csv"}
-
+        return []
     import csv
     with open(client_csv) as f:
         reader = csv.DictReader(f)
-        clients = [row["client_name"].strip() for row in reader if row.get("client_name")]
-
-    name_lower = name.lower()
-    company_lower = (company or "").lower()
-    # Also extract individual words for partial matching
-    name_parts = set(name_lower.split())
-    company_parts = set(w for w in company_lower.replace("/", " ").replace(",", " ").split() if len(w) > 3)
-
-    exact_matches = []
-    partial_matches = []
-
-    for client in clients:
-        client_lower = client.lower()
-        # Exact or near-exact match
-        if name_lower in client_lower or client_lower in name_lower:
-            exact_matches.append(client)
-        elif company_lower and (company_lower in client_lower or client_lower in company_lower):
-            exact_matches.append(client)
-        # Partial match — company name words appear in client name
-        elif company_parts:
-            overlap = company_parts & set(client_lower.replace("(", " ").replace(")", " ").split())
-            if overlap and len(overlap) >= 1:
-                # Filter out common words
-                meaningful = overlap - {"the", "inc", "llc", "corp", "group", "company", "services",
-                                        "fund", "capital", "technologies", "management", "partners",
-                                        "foundation", "ventures", "advisors", "solutions", "global",
-                                        "national", "american", "united", "international"}
-                if meaningful:
-                    partial_matches.append({"client": client, "matched_words": list(meaningful)})
-
-    return {
-        "checked": True,
-        "total_clients": len(clients),
-        "exact_matches": exact_matches,
-        "partial_matches": partial_matches,
-        "has_conflicts": len(exact_matches) > 0,
-        "has_potential_conflicts": len(partial_matches) > 0,
-    }
+        return [row for row in reader if row.get("canonical_name")]
 
 
-def format_conflicts_for_prompt(conflicts: dict) -> str:
-    if not conflicts.get("checked"):
+def format_conflicts_for_prompt(clients: list[dict]) -> str:
+    """Format the full enriched client list for Claude to reason about conflicts."""
+    if not clients:
         return "Client conflict check not available (no client list found)."
-    lines = [f"Checked against {conflicts['total_clients']} active TMG clients."]
-    if conflicts["exact_matches"]:
-        lines.append(f"EXACT MATCHES FOUND: {', '.join(conflicts['exact_matches'])}")
-    if conflicts["partial_matches"]:
-        for pm in conflicts["partial_matches"]:
-            lines.append(f"POTENTIAL MATCH: {pm['client']} (matched: {', '.join(pm['matched_words'])})")
-    if not conflicts["exact_matches"] and not conflicts["partial_matches"]:
-        lines.append("No conflicts found with current TMG clients.")
+
+    lines = [
+        f"You are given the list of {len(clients)} active TMG clients below with metadata.",
+        "You MUST cross-reference ALL research data above (litigation, news, corporate filings,",
+        "SEC, FEC, lobbying, bankruptcy, international) against this client list to identify conflicts.",
+        "",
+        "Look for:",
+        "- Direct adversarial relationships: lawsuits, regulatory complaints, public disputes between the subject and any TMG client",
+        "- Competitive conflicts: subject directly competes with a TMG client in a way that creates tension",
+        "- Sector-level conflicts: subject is publicly attacking or undermining an industry/issue area where TMG has multiple clients",
+        "- Reputational spillover: association with the subject could embarrass or alienate a TMG client",
+        "",
+        "Treat HIGH-sensitivity clients as ones where any major conflict is presumptively unacceptable",
+        "unless leadership explicitly overrides it.",
+        "",
+        "TMG CLIENT LIST:",
+        "canonical_name | entity_type | sector | issue_tags | sensitivity_tier",
+        "-" * 80,
+    ]
+    for c in clients:
+        lines.append(
+            f"{c.get('canonical_name', '?')} | {c.get('entity_type', '?')} | "
+            f"{c.get('sector_guess', '?')} | {c.get('issue_tags_guess', '?')} | "
+            f"{c.get('sensitivity_tier', '?')}"
+        )
     return "\n".join(lines)
 
 
@@ -233,7 +213,9 @@ def load_all_step_data(subject_id: str, vetting_level: str) -> dict:
         "sec": load_step_json(config.SEC_DIR, subject_id),
         "lobbying": load_step_json(config.LOBBYING_DIR, subject_id),
         "bankruptcy": load_step_json(config.BANKRUPTCY_DIR, subject_id),
+        "executives": load_step_json(config.EXECUTIVES_DIR, subject_id),
         "international": load_step_json(config.INTERNATIONAL_DIR, subject_id),
+        "contracts": load_step_json(config.CONTRACTS_DIR, subject_id),
         "manual": load_step_json(config.MANUAL_DIR, subject_id),
     }
 
@@ -416,6 +398,108 @@ def format_international_for_prompt(data: dict) -> str:
     return "\n".join(lines)
 
 
+def format_executives_for_prompt(data: dict) -> str:
+    if not data or data.get("skipped"):
+        reason = data.get("reason", "Not an organization") if data else "No executive data"
+        return f"Executive search skipped: {reason}"
+
+    lines = []
+    summary = data.get("summary", {})
+    lines.append(f"Source: {data.get('identification_source', 'Unknown')}")
+    lines.append(f"Total executives found: {summary.get('total_executives_found', 0)}")
+    lines.append(f"Executives vetted: {summary.get('executives_vetted', 0)}")
+    lines.append(f"Total FEC donations by executives: ${summary.get('total_fec_contributions', 0):,.0f}")
+    lines.append(f"Sanctions flags: {summary.get('sanctions_flags', 0)}")
+    lines.append(f"News flags: {summary.get('news_flags', 0)}")
+    lines.append("")
+
+    for exec_info in data.get("executives", []):
+        name = exec_info.get("display_name") or exec_info.get("name", "Unknown")
+        title = exec_info.get("officer_title", "")
+        roles = []
+        if exec_info.get("is_officer"):
+            roles.append(f"Officer ({title})" if title else "Officer")
+        if exec_info.get("is_director"):
+            roles.append("Director")
+        if exec_info.get("is_ten_percent_owner"):
+            roles.append("10%+ Owner")
+        role_str = ", ".join(roles) if roles else "Unknown role"
+        lines.append(f"  --- {name} — {role_str} ---")
+
+        # FEC donations
+        fec = exec_info.get("fec", {})
+        if fec.get("total_results", 0) > 0:
+            lines.append(f"    FEC Donations: {fec['total_results']} contributions, ${fec.get('total_amount', 0):,.0f} total")
+            for recip in fec.get("top_recipients", [])[:5]:
+                lines.append(f"      → {recip['name']}: ${recip['total']:,.0f} ({recip['count']} contributions)")
+        else:
+            lines.append(f"    FEC Donations: None found")
+
+        # News
+        news = exec_info.get("news", {})
+        if news.get("total_results", 0) > 0:
+            lines.append(f"    News/Media: {news['total_results']} results")
+            if news.get("answer"):
+                lines.append(f"      Summary: {news['answer'][:300]}")
+            for nr in news.get("results", [])[:3]:
+                lines.append(f"      • {nr.get('title', '')[:100]}")
+                if nr.get("content"):
+                    lines.append(f"        {nr['content'][:200]}")
+        else:
+            lines.append(f"    News/Media: No concerning coverage found")
+
+        # Sanctions
+        sanctions = exec_info.get("sanctions", {})
+        if sanctions.get("matches_found", 0) > 0:
+            lines.append(f"    ⚠️ SANCTIONS FLAG: {sanctions['matches_found']} match(es)")
+            for m in sanctions.get("matches", [])[:3]:
+                lines.append(f"      Match: {m.get('name', '')} (score: {m.get('score', 0):.2f})")
+        else:
+            lines.append(f"    Sanctions: Clear")
+
+        lines.append("")
+
+    return "\n".join(lines)
+
+
+def format_contracts_for_prompt(data: dict) -> str:
+    if not data or data.get("skipped"):
+        reason = data.get("reason", "No company name") if data else "No contracts data"
+        return f"Government contracts search skipped: {reason}"
+
+    summary = data.get("summary", {})
+    lines = []
+    lines.append(f"Search name: {data.get('search_name', 'N/A')}")
+    lines.append(f"Total awards: {summary.get('total_awards', 0)}")
+    lines.append(f"Total amount: ${summary.get('total_amount', 0):,.0f}")
+    lines.append(f"  Contracts: {summary.get('total_contracts', 0)} (${summary.get('contracts_amount', 0):,.0f})")
+    lines.append(f"  IDVs (blanket agreements): {summary.get('total_idvs', 0)} (${summary.get('idvs_amount', 0):,.0f})")
+    lines.append(f"Agencies: {summary.get('agencies_count', 0)}")
+    lines.append("")
+
+    # Top agencies
+    top_agencies = data.get("top_agencies", [])
+    if top_agencies:
+        lines.append("Top Awarding Agencies:")
+        for a in top_agencies[:10]:
+            lines.append(f"  • {a['agency']}: ${a['total']:,.0f} ({a['count']} awards)")
+        lines.append("")
+
+    # Top contracts
+    top_awards = data.get("top_awards", [])
+    if top_awards:
+        lines.append("Largest Awards:")
+        for award in top_awards[:15]:
+            amt = award.get("award_amount", 0) or 0
+            lines.append(f"  • ${amt:,.0f} — {award.get('awarding_agency', 'N/A')} / {award.get('awarding_sub_agency', 'N/A')}")
+            desc = award.get("description", "")
+            if desc:
+                lines.append(f"    Description: {desc[:200]}")
+            lines.append(f"    Period: {award.get('start_date', '?')} to {award.get('end_date', '?')}")
+
+    return "\n".join(lines) if lines else "No government contracts found."
+
+
 def format_manual_for_prompt(data: dict) -> str:
     if not data:
         return "No manual findings provided."
@@ -468,12 +552,14 @@ def build_synthesis_prompt(intake: dict, step_data: dict, sources: list = None) 
     sec_text = format_sec_for_prompt(step_data.get("sec", {}))
     lobbying_text = format_lobbying_for_prompt(step_data.get("lobbying", {}))
     bankruptcy_text = format_bankruptcy_for_prompt(step_data.get("bankruptcy", {}))
+    executives_text = format_executives_for_prompt(step_data.get("executives", {}))
     international_text = format_international_for_prompt(step_data.get("international", {}))
+    contracts_text = format_contracts_for_prompt(step_data.get("contracts", {}))
     manual_text = format_manual_for_prompt(step_data.get("manual", {}))
 
-    # Client conflict check
-    conflicts = check_client_conflicts(name, company)
-    conflicts_text = format_conflicts_for_prompt(conflicts)
+    # Client conflict check — load enriched client list for Claude to reason about
+    tmg_clients = load_tmg_clients()
+    conflicts_text = format_conflicts_for_prompt(tmg_clients)
 
     # Build sources reference for citations
     sources_ref = build_sources_reference(sources or [])
@@ -576,13 +662,19 @@ You have a numbered source reference list below. When writing evidence items:
 ## BANKRUPTCY DATA (Step 9)
 {bankruptcy_text}
 
+## EXECUTIVE IDENTIFICATION & MINI-VET (Step 11 — for organizations)
+{executives_text}
+
 ## INTERNATIONAL / PEP DATA (Step 12)
 {international_text}
+
+## GOVERNMENT CONTRACTS DATA (Step 14 — USAspending.gov)
+{contracts_text}
 
 ## MANUAL FINDINGS (from human researcher — treat as HIGH-CONFIDENCE primary evidence)
 {manual_text}
 
-## TMG CLIENT CONFLICT CHECK (use this for the conflict_of_interest dimension)
+## TMG CLIENT CONFLICT ANALYSIS
 {conflicts_text}
 
 ---
@@ -966,6 +1058,101 @@ def run_synthesis(intake: dict) -> dict:
 
     synthesized["reputational_contagion"] = rca
 
+    # ── Combined Recommendation (uses the MORE CAUTIOUS of factual vs RCS) ──
+    # Map tier names to severity order (higher = more cautious)
+    TIER_SEVERITY = {"LOW": 0, "MODERATE": 1, "ELEVATED": 2, "HIGH": 3, "CRITICAL": 4}
+    # Map severity to combined recommendation text
+    COMBINED_RECOMMENDATIONS = {
+        0: "Approve",
+        1: "Conditional Approve",
+        2: "Further Review — Requires Jim/Tara/partner sign-off",
+        3: "Recommend Reject — Requires unanimous partner approval to override",
+        4: "Recommend Reject — Engagement would damage TMG's core brand",
+    }
+
+    factual_severity = TIER_SEVERITY.get(tier_info["tier"], 0)
+    rcs_severity = TIER_SEVERITY.get(rcs_tier_info["tier"], 0)
+    combined_severity = max(factual_severity, rcs_severity)
+    combined_tier_names = {0: "LOW", 1: "MODERATE", 2: "ELEVATED", 3: "HIGH", 4: "CRITICAL"}
+    combined_tier = combined_tier_names[combined_severity]
+    combined_recommendation = COMBINED_RECOMMENDATIONS[combined_severity]
+
+    # Determine which score drove the combined decision
+    if rcs_severity > factual_severity:
+        combined_driver = "reputational_contagion"
+        combined_driver_detail = (
+            f"Combined recommendation driven by Reputational Contagion Score "
+            f"({composite_rcs}/10 {rcs_tier_info['tier']}) which is more cautious than "
+            f"Factual Risk Score ({final_composite}/10 {tier_info['tier']})"
+        )
+    elif factual_severity > rcs_severity:
+        combined_driver = "factual_risk"
+        combined_driver_detail = (
+            f"Combined recommendation driven by Factual Risk Score "
+            f"({final_composite}/10 {tier_info['tier']}) which is more cautious than "
+            f"Reputational Contagion Score ({composite_rcs}/10 {rcs_tier_info['tier']})"
+        )
+    else:
+        combined_driver = "both_equal"
+        combined_driver_detail = (
+            f"Both scores align: Factual Risk ({final_composite}/10 {tier_info['tier']}) "
+            f"and Reputational Contagion ({composite_rcs}/10 {rcs_tier_info['tier']})"
+        )
+
+    synthesized["combined_decision"] = {
+        "recommendation": combined_recommendation,
+        "combined_tier": combined_tier,
+        "factual_tier": tier_info["tier"],
+        "factual_score": final_composite,
+        "rcs_tier": rcs_tier_info["tier"],
+        "rcs_score": composite_rcs,
+        "driver": combined_driver,
+        "driver_detail": combined_driver_detail,
+    }
+
+    # ─── Append structured executive & contract data for Lovable ──
+    exec_data = step_data.get("executives", {})
+    if exec_data and not exec_data.get("skipped"):
+        synthesized["key_executives"] = []
+        for e in exec_data.get("executives", []):
+            exec_entry = {
+                "name": e.get("display_name") or e.get("name", ""),
+                "title": e.get("officer_title", ""),
+                "is_officer": e.get("is_officer", False),
+                "is_director": e.get("is_director", False),
+                "fec_total": e.get("fec", {}).get("total_amount", 0),
+                "fec_count": e.get("fec", {}).get("total_results", 0),
+                "fec_top_recipients": e.get("fec", {}).get("top_recipients", [])[:5],
+                "news_count": e.get("news", {}).get("total_results", 0),
+                "news_headlines": [
+                    r.get("title", "")
+                    for r in e.get("news", {}).get("results", [])[:3]
+                ],
+                "sanctions_flag": e.get("sanctions", {}).get("matches_found", 0) > 0,
+            }
+            synthesized["key_executives"].append(exec_entry)
+
+    contracts_data = step_data.get("contracts", {})
+    if contracts_data and not contracts_data.get("skipped"):
+        summary = contracts_data.get("summary", {})
+        synthesized["government_contracts"] = {
+            "total_awards": summary.get("total_awards", 0),
+            "total_amount": summary.get("total_amount", 0),
+            "agencies_count": summary.get("agencies_count", 0),
+            "top_agencies": contracts_data.get("top_agencies", [])[:10],
+            "top_awards": [
+                {
+                    "award_amount": a.get("award_amount", 0),
+                    "awarding_agency": a.get("awarding_agency", ""),
+                    "awarding_sub_agency": a.get("awarding_sub_agency", ""),
+                    "description": (a.get("description", "") or "")[:200],
+                    "start_date": a.get("start_date", ""),
+                    "end_date": a.get("end_date", ""),
+                }
+                for a in contracts_data.get("top_awards", [])[:10]
+            ],
+        }
+
     # Count enrichment stats
     total_evidence = 0
     enriched_evidence = 0
@@ -1035,6 +1222,14 @@ def run_synthesis(intake: dict) -> dict:
     if rca.get("divergence_alert"):
         print(f"  !! {rca['divergence_alert']}")
 
+    # Print combined decision
+    cd = synthesized.get("combined_decision", {})
+    print(f"\n  {'='*50}")
+    print(f"  COMBINED DECISION: {cd.get('recommendation', 'N/A')}")
+    print(f"  Combined Tier: {cd.get('combined_tier', 'N/A')} (driven by {cd.get('driver', 'N/A')})")
+    print(f"  {cd.get('driver_detail', '')}")
+    print(f"  {'='*50}")
+
     return synthesized
 
 
@@ -1054,6 +1249,7 @@ if __name__ == "__main__":
     else:
         scoring = result.get("scoring", {})
         rca = result.get("reputational_contagion", {})
+        cd = result.get("combined_decision", {})
         print(f"\n{'='*50}")
         print(f"FACTUAL Risk Score: {scoring.get('final_composite', 'N/A')}/10 ({scoring.get('risk_tier', 'N/A')})")
         print(f"REPUTATIONAL Contagion Score: {rca.get('composite_rcs', 'N/A')}/10 ({rca.get('rcs_risk_tier', 'N/A')})")
@@ -1061,4 +1257,6 @@ if __name__ == "__main__":
         print(f"Reputational Recommendation: {rca.get('rcs_recommendation', 'N/A')}")
         if rca.get("divergence_alert"):
             print(f"\n!! DIVERGENCE ALERT: {rca['divergence_alert']}")
+        print(f"\n>>> COMBINED DECISION: {cd.get('recommendation', 'N/A')}")
+        print(f"    Driven by: {cd.get('driver_detail', 'N/A')}")
         print(f"{'='*50}")

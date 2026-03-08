@@ -25,26 +25,62 @@ CHAPTER_KEYWORDS = {
 }
 
 
+BANKRUPTCY_COURTS = "almb,almd,alnb,alnd,alsb,alsd,arb,are,arw,azb,azd,cab,cacd,caeb,caed,canb,cand,casb,casd,cob,cod,ctb,ctd,dcb,dcd,deb,ded,flmb,flmd,flnb,flnd,flsb,flsd,gamb,gamd,ganb,gand,gasb,gasd,gub,gud,hib,hid,iab,ian,ias,idb,idd,ilab,ilcd,ileb,iled,ilnb,ilnd,ilsb,ilsd,innb,innd,insb,insd,ksb,ksd,kyeb,kyed,kywb,kywd,laeb,laed,lamb,lamd,lawb,lawd,mab,mad,mdb,mdd,meab,med,mieb,mied,miwb,miwd,mnb,mnd,moeb,moed,mowb,mowd,msb,msnb,msnd,mssb,mssd,mtb,mtd,nceb,nced,ncmb,ncmd,ncwb,ncwd,ndb,ndd,neb,ned,nhb,nhd,njb,njd,nmb,nmd,nvb,nvd,nyeb,nyed,nynb,nynd,nysb,nysd,nywb,nywd,ohab,ohnd,ohnb,ohsb,ohsd,okeb,oked,oknb,oknd,okwb,okwd,orb,ord,paeb,paed,pamb,pamd,pawb,pawd,prib,prid,rib,rid,scb,scd,sdb,sdd,tneb,tned,tnmb,tnmd,tnwb,tnwd,txeb,txed,txnb,txnd,txsb,txsd,txwb,txwd,utb,utd,vab,vaed,vawb,vawd,vib,vid,vtb,vtd,waeb,waed,wawb,wawd,wvnb,wvnd,wvsb,wvsd,wieb,wied,wiwb,wiwd,wyb,wyd"
+
+# Max pages to paginate through (safety cap)
+MAX_PAGES = 25  # 25 pages × 20 results = up to 500 results
+
+
 def search_bankruptcy(name: str) -> dict:
-    """Search CourtListener for bankruptcy filings."""
+    """Search CourtListener for bankruptcy filings with full pagination."""
+    all_results = []
+    total_count = 0
+    page = 1
+
     try:
-        resp = requests.get(
-            config.ENDPOINTS["courtlistener_bankruptcy"],
-            params={
-                "q": f'"{name}"',
-                "type": "r",  # RECAP dockets
-                "court": "almb,almd,alnb,alnd,alsb,alsd,arb,are,arw,azb,azd,cab,cacd,caeb,caed,canb,cand,casb,casd,cob,cod,ctb,ctd,dcb,dcd,deb,ded,flmb,flmd,flnb,flnd,flsb,flsd,gamb,gamd,ganb,gand,gasb,gasd,gub,gud,hib,hid,iab,ian,ias,idb,idd,ilab,ilcd,ileb,iled,ilnb,ilnd,ilsb,ilsd,innb,innd,insb,insd,ksb,ksd,kyeb,kyed,kywb,kywd,laeb,laed,lamb,lamd,lawb,lawd,mab,mad,mdb,mdd,meab,med,mieb,mied,miwb,miwd,mnb,mnd,moeb,moed,mowb,mowd,msb,msnb,msnd,mssb,mssd,mtb,mtd,nceb,nced,ncmb,ncmd,ncwb,ncwd,ndb,ndd,neb,ned,nhb,nhd,njb,njd,nmb,nmd,nvb,nvd,nyeb,nyed,nynb,nynd,nysb,nysd,nywb,nywd,ohab,ohnd,ohnb,ohsb,ohsd,okeb,oked,oknb,oknd,okwb,okwd,orb,ord,paeb,paed,pamb,pamd,pawb,pawd,prib,prid,rib,rid,scb,scd,sdb,sdd,tneb,tned,tnmb,tnmd,tnwb,tnwd,txeb,txed,txnb,txnd,txsb,txsd,txwb,txwd,utb,utd,vab,vaed,vawb,vawd,vib,vid,vtb,vtd,waeb,waed,wawb,wawd,wvnb,wvnd,wvsb,wvsd,wieb,wied,wiwb,wiwd,wyb,wyd",
-                "page_size": 20,
-                "order_by": "score desc",
-            },
-            headers={
-                "Authorization": f"Token {config.COURTLISTENER_API_TOKEN}",
-            },
-            timeout=config.REQUEST_TIMEOUT,
-        )
-        resp.raise_for_status()
-        return resp.json()
+        while page <= MAX_PAGES:
+            resp = requests.get(
+                config.ENDPOINTS["courtlistener_bankruptcy"],
+                params={
+                    "q": f'"{name}"',
+                    "type": "r",  # RECAP dockets
+                    "court": BANKRUPTCY_COURTS,
+                    "page_size": 20,
+                    "order_by": "score desc",
+                    "page": page,
+                },
+                headers={
+                    "Authorization": f"Token {config.COURTLISTENER_API_TOKEN}",
+                },
+                timeout=45,  # CourtListener pagination needs longer than default
+            )
+            resp.raise_for_status()
+            data = resp.json()
+
+            if page == 1:
+                total_count = data.get("count", 0)
+
+            results = data.get("results", [])
+            if not results:
+                break
+
+            all_results.extend(results)
+
+            # Check if there's a next page
+            if not data.get("next"):
+                break
+
+            page += 1
+            time.sleep(config.REQUEST_DELAY)
+
+        print(f"    Paginated: {len(all_results)} results fetched across {page} page(s) (total in index: {total_count})")
+        return {"count": total_count, "results": all_results}
+
     except Exception as e:
+        # Return whatever we collected before the error
+        if all_results:
+            print(f"    Pagination stopped on page {page}: {e} (collected {len(all_results)} so far)")
+            return {"count": total_count, "results": all_results}
         return {"error": str(e), "count": 0, "results": []}
 
 

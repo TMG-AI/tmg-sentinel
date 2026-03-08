@@ -21,28 +21,62 @@ FRAUD_KEYWORDS = ["fraud", "corrupt", "embezzl", "money launder", "brib", "racke
 REGULATORY_KEYWORDS = ["sec v.", "ftc v.", "enforcement", "securities", "violation"]
 
 
+# Max pages to paginate through (safety cap)
+MAX_PAGES = 25  # 25 pages × 20 results = up to 500 results
+
+
 def search_courtlistener(name: str, search_type: str = "r") -> dict:
     """
-    Search CourtListener RECAP archive.
+    Search CourtListener RECAP archive with full pagination.
     search_type: 'r' = RECAP (dockets), 'o' = opinions, 'p' = people
     """
+    all_results = []
+    total_count = 0
+    page = 1
+
     try:
-        resp = requests.get(
-            config.ENDPOINTS["courtlistener_search"],
-            params={
-                "q": f'"{name}"',
-                "type": search_type,
-                "page_size": 20,
-                "order_by": "score desc",
-            },
-            headers={
-                "Authorization": f"Token {config.COURTLISTENER_API_TOKEN}",
-            },
-            timeout=config.REQUEST_TIMEOUT,
-        )
-        resp.raise_for_status()
-        return resp.json()
+        while page <= MAX_PAGES:
+            resp = requests.get(
+                config.ENDPOINTS["courtlistener_search"],
+                params={
+                    "q": f'"{name}"',
+                    "type": search_type,
+                    "page_size": 20,
+                    "order_by": "score desc",
+                    "page": page,
+                },
+                headers={
+                    "Authorization": f"Token {config.COURTLISTENER_API_TOKEN}",
+                },
+                timeout=45,  # CourtListener pagination needs longer than default
+            )
+            resp.raise_for_status()
+            data = resp.json()
+
+            if page == 1:
+                total_count = data.get("count", 0)
+
+            results = data.get("results", [])
+            if not results:
+                break
+
+            all_results.extend(results)
+
+            # Check if there's a next page
+            if not data.get("next"):
+                break
+
+            page += 1
+            time.sleep(config.REQUEST_DELAY)
+
+        print(f"    Paginated: {len(all_results)} results fetched across {page} page(s) (total in index: {total_count})")
+        return {"count": total_count, "results": all_results}
+
     except Exception as e:
+        # Return whatever we collected before the error
+        if all_results:
+            print(f"    Pagination stopped on page {page}: {e} (collected {len(all_results)} so far)")
+            return {"count": total_count, "results": all_results}
         return {"error": str(e), "count": 0, "results": []}
 
 
@@ -142,9 +176,9 @@ def run_litigation_search(intake: dict) -> dict:
                 "flags": classification["flags"],
             })
 
-    # Process opinions
+    # Process opinions (all paginated results)
     opinions = []
-    for op in opinion_results.get("results", [])[:10]:
+    for op in opinion_results.get("results", []):
         opinions.append({
             "case_name": op.get("caseName") or op.get("case_name", ""),
             "court": op.get("court") or op.get("court_id", ""),
@@ -168,7 +202,7 @@ def run_litigation_search(intake: dict) -> dict:
         "red_flags": red_flags,
         "yellow_flags": yellow_flags,
         "cases": cases,
-        "opinions": opinions[:5],
+        "opinions": opinions,
         "metadata": {
             "checked_at": datetime.now(timezone.utc).isoformat(),
             "source": "CourtListener RECAP",
