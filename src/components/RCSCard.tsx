@@ -101,7 +101,7 @@ export function RCSCard({ label, score, weight, evidence, damagingHeadline, sour
         <div className="border-t px-4 py-4 space-y-3 bg-muted/20">
           {matchedSources.length > 0 && (
             <div className="rounded-lg bg-primary/5 border border-primary/10 p-3">
-              <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Sources</h5>
+              <h5 className="text-xs font-semibold text-primary tracking-wider mb-1.5">Sources</h5>
               <div className="flex flex-wrap gap-2">
                 {matchedSources.map((src, i) => (
                   <a
