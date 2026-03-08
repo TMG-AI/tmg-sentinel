@@ -331,7 +331,7 @@ export default function VettingDetail() {
                     <div className="mt-2 space-y-2">
                       {dim.evidence.map((ev, i) => (
                         <div key={i} className="p-3 rounded-lg bg-muted text-sm">
-                          <p className="text-foreground">{ev.text}</p>
+                          <p className="text-foreground">{ev.text.replace(/\[\d+\]/g, "")}</p>
                           {ev.source_urls && ev.source_urls.length > 0 ? (
                             <div className="flex items-center gap-2 flex-wrap mt-2">
                               {ev.source_urls.map((su, si) => (
