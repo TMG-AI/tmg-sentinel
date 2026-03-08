@@ -503,6 +503,44 @@ export default function VettingDetail() {
             );
           })}
 
+          {/* Evidence items for conflict dimension */}
+          {conflictDim.evidence.length > 0 && (
+            <div className="glass-card p-5">
+              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Supporting Evidence ({conflictDim.evidence.length})</h3>
+              <div className="space-y-2">
+                {conflictDim.evidence.map((ev, i) => {
+                  const hasSourceUrls = ev.source_urls && ev.source_urls.length > 0;
+                  const hasUrl = !!ev.url;
+                  return (
+                    <div key={i} className="rounded-lg border bg-muted/30 p-3">
+                      <p className="text-sm text-foreground/80 leading-relaxed">
+                        {ev.text.replace(/\s*\[\d+\]\s*/g, ' ').replace(/\s*\[\w+\]\s*$/g, '').trim()}
+                      </p>
+                      {(hasSourceUrls || hasUrl) && (
+                        <div className="flex flex-wrap gap-2 pt-2 mt-2 border-t border-border/50">
+                          {hasSourceUrls && ev.source_urls!.map((src, j) => (
+                            <a key={j} href={src.url} target="_blank" rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-full">
+                              <ExternalLink className="h-2.5 w-2.5" />
+                              {src.title.length > 50 ? src.title.slice(0, 50) + "…" : src.title}
+                            </a>
+                          ))}
+                          {!hasSourceUrls && hasUrl && (
+                            <a href={ev.url} target="_blank" rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-full">
+                              <ExternalLink className="h-2.5 w-2.5" />
+                              {ev.source || "View source"}
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Reputational cross-reference */}
           {rca?.q4_client_conflicts && (
             <div className="glass-card p-4 border border-[hsl(var(--risk-moderate)/0.2)]">
