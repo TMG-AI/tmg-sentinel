@@ -503,32 +503,6 @@ function ScoreCircle({ score, color }: { score: number; color: string }) {
   );
 }
 
-function RCSQuestionRow({ label, weight, score, evidence }: { label: string; weight: number; score: number; evidence: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div>
-      <div className="flex items-center justify-between mb-1.5">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-foreground">{label}</span>
-          <span className="text-xs text-muted-foreground">({(weight * 100).toFixed(0)}%)</span>
-        </div>
-        <span className="text-sm font-bold text-foreground">{score.toFixed(1)}</span>
-      </div>
-      <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
-        <div className={`h-full rounded-full transition-all ${getScoreBarColor(score)}`} style={{ width: `${(score / 10) * 100}%` }} />
-      </div>
-      <Collapsible open={open} onOpenChange={setOpen}>
-        <CollapsibleTrigger className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground mt-1 cursor-pointer transition-colors">
-          <ChevronDown className={`w-3 h-3 transition-transform ${open ? 'rotate-180' : ''}`} />
-          {open ? "Hide evidence" : "Show evidence"}
-        </CollapsibleTrigger>
-        <CollapsibleContent>
-          <p className="text-xs text-muted-foreground mt-1 pl-4 border-l-2 border-muted">{evidence}</p>
-        </CollapsibleContent>
-      </Collapsible>
-    </div>
-  );
-}
 
 function GateCard({ title, gate }: { title: string; gate: { status: "PASS" | "FAIL"; sources_checked: string[]; matches: any[] } }) {
   const pass = gate.status === "PASS";
