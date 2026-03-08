@@ -99,12 +99,10 @@ export function RCSCard({ label, score, weight, evidence, damagingHeadline, sour
 
       {expanded && (
         <div className="border-t px-4 py-4 space-y-3 bg-muted/20">
-          <div className="rounded-lg bg-primary/5 border border-primary/10 p-3">
-            <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Evidence</h5>
-            <p className="text-sm text-muted-foreground leading-relaxed">{cleanEvidence}</p>
-
-            {matchedSources.length > 0 && (
-              <div className="flex flex-wrap gap-2 pt-2 mt-2 border-t border-border/50">
+          {matchedSources.length > 0 && (
+            <div className="rounded-lg bg-primary/5 border border-primary/10 p-3">
+              <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Sources</h5>
+              <div className="flex flex-wrap gap-2">
                 {matchedSources.map((src, i) => (
                   <a
                     key={i}
@@ -118,8 +116,8 @@ export function RCSCard({ label, score, weight, evidence, damagingHeadline, sour
                   </a>
                 ))}
               </div>
-            )}
-          </div>
+            </div>
+          )}
 
           {damagingHeadline && (
             <div className="rounded-lg border-l-4 border-[hsl(var(--risk-elevated))] bg-[hsl(var(--risk-elevated)/0.04)] p-3">
