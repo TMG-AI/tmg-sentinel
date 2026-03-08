@@ -144,7 +144,7 @@ export function VettingCard({ vetting: v, onClick }: Props) {
             </span>
           )}
           {v.status === "completed" && !v.decision && (
-            <span className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-[hsl(var(--risk-moderate)/0.12)] text-[hsl(var(--risk-moderate))] animate-pulse-slow">
+            <span className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-[hsl(var(--risk-elevated)/0.10)] text-[hsl(var(--risk-elevated))] border border-[hsl(var(--risk-elevated)/0.20)]">
               <AlertTriangle className="w-3 h-3 inline mr-1" />
               Needs Decision
             </span>
