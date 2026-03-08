@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useVettingStore } from "@/lib/vetting-store";
-import { ENGAGEMENT_LABELS, VETTING_LEVEL_LABELS, DIMENSION_LABELS, Decision } from "@/lib/types";
+import { ENGAGEMENT_LABELS, VETTING_LEVEL_LABELS, DIMENSION_LABELS, RCS_QUESTION_LABELS, Decision, ReputationalContagion } from "@/lib/types";
 import {
   getRiskTierColor, getEngagementClass, getVettingLevelColor,
   getDecisionColor, getDecisionLabel, getScoreBarColor,
@@ -10,13 +10,22 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
 import {
   CheckCircle, XCircle, ArrowLeft, AlertTriangle, ExternalLink, Upload,
-  Shield, Skull, FileText, Clock,
+  Shield, Skull, FileText, Clock, Newspaper, ChevronDown, ShieldAlert,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
+
+function getRcsColor(score: number): string {
+  if (score <= 2.5) return "hsl(var(--risk-low))";
+  if (score <= 4.5) return "hsl(var(--risk-moderate))";
+  if (score <= 6.5) return "hsl(var(--risk-elevated))";
+  if (score <= 8.0) return "hsl(var(--risk-high))";
+  return "hsl(var(--risk-critical, var(--risk-high)))";
+}
 
 export default function VettingDetail() {
   const { id } = useParams<{ id: string }>();
@@ -45,6 +54,7 @@ export default function VettingDetail() {
   const dimensions = result?.dimensions;
   const scoring = result?.scoring;
   const flags = result?.flags || v.flags;
+  const rca = result?.reputational_contagion;
   const gatesFailed = gates?.sanctions.status === "FAIL" || gates?.debarment.status === "FAIL";
 
   const handleDecisionClick = (d: Decision) => {
@@ -117,41 +127,33 @@ export default function VettingDetail() {
             {v.brief_bio && <p className="text-sm text-muted-foreground mt-3 max-w-2xl">{v.brief_bio}</p>}
           </div>
 
-          {/* Score */}
-          {v.composite_score != null && (
-            <div className="text-center flex-shrink-0">
-              <div className="relative w-28 h-28 mx-auto">
-                <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-                  <circle cx="50" cy="50" r="42" fill="none" stroke="hsl(var(--border))" strokeWidth="8" />
-                  <circle
-                    cx="50" cy="50" r="42" fill="none"
-                    stroke={v.composite_score <= 2.5 ? "hsl(var(--risk-low))" : v.composite_score <= 4.5 ? "hsl(var(--risk-moderate))" : v.composite_score <= 6.5 ? "hsl(var(--risk-elevated))" : "hsl(var(--risk-high))"}
-                    strokeWidth="8" strokeLinecap="round"
-                    strokeDasharray={`${(v.composite_score / 10) * 264} 264`}
-                  />
-                </svg>
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-2xl font-bold text-foreground">{v.composite_score.toFixed(1)}</span>
-                  <span className="text-xs text-muted-foreground">/ 10</span>
-                </div>
-              </div>
-              <div className="mt-2 space-y-1">
+          {/* Dual Scores */}
+          <div className="flex gap-6 flex-shrink-0">
+            {v.composite_score != null && (
+              <div className="text-center">
+                <ScoreCircle score={v.composite_score} color={v.composite_score <= 2.5 ? "hsl(var(--risk-low))" : v.composite_score <= 4.5 ? "hsl(var(--risk-moderate))" : v.composite_score <= 6.5 ? "hsl(var(--risk-elevated))" : "hsl(var(--risk-high))"} />
+                <p className="text-xs font-semibold text-muted-foreground mt-1">Factual Risk</p>
                 {v.risk_tier && (
-                  <span className={`inline-block text-xs font-bold px-3 py-1 rounded ${getRiskTierColor(v.risk_tier)}`}>
+                  <span className={`inline-block text-xs font-bold px-3 py-1 rounded mt-1 ${getRiskTierColor(v.risk_tier)}`}>
                     {v.risk_tier}
                   </span>
                 )}
                 {v.recommendation && (
-                  <p className="text-sm font-semibold text-foreground">{v.recommendation}</p>
-                )}
-                {v.confidence && (
-                  <span className={`inline-block text-xs font-medium px-2 py-0.5 rounded ${getConfidenceColor(v.confidence)}`}>
-                    {v.confidence} Confidence
-                  </span>
+                  <p className="text-xs font-semibold text-foreground mt-1">{v.recommendation}</p>
                 )}
               </div>
-            </div>
-          )}
+            )}
+            {rca && (
+              <div className="text-center">
+                <ScoreCircle score={rca.composite_rcs} color={getRcsColor(rca.composite_rcs)} />
+                <p className="text-xs font-semibold text-muted-foreground mt-1">Reputational Risk</p>
+                <span className={`inline-block text-xs font-bold px-3 py-1 rounded mt-1 ${getRiskTierColor(rca.rcs_risk_tier)}`}>
+                  {rca.rcs_risk_tier}
+                </span>
+                <p className="text-xs font-semibold text-foreground mt-1">{rca.rcs_recommendation.split(';')[0]}</p>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Upload JSON button for testing */}
@@ -164,6 +166,21 @@ export default function VettingDetail() {
           </div>
         )}
       </div>
+
+      {/* Divergence Alert */}
+      {rca?.divergence_alert && (
+        <div className="mb-6 p-5 rounded-xl border-2 border-[hsl(var(--risk-moderate))] bg-[hsl(var(--risk-moderate)/0.06)]">
+          <div className="flex items-start gap-3">
+            <div className="p-2 rounded-lg bg-[hsl(var(--risk-moderate)/0.15)]">
+              <ShieldAlert className="w-5 h-5 text-[hsl(var(--risk-moderate))]" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-[hsl(var(--risk-moderate))] uppercase tracking-wide mb-1">Divergence Alert</h3>
+              <p className="text-sm text-foreground">{rca.divergence_alert}</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Gates */}
       {gates && (
@@ -212,7 +229,7 @@ export default function VettingDetail() {
       {scoring && !gatesFailed && (
         <div className="glass-card p-6 mb-6">
           <h2 className="section-title">Scoring Modifiers</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
             <div className="p-4 rounded-xl bg-muted">
               <p className="font-medium text-foreground mb-1">Confidence</p>
               <p className="text-xs text-muted-foreground">{scoring.confidence_modifier === "none" ? "HIGH confidence — score used as-is" : `${scoring.confidence_modifier} applied`}</p>
@@ -225,7 +242,60 @@ export default function VettingDetail() {
               <p className="font-medium text-foreground mb-1">Final Score</p>
               <p className="text-xs text-muted-foreground">{scoring.final_composite.toFixed(2)} → {scoring.risk_tier}</p>
             </div>
+            {rca && (
+              <div className="p-4 rounded-xl bg-muted border border-[hsl(var(--risk-moderate)/0.2)]">
+                <p className="font-medium text-foreground mb-1">RCS Score</p>
+                <p className="text-xs text-muted-foreground">{rca.composite_rcs.toFixed(2)} / 10 — <span className={`font-bold ${getRiskTierColor(rca.rcs_risk_tier).includes('critical') ? 'text-destructive' : ''}`}>{rca.rcs_risk_tier}</span></p>
+              </div>
+            )}
           </div>
+        </div>
+      )}
+
+      {/* RCA Section */}
+      {rca && !gatesFailed && (
+        <div className="glass-card p-6 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="section-title flex items-center gap-2 mb-0">
+              <ShieldAlert className="w-4 h-4" /> Reputational Contagion Analysis
+            </h2>
+            <div className="flex items-center gap-2">
+              <span className="text-lg font-bold text-foreground">{rca.composite_rcs.toFixed(2)}</span>
+              <span className="text-xs text-muted-foreground">/ 10</span>
+              <span className={`text-xs font-bold px-3 py-1 rounded ${getRiskTierColor(rca.rcs_risk_tier)}`}>
+                {rca.rcs_risk_tier}
+              </span>
+            </div>
+          </div>
+          <p className="text-sm text-muted-foreground mb-5">{rca.rcs_recommendation}</p>
+
+          {/* 6-question scorecard */}
+          <div className="space-y-4 mb-6">
+            {(Object.keys(RCS_QUESTION_LABELS) as Array<keyof typeof RCS_QUESTION_LABELS>).map((qKey) => {
+              const q = rca[qKey as keyof ReputationalContagion] as { score: number; weight: number; evidence: string } | undefined;
+              if (!q || typeof q !== 'object' || !('score' in q)) return null;
+              return (
+                <RCSQuestionRow
+                  key={qKey}
+                  label={RCS_QUESTION_LABELS[qKey]}
+                  weight={q.weight}
+                  score={q.score}
+                  evidence={q.evidence}
+                />
+              );
+            })}
+          </div>
+
+          {/* Most Damaging Headline */}
+          {rca.most_damaging_headline && (
+            <div className="border-l-4 border-[hsl(var(--risk-elevated))] bg-[hsl(var(--risk-elevated)/0.04)] rounded-r-xl p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <Newspaper className="w-4 h-4 text-[hsl(var(--risk-elevated))]" />
+                <span className="text-xs font-bold text-[hsl(var(--risk-elevated))] uppercase tracking-wide">Most Damaging Headline</span>
+              </div>
+              <p className="text-sm italic text-foreground font-medium">"{rca.most_damaging_headline}"</p>
+            </div>
+          )}
         </div>
       )}
 
@@ -454,6 +524,53 @@ export default function VettingDetail() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+    </div>
+  );
+}
+
+function ScoreCircle({ score, color }: { score: number; color: string }) {
+  return (
+    <div className="relative w-24 h-24 mx-auto">
+      <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="hsl(var(--border))" strokeWidth="8" />
+        <circle
+          cx="50" cy="50" r="42" fill="none"
+          stroke={color}
+          strokeWidth="8" strokeLinecap="round"
+          strokeDasharray={`${(score / 10) * 264} 264`}
+        />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <span className="text-xl font-bold text-foreground">{score.toFixed(1)}</span>
+        <span className="text-[10px] text-muted-foreground">/ 10</span>
+      </div>
+    </div>
+  );
+}
+
+function RCSQuestionRow({ label, weight, score, evidence }: { label: string; weight: number; score: number; evidence: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-1.5">
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-medium text-foreground">{label}</span>
+          <span className="text-xs text-muted-foreground">({(weight * 100).toFixed(0)}%)</span>
+        </div>
+        <span className="text-sm font-bold text-foreground">{score.toFixed(1)}</span>
+      </div>
+      <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+        <div className={`h-full rounded-full transition-all ${getScoreBarColor(score)}`} style={{ width: `${(score / 10) * 100}%` }} />
+      </div>
+      <Collapsible open={open} onOpenChange={setOpen}>
+        <CollapsibleTrigger className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground mt-1 cursor-pointer transition-colors">
+          <ChevronDown className={`w-3 h-3 transition-transform ${open ? 'rotate-180' : ''}`} />
+          {open ? "Hide evidence" : "Show evidence"}
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <p className="text-xs text-muted-foreground mt-1 pl-4 border-l-2 border-muted">{evidence}</p>
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import {
   getRiskTierColor, getEngagementClass, getVettingLevelColor,
   getDecisionColor, getDecisionLabel, formatDateTime, getPipelineProgress,
 } from "@/lib/vetting-utils";
-import { CheckCircle, XCircle, Loader2, AlertTriangle, Skull, Clock, ChevronRight } from "lucide-react";
+import { CheckCircle, XCircle, Loader2, AlertTriangle, Skull, Clock, ChevronRight, ShieldAlert } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface Props {
@@ -13,6 +13,8 @@ interface Props {
 
 export function VettingCard({ vetting: v, onClick }: Props) {
   const progress = getPipelineProgress(v.pipeline_progress);
+  const rca = v.result_json?.reputational_contagion;
+  const hasDivergence = !!rca?.divergence_alert;
 
   return (
     <div
@@ -40,6 +42,11 @@ export function VettingCard({ vetting: v, onClick }: Props) {
             <Badge variant="outline" className={v.subject_type === "individual" ? "bg-[hsl(var(--domestic-political)/0.08)] text-[hsl(var(--domestic-political))] border-[hsl(var(--domestic-political)/0.15)]" : "bg-[hsl(var(--accent)/0.08)] text-[hsl(var(--accent))] border-[hsl(var(--accent)/0.15)]"}>
               {v.subject_type === "individual" ? "Individual" : "Organization"}
             </Badge>
+            {hasDivergence && (
+              <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--risk-moderate)/0.12)] text-[hsl(var(--risk-moderate))]">
+                <ShieldAlert className="w-3 h-3" /> Divergence
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-2 flex-wrap mb-2">
             <span className={`inline-flex items-center text-xs px-2.5 py-1 rounded-full ${getEngagementClass(v.engagement_type)}`}>
@@ -111,13 +118,24 @@ export function VettingCard({ vetting: v, onClick }: Props) {
         <div className="flex items-center gap-4 flex-shrink-0">
           {v.composite_score != null && (
             <div className="text-center px-3">
-              <div className="text-2xl font-bold text-foreground">{v.composite_score.toFixed(1)}</div>
-              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Score</div>
+              <div className="text-lg font-bold text-foreground">{v.composite_score.toFixed(1)}</div>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Factual</div>
+            </div>
+          )}
+          {rca && (
+            <div className="text-center px-3 border-l border-border">
+              <div className="text-lg font-bold text-foreground">{rca.composite_rcs.toFixed(1)}</div>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">RCS</div>
             </div>
           )}
           {v.risk_tier && (
             <span className={`text-xs px-3 py-1.5 rounded-lg ${getRiskTierColor(v.risk_tier)}`}>
               {v.risk_tier}
+            </span>
+          )}
+          {rca && rca.rcs_risk_tier !== v.risk_tier && (
+            <span className={`text-xs px-2 py-1 rounded-lg ${getRiskTierColor(rca.rcs_risk_tier)}`}>
+              RCS: {rca.rcs_risk_tier}
             </span>
           )}
           {v.decision && (

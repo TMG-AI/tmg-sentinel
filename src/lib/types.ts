@@ -3,6 +3,7 @@ export type EngagementType = "fara_foreign_political" | "foreign_corporate" | "d
 export type VettingLevel = "quick_screen" | "standard_vet" | "deep_dive";
 export type VettingStatus = "pending" | "running" | "gates_failed" | "completed" | "error";
 export type RiskTier = "LOW" | "MODERATE" | "ELEVATED" | "HIGH" | "CRITICAL";
+export type RCSTier = "LOW" | "MODERATE" | "ELEVATED" | "HIGH" | "CRITICAL";
 export type Decision = "approved" | "conditionally_approved" | "rejected" | "pending_review";
 export type Confidence = "HIGH" | "MEDIUM" | "LOW";
 export type Recommendation = "Approve" | "Conditional Approve" | "Further Review" | "Recommend Reject" | "Auto-Reject";
@@ -44,6 +45,27 @@ export interface Flag {
   severity: string;
 }
 
+export interface RCSQuestion {
+  score: number;
+  weight: number;
+  evidence: string;
+  damaging_headline?: string;
+}
+
+export interface ReputationalContagion {
+  q1_partisan_alignment: RCSQuestion;
+  q2_stakeholder_backlash: RCSQuestion;
+  q3_narrative_vulnerability: RCSQuestion & { damaging_headline: string };
+  q4_client_conflicts: RCSQuestion;
+  q5_industry_toxicity: RCSQuestion;
+  q6_temporal_context: RCSQuestion;
+  composite_rcs: number;
+  rcs_risk_tier: RCSTier;
+  rcs_recommendation: string;
+  divergence_alert: string | null;
+  most_damaging_headline: string;
+}
+
 export interface VettingResultJSON {
   subject: {
     name: string;
@@ -71,6 +93,7 @@ export interface VettingResultJSON {
     yellow: Flag[];
   };
   executive_summary: string;
+  reputational_contagion?: ReputationalContagion;
   sources?: { id: number; url: string; title: string; score: number }[];
   metadata: {
     pipeline_version: string;
@@ -177,4 +200,13 @@ export const DIMENSION_LABELS: Record<string, string> = {
   corporate_business: "Corporate / Business Risk",
   political_lobbying: "Political / Lobbying Risk",
   conflict_of_interest: "Conflict of Interest",
+};
+
+export const RCS_QUESTION_LABELS: Record<string, string> = {
+  q1_partisan_alignment: "Partisan Alignment",
+  q2_stakeholder_backlash: "Stakeholder Backlash",
+  q3_narrative_vulnerability: "Narrative Vulnerability",
+  q4_client_conflicts: "Conflict with Existing Clients",
+  q5_industry_toxicity: "Industry / Sector Toxicity",
+  q6_temporal_context: "Temporal / Political Context",
 };
