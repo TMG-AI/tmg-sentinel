@@ -505,7 +505,7 @@ export default function VettingDetail() {
           {/* Evidence items for conflict dimension */}
           {conflictDim.evidence.length > 0 && (
             <div className="glass-card p-5">
-              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Supporting Evidence ({conflictDim.evidence.length})</h3>
+              <h3 className="text-xs font-semibold text-muted-foreground tracking-wider mb-3">Supporting Evidence ({conflictDim.evidence.length})</h3>
               <div className="space-y-2">
                 {conflictDim.evidence.map((ev, i) => {
                   const hasSourceUrls = ev.source_urls && ev.source_urls.length > 0;
