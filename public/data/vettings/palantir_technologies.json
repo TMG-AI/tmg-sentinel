@@ -1364,37 +1364,17 @@
   "key_executives": [
     {
       "name": "Cohen Stephen Andrew",
-      "title": "See Remarks",
+      "title": "Officer & Director",
       "is_officer": true,
       "is_director": true,
       "fec_total": 43100.0,
       "fec_count": 13,
       "fec_top_recipients": [
-        {
-          "name": "NRCC",
-          "total": 20000.0,
-          "count": 2
-        },
-        {
-          "name": "ELISE FOR CONGRESS",
-          "total": 5400.0,
-          "count": 3
-        },
-        {
-          "name": "FRIENDS OF DICK DURBIN",
-          "total": 5200.0,
-          "count": 2
-        },
-        {
-          "name": "MISSOURIANS FOR KANDER",
-          "total": 3000.0,
-          "count": 2
-        },
-        {
-          "name": "PATRICK RYAN FOR CONGRESS",
-          "total": 2700.0,
-          "count": 1
-        }
+        { "name": "NRCC", "total": 20000.0, "count": 2 },
+        { "name": "ELISE FOR CONGRESS", "total": 5400.0, "count": 3 },
+        { "name": "FRIENDS OF DICK DURBIN", "total": 5200.0, "count": 2 },
+        { "name": "MISSOURIANS FOR KANDER", "total": 3000.0, "count": 2 },
+        { "name": "PATRICK RYAN FOR CONGRESS", "total": 2700.0, "count": 1 }
       ],
       "news_count": 10,
       "news_headlines": [
@@ -1402,78 +1382,54 @@
         "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
         "Palantir sues former employees, says Percepta AI CEO set out to 'pillage' top developers - cnbc.com"
       ],
-      "sanctions_flag": true
+      "news_urls": [
+        "https://finance.yahoo.com/news/palantir-sues-engineers-left-form-155756889.html",
+        "https://www.itnews.com.au/news/palantir-sues-engineers-who-left-to-form-copycat-ai-firm-621436",
+        "https://www.cnbc.com/2025/12/11/palantir-sues-former-employees-says-percepta-tried-to-pillage-devs.html"
+      ],
+      "sanctions_flag": true,
+      "sanctions_datasets": ["wd_categories", "wikidata", "us_sam_exclusions", "us_hhs_exclusions"]
     },
     {
       "name": "Karp Alexander C.",
-      "title": "See Remarks",
+      "title": "Chief Executive Officer",
       "is_officer": true,
       "is_director": true,
       "fec_total": 275400.0,
       "fec_count": 239,
       "fec_top_recipients": [
-        {
-          "name": "CORNYN VICTORY COMMITTEE",
-          "total": 100000.0,
-          "count": 1
-        },
-        {
-          "name": "NRSC",
-          "total": 88000.0,
-          "count": 2
-        },
-        {
-          "name": "MARK WARNER VICTORY FUND",
-          "total": 22000.0,
-          "count": 1
-        },
-        {
-          "name": "TEAM NUNN",
-          "total": 12000.0,
-          "count": 1
-        },
-        {
-          "name": "DEMOCRATIC PARTY OF VIRGINIA",
-          "total": 10000.0,
-          "count": 1
-        }
+        { "name": "CORNYN VICTORY COMMITTEE", "total": 100000.0, "count": 1 },
+        { "name": "NRSC", "total": 88000.0, "count": 2 },
+        { "name": "MARK WARNER VICTORY FUND", "total": 22000.0, "count": 1 },
+        { "name": "TEAM NUNN", "total": 12000.0, "count": 1 },
+        { "name": "DEMOCRATIC PARTY OF VIRGINIA", "total": 10000.0, "count": 1 }
       ],
       "news_count": 10,
       "news_headlines": [
         "Palantir sues ex-employees over AI startup, alleging \"deception,\" \"stolen documents\" - Axios",
-        "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
-        "Tech giant Palantir helps the US government monitor its citizens. Its CEO wants Silicon Valley to find its moral compass - The Conversation"
+        "Tech giant Palantir helps the US government monitor its citizens. Its CEO wants Silicon Valley to find its moral compass - The Conversation",
+        "Inside the Tech Company Powering Trump\u2019s Most Controversial Policies - The New York Times"
       ],
-      "sanctions_flag": true
+      "news_urls": [
+        "https://www.axios.com/2025/10/30/ai-palantir-general-catalyst-lawsuit",
+        "https://theconversation.com/tech-giant-palantir-helps-the-us-government-monitor-its-citizens-its-ceo-wants-silicon-valley-to-find-its-moral-compass-260824",
+        "https://www.nytimes.com/2025/12/16/podcasts/the-daily/palantir-alex-karp-trump-ice.html"
+      ],
+      "sanctions_flag": true,
+      "sanctions_datasets": ["wikidata"]
     },
     {
       "name": "Buckley Jeffrey",
-      "title": "See Remarks",
+      "title": "Officer",
       "is_officer": true,
       "is_director": false,
       "fec_total": 1634.67,
       "fec_count": 273,
       "fec_top_recipients": [
-        {
-          "name": "LASHER FOR CONGRESS",
-          "total": 1000.0,
-          "count": 1
-        },
-        {
-          "name": "BURNS AND MCDONNELL INC. PAC",
-          "total": 349.92,
-          "count": 2
-        },
-        {
-          "name": "WINRED",
-          "total": 150.0,
-          "count": 8
-        },
-        {
-          "name": "ACTBLUE",
-          "total": 134.75,
-          "count": 9
-        }
+        { "name": "LASHER FOR CONGRESS", "total": 1000.0, "count": 1 },
+        { "name": "BURNS AND MCDONNELL INC. PAC", "total": 349.92, "count": 2 },
+        { "name": "WINRED", "total": 150.0, "count": 8 },
+        { "name": "ACTBLUE", "total": 134.75, "count": 9 }
       ],
       "news_count": 10,
       "news_headlines": [
@@ -1481,36 +1437,25 @@
         "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
         "Palantir \u2014 Colorado\u2019s largest public company \u2014 is leaving Denver for Miami - The Denver Post"
       ],
+      "news_urls": [
+        "https://finance.yahoo.com/news/palantir-sues-engineers-left-form-155756889.html",
+        "https://www.itnews.com.au/news/palantir-sues-engineers-who-left-to-form-copycat-ai-firm-621436",
+        "https://www.denverpost.com/2026/02/17/palantir-moving-headquarters-miami/"
+      ],
       "sanctions_flag": false
     },
     {
       "name": "Taylor Ryan D.",
-      "title": "See Remarks",
+      "title": "Officer",
       "is_officer": true,
       "is_director": false,
       "fec_total": 1671.0,
       "fec_count": 11,
       "fec_top_recipients": [
-        {
-          "name": "REPUBLICAN NATIONAL COMMITTEE",
-          "total": 871.0,
-          "count": 7
-        },
-        {
-          "name": "CARSON AMERICA",
-          "total": 350.0,
-          "count": 2
-        },
-        {
-          "name": "NATIONAL REPUBLICAN CONGRESSIONAL COMMITTEE",
-          "total": 300.0,
-          "count": 1
-        },
-        {
-          "name": "FLORIDA DENTAL POLITICAL ACTION COMMITTEE",
-          "total": 150.0,
-          "count": 1
-        }
+        { "name": "REPUBLICAN NATIONAL COMMITTEE", "total": 871.0, "count": 7 },
+        { "name": "CARSON AMERICA", "total": 350.0, "count": 2 },
+        { "name": "NATIONAL REPUBLICAN CONGRESSIONAL COMMITTEE", "total": 300.0, "count": 1 },
+        { "name": "FLORIDA DENTAL POLITICAL ACTION COMMITTEE", "total": 150.0, "count": 1 }
       ],
       "news_count": 10,
       "news_headlines": [
@@ -1518,11 +1463,17 @@
         "Palantir sues engineers who left to form 'copycat' Percepta AI - Yahoo Finance",
         "Palantir \u2014 Colorado\u2019s largest public company \u2014 is leaving Denver for Miami - The Denver Post"
       ],
-      "sanctions_flag": true
+      "news_urls": [
+        "https://www.axios.com/2025/10/30/ai-palantir-general-catalyst-lawsuit",
+        "https://finance.yahoo.com/news/palantir-sues-engineers-left-form-155756889.html",
+        "https://www.denverpost.com/2026/02/17/palantir-moving-headquarters-miami/"
+      ],
+      "sanctions_flag": true,
+      "sanctions_datasets": ["us_sam_exclusions", "wd_categories", "ann_pep_positions", "wikidata", "us_plural_legislators", "wd_peps", "gb_nca_press_releases"]
     },
     {
       "name": "Glazer David A.",
-      "title": "See Remarks",
+      "title": "Chief Financial Officer",
       "is_officer": true,
       "is_director": false,
       "fec_total": 0,
@@ -1534,95 +1485,72 @@
         "Palantir sues engineers who left to form 'copycat' Percepta AI - Yahoo Finance",
         "Palantir sues engineers who left to form 'copycat' AI firm - iTnews"
       ],
-      "sanctions_flag": true
+      "news_urls": [
+        "https://www.axios.com/2025/10/30/ai-palantir-general-catalyst-lawsuit",
+        "https://finance.yahoo.com/news/palantir-sues-engineers-left-form-155756889.html",
+        "https://www.itnews.com.au/news/palantir-sues-engineers-who-left-to-form-copycat-ai-firm-621436"
+      ],
+      "sanctions_flag": true,
+      "sanctions_datasets": ["us_sam_exclusions"]
     },
     {
       "name": "Sankar Shyam",
-      "title": "See Remarks",
+      "title": "Chief Operating Officer",
       "is_officer": true,
       "is_director": false,
       "fec_total": 65824.99,
       "fec_count": 170,
       "fec_top_recipients": [
-        {
-          "name": "YOUNG VICTORY COMMITTEE",
-          "total": 12000.0,
-          "count": 1
-        },
-        {
-          "name": "FRIENDS OF TODD YOUNG, INC.",
-          "total": 7000.0,
-          "count": 2
-        },
-        {
-          "name": "IOWANS FOR ZACH NUNN",
-          "total": 7000.0,
-          "count": 5
-        },
-        {
-          "name": "SHEEHY VICTORY COMMITTEE",
-          "total": 7000.0,
-          "count": 1
-        },
-        {
-          "name": "HUSTED FOR SENATE",
-          "total": 7000.0,
-          "count": 3
-        }
+        { "name": "YOUNG VICTORY COMMITTEE", "total": 12000.0, "count": 1 },
+        { "name": "FRIENDS OF TODD YOUNG, INC.", "total": 7000.0, "count": 2 },
+        { "name": "IOWANS FOR ZACH NUNN", "total": 7000.0, "count": 5 },
+        { "name": "SHEEHY VICTORY COMMITTEE", "total": 7000.0, "count": 1 },
+        { "name": "HUSTED FOR SENATE", "total": 7000.0, "count": 3 }
       ],
       "news_count": 10,
       "news_headlines": [
         "Palantir sues ex-employees over AI startup, alleging \"deception,\" \"stolen documents\" - Axios",
-        "Palantir sues engineers who left to form 'copycat' Percepta AI - Yahoo Finance",
-        "Palantir sues engineers who left to form 'copycat' AI firm - iTnews"
+        "Extra: Palantir\u2019s Shyam Sankar On The \u2018Lies\u2019 Being Told About AI - FOX News Radio",
+        "Palantir sues former employees, says Percepta AI CEO set out to 'pillage' top developers - cnbc.com"
+      ],
+      "news_urls": [
+        "https://www.axios.com/2025/10/30/ai-palantir-general-catalyst-lawsuit",
+        "https://radio.foxnews.com/2026/02/22/extra-palantirs-shyam-sankar-on-the-lies-being-told-about-ai/",
+        "https://www.cnbc.com/2025/12/11/palantir-sues-former-employees-says-percepta-tried-to-pillage-devs.html"
       ],
       "sanctions_flag": false
     },
     {
       "name": "THIEL PETER",
-      "title": "",
+      "title": "Co-Founder & Director",
       "is_officer": false,
       "is_director": true,
       "fec_total": 61105.0,
       "fec_count": 533,
       "fec_top_recipients": [
-        {
-          "name": "MAINE REPUBLICAN PARTY",
-          "total": 10000.0,
-          "count": 1
-        },
-        {
-          "name": "REPUBLICAN CAMPAIGN COMMITTEE OF NEW MEXICO",
-          "total": 10000.0,
-          "count": 1
-        },
-        {
-          "name": "CONGRESSIONAL LEADERSHIP FUND",
-          "total": 10000.0,
-          "count": 2
-        },
-        {
-          "name": "MICHIGAN REPUBLICAN PARTY",
-          "total": 10000.0,
-          "count": 1
-        },
-        {
-          "name": "KEAN FOR CONGRESS INC",
-          "total": 7000.0,
-          "count": 2
-        }
+        { "name": "MAINE REPUBLICAN PARTY", "total": 10000.0, "count": 1 },
+        { "name": "REPUBLICAN CAMPAIGN COMMITTEE OF NEW MEXICO", "total": 10000.0, "count": 1 },
+        { "name": "CONGRESSIONAL LEADERSHIP FUND", "total": 10000.0, "count": 2 },
+        { "name": "MICHIGAN REPUBLICAN PARTY", "total": 10000.0, "count": 1 },
+        { "name": "KEAN FOR CONGRESS INC", "total": 7000.0, "count": 2 }
       ],
       "news_count": 10,
       "news_headlines": [
-        "Palantir sues ex-employees over AI startup, alleging \"deception,\" \"stolen documents\" - Axios",
-        "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
+        "Palantir co-founder Peter Thiel and Vice President JD Vance ties explained - The Economic Times",
+        "Peter Thiel\u2019s Palantir poses a grave threat to Americans | Robert Reich - The Guardian",
         "Palantir Sues CEO of Rival AI Firm, Alleges Widespread Effort to Poach Employees - The Wall Street Journal"
       ],
-      "sanctions_flag": true
+      "news_urls": [
+        "https://m.economictimes.com/news/international/us/palantir-co-founder-peter-thiel-and-vice-president-jd-vance-ties-explained-see-companys-expanding-reach/articleshow/125539208.cms",
+        "https://www.theguardian.com/commentisfree/2025/jun/30/peter-thiel-palantir-threat-to-americans",
+        "https://www.wsj.com/business/palantir-sues-ceo-of-rival-ai-firm-alleges-widespread-effort-to-poach-employees-9c297986"
+      ],
+      "sanctions_flag": true,
+      "sanctions_datasets": ["wd_categories", "wd_curated", "wikidata"]
     },
     {
       "name": "Stat Lauren Elaina Friedman",
-      "title": "",
+      "title": "Director",
       "is_officer": false,
       "is_director": true,
       "fec_total": 0,
@@ -1632,7 +1560,12 @@
       "news_headlines": [
         "Palantir \u2014 Colorado\u2019s largest public company \u2014 is leaving Denver for Miami - The Denver Post",
         "Palantir Sues CEO of Rival AI Firm, Alleges Widespread Effort to Poach Employees - The Wall Street Journal",
-        "PLTR Investors Have Opportunity to Join Palantir Technologies Inc. Fraud Investigation with the Schall Law Firm - Business Wire"
+        "Palantir faces challenge to remove Anthropic from Pentagon's AI software - Reuters"
+      ],
+      "news_urls": [
+        "https://www.denverpost.com/2026/02/17/palantir-moving-headquarters-miami/",
+        "https://www.wsj.com/business/palantir-sues-ceo-of-rival-ai-firm-alleges-widespread-effort-to-poach-employees-9c297986",
+        "https://www.reuters.com/technology/palantir-faces-challenge-remove-anthropic-pentagons-ai-software-2026-03-04/"
       ],
       "sanctions_flag": false
     }

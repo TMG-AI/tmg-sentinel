@@ -68,7 +68,7 @@ export function VettingCard({ vetting: v, onClick }: Props) {
                 {combined.combined_tier}
               </span>
               <span className="text-xs font-medium text-foreground truncate max-w-xs">
-                {combined.recommendation.split("—")[0].trim()}
+                {combined.recommendation.split("—")[0].trim().replace("Conditional Approve", "Conditional Approval")}
               </span>
             </div>
           )}
