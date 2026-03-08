@@ -1,19 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { useVettingStore } from "@/lib/vetting-store";
-import { Activity, Clock, CheckCircle, AlertTriangle, Plus } from "lucide-react";
+import { Activity, Clock, CheckCircle, AlertTriangle, Plus, Loader2 } from "lucide-react";
 import { VettingCard } from "@/components/VettingCard";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link } from "react-router-dom";
 
 export default function Dashboard() {
-  const { vettings } = useVettingStore();
+  const { vettings, loading, loadVettings } = useVettingStore();
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("recent");
+
+  useEffect(() => {
+    loadVettings();
+  }, [loadVettings]);
 
   const active = vettings.filter((v) => v.status === "running" || v.status === "pending").length;
   const awaiting = vettings.filter((v) => v.status === "completed" && !v.decision).length;
@@ -145,12 +149,19 @@ export default function Dashboard() {
 
       {/* Vetting Cards */}
       <div className="space-y-3">
-        {filtered.map((v) => (
+        {loading && (
+          <div className="glass-card p-16 text-center">
+            <Loader2 className="w-8 h-8 animate-spin text-muted-foreground mx-auto mb-3" />
+            <p className="text-muted-foreground">Loading vettings...</p>
+          </div>
+        )}
+        {!loading && filtered.map((v) => (
           <VettingCard key={v.id} vetting={v} onClick={() => navigate(`/vetting/${v.id}`)} />
         ))}
-        {filtered.length === 0 && (
+        {!loading && filtered.length === 0 && (
           <div className="glass-card p-16 text-center">
             <p className="text-muted-foreground text-lg">No vetting requests found.</p>
+            <p className="text-sm text-muted-foreground mt-1">Add JSON files to <code className="text-xs bg-muted px-1.5 py-0.5 rounded">public/data/vettings/</code> and list them in <code className="text-xs bg-muted px-1.5 py-0.5 rounded">public/data/vettings-index.json</code></p>
             <Link to="/submit">
               <Button className="mt-4 gap-2">
                 <Plus className="w-4 h-4" />
