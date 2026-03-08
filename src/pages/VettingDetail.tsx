@@ -21,6 +21,48 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
+function findSourceUrl(sourceName: string, sources?: { id: number; url: string; title: string; score: number }[]): string | null {
+  if (!sources || !sourceName) return null;
+  const lower = sourceName.toLowerCase();
+  const match = sources.find(s =>
+    s.title.toLowerCase().includes(lower) || s.url.toLowerCase().includes(lower)
+  );
+  return match?.url || null;
+}
+
+function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: { id: number; url: string; title: string; score: number }[]; variant: "red" | "yellow" }) {
+  const cleanDesc = flag.description.replace(/\s*\[\d+\]\s*/g, '').replace(/\s*\[\w+\]\s*$/g, '');
+  const sourceUrl = findSourceUrl(flag.source, sources);
+  const borderClass = variant === "red" ? "border-l-destructive" : "border-l-[hsl(var(--risk-moderate))]";
+  const iconClass = variant === "red" ? "text-destructive" : "text-[hsl(var(--risk-moderate))]";
+
+  return (
+    <div className={`glass-card p-3 border-l-4 ${borderClass}`}>
+      <div className="flex items-center gap-2 mb-1">
+        <AlertTriangle className={`w-3.5 h-3.5 ${iconClass}`} />
+        <span className="text-sm font-medium text-foreground">{flag.title}</span>
+      </div>
+      <p className="text-xs text-muted-foreground">{cleanDesc}</p>
+      <div className="flex items-center gap-2 mt-2">
+        {sourceUrl ? (
+          <a
+            href={sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-full"
+          >
+            <ExternalLink className="h-2.5 w-2.5" />
+            {flag.source}
+          </a>
+        ) : (
+          <span className="text-[10px] text-muted-foreground">{flag.source}</span>
+        )}
+        <span className="text-[10px] text-muted-foreground">· {flag.date}</span>
+      </div>
+    </div>
+  );
+}
+
 function getRcsColor(score: number): string {
   if (score <= 2.5) return "hsl(var(--risk-low))";
   if (score <= 4.5) return "hsl(var(--risk-moderate))";
