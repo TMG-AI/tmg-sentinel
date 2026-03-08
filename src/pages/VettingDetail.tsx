@@ -62,9 +62,9 @@ function findSourcesForEvidence(evidence: string, sources?: SourceItem[]): Sourc
   return matches.slice(0, 5);
 }
 
-function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: { id: number; url: string; title: string; score: number }[]; variant: "red" | "yellow" }) {
+function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: SourceItem[]; variant: "red" | "yellow" }) {
   const cleanDesc = flag.description.replace(/\s*\[\d+\]\s*/g, '').replace(/\s*\[\w+\]\s*$/g, '');
-  const sourceUrl = findSourceUrl(flag.source, sources);
+  const matchedSources = findSourceUrls(flag.source, sources);
   const borderClass = variant === "red" ? "border-l-destructive" : "border-l-[hsl(var(--risk-moderate))]";
   const iconClass = variant === "red" ? "text-destructive" : "text-[hsl(var(--risk-moderate))]";
 
@@ -75,17 +75,20 @@ function FlagCard({ flag, sources, variant }: { flag: FlagType; sources?: { id: 
         <span className="text-sm font-medium text-foreground">{flag.title}</span>
       </div>
       <p className="text-xs text-muted-foreground">{cleanDesc}</p>
-      <div className="flex items-center gap-2 mt-2">
-        {sourceUrl ? (
-          <a
-            href={sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-full"
-          >
-            <ExternalLink className="h-2.5 w-2.5" />
-            {flag.source}
-          </a>
+      <div className="flex flex-wrap items-center gap-2 mt-2">
+        {matchedSources.length > 0 ? (
+          matchedSources.map((src, i) => (
+            <a
+              key={i}
+              href={src.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-full"
+            >
+              <ExternalLink className="h-2.5 w-2.5" />
+              {src.title.length > 40 ? src.title.slice(0, 40) + "…" : src.title}
+            </a>
+          ))
         ) : (
           <span className="text-[10px] text-muted-foreground">{flag.source}</span>
         )}
