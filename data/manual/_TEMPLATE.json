@@ -1,0 +1,38 @@
+{
+  "subject_id": "REPLACE_WITH_SUBJECT_ID",
+  "findings": [
+    {
+      "category": "property_assets",
+      "title": "Real Estate Holdings",
+      "description": "Describe what you found — property addresses, values, ownership details, etc.",
+      "source": "County assessor records / Zillow / manual lookup",
+      "date": "2026-03-07",
+      "risk_relevance": "Why this matters for the vetting"
+    },
+    {
+      "category": "reference_checks",
+      "title": "Reference from [Name]",
+      "description": "What the reference said — positive/negative, key quotes, concerns raised.",
+      "source": "Phone call with [Name], [Title] at [Company]",
+      "date": "2026-03-07",
+      "risk_relevance": ""
+    },
+    {
+      "category": "social_media",
+      "title": "Social Media Review",
+      "description": "Notable posts, connections, patterns found on LinkedIn/X/Facebook.",
+      "source": "Manual review of LinkedIn profile",
+      "date": "2026-03-07",
+      "risk_relevance": ""
+    },
+    {
+      "category": "other",
+      "title": "Additional Finding",
+      "description": "Any other finding that doesn't fit the categories above.",
+      "source": "Source of the information",
+      "date": "2026-03-07",
+      "risk_relevance": ""
+    }
+  ],
+  "notes": "Any additional context or observations from the vetter. This gets passed directly to Claude for synthesis."
+}

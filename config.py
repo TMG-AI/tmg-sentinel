@@ -31,13 +31,14 @@ LOBBYING_DIR = DATA_DIR / "lobbying"
 BANKRUPTCY_DIR = DATA_DIR / "bankruptcy"
 SOCIAL_MEDIA_DIR = DATA_DIR / "social_media"
 INTERNATIONAL_DIR = DATA_DIR / "international"
+MANUAL_DIR = DATA_DIR / "manual"
 UNIFIED_DIR = DATA_DIR / "unified"
 CACHE_DIR = DATA_DIR / "cache"
 
 # Create all directories
 for d in [INTAKE_DIR, SANCTIONS_DIR, DEBARMENT_DIR, NEWS_DIR, LITIGATION_DIR,
           CORPORATE_DIR, FEC_DIR, SEC_DIR, LOBBYING_DIR, BANKRUPTCY_DIR,
-          SOCIAL_MEDIA_DIR, INTERNATIONAL_DIR, UNIFIED_DIR, CACHE_DIR]:
+          SOCIAL_MEDIA_DIR, INTERNATIONAL_DIR, MANUAL_DIR, UNIFIED_DIR, CACHE_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 # ─── SSL Context (macOS Python fix) ────────────────────────
@@ -105,8 +106,8 @@ VETTING_LEVELS = {
     },
     "standard_vet": {
         "label": "Standard Vet",
-        "steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 13],  # + Litigation, Corporate, FEC, SEC, Lobbying
-        "description": "Full domestic background check. ~15 minutes.",
+        "steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 13],  # + Litigation, Corporate, FEC, SEC, Lobbying, Deep News
+        "description": "Full domestic background check with deep news. ~15 minutes.",
     },
     "deep_dive": {
         "label": "Deep Dive",

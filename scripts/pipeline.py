@@ -44,6 +44,7 @@ def run_pipeline(
     requested_by: str = "Shannon",
     from_step: int = None,
     force: bool = False,
+    no_synthesis: bool = False,
 ) -> dict:
     """Run the full vetting pipeline for a subject."""
 
@@ -174,6 +175,24 @@ def run_pipeline(
         print(f"{'─'*50}")
         international = run_international_search(intake)
 
+    # ─── STOP BEFORE SYNTHESIS (if --no-synthesis) ───
+    if no_synthesis:
+        subject_id = intake["subject_id"]
+        print(f"\n{'='*60}")
+        print("PIPELINE PAUSED — SKIPPING SYNTHESIS")
+        print(f"All research steps complete for '{name}'.")
+        print(f"")
+        print(f"To add manual findings before synthesis:")
+        print(f"  1. Copy the template:  cp data/manual/_TEMPLATE.json data/manual/{subject_id}.json")
+        print(f"  2. Edit with your findings:  open data/manual/{subject_id}.json")
+        print(f"  3. Run synthesis:  python3 scripts/synthesize.py --subject-id {subject_id}")
+        print(f"")
+        print(f"Or run synthesis now without manual findings:")
+        print(f"  python3 scripts/synthesize.py --subject-id {subject_id}")
+        print(f"{'='*60}")
+        return _finalize(intake, "paused", sanctions_gate="PASS", debarment_gate="PASS",
+                        start_time=start_time)
+
     # ─── STEP 13: Claude Synthesis ───────────────────
     if 13 in steps_to_run and (from_step is None or from_step <= 13):
         print(f"\n{'─'*50}")
@@ -235,13 +254,18 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="TMG Vetting Pipeline Runner")
     parser.add_argument("--name", required=True, help="Subject name to vet")
     parser.add_argument("--type", default="individual", choices=["individual", "organization"])
-    parser.add_argument("--company", default=None)
-    parser.add_argument("--country", default=None)
+    parser.add_argument("--company", default=None, help="Company affiliation")
+    parser.add_argument("--country", default=None, help="Country of origin or operations")
+    parser.add_argument("--city", default=None, help="City")
+    parser.add_argument("--bio", default=None, help="Brief bio / background info")
+    parser.add_argument("--referral", default=None, help="How they came to TMG / referral source")
     parser.add_argument("--engagement", default="domestic_corporate",
                         choices=list(config.ENGAGEMENT_MULTIPLIERS.keys()))
     parser.add_argument("--level", default="standard_vet",
                         choices=list(config.VETTING_LEVELS.keys()))
     parser.add_argument("--from-step", type=int, default=None, help="Start from this step")
+    parser.add_argument("--no-synthesis", action="store_true",
+                        help="Run research steps only, skip synthesis. Add manual findings then run synthesize.py separately.")
     parser.add_argument("--requested-by", default="Shannon")
     args = parser.parse_args()
 
@@ -250,8 +274,12 @@ if __name__ == "__main__":
         subject_type=args.type,
         company=args.company,
         country=args.country,
+        city=args.city,
+        brief_bio=args.bio,
+        referral_source=args.referral,
         engagement_type=args.engagement,
         vetting_level=args.level,
         from_step=args.from_step,
+        no_synthesis=args.no_synthesis,
         requested_by=args.requested_by,
     )

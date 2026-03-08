@@ -19,6 +19,7 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 from config_tavily import SOURCE_QUALITY_PROMPT
+from config_tmg_identity import get_rca_prompt, get_rcs_tier
 
 try:
     import anthropic
@@ -143,6 +144,71 @@ def enrich_evidence_with_sources(synthesized: dict, sources: list) -> dict:
     return synthesized
 
 
+# ─── TMG Client Conflict Check ─────────────────────────────
+
+def check_client_conflicts(name: str, company: str = "") -> dict:
+    """Check vetting subject against TMG client list for conflicts."""
+    client_csv = config.PROJECT_ROOT / "data" / "tmg_clients.csv"
+    if not client_csv.exists():
+        return {"checked": False, "reason": "No client list found at data/tmg_clients.csv"}
+
+    import csv
+    with open(client_csv) as f:
+        reader = csv.DictReader(f)
+        clients = [row["client_name"].strip() for row in reader if row.get("client_name")]
+
+    name_lower = name.lower()
+    company_lower = (company or "").lower()
+    # Also extract individual words for partial matching
+    name_parts = set(name_lower.split())
+    company_parts = set(w for w in company_lower.replace("/", " ").replace(",", " ").split() if len(w) > 3)
+
+    exact_matches = []
+    partial_matches = []
+
+    for client in clients:
+        client_lower = client.lower()
+        # Exact or near-exact match
+        if name_lower in client_lower or client_lower in name_lower:
+            exact_matches.append(client)
+        elif company_lower and (company_lower in client_lower or client_lower in company_lower):
+            exact_matches.append(client)
+        # Partial match — company name words appear in client name
+        elif company_parts:
+            overlap = company_parts & set(client_lower.replace("(", " ").replace(")", " ").split())
+            if overlap and len(overlap) >= 1:
+                # Filter out common words
+                meaningful = overlap - {"the", "inc", "llc", "corp", "group", "company", "services",
+                                        "fund", "capital", "technologies", "management", "partners",
+                                        "foundation", "ventures", "advisors", "solutions", "global",
+                                        "national", "american", "united", "international"}
+                if meaningful:
+                    partial_matches.append({"client": client, "matched_words": list(meaningful)})
+
+    return {
+        "checked": True,
+        "total_clients": len(clients),
+        "exact_matches": exact_matches,
+        "partial_matches": partial_matches,
+        "has_conflicts": len(exact_matches) > 0,
+        "has_potential_conflicts": len(partial_matches) > 0,
+    }
+
+
+def format_conflicts_for_prompt(conflicts: dict) -> str:
+    if not conflicts.get("checked"):
+        return "Client conflict check not available (no client list found)."
+    lines = [f"Checked against {conflicts['total_clients']} active TMG clients."]
+    if conflicts["exact_matches"]:
+        lines.append(f"EXACT MATCHES FOUND: {', '.join(conflicts['exact_matches'])}")
+    if conflicts["partial_matches"]:
+        for pm in conflicts["partial_matches"]:
+            lines.append(f"POTENTIAL MATCH: {pm['client']} (matched: {', '.join(pm['matched_words'])})")
+    if not conflicts["exact_matches"] and not conflicts["partial_matches"]:
+        lines.append("No conflicts found with current TMG clients.")
+    return "\n".join(lines)
+
+
 # ─── Load Step Outputs ──────────────────────────────────────
 
 def load_step_json(directory: Path, subject_id: str) -> dict:
@@ -168,6 +234,7 @@ def load_all_step_data(subject_id: str, vetting_level: str) -> dict:
         "lobbying": load_step_json(config.LOBBYING_DIR, subject_id),
         "bankruptcy": load_step_json(config.BANKRUPTCY_DIR, subject_id),
         "international": load_step_json(config.INTERNATIONAL_DIR, subject_id),
+        "manual": load_step_json(config.MANUAL_DIR, subject_id),
     }
 
     # Report what we loaded
@@ -349,6 +416,28 @@ def format_international_for_prompt(data: dict) -> str:
     return "\n".join(lines)
 
 
+def format_manual_for_prompt(data: dict) -> str:
+    if not data:
+        return "No manual findings provided."
+    lines = []
+    for finding in data.get("findings", []):
+        cat = finding.get("category", "general")
+        title = finding.get("title", "Untitled")
+        desc = finding.get("description", "")
+        source = finding.get("source", "Manual research")
+        date = finding.get("date", "")
+        relevance = finding.get("risk_relevance", "")
+        lines.append(f"  [{cat.upper()}] {title}")
+        lines.append(f"    {desc}")
+        lines.append(f"    Source: {source} | Date: {date}")
+        if relevance:
+            lines.append(f"    Risk relevance: {relevance}")
+        lines.append("")
+    if data.get("notes"):
+        lines.append(f"  VETTER NOTES: {data['notes']}")
+    return "\n".join(lines) if lines else "No manual findings provided."
+
+
 # ─── Build Synthesis Prompt ─────────────────────────────────
 
 def build_synthesis_prompt(intake: dict, step_data: dict, sources: list = None) -> str:
@@ -380,9 +469,17 @@ def build_synthesis_prompt(intake: dict, step_data: dict, sources: list = None) 
     lobbying_text = format_lobbying_for_prompt(step_data.get("lobbying", {}))
     bankruptcy_text = format_bankruptcy_for_prompt(step_data.get("bankruptcy", {}))
     international_text = format_international_for_prompt(step_data.get("international", {}))
+    manual_text = format_manual_for_prompt(step_data.get("manual", {}))
+
+    # Client conflict check
+    conflicts = check_client_conflicts(name, company)
+    conflicts_text = format_conflicts_for_prompt(conflicts)
 
     # Build sources reference for citations
     sources_ref = build_sources_reference(sources or [])
+
+    # Get the Reputational Contagion Analysis prompt
+    rca_prompt = get_rca_prompt()
 
     prompt = f"""You are a senior due diligence analyst for The Messina Group (TMG), a political consulting firm.
 You are producing a factual, evidence-based risk assessment for a potential client.
@@ -481,6 +578,12 @@ You have a numbered source reference list below. When writing evidence items:
 
 ## INTERNATIONAL / PEP DATA (Step 12)
 {international_text}
+
+## MANUAL FINDINGS (from human researcher — treat as HIGH-CONFIDENCE primary evidence)
+{manual_text}
+
+## TMG CLIENT CONFLICT CHECK (use this for the conflict_of_interest dimension)
+{conflicts_text}
 
 ---
 
@@ -611,6 +714,19 @@ Return ONLY valid JSON (no markdown code fences, no commentary). The JSON must m
     ]
   }},
   "executive_summary": "## Summary\\n\\nMultiple paragraph executive summary in markdown format suitable for email to TMG leadership. Include: Biography, Professional Background, Key Findings, Risk Assessment, Recommendation.\\n\\n## Key Findings\\n\\n- Finding 1\\n- Finding 2\\n\\n## Recommendation\\n\\n**RECOMMENDATION** — rationale...",
+  "reputational_contagion": {{
+    "q1_partisan_alignment": {{"score": 0, "weight": 0.25, "evidence": "Specific evidence for partisan alignment score"}},
+    "q2_stakeholder_backlash": {{"score": 0, "weight": 0.20, "evidence": "Specific evidence for stakeholder backlash score"}},
+    "q3_narrative_vulnerability": {{"score": 0, "weight": 0.15, "evidence": "Specific evidence", "damaging_headline": "The most damaging plausible one-sentence headline"}},
+    "q4_client_conflicts": {{"score": 0, "weight": 0.15, "evidence": "Specific evidence for client conflict score"}},
+    "q5_industry_toxicity": {{"score": 0, "weight": 0.15, "evidence": "Specific evidence for industry toxicity score"}},
+    "q6_temporal_context": {{"score": 0, "weight": 0.10, "evidence": "Specific evidence for temporal context score"}},
+    "composite_rcs": 0.0,
+    "rcs_risk_tier": "LOW/MODERATE/ELEVATED/HIGH/CRITICAL",
+    "rcs_recommendation": "Recommendation based on reputational contagion score",
+    "divergence_alert": "If factual risk is LOW but RCS is HIGH, explain the divergence here. Otherwise null.",
+    "most_damaging_headline": "Copy the headline from Q3 here"
+  }},
   "metadata": {{
     "pipeline_version": "v1.0",
     "vetting_level": "{vetting_level}",
@@ -627,7 +743,17 @@ IMPORTANT SCORING RULES:
 3. Cap adjusted_composite at 10.0
 4. If overall confidence is LOW, set confidence_modifier to "bump_one_tier" and bump the recommendation one tier more cautious
 5. Determine risk_tier based on final_composite: 0-2.5=LOW, 2.5-4.5=MODERATE, 4.5-6.5=ELEVATED, 6.5-10=HIGH
-6. Set recommendation based on risk_tier: LOW=Approve, MODERATE=Conditional Approve, ELEVATED=Further Review, HIGH=Recommend Reject"""
+6. Set recommendation based on risk_tier: LOW=Approve, MODERATE=Conditional Approve, ELEVATED=Further Review, HIGH=Recommend Reject
+
+---
+
+{rca_prompt}
+
+IMPORTANT RCS SCORING RULES:
+7. Calculate composite_rcs = (Q1 * 0.25) + (Q2 * 0.20) + (Q3 * 0.15) + (Q4 * 0.15) + (Q5 * 0.15) + (Q6 * 0.10)
+8. Determine rcs_risk_tier: 0-2.5=LOW, 2.5-4.5=MODERATE, 4.5-6.5=ELEVATED, 6.5-8.0=HIGH, 8.0-10=CRITICAL
+9. If factual risk_tier is LOW or MODERATE but rcs_risk_tier is HIGH or CRITICAL, set divergence_alert explaining why
+10. The reputational_contagion section is REQUIRED — always fill it out completely"""
 
     return prompt
 
@@ -790,6 +916,56 @@ def run_synthesis(intake: dict) -> dict:
         "recommendation": recommendation,
     }
 
+    # ── Validate and fix Reputational Contagion Score ──
+    rca = synthesized.get("reputational_contagion", {})
+    rcs_weights = {
+        "q1_partisan_alignment": 0.25,
+        "q2_stakeholder_backlash": 0.20,
+        "q3_narrative_vulnerability": 0.15,
+        "q4_client_conflicts": 0.15,
+        "q5_industry_toxicity": 0.15,
+        "q6_temporal_context": 0.10,
+    }
+    rcs_weighted_sum = 0.0
+    for q_key, q_weight in rcs_weights.items():
+        q_data = rca.get(q_key, {})
+        q_score = q_data.get("score", 0)
+        if isinstance(q_score, str):
+            try:
+                q_score = float(q_score)
+            except ValueError:
+                q_score = 0.0
+        q_score = max(0, min(10, float(q_score)))
+        q_data["score"] = q_score
+        q_data["weight"] = q_weight
+        rca[q_key] = q_data
+        rcs_weighted_sum += q_score * q_weight
+
+    composite_rcs = round(rcs_weighted_sum, 2)
+    rcs_tier_info = get_rcs_tier(composite_rcs)
+    rca["composite_rcs"] = composite_rcs
+    rca["rcs_risk_tier"] = rcs_tier_info["tier"]
+    rca["rcs_recommendation"] = rcs_tier_info["recommendation"]
+
+    # Check for divergence between factual and reputational scores
+    factual_tier = tier_info["tier"]
+    rcs_tier = rcs_tier_info["tier"]
+    if factual_tier in ("LOW", "MODERATE") and rcs_tier in ("HIGH", "CRITICAL"):
+        rca["divergence_alert"] = (
+            f"DIVERGENCE: Factual risk is {factual_tier} ({final_composite}/10) but "
+            f"reputational contagion risk is {rcs_tier} ({composite_rcs}/10). "
+            f"Subject passes traditional due diligence screening but poses significant "
+            f"reputational risk to TMG's brand and stakeholder relationships."
+        )
+    else:
+        rca["divergence_alert"] = None
+
+    # Propagate headline from Q3
+    q3_data = rca.get("q3_narrative_vulnerability", {})
+    rca["most_damaging_headline"] = q3_data.get("damaging_headline", "N/A")
+
+    synthesized["reputational_contagion"] = rca
+
     # Count enrichment stats
     total_evidence = 0
     enriched_evidence = 0
@@ -838,6 +1014,27 @@ def run_synthesis(intake: dict) -> dict:
         dim_data = dimensions.get(dim_key, {})
         print(f"    {dim_config['label']}: {dim_data.get('score', '?')}/10 ({dim_data.get('confidence', '?')})")
 
+    # Print Reputational Contagion Score
+    print(f"\n  --- Reputational Contagion Analysis ---")
+    print(f"  RCS Composite: {composite_rcs}/10 ({rcs_tier_info['tier']})")
+    print(f"  RCS Recommendation: {rcs_tier_info['recommendation']}")
+    rcs_labels = {
+        "q1_partisan_alignment": "Partisan Alignment",
+        "q2_stakeholder_backlash": "Stakeholder Backlash",
+        "q3_narrative_vulnerability": "Narrative Vulnerability",
+        "q4_client_conflicts": "Client Conflicts",
+        "q5_industry_toxicity": "Industry Toxicity",
+        "q6_temporal_context": "Temporal Context",
+    }
+    for q_key, q_label in rcs_labels.items():
+        q_data = rca.get(q_key, {})
+        print(f"    {q_label}: {q_data.get('score', '?')}/10")
+    headline = rca.get("most_damaging_headline", "N/A")
+    if headline and headline != "N/A":
+        print(f"  Most Damaging Headline: \"{headline}\"")
+    if rca.get("divergence_alert"):
+        print(f"  !! {rca['divergence_alert']}")
+
     return synthesized
 
 
@@ -856,6 +1053,12 @@ if __name__ == "__main__":
         print(f"\nERROR: {result['error']}")
     else:
         scoring = result.get("scoring", {})
-        print(f"\nFinal Score: {scoring.get('final_composite', 'N/A')}/10")
-        print(f"Risk Tier: {scoring.get('risk_tier', 'N/A')}")
-        print(f"Recommendation: {scoring.get('recommendation', 'N/A')}")
+        rca = result.get("reputational_contagion", {})
+        print(f"\n{'='*50}")
+        print(f"FACTUAL Risk Score: {scoring.get('final_composite', 'N/A')}/10 ({scoring.get('risk_tier', 'N/A')})")
+        print(f"REPUTATIONAL Contagion Score: {rca.get('composite_rcs', 'N/A')}/10 ({rca.get('rcs_risk_tier', 'N/A')})")
+        print(f"Factual Recommendation: {scoring.get('recommendation', 'N/A')}")
+        print(f"Reputational Recommendation: {rca.get('rcs_recommendation', 'N/A')}")
+        if rca.get("divergence_alert"):
+            print(f"\n!! DIVERGENCE ALERT: {rca['divergence_alert']}")
+        print(f"{'='*50}")
