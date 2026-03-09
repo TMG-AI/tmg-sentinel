@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -25,14 +26,15 @@ serve(async (req) => {
   }
 
   try {
-    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-    if (!RESEND_API_KEY) {
-      throw new Error("RESEND_API_KEY is not configured");
+    const GMAIL_ADDRESS = Deno.env.get("GMAIL_ADDRESS");
+    const GMAIL_APP_PASSWORD = Deno.env.get("GMAIL_APP_PASSWORD");
+
+    if (!GMAIL_ADDRESS || !GMAIL_APP_PASSWORD) {
+      throw new Error("Gmail credentials are not configured");
     }
 
     const payload: VettingPayload = await req.json();
 
-    // Validate required fields
     if (!payload.subject_name?.trim()) {
       return new Response(
         JSON.stringify({ error: "Subject name is required" }),
@@ -40,7 +42,7 @@ serve(async (req) => {
       );
     }
 
-    const body = [
+    const bodyText = [
       `Subject Name: ${payload.subject_name}`,
       `Subject Type: ${payload.subject_type}`,
       `Company Affiliation: ${payload.company_affiliation || "N/A"}`,
@@ -55,35 +57,32 @@ serve(async (req) => {
       `Submitted at: ${new Date().toISOString()}`,
     ].join("\n");
 
-    const htmlBody = body.split("\n").map((line) => `<p>${line || "&nbsp;"}</p>`).join("");
+    const htmlBody = bodyText.split("\n").map((line) => `<p>${line || "&nbsp;"}</p>`).join("");
 
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${RESEND_API_KEY}`,
+    const client = new SMTPClient({
+      connection: {
+        hostname: "smtp.gmail.com",
+        port: 465,
+        tls: true,
+        auth: {
+          username: GMAIL_ADDRESS,
+          password: GMAIL_APP_PASSWORD,
+        },
       },
-      body: JSON.stringify({
-        from: "TMG Sentinel <onboarding@resend.dev>",
-        to: ["shannon@themessinagroup.com"],
-        subject: `New Vetting Request: ${payload.subject_name}`,
-        html: htmlBody,
-        text: body,
-      }),
     });
 
-    const data = await res.json();
+    await client.send({
+      from: GMAIL_ADDRESS,
+      to: "shannon@themessinagroup.com",
+      subject: `New Vetting Request: ${payload.subject_name}`,
+      content: bodyText,
+      html: htmlBody,
+    });
 
-    if (!res.ok) {
-      console.error("Resend error:", data);
-      return new Response(
-        JSON.stringify({ error: "Failed to send email", details: data }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
+    await client.close();
 
     return new Response(
-      JSON.stringify({ success: true, id: data.id }),
+      JSON.stringify({ success: true }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error) {
