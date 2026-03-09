@@ -369,10 +369,17 @@ export default function VettingDetail() {
           <div className="max-w-none text-foreground space-y-2">
             {result.executive_summary.split("\n").filter(line => line.trim() !== "").map((line, i) => {
               const clean = (s: string) => s.replace(/\s*\[\d+\]\s*/g, ' ').replace(/\*\*(.*?)\*\*/g, "$1").trim();
-              if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-5 mb-2 text-foreground">{clean(line.replace("## ", ""))}</h3>;
-              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground mt-4 mb-1.5">{clean(line)}</p>;
-              if (line.startsWith("- ")) return <li key={i} className="text-muted-foreground ml-4 mb-1.5 leading-relaxed">{clean(line.replace("- ", ""))}</li>;
-              return <p key={i} className="text-muted-foreground mb-2 leading-relaxed">{clean(line)}</p>;
+              const renderText = (text: string) => {
+                if (text.includes("REJECT —") || text.includes("REJECT —")) {
+                  const parts = text.split(/(REJECT\s*[—\u2014])/);
+                  return parts.map((part, j) => /REJECT\s*[—\u2014]/.test(part) ? <span key={j} className="font-black text-[hsl(var(--risk-critical))]">{part}</span> : part);
+                }
+                return text;
+              };
+              if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-5 mb-2 text-foreground">{renderText(clean(line.replace("## ", "")))}</h3>;
+              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground mt-4 mb-1.5">{renderText(clean(line))}</p>;
+              if (line.startsWith("- ")) return <li key={i} className="text-muted-foreground ml-4 mb-1.5 leading-relaxed">{renderText(clean(line.replace("- ", "")))}</li>;
+              return <p key={i} className="text-muted-foreground mb-2 leading-relaxed">{renderText(clean(line))}</p>;
             })}
           </div>
         </div>
