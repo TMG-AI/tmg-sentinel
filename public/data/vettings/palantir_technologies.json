@@ -1398,6 +1398,11 @@
         "Palantir sues engineers who left to form 'copycat' Percepta AI - Yahoo Finance",
         "Palantir sues engineers who left to form 'copycat' AI firm - iTnews"
       ],
+      "news_urls": [
+        "https://www.axios.com/2025/10/30/ai-palantir-general-catalyst-lawsuit",
+        "https://finance.yahoo.com/news/palantir-sues-engineers-left-form-155756889.html",
+        "https://www.itnews.com.au/news/palantir-sues-engineers-who-left-to-form-copycat-ai-firm-621436"
+      ],
       "sanctions_flag": false
     },
     {
