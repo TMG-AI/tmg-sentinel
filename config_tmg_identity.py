@@ -76,7 +76,7 @@ RCS_RISK_TIERS = [
     {"range": (0, 2.5), "tier": "LOW", "recommendation": "Proceed normally; engagement aligns with TMG brand"},
     {"range": (2.5, 4.5), "tier": "MODERATE", "recommendation": "Flag for leadership discussion; document rationale for proceeding"},
     {"range": (4.5, 6.5), "tier": "ELEVATED", "recommendation": "Requires Jim/Tara/partner sign-off with written justification"},
-    {"range": (6.5, 8.0), "tier": "HIGH", "recommendation": "Strong presumption against engagement; requires unanimous partner approval"},
+    {"range": (6.5, 8.0), "tier": "HIGH", "recommendation": "Strong presumption against engagement"},
     {"range": (8.0, 10.01), "tier": "CRITICAL", "recommendation": "Recommended reject; engagement would damage TMG's core brand and relationships"},
 ]
 
@@ -180,7 +180,7 @@ Risk tiers:
 - 0-2.5: LOW — Proceed normally
 - 2.5-4.5: MODERATE — Flag for leadership; document rationale
 - 4.5-6.5: ELEVATED — Requires Jim/Tara/partner sign-off
-- 6.5-8.0: HIGH — Strong presumption against; requires unanimous partner approval
+- 6.5-8.0: HIGH — Strong presumption against engagement
 - 8.0-10: CRITICAL — Recommended reject
 
 ### OUTPUT FORMAT
