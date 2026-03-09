@@ -28,15 +28,6 @@ export default function Dashboard() {
     return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
   }).length;
 
-  const avgTurnaround = useMemo(() => {
-    const completed = vettings.filter((v) => v.completed_at && v.requested_at);
-    if (!completed.length) return "—";
-    const avg = completed.reduce((sum, v) => {
-      return sum + (new Date(v.completed_at!).getTime() - new Date(v.requested_at).getTime());
-    }, 0) / completed.length;
-    const mins = Math.round(avg / 60000);
-    return mins < 60 ? `${mins}m` : `${Math.round(mins / 60)}h ${mins % 60}m`;
-  }, [vettings]);
 
   const filtered = useMemo(() => {
     let result = [...vettings];
