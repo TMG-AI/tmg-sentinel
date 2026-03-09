@@ -19,8 +19,11 @@ export default function Dashboard() {
     loadVettings();
   }, [loadVettings]);
 
-  const active = vettings.filter((v) => v.status === "running" || v.status === "pending").length;
-  const awaiting = vettings.filter((v) => v.status === "completed" && !v.decision).length;
+  const completedYear = vettings.filter((v) => {
+    if (!v.completed_at) return false;
+    const d = new Date(v.completed_at);
+    return d.getFullYear() === new Date().getFullYear();
+  }).length;
   const completedMonth = vettings.filter((v) => {
     if (!v.completed_at) return false;
     const d = new Date(v.completed_at);
