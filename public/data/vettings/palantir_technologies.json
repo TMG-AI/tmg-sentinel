@@ -1298,6 +1298,11 @@
         "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
         "Palantir sues former employees, says Percepta AI CEO set out to 'pillage' top developers - cnbc.com"
       ],
+      "news_urls": [
+        "https://finance.yahoo.com/news/palantir-sues-engineers-left-form-155756889.html",
+        "https://www.itnews.com.au/news/palantir-sues-engineers-who-left-to-form-copycat-ai-firm-621436",
+        "https://www.cnbc.com/2025/12/11/palantir-sues-former-employees-says-percepta-tried-to-pillage-devs.html"
+      ],
       "sanctions_flag": false
     },
     {
