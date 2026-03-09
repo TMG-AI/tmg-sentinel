@@ -1084,7 +1084,7 @@ def run_synthesis(intake: dict) -> dict:
     COMBINED_RECOMMENDATIONS = {
         0: "Approve",
         1: "Conditional Approve",
-        2: "Further Review — Requires Jim/Tara/partner sign-off",
+        2: "Further Review",
         3: "Recommend Reject — Requires unanimous partner approval to override",
         4: "Recommend Reject — Engagement would damage TMG's core brand",
     }
