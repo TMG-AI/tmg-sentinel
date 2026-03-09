@@ -381,32 +381,45 @@
       ]
     },
     "conflict_of_interest": {
-      "score": 0,
+      "score": 5.0,
       "weight": 0.1,
       "confidence": "HIGH",
-      "summary": "No conflicts identified with current TMG clients.",
+      "summary": "Moderate conflicts with several TMG clients in tech sector and potential reputational conflicts with progressive organizations.",
       "sub_factors": {
         "direct_conflict": {
-          "score": 0,
-          "detail": "No direct conflicts with 54 active TMG clients"
+          "score": 3,
+          "detail": "Competitive tensions with Google (TMG client) in AI/data analytics space"
         },
         "indirect_conflict": {
-          "score": 0,
-          "detail": "No indirect conflicts identified"
+          "score": 7,
+          "detail": "ICE contracts conflict with immigrant rights positions of progressive TMG clients"
         },
         "future_conflict": {
-          "score": 0,
-          "detail": "No anticipated future conflicts"
+          "score": 5,
+          "detail": "Expanding surveillance tech could conflict with civil liberties positions"
         }
       },
       "evidence": [
         {
-          "text": "Checked against 54 active TMG clients with no conflicts found",
-          "source": "TMG Client Database",
+          "text": "Palantir provides ICE with Investigative Case Management platform worth $145 million, used for immigration enforcement",
+          "source": "USAspending.gov",
           "url": "",
-          "date": "2026-03-07",
+          "date": "2026-03-08",
           "temporal_weight": 1.0,
           "source_urls": []
+        },
+        {
+          "text": "Palantir competing with Google and other tech firms in AI/analytics space, particularly around defense contracts",
+          "source": "TechCrunch",
+          "url": "https://techcrunch.com/2026/03/02/openai-anthropic-department-of-defense-war-hegseth-ai-companies-work-with-us-government/",
+          "date": "2026-03-02",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://techcrunch.com/2026/03/02/openai-anthropic-department-of-defense-war-hegseth-ai-companies-work-with-us-government/",
+              "title": "No one has a good plan for how AI companies should work with the government - TechCrunch"
+            }
+          ]
         }
       ]
     }
