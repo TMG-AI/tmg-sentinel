@@ -361,8 +361,13 @@ def mini_vet_fec(name: str) -> dict:
 
 
 def mini_vet_news(name: str, company_name: str) -> dict:
-    """Quick news search for an executive."""
+    """Quick news search for an executive. Filters results to only those mentioning the exec."""
     try:
+        # Extract last name and first name for filtering
+        name_parts = name.strip().split()
+        last_name = name_parts[-1].lower() if name_parts else ""
+        first_name = name_parts[0].lower() if name_parts else ""
+
         query = f'"{name}" {company_name} controversy OR scandal OR lawsuit OR investigation'
         params = get_tavily_params("news_basic", query)
         params["api_key"] = config.TAVILY_API_KEY
@@ -374,9 +379,18 @@ def mini_vet_news(name: str, company_name: str) -> dict:
         resp.raise_for_status()
         data = resp.json()
 
-        results = data.get("results", [])
+        all_results = data.get("results", [])
+
+        # Filter: only keep results where the exec's name actually appears
+        # in the title or content (not just company-level news)
+        filtered = []
+        for r in all_results:
+            text = (r.get("title", "") + " " + (r.get("content", "") or "")).lower()
+            if last_name and first_name and (last_name in text and first_name in text):
+                filtered.append(r)
+
         return {
-            "total_results": len(results),
+            "total_results": len(filtered),
             "answer": data.get("answer", ""),
             "results": [
                 {
@@ -385,7 +399,7 @@ def mini_vet_news(name: str, company_name: str) -> dict:
                     "content": (r.get("content", "") or "")[:400],
                     "score": r.get("score", 0),
                 }
-                for r in results[:5]
+                for r in filtered[:5]
             ],
         }
     except Exception as e:
@@ -439,14 +453,20 @@ def run_mini_vet(executive: dict, company_name: str) -> dict:
     if not name:
         return executive
 
-    # Normalize name from EDGAR format ("Last First Middle" → "First Last")
-    parts = name.split()
-    if len(parts) >= 2 and "," not in name:
-        # EDGAR often uses "Last First" format
-        display_name = name
+    # Normalize name from EDGAR format to natural order for news/sanctions queries
+    # EDGAR uses "LAST FIRST MIDDLE" or "Last, First Middle"
+    if "," in name:
+        # "Cohen, Stephen Andrew" → "Stephen Andrew Cohen"
+        last, rest = name.split(",", 1)
+        display_name = f"{rest.strip()} {last.strip()}"
     else:
-        # Handle "Last, First Middle" format
-        display_name = name.replace(",", "").strip()
+        parts = name.split()
+        if len(parts) >= 2 and parts[0].isupper() and len(parts[0]) > 1:
+            # "THIEL PETER" or "Cohen Stephen Andrew" → "Stephen Andrew Cohen" / "Peter Thiel"
+            display_name = " ".join(parts[1:]) + " " + parts[0]
+            display_name = display_name.strip().title()
+        else:
+            display_name = name
 
     result = dict(executive)
     result["display_name"] = display_name
