@@ -491,7 +491,7 @@
     "q4_client_conflicts": {
       "score": 7.0,
       "weight": 0.15,
-      "evidence": "Direct reputational conflict with progressive advocacy organizations that are TMG clients; Palantir's immigration enforcement work directly opposes positions of many Democratic officials TMG advises; surveillance technology conflicts with civil liberties positions of TMG's political clients"
+      "evidence": "Direct competition with TMG client Google in AI/defense space; Reputational conflict with Keep Americans Covered, Mayday Health, and other progressive advocacy clients due to surveillance/ICE work; College of Adaptive Arts might object given immigrant community concerns; Palantir's immigration enforcement work directly opposes positions of many Democratic officials TMG advises"
     },
     "q5_industry_toxicity": {
       "score": 8.5,
