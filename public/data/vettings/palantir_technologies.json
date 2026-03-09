@@ -1473,6 +1473,11 @@
         "Palantir Sues CEO of Rival AI Firm, Alleges Widespread Effort to Poach Employees - The Wall Street Journal",
         "PLTR Investors Have Opportunity to Join Palantir Technologies Inc. Fraud Investigation with the Schall Law Firm - Business Wire"
       ],
+      "news_urls": [
+        "https://www.denverpost.com/2026/02/17/palantir-moving-headquarters-miami/",
+        "https://www.wsj.com/business/palantir-sues-ceo-of-rival-ai-firm-alleges-widespread-effort-to-poach-employees-9c297986",
+        "https://www.businesswire.com/news/home/20251012348817/en/PLTR-Investors-Have-Opportunity-to-Join-Palantir-Technologies-Inc.-Fraud-Investigation-with-the-Schall-Law-Firm"
+      ],
       "sanctions_flag": false
     }
   ],
