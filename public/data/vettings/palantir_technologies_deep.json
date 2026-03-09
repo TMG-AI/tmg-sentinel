@@ -1268,7 +1268,7 @@
     }
   ],
   "combined_decision": {
-    "recommendation": "Recommend Reject \u2014 Requires unanimous partner approval to override",
+    "recommendation": "Recommend Reject",
     "combined_tier": "HIGH",
     "factual_tier": "MODERATE",
     "factual_score": 3.72,
