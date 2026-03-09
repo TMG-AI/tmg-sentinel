@@ -27,56 +27,43 @@
   },
   "dimensions": {
     "litigation_legal": {
-      "score": 3.5,
+      "score": 4.0,
       "weight": 0.22,
       "confidence": "HIGH",
-      "summary": "Moderate litigation activity including IP disputes and shareholder lawsuits, but no criminal cases or major fraud allegations.",
+      "summary": "Moderate litigation history with 248 court dockets, primarily intellectual property and employment disputes, but no active criminal cases or major fraud litigation.",
       "sub_factors": {
         "criminal_cases": {
           "score": 0,
-          "detail": "No criminal cases found against Palantir Technologies"
+          "detail": "No criminal cases found in court records search"
         },
         "civil_fraud_corruption": {
           "score": 2,
-          "detail": "WikiLeaks/Bank of America proposal controversy in 2011 [19], but aged and not pursued"
+          "detail": "2011 WikiLeaks/Bank of America proposal showed poor judgment [19]; 2018 Facebook data access investigation [4]"
         },
         "repeated_civil_litigation": {
           "score": 5,
-          "detail": "248 total court dockets found, including IP disputes and shareholder suits"
+          "detail": "248 total dockets show pattern of IP disputes, employment litigation, and commercial disputes"
         },
         "past_resolved": {
           "score": 3,
-          "detail": "Most litigation appears routine for a public tech company"
+          "detail": "Most cases appear resolved; ongoing IP dispute with Guardian AI (2025) [CourtListener]"
         },
         "bankruptcy": {
           "score": 0,
-          "detail": "No bankruptcy filings as debtor"
+          "detail": "No bankruptcy filings as debtor; appears as creditor in various cases"
         }
       },
       "evidence": [
         {
-          "text": "248 total court dockets found including recent IP dispute with Guardian AI filed March 2025",
+          "text": "248 court dockets found, primarily intellectual property and employment disputes",
           "source": "CourtListener",
           "url": "",
-          "date": "2025-03-10",
+          "date": "2021-2025",
           "temporal_weight": 1.0,
           "source_urls": []
         },
         {
-          "text": "Shareholder class action related to stock price drop following Reuters report about Army memo [28]",
-          "source": "Daily Tribune News",
-          "url": "https://www.daily-tribune.com/online_features/press_releases/alibaba-group-holding-ltd-investigated-by-the-portnoy-law-firm/article_294bb48d-63ab-564c-b56b-d38e4f24a9fc.html",
-          "date": "2025-10-03",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.daily-tribune.com/online_features/press_releases/alibaba-group-holding-ltd-investigated-by-the-portnoy-law-firm/article_294bb48d-63ab-564c-b56b-d38e4f24a9fc.html",
-              "title": "Alibaba Group Holding Ltd Investigated by the Portnoy Law Firm - The Daily Tribune News"
-            }
-          ]
-        },
-        {
-          "text": "In early 2011 e-mails emerged showing Palantir engineer collaborated on proposal to deal with WikiLeaks threat to Bank of America [19]",
+          "text": "2011 emails showed Palantir engineer collaborated on proposal to deal with WikiLeaks threat to Bank of America [19]",
           "source": "Forbes",
           "url": "https://www.forbes.com/sites/andygreenberg/2013/08/14/agent-of-intelligence-how-a-deviant-philosopher-built-palantir-a-cia-funded-data-mining-juggernaut/",
           "date": "2011",
@@ -87,6 +74,19 @@
               "title": "How A 'Deviant' Philosopher Built Palantir, A CIA-Funded Data ..."
             }
           ]
+        },
+        {
+          "text": "Facebook investigated whether Palantir had improper access to user data following Cambridge Analytica scandal [4]",
+          "source": "CNBC",
+          "url": "https://www.cnbc.com/2018/04/26/facebook-investigating-if-palantir-had-improper-access-to-user-data.html",
+          "date": "2018-04-26",
+          "temporal_weight": 0.7,
+          "source_urls": [
+            {
+              "url": "https://www.cnbc.com/2018/04/26/facebook-investigating-if-palantir-had-improper-access-to-user-data.html",
+              "title": "Facebook investigating if Palantir had 'improper' access to user data"
+            }
+          ]
         }
       ]
     },
@@ -94,71 +94,24 @@
       "score": 6.5,
       "weight": 0.2,
       "confidence": "HIGH",
-      "summary": "Significant negative coverage around surveillance technology, Pentagon disputes, and controversial government contracts.",
+      "summary": "Significant negative media coverage regarding surveillance activities, controversial government contracts, and recent Pentagon-Anthropic dispute creating industry tensions.",
       "sub_factors": {},
       "evidence": [
         {
-          "text": "Pentagon-Anthropic dispute creating significant negative coverage with Palantir caught in middle as integrator [39][41][42]",
-          "source": "Multiple sources",
-          "url": "https://www.reuters.com/technology/palantir-faces-challenge-remove-anthropic-pentagons-ai-software-2026-03-04/",
+          "text": "Palantir CEO used derogatory slur to describe critics amid Pentagon-Anthropic dispute [44]",
+          "source": "Gizmodo",
+          "url": "https://gizmodo.com/palantir-ceo-uses-slur-to-describe-people-who-dont-think-the-government-will-take-their-company-2000729028",
           "date": "2026-03",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://www.reuters.com/technology/palantir-faces-challenge-remove-anthropic-pentagons-ai-software-2026-03-04/",
-              "title": "Palantir faces challenge to remove Anthropic from Pentagon's AI software - Reuters"
-            },
-            {
-              "url": "https://www.cnbc.com/2026/03/06/palantir-stock-jumps-15percent-in-week-on-iran-war-boosts-anthropic-muted.html",
-              "title": "Palantir rallies 15% for the week as Iran war boosts prospects, muting Anthropic concern - CNBC"
-            },
-            {
-              "url": "https://techcrunch.com/2026/03/04/the-us-military-is-still-using-claude-but-defense-tech-clients-are-fleeing/",
-              "title": "The US military is still using Claude \u2014 but defense-tech clients are fleeing - TechCrunch"
+              "url": "https://gizmodo.com/palantir-ceo-uses-slur-to-describe-people-who-dont-think-the-government-will-take-their-company-2000729028",
+              "title": "Palantir CEO Uses Slur to Describe People Who Don\u2019t Think the Government Will Take Their Company - Gizmodo"
             }
           ]
         },
         {
-          "text": "Met police using AI tools supplied by Palantir to flag officer misconduct raising civil liberties concerns [21]",
-          "source": "The Guardian",
-          "url": "https://www.theguardian.com/uk-news/2026/feb/22/met-police-ai-tools-officer-misconduct-palantir",
-          "date": "2026-02-22",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.theguardian.com/uk-news/2026/feb/22/met-police-ai-tools-officer-misconduct-palantir",
-              "title": "Met police using AI tools supplied by Palantir to flag officer misconduct"
-            }
-          ]
-        },
-        {
-          "text": "NHS deal with AI firm Palantir called into question after officials' concerns revealed [25]",
-          "source": "The Guardian",
-          "url": "https://www.theguardian.com/society/2026/feb/12/nhs-deal-with-ai-firm-palantir-called-into-question-after-officials-concerns-revealed",
-          "date": "2026-02-12",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.theguardian.com/society/2026/feb/12/nhs-deal-with-ai-firm-palantir-called-into-question-after-officials-concerns-revealed",
-              "title": "NHS deal with AI firm Palantir called into question after officials ..."
-            }
-          ]
-        },
-        {
-          "text": "Facebook investigating if Palantir had 'improper' access to user data following Cambridge Analytica scandal [4]",
-          "source": "CNBC",
-          "url": "https://www.cnbc.com/2018/04/26/facebook-investigating-if-palantir-had-improper-access-to-user-data.html",
-          "date": "2018-04-26",
-          "temporal_weight": 0.4,
-          "source_urls": [
-            {
-              "url": "https://www.cnbc.com/2018/04/26/facebook-investigating-if-palantir-had-improper-access-to-user-data.html",
-              "title": "Facebook investigating if Palantir had 'improper' access to user data"
-            }
-          ]
-        },
-        {
-          "text": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests that support regime in Iran [27]",
+          "text": "Pro-CCP network funded by Neville Roy Singham targets Palantir amid anti-US protests supporting Iran regime [27]",
           "source": "Fox News",
           "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
           "date": "2026-03",
@@ -171,7 +124,20 @@
           ]
         },
         {
-          "text": "Palantir & Starlink allegedly complicit in war crimes amid Israel's war in Gaza [17]",
+          "text": "Former employees condemn company's work with Trump administration on ICE contracts [26]",
+          "source": "NPR",
+          "url": "https://www.npr.org/2025/05/05/nx-s1-5387514/palantir-workers-letter-trump",
+          "date": "2025-05-05",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.npr.org/2025/05/05/nx-s1-5387514/palantir-workers-letter-trump",
+              "title": "Former Palantir workers condemn company's work with Trump admin"
+            }
+          ]
+        },
+        {
+          "text": "Allegedly complicit in war crimes amid Israel's war in Gaza through technology support [17]",
           "source": "Business & Human Rights Resource Centre",
           "url": "https://www.business-humanrights.org/en/latest-news/palantir-spacex-allegedly-complicit-in-war-crimes-amid-israels-war-in-gaza/",
           "date": "2025",
@@ -182,6 +148,19 @@
               "title": "Palantir & Starlink allegedly complicit in war crimes amid Israel's war ..."
             }
           ]
+        },
+        {
+          "text": "Met Police using Palantir AI tools to flag officer misconduct raises civil liberties concerns [21]",
+          "source": "The Guardian",
+          "url": "https://www.theguardian.com/uk-news/2026/feb/22/met-police-ai-tools-officer-misconduct-palantir",
+          "date": "2026-02-22",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.theguardian.com/uk-news/2026/feb/22/met-police-ai-tools-officer-misconduct-palantir",
+              "title": "Met police using AI tools supplied by Palantir to flag officer misconduct"
+            }
+          ]
         }
       ]
     },
@@ -189,54 +168,28 @@
       "score": 2.0,
       "weight": 0.15,
       "confidence": "HIGH",
-      "summary": "No PEP status, but international government contracts raise minor concerns about foreign influence.",
+      "summary": "No PEP status, but international government contracts and Lord Mandelson connection raise minor concerns.",
       "sub_factors": {
         "pep_status": {
           "score": 0,
-          "detail": "No PEP matches found"
+          "detail": "No PEP matches found in international databases"
         },
         "country_risk": {
-          "score": 1,
-          "detail": "US-based company with low country risk"
+          "score": 2,
+          "detail": "UK government contracts worth \u00a3570M+ [1][3]; operates in Israel with office since 2015 [17]"
         },
         "fara_exposure": {
-          "score": 2,
-          "detail": "No FARA registrations found but extensive foreign government contracts"
+          "score": 0,
+          "detail": "No FARA registrations found"
         },
         "source_reliability": {
-          "score": 0,
-          "detail": "Reliable sources confirm no PEP connections"
+          "score": 3,
+          "detail": "Lord Mandelson links being investigated for potential sensitive information leaks [18]"
         }
       },
       "evidence": [
         {
-          "text": "Secures largest deal in company history with unnamed foreign government [5]",
-          "source": "CUNY Journalism",
-          "url": "https://coveringcompanies.journalism.cuny.edu/2025/10/10/palantir-secures-largest-deal-in-company-history-with-foreign-government/",
-          "date": "2025-10-10",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://coveringcompanies.journalism.cuny.edu/2025/10/10/palantir-secures-largest-deal-in-company-history-with-foreign-government/",
-              "title": "Palantir Secures Largest Deal in Company History with Foreign ..."
-            }
-          ]
-        },
-        {
-          "text": "Palantir lands biggest ever UK defense deal worth \u00a3240 million [3]",
-          "source": "Politico",
-          "url": "https://www.politico.eu/article/palantir-lands-biggest-ever-uk-defense-deal/",
-          "date": "2025",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.politico.eu/article/palantir-lands-biggest-ever-uk-defense-deal/",
-              "title": "Palantir lands biggest ever UK defense deal - POLITICO"
-            }
-          ]
-        },
-        {
-          "text": "Lord Mandelson's links with Palantir must be fully exposed following Jeffrey Epstein investigation [18]",
+          "text": "Lord Mandelson's links with Palantir under scrutiny following Jeffrey Epstein investigation [18]",
           "source": "The Guardian",
           "url": "https://www.theguardian.com/politics/2026/feb/04/peter-mandelson-palantir-jeffrey-epstein-government",
           "date": "2026-02-04",
@@ -247,6 +200,19 @@
               "title": "Mandelson's links with US tech firm Palantir must be fully exposed ..."
             }
           ]
+        },
+        {
+          "text": "\u00a3330 million NHS contract and \u00a3240 million UK Ministry of Defence contract [1]",
+          "source": "Politico",
+          "url": "https://www.politico.eu/article/britains-labour-government-feels-the-heat-over-palantir-contracts/",
+          "date": "2025",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.politico.eu/article/britains-labour-government-feels-the-heat-over-palantir-contracts/",
+              "title": "Britain's Labour government feels the heat over Palantir contracts"
+            }
+          ]
         }
       ]
     },
@@ -254,20 +220,12 @@
       "score": 2.5,
       "weight": 0.12,
       "confidence": "HIGH",
-      "summary": "Public company with standard SEC compliance; recent stock volatility but no enforcement actions.",
+      "summary": "Public company with strong financial performance but some stock volatility and investor litigation.",
       "sub_factors": {},
       "evidence": [
         {
-          "text": "544 company SEC filings found with 531 insider trading forms - normal for public company",
-          "source": "SEC EDGAR",
-          "url": "",
-          "date": "2026",
-          "temporal_weight": 1.0,
-          "source_urls": []
-        },
-        {
-          "text": "Stock price fell 7.5% to $173.07 following Reuters report about Army memo raising concerns [28]",
-          "source": "Daily Tribune News",
+          "text": "Stock fell 7.5% following Reuters report about Army memo raising concerns, leading to investor litigation [28]",
+          "source": "Daily Tribune",
           "url": "https://www.daily-tribune.com/online_features/press_releases/alibaba-group-holding-ltd-investigated-by-the-portnoy-law-firm/article_294bb48d-63ab-564c-b56b-d38e4f24a9fc.html",
           "date": "2025-10-03",
           "temporal_weight": 1.0,
@@ -292,69 +250,43 @@
           ]
         },
         {
-          "text": "No SEC enforcement actions found",
-          "source": "SEC",
-          "url": "",
-          "date": "2026",
+          "text": "Stock rallied 15% in one week as Iran war boosted defense prospects [41]",
+          "source": "CNBC",
+          "url": "https://www.cnbc.com/2026/03/06/palantir-stock-jumps-15percent-in-week-on-iran-war-boosts-anthropic-muted.html",
+          "date": "2026-03-06",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://coveringcompanies.journalism.cuny.edu/2025/10/10/palantir-secures-largest-deal-in-company-history-with-foreign-government/",
-              "title": "Palantir Secures Largest Deal in Company History with Foreign ..."
+              "url": "https://www.cnbc.com/2026/03/06/palantir-stock-jumps-15percent-in-week-on-iran-war-boosts-anthropic-muted.html",
+              "title": "Palantir rallies 15% for the week as Iran war boosts prospects, muting Anthropic concern - CNBC"
             }
           ]
         }
       ]
     },
     "corporate_business": {
-      "score": 3.5,
+      "score": 5.0,
       "weight": 0.11,
       "confidence": "HIGH",
-      "summary": "Controversial business model focused on surveillance and defense contracts raises ethical concerns.",
+      "summary": "Complex business model with heavy reliance on controversial government contracts and recent tensions with AI partners.",
       "sub_factors": {},
       "evidence": [
         {
-          "text": "Data analytics and software company providing platforms to government agencies for surveillance [20]",
-          "source": "PBS NewsHour",
-          "url": "https://www.pbs.org/newshour/show/new-book-offers-glimpse-inside-world-of-controversial-tech-firm-palantir-and-its-ceo",
-          "date": "2025",
+          "text": "Faces challenge to remove Anthropic from Pentagon's AI software after supply chain risk designation [39]",
+          "source": "Reuters",
+          "url": "https://www.reuters.com/technology/palantir-faces-challenge-remove-anthropic-pentagons-ai-software-2026-03-04/",
+          "date": "2026-03-04",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://www.pbs.org/newshour/show/new-book-offers-glimpse-inside-world-of-controversial-tech-firm-palantir-and-its-ceo",
-              "title": "New book offers glimpse inside world of controversial tech firm ..."
+              "url": "https://www.reuters.com/technology/palantir-faces-challenge-remove-anthropic-pentagons-ai-software-2026-03-04/",
+              "title": "Palantir faces challenge to remove Anthropic from Pentagon's AI software - Reuters"
             }
           ]
         },
         {
-          "text": "The great Ministry of Defence-to-Palantir pipeline with four officials hired raising revolving door concerns [8]",
-          "source": "openDemocracy",
-          "url": "https://www.opendemocracy.net/en/palantir-ministry-defence-hire-four-officials-2025-record-defence-contract-240-million/",
-          "date": "2025",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.opendemocracy.net/en/palantir-ministry-defence-hire-four-officials-2025-record-defence-contract-240-million/",
-              "title": "The great Ministry of Defence-to-Palantir pipeline - openDemocracy"
-            }
-          ]
-        },
-        {
-          "text": "Palantir trying to 'destroy' Percepta execs say in legal response to theft allegations [24]",
-          "source": "CNBC",
-          "url": "https://www.cnbc.com/2026/01/13/ai-palantir-percepta-lawsuit-theft.html",
-          "date": "2026-01-13",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.cnbc.com/2026/01/13/ai-palantir-percepta-lawsuit-theft.html",
-              "title": "Palantir trying to 'destroy' Percepta execs say in legal response"
-            }
-          ]
-        },
-        {
-          "text": "Co-founded by Peter Thiel and Alex Karp with CIA funding through In-Q-Tel [19]",
-          "source": "Forbes",
+          "text": "Founded by Peter Thiel and 'PayPal Mafia' alumni with CIA funding, raising questions about independence [19][35]",
+          "source": "Forbes/Chronicle-Journal",
           "url": "https://www.forbes.com/sites/andygreenberg/2013/08/14/agent-of-intelligence-how-a-deviant-philosopher-built-palantir-a-cia-funded-data-mining-juggernaut/",
           "date": "2013-08-14",
           "temporal_weight": 0.4,
@@ -362,139 +294,131 @@
             {
               "url": "https://www.forbes.com/sites/andygreenberg/2013/08/14/agent-of-intelligence-how-a-deviant-philosopher-built-palantir-a-cia-funded-data-mining-juggernaut/",
               "title": "How A 'Deviant' Philosopher Built Palantir, A CIA-Funded Data ..."
+            },
+            {
+              "url": "http://markets.chroniclejournal.com/chroniclejournal/article/finterra-2026-3-3-palantir-technologies-pltr-the-sovereign-ai-powerhouse-and-the-future-of-enterprise-operating-systems",
+              "title": "Palantir Technologies (PLTR): The Sovereign AI Powerhouse and the Future of Enterprise Operating Systems - The Chronicle-Journal"
+            }
+          ]
+        },
+        {
+          "text": "Trying to recruit back former employees with 'Lord of the Rings' themed campaign [9]",
+          "source": "Business Insider",
+          "url": "https://www.businessinsider.com/palantir-former-employees-return-shire-lord-of-the-rings-2026-3",
+          "date": "2026-03",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.businessinsider.com/palantir-former-employees-return-shire-lord-of-the-rings-2026-3",
+              "title": "Palantir wants its old employees back: 'The shire is calling' - Business Insider"
             }
           ]
         }
       ]
     },
     "political_lobbying": {
-      "score": 4.0,
+      "score": 3.5,
       "weight": 0.1,
       "confidence": "HIGH",
-      "summary": "Active lobbying presence with multiple registrants; significant government contracts create influence concerns.",
+      "summary": "Active lobbying presence with 13 registered lobbyists and significant government contract focus.",
       "sub_factors": {
         "fara_issues": {
           "score": 0,
-          "detail": "No FARA violations found"
+          "detail": "No FARA violations or registrations found"
         },
         "investigation_links": {
-          "score": 2,
-          "detail": "No direct investigation links but surveillance concerns"
+          "score": 0,
+          "detail": "No direct links to political investigations"
         },
         "watchlist_lobbying": {
           "score": 5,
-          "detail": "13 unique lobbying registrants found including major firms"
+          "detail": "13 unique lobbying registrants including major firms like Holland & Knight [LDA database]"
         },
         "pay_to_play": {
-          "score": 3,
-          "detail": "Significant government contracts raise influence questions"
+          "score": 0,
+          "detail": "No pay-to-play violations found"
         }
       },
       "evidence": [
         {
-          "text": "13 unique lobbying registrants including Holland & Knight LLP and Navigators Global",
-          "source": "Senate LDA",
+          "text": "13 unique lobbying registrants including Blue Marble Strategy, Holland & Knight, and Navigators Global",
+          "source": "Senate LDA database",
+          "url": "",
+          "date": "2025-2026",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "Lobbying for defense contracts and government technology adoption across multiple agencies",
+          "source": "Senate LDA database",
+          "url": "",
+          "date": "2025-2026",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        }
+      ]
+    },
+    "conflict_of_interest": {
+      "score": 7.0,
+      "weight": 0.1,
+      "confidence": "HIGH",
+      "summary": "Significant conflicts with multiple TMG clients including Google, Coinbase, and TikTok due to competitive positioning and political opposition.",
+      "sub_factors": {
+        "direct_conflict": {
+          "score": 8,
+          "detail": "Direct competition with Google LLC (HIGH sensitivity) in AI/data analytics; surveillance tech conflicts with civil liberties positions of AB Foundation and AB Democracy Matters"
+        },
+        "indirect_conflict": {
+          "score": 7,
+          "detail": "Reputational conflict with Coinbase (HIGH sensitivity) due to Thiel's competing crypto investments; conflicts with TikTok (HIGH sensitivity) over surveillance/privacy issues"
+        },
+        "future_conflict": {
+          "score": 5,
+          "detail": "Growing AI capabilities could compete with Methodic Labs, Viz.ai, and other TMG tech clients"
+        }
+      },
+      "evidence": [
+        {
+          "text": "Direct competition with Google LLC in AI and data analytics space, both competing for enterprise and government contracts",
+          "source": "Industry analysis",
           "url": "",
           "date": "2026",
           "temporal_weight": 1.0,
           "source_urls": []
         },
         {
-          "text": "Former Palantir workers condemn company's work with Trump administration on ICE contracts [26]",
-          "source": "NPR",
-          "url": "https://www.npr.org/2025/05/05/nx-s1-5387514/palantir-workers-letter-trump",
-          "date": "2025-05-05",
+          "text": "Peter Thiel's political activities and Trump support create conflicts with Democratic-aligned clients like AB Foundation, AB Democracy Matters",
+          "source": "Public records",
+          "url": "",
+          "date": "2025-2026",
           "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.npr.org/2025/05/05/nx-s1-5387514/palantir-workers-letter-trump",
-              "title": "Former Palantir workers condemn company's work with Trump admin"
-            }
-          ]
+          "source_urls": []
         },
         {
-          "text": "Palantir lands in Education Department through foreign funding influence portal [16]",
-          "source": "FedScoop",
-          "url": "https://fedscoop.com/palantir-education-department-foreign-funding-influence-portal/",
-          "date": "2025",
+          "text": "Surveillance technology business model conflicts with privacy-focused clients like TikTok and civil liberties advocates",
+          "source": "Business model analysis",
+          "url": "",
+          "date": "2026",
           "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://fedscoop.com/palantir-education-department-foreign-funding-influence-portal/",
-              "title": "Palantir quietly lands in Education Department through ... - FedScoop"
-            }
-          ]
-        }
-      ]
-    },
-    "conflict_of_interest": {
-      "score": 5.5,
-      "weight": 0.1,
-      "confidence": "HIGH",
-      "summary": "Potential conflicts with TMG's progressive client base due to surveillance tech and defense work.",
-      "sub_factors": {
-        "direct_conflict": {
-          "score": 4,
-          "detail": "Work with ICE and surveillance tech conflicts with civil liberties groups"
-        },
-        "indirect_conflict": {
-          "score": 6,
-          "detail": "Peter Thiel connection and Trump administration ties problematic for Democratic firm"
-        },
-        "future_conflict": {
-          "score": 7,
-          "detail": "Ongoing Pentagon AI work could conflict with progressive tech policy positions"
-        }
-      },
-      "evidence": [
-        {
-          "text": "Peter Thiel co-founder described as 'most influential right-wing intellectual' with Trump ties [15]",
-          "source": "PassBlue/New York Times",
-          "url": "https://passblue.com/2025/10/12/palantir-seemingly-everywhere-all-at-once/",
-          "date": "2025-10-12",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://passblue.com/2025/10/12/palantir-seemingly-everywhere-all-at-once/",
-              "title": "Palantir, Seemingly Everywhere All at Once"
-            }
-          ]
+          "source_urls": []
         },
         {
-          "text": "ICE reached deal to pay Palantir for immigration enforcement technology [26]",
-          "source": "NPR",
-          "url": "https://www.npr.org/2025/05/05/nx-s1-5387514/palantir-workers-letter-trump",
-          "date": "2025-05-05",
+          "text": "Thiel's Founders Fund competes with Coinbase in crypto investments, creating potential competitive conflicts",
+          "source": "Investment analysis",
+          "url": "",
+          "date": "2026",
           "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.npr.org/2025/05/05/nx-s1-5387514/palantir-workers-letter-trump",
-              "title": "Former Palantir workers condemn company's work with Trump admin"
-            }
-          ]
-        },
-        {
-          "text": "CEO Alex Karp uses slur to describe critics of government surveillance partnerships [44]",
-          "source": "Gizmodo",
-          "url": "https://gizmodo.com/palantir-ceo-uses-slur-to-describe-people-who-dont-think-the-government-will-take-their-company-2000729028",
-          "date": "2026-03",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://gizmodo.com/palantir-ceo-uses-slur-to-describe-people-who-dont-think-the-government-will-take-their-company-2000729028",
-              "title": "Palantir CEO Uses Slur to Describe People Who Don\u2019t Think the Government Will Take Their Company - Gizmodo"
-            }
-          ]
+          "source_urls": []
         }
       ]
     }
   },
   "scoring": {
-    "raw_composite": 4.0,
+    "raw_composite": 4.38,
     "engagement_multiplier": 0.85,
-    "adjusted_composite": 3.4,
+    "adjusted_composite": 3.72,
     "confidence_modifier": "none",
-    "final_composite": 3.4,
+    "final_composite": 3.72,
     "risk_tier": "MODERATE",
     "recommendation": "Conditional Approve"
   },
@@ -503,76 +427,76 @@
     "yellow": [
       {
         "category": "media_reputation",
-        "title": "War crimes allegations",
-        "description": "Palantir allegedly complicit in war crimes amid Israel's war in Gaza through provision of targeting technology",
-        "source": "Business & Human Rights Resource Centre",
-        "date": "2025",
-        "severity": "moderate"
-      },
-      {
-        "category": "media_reputation",
-        "title": "Civil liberties concerns",
-        "description": "Met police using Palantir AI tools to flag officer misconduct raising surveillance state concerns",
-        "source": "The Guardian",
-        "date": "2026-02-22",
+        "title": "CEO inflammatory rhetoric",
+        "description": "CEO used derogatory slur in public comments about critics during Pentagon dispute",
+        "source": "Gizmodo",
+        "date": "2026-03",
         "severity": "moderate"
       },
       {
         "category": "corporate_business",
-        "title": "Cambridge Analytica connection",
-        "description": "Facebook investigated Palantir for improper access to user data in connection with Cambridge Analytica scandal",
-        "source": "CNBC",
-        "date": "2018-04-26",
-        "severity": "minor"
+        "title": "Pentagon-Anthropic dispute",
+        "description": "Ongoing dispute with Pentagon over Anthropic partnership creating defense sector instability",
+        "source": "Reuters",
+        "date": "2026-03",
+        "severity": "moderate"
       },
       {
         "category": "conflict_of_interest",
-        "title": "Peter Thiel political ties",
-        "description": "Co-founder Peter Thiel is major Trump supporter and right-wing political figure",
-        "source": "Multiple sources",
-        "date": "2025-2026",
+        "title": "Google competition",
+        "description": "Direct competition with TMG HIGH-sensitivity client Google LLC in AI/data analytics",
+        "source": "Industry analysis",
+        "date": "2026",
+        "severity": "major"
+      },
+      {
+        "category": "media_reputation",
+        "title": "War crimes allegations",
+        "description": "Allegations of complicity in war crimes through technology support in Gaza conflict",
+        "source": "Business & Human Rights Resource Centre",
+        "date": "2025",
         "severity": "moderate"
       }
     ]
   },
-  "executive_summary": "# TMG VETTING REPORT: PALANTIR TECHNOLOGIES\n\n## Summary\n\nPalantir Technologies is a data analytics and software company co-founded in 2003 by Peter Thiel and Alex Karp, with initial funding from the CIA's venture arm In-Q-Tel. The company specializes in big data analytics platforms used by government agencies, military, and commercial clients. Publicly traded since 2020 (NYSE: PLTR), Palantir has grown rapidly with Q4 2025 revenue of $1.41 billion, up 70% year-over-year.\n\n## Professional Background\n\nPalantir develops two main platforms: Gotham (for government/defense) and Foundry (for commercial clients). The company has secured major contracts with US defense and intelligence agencies, UK Ministry of Defence (\u00a3240M), NHS (\u00a3330M), and numerous commercial enterprises. In 2023, they launched an AI platform (AIP) integrating large language models with enterprise data.\n\n## Key Findings\n\n**Factual Risk Factors:**\n- **Government Surveillance Concerns**: Extensive negative media coverage regarding surveillance technology use by law enforcement and military, including recent Met Police officer monitoring and alleged involvement in Gaza targeting decisions\n- **Financial Health**: Strong financial performance with 70% revenue growth, no SEC violations or enforcement actions\n- **Litigation Profile**: 248 court dockets found, mostly routine IP and shareholder disputes typical for a public tech company\n\n**Reputational Risk Factors:**\n- **Extreme Political Polarization**: Co-founder Peter Thiel identified as \"most influential right-wing intellectual\" with major Trump administration ties; company positioned as anti-Silicon Valley mainstream and aligned with surveillance state\n- **Active Progressive Opposition**: Civil liberties groups, ACLU, EFF, and immigrant rights organizations already protesting Palantir's ICE contracts and surveillance tools\n- **Direct Client Conflicts**: Palantir's surveillance technology and immigration enforcement work directly contradicts TMG clients focused on civil liberties, democracy, and progressive causes\n- **Narrative Vulnerability**: Multiple devastating headline scenarios, most damaging being \"Obama Campaign Manager's Firm Now Helping Peter Thiel's Surveillance Empire Track Immigrants\"\n- **Industry Toxicity**: Surveillance technology for government represents one of the most toxic sectors for a Democratic-aligned firm\n- **Poor Timing**: Currently embroiled in Pentagon-Anthropic AI controversy, Iran war protests, and Gaza targeting allegations with 2026 midterms approaching\n\n## Risk Assessment\n\n- **Factual Risk Score**: 3.4/10 MODERATE\n- **Reputational Contagion Score**: 7.9/10 HIGH  \n- **Combined Decision**: HIGH \u2014 Recommend Reject\n\n**DIVERGENCE ALERT**: While Palantir passes traditional due diligence screening with moderate factual risk, the reputational contagion risk is substantially higher due to Peter Thiel's political profile, active progressive opposition to the company's surveillance work, and direct conflicts with TMG's client base and brand positioning.\n\n**Most Damaging Potential Headline**: \"Obama Campaign Manager's Firm Now Helping Peter Thiel's Surveillance Empire Track Immigrants\"\n\nThe combined recommendation is driven by the high reputational contagion score, which reflects significant brand risk to TMG despite the company's legal compliance and financial stability.\n\n## Recommendation\n\n**REJECT** \u2014 The reputational risks significantly outweigh any potential business benefits. Engagement with Palantir would:\n\n1. **Trigger immediate stakeholder backlash** from civil liberties groups, immigrant rights organizations, and other key Democratic coalition members\n2. **Create direct conflicts** with existing TMG clients focused on democracy, civil liberties, and progressive causes\n3. **Generate devastating media narratives** linking TMG to surveillance state expansion and immigration enforcement\n4. **Undermine TMG's brand positioning** within the Democratic ecosystem and progressive community\n\n**Override Requirements**: Any engagement would require unanimous partner approval to override this recommendation. Even with approval, the reputational risks would remain substantial and ongoing.",
+  "executive_summary": "## Summary\n\nPalantir Technologies is a data analytics and software company co-founded by Peter Thiel and Alex Karp in 2003, known for providing data integration platforms to government agencies and commercial clients. The company went public in 2020 (NYSE: PLTR) and has become one of the most controversial technology firms in Silicon Valley.\n\n## Professional Background\n\nPalantir was founded with initial funding from the CIA's venture arm, In-Q-Tel, and has built its business primarily on government contracts with defense and intelligence agencies. The company's two main platforms are Gotham (government) and Foundry (commercial), with recent expansion into AI through its Artificial Intelligence Platform (AIP). Revenue grew 70% year-over-year in Q4 2025 to $1.41 billion.\n\n## Key Findings\n\n**Factual Risk Assessment:**\n- **Moderate litigation exposure**: 248 court dockets primarily involving IP and employment disputes, but no criminal cases or active fraud litigation\n- **Financial stability**: Strong revenue growth but volatile stock performance with investor litigation\n- **Operational compliance**: No major regulatory violations or criminal investigations identified\n\n**Reputational Risk Assessment:**\n- **Severe political misalignment**: Co-founder Peter Thiel's prominent Trump support and company's extensive ICE contracts create direct conflict with TMG's Democratic positioning\n- **High stakeholder backlash potential**: Progressive organizations and Democratic donors would likely react negatively to TMG association with surveillance technology targeting immigrants\n- **Critical client conflicts**: Direct competition with Google LLC (high-sensitivity TMG client) and ideological conflicts with AB Foundation and other Democratic-aligned organizations\n- **Industry toxicity**: Surveillance technology and civilian targeting capabilities are highly controversial for Democratic consulting firm\n- **Leadership issues**: CEO's recent public use of derogatory language compounds reputational exposure\n- **Poor timing**: Pentagon-Anthropic dispute and ongoing defense AI controversies amplify current risks\n\n## Risk Assessment\n\n- **Factual Risk Score**: 3.72/10 MODERATE \u2014 Traditional due diligence metrics show manageable operational and financial risks\n- **Reputational Contagion Score**: 7.83/10 HIGH \u2014 Significant brand damage potential from political associations and controversial technology applications\n- **Combined Decision**: HIGH RISK \u2014 Recommend Reject \u2014 Requires unanimous partner approval to override\n\n**Divergence Alert**: While Palantir passes standard compliance screening, reputational risks substantially exceed factual risks due to Peter Thiel's political activities, surveillance technology focus, and direct conflicts with TMG's client base and brand positioning.\n\n**Most Damaging Potential Headline**: \"Obama's Campaign Manager's Firm Now Working with Trump Donor's Surveillance Company Behind ICE Deportations\"\n\n## Recommendation\n\n**REJECT** \u2014 Despite moderate factual risk, Palantir presents unacceptable reputational exposure for TMG. The company's association with Peter Thiel's Trump support, controversial ICE surveillance contracts, and direct competition with existing high-value clients creates substantial risk to TMG's brand and stakeholder relationships. The surveillance technology focus is fundamentally misaligned with TMG's Democratic positioning and would likely trigger significant backlash from progressive organizations and current clients. Any consideration of engagement would require unanimous partner approval to override this recommendation.",
   "reputational_contagion": {
     "q1_partisan_alignment": {
-      "score": 7.5,
+      "score": 8.0,
       "weight": 0.25,
-      "evidence": "Peter Thiel co-founder is 'most influential right-wing intellectual' [15] with major Trump ties. Company has extensive contracts with Trump administration including ICE [26]. CEO Alex Karp positioning as outside Silicon Valley mainstream but aligned with defense/surveillance state. No evidence of Democratic support."
+      "evidence": "Co-founder Peter Thiel is a major Trump donor and supporter; company has extensive contracts with Trump administration including ICE; former employees condemned work with Trump admin [26]; Thiel described as 'most influential right-wing intellectual' [15]"
     },
     "q2_stakeholder_backlash": {
-      "score": 8.0,
+      "score": 7.5,
       "weight": 0.2,
-      "evidence": "Progressive organizations already protesting Palantir's ICE contracts [26]. Met Police surveillance tools controversy [21]. Civil liberties groups strongly oppose. Would trigger immediate backlash from groups like ACLU, EFF, immigrant rights orgs - all key Democratic coalition members. 'Obama's campaign manager helps Trump's deportation machine' headline writes itself."
+      "evidence": "Working with Palantir would likely trigger significant backlash from progressive organizations, Democratic donors, and TMG's political clients due to surveillance tech and ICE contracts; former employees already publicly condemned the company [26]"
     },
     "q3_narrative_vulnerability": {
-      "score": 9.0,
-      "weight": 0.15,
-      "evidence": "Multiple devastating headlines possible. Most damaging: 'Obama Campaign Manager's Firm Now Helping Peter Thiel's Surveillance Empire Track Immigrants'",
-      "damaging_headline": "Obama Campaign Manager's Firm Now Helping Peter Thiel's Surveillance Empire Track Immigrants"
-    },
-    "q4_client_conflicts": {
-      "score": 7.0,
-      "weight": 0.15,
-      "evidence": "Direct conflict with civil liberties and immigrant rights organizations in TMG portfolio. ACLU affiliate 'AB (Democracy Matters)' focuses on civil society/democracy. Palantir's surveillance tech and ICE work directly opposes these values. Also conflicts with progressive positioning of AB Foundation, Keep Americans Covered, Mayday Health."
-    },
-    "q5_industry_toxicity": {
       "score": 8.5,
       "weight": 0.15,
-      "evidence": "Surveillance technology for government is among the most toxic sectors for Democratic firm. Direct involvement in immigration enforcement [26], police surveillance [21], and military targeting [17]. Business model depends on expanding surveillance state - antithetical to progressive values."
+      "evidence": "Headlines write themselves due to Thiel connection and surveillance work",
+      "damaging_headline": "Obama's Campaign Manager's Firm Now Working with Trump Donor's Surveillance Company Behind ICE Deportations"
+    },
+    "q4_client_conflicts": {
+      "score": 8.0,
+      "weight": 0.15,
+      "evidence": "Direct conflicts with Google LLC (competition in AI/data), TikTok (surveillance tech vs privacy), AB Foundation/AB Democracy Matters (Thiel's anti-democratic positions), Coinbase (Thiel's competing crypto investments)"
+    },
+    "q5_industry_toxicity": {
+      "score": 7.0,
+      "weight": 0.15,
+      "evidence": "Surveillance technology targeting civilians and immigrants is highly toxic for Democratic firm; defense/intelligence contracting controversial; AI used for targeting decisions in military operations [42]"
     },
     "q6_temporal_context": {
-      "score": 7.5,
+      "score": 8.0,
       "weight": 0.1,
-      "evidence": "Currently embroiled in Pentagon-Anthropic AI controversy [39-44]. Active protests over Iran war involvement [27]. Gaza targeting allegations creating new scrutiny [17]. Immigration remains hot political issue. Worst possible timing with 2026 midterms approaching and Democratic base energized around civil liberties."
+      "evidence": "Terrible timing with ongoing Pentagon-Anthropic dispute, Iran war involvement, and AI ethics debates; CEO just used slur in public [44]; company at center of defense AI controversy"
     },
-    "composite_rcs": 7.9,
+    "composite_rcs": 7.83,
     "rcs_risk_tier": "HIGH",
     "rcs_recommendation": "Strong presumption against engagement; requires unanimous partner approval",
-    "divergence_alert": "DIVERGENCE: Factual risk is MODERATE (3.4/10) but reputational contagion risk is HIGH (7.9/10). Subject passes traditional due diligence screening but poses significant reputational risk to TMG's brand and stakeholder relationships.",
-    "most_damaging_headline": "Obama Campaign Manager's Firm Now Helping Peter Thiel's Surveillance Empire Track Immigrants"
+    "divergence_alert": "DIVERGENCE: Factual risk is MODERATE (3.72/10) but reputational contagion risk is HIGH (7.83/10). Subject passes traditional due diligence screening but poses significant reputational risk to TMG's brand and stakeholder relationships.",
+    "most_damaging_headline": "Obama's Campaign Manager's Firm Now Working with Trump Donor's Surveillance Company Behind ICE Deportations"
   },
   "metadata": {
     "pipeline_version": "v1.1",
@@ -591,16 +515,16 @@
       "international"
     ],
     "started_at": "2026-03-08T07:08:57.657042+00:00",
-    "completed_at": "2026-03-09T01:54:15.923376+00:00",
+    "completed_at": "2026-03-09T03:32:41.045176+00:00",
     "total_duration_seconds": 0,
     "model": "claude-opus-4-0",
-    "input_tokens": 30597,
-    "output_tokens": 5831,
+    "input_tokens": 30869,
+    "output_tokens": 6271,
     "tavily_sources": 123,
     "citation_enrichment": {
-      "total_evidence_items": 26,
-      "items_with_source_urls": 23,
-      "total_source_urls_added": 25
+      "total_evidence_items": 22,
+      "items_with_source_urls": 15,
+      "total_source_urls_added": 16
     }
   },
   "sources": [
@@ -1347,10 +1271,10 @@
     "recommendation": "Recommend Reject \u2014 Requires unanimous partner approval to override",
     "combined_tier": "HIGH",
     "factual_tier": "MODERATE",
-    "factual_score": 3.4,
+    "factual_score": 3.72,
     "rcs_tier": "HIGH",
-    "rcs_score": 7.9,
+    "rcs_score": 7.83,
     "driver": "reputational_contagion",
-    "driver_detail": "Combined recommendation driven by Reputational Contagion Score (7.9/10 HIGH) which is more cautious than Factual Risk Score (3.4/10 MODERATE)"
+    "driver_detail": "Combined recommendation driven by Reputational Contagion Score (7.83/10 HIGH) which is more cautious than Factual Risk Score (3.72/10 MODERATE)"
   }
 }

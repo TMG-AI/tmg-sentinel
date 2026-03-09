@@ -167,14 +167,24 @@ def format_conflicts_for_prompt(clients: list[dict]) -> str:
         "You MUST cross-reference ALL research data above (litigation, news, corporate filings,",
         "SEC, FEC, lobbying, bankruptcy, international) against this client list to identify conflicts.",
         "",
-        "Look for:",
-        "- Direct adversarial relationships: lawsuits, regulatory complaints, public disputes between the subject and any TMG client",
-        "- Competitive conflicts: subject directly competes with a TMG client in a way that creates tension",
-        "- Sector-level conflicts: subject is publicly attacking or undermining an industry/issue area where TMG has multiple clients",
+        "CRITICAL REQUIREMENT: In the conflict_of_interest dimension, you MUST:",
+        "1. Name SPECIFIC TMG clients by name in the sub-factor details (e.g., 'Google LLC', 'Delta Air Lines')",
+        "2. Explain the specific nature of each conflict (competitive, adversarial, reputational)",
+        "3. Include the client's sensitivity_tier in your assessment",
+        "4. Score based on the MOST SERIOUS conflict found, not the average",
+        "",
+        "Types of conflicts to identify:",
+        "- Direct adversarial: lawsuits, regulatory complaints, public disputes between the subject and any TMG client",
+        "- Competitive: subject directly competes with a TMG client (e.g., both in AI/tech, both in same industry)",
+        "- Sector-level: subject publicly attacks or undermines an industry/issue area where TMG has clients",
         "- Reputational spillover: association with the subject could embarrass or alienate a TMG client",
+        "- Political alignment: subject's political donations/positions directly oppose a TMG client's interests",
         "",
         "Treat HIGH-sensitivity clients as ones where any major conflict is presumptively unacceptable",
         "unless leadership explicitly overrides it.",
+        "",
+        "DO NOT say 'no conflicts identified' without checking EVERY client against the research data.",
+        "For a tech company like Palantir, check Google, Meta, and other tech clients specifically.",
         "",
         "TMG CLIENT LIST:",
         "canonical_name | entity_type | sector | issue_tags | sensitivity_tier",
@@ -537,10 +547,19 @@ def build_synthesis_prompt(intake: dict, step_data: dict, sources: list = None) 
     multiplier = config.ENGAGEMENT_MULTIPLIERS.get(engagement_type, 1.0)
 
     # Build dimension weights text
-    dim_text = "\n".join(
-        f"  {i+1}. {d['label']} — Weight: {d['weight']*100:.0f}%"
-        for i, (k, d) in enumerate(config.RISK_DIMENSIONS.items())
-    )
+    dim_lines = []
+    for i, (k, d) in enumerate(config.RISK_DIMENSIONS.items()):
+        line = f"  {i+1}. {d['label']} — Weight: {d['weight']*100:.0f}%"
+        if k == "conflict_of_interest":
+            line += (
+                "\n     SUB-FACTORS: direct_conflict, indirect_conflict, future_conflict"
+                "\n     IMPORTANT: You MUST name specific TMG clients by name in the sub-factor details."
+                "\n     Check EVERY client in the TMG CLIENT LIST section against the subject."
+                "\n     For tech companies: explicitly check Google LLC (HIGH), Coinbase (HIGH), etc."
+                "\n     For any company: check sector overlaps, political opposition, reputational spillover."
+            )
+        dim_lines.append(line)
+    dim_text = "\n".join(dim_lines)
 
     # Format all step data
     sanctions_text = format_sanctions_for_prompt(step_data.get("sanctions", {}))
