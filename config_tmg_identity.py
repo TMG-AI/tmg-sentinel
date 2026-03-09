@@ -180,7 +180,7 @@ Risk tiers:
 - 0-2.5: LOW — Proceed normally
 - 2.5-4.5: MODERATE — Flag for leadership; document rationale
 - 4.5-6.5: ELEVATED — Requires Jim/Tara/partner sign-off
-- 6.5-8.0: HIGH — Strong presumption against; requires unanimous partner approval
+- 6.5-8.0: HIGH — Strong presumption against engagement
 - 8.0-10: CRITICAL — Recommended reject
 
 ### OUTPUT FORMAT

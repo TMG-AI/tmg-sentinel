@@ -1085,7 +1085,7 @@ def run_synthesis(intake: dict) -> dict:
         0: "Approve",
         1: "Conditional Approve",
         2: "Further Review",
-        3: "Recommend Reject — Requires unanimous partner approval to override",
+        3: "Recommend Reject",
         4: "Recommend Reject — Engagement would damage TMG's core brand",
     }
 
