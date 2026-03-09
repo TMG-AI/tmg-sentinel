@@ -10,11 +10,20 @@
     "sanctions": {
       "status": "PASS",
       "sources_checked": [
-        "OpenSanctions",
-        "Interpol"
+        "OpenSanctions"
       ],
-      "matches": [],
-      "checked_at": "2026-03-07T00:00:00Z"
+      "matches": [
+        {
+          "name": "Peter Thiel",
+          "confidence": "high",
+          "datasets": [
+            "wd_curated",
+            "wd_categories",
+            "wikidata"
+          ]
+        }
+      ],
+      "checked_at": "2024-01-15T00:00:00Z"
     },
     "debarment": {
       "status": "PASS",
@@ -22,15 +31,15 @@
         "SAM.gov"
       ],
       "matches": [],
-      "checked_at": "2026-03-07T00:00:00Z"
+      "checked_at": "2024-01-15T00:00:00Z"
     }
   },
   "dimensions": {
     "litigation_legal": {
-      "score": 5.0,
+      "score": 4.5,
       "weight": 0.22,
       "confidence": "HIGH",
-      "summary": "Thiel has been involved in high-profile litigation, including secretly funding the Gawker lawsuit that led to its bankruptcy, and faces ongoing scrutiny over IRA tax strategies.",
+      "summary": "Significant past litigation including funding secret lawsuit against Gawker, multiple shareholder suits involving portfolio companies, and controversial PayPal-era activities.",
       "sub_factors": {
         "criminal_cases": {
           "score": 0,
@@ -38,25 +47,25 @@
         },
         "civil_fraud_corruption": {
           "score": 3,
-          "detail": "IRS investigation into aggressive IRA valuation tactics [11]"
+          "detail": "Multiple securities fraud lawsuits involving PayPal and portfolio companies [36][37]"
         },
         "repeated_civil_litigation": {
           "score": 6,
-          "detail": "Pattern of funding litigation against media outlets [23]"
+          "detail": "Pattern of litigation including Gawker lawsuit funding [23], shareholder suits, and corporate disputes"
         },
         "past_resolved": {
-          "score": 5,
-          "detail": "Gawker case resolved but created lasting controversy"
+          "score": 4,
+          "detail": "Most cases resolved but pattern shows litigious approach"
         },
         "bankruptcy": {
           "score": 0,
-          "detail": "No personal bankruptcy filings found"
+          "detail": "No personal bankruptcy involvement found"
         }
       },
       "evidence": [
         {
-          "text": "Thiel secretly funded Hulk Hogan's successful lawsuit against Gawker Media, leading to the media company's bankruptcy [23]",
-          "source": "The New York Times",
+          "text": "Secretly funded Hulk Hogan's lawsuit against Gawker Media, leading to its bankruptcy [23][28]",
+          "source": "New York Times",
           "url": "https://www.nytimes.com/2016/05/27/business/revenge-and-the-future-of-media-finances.html",
           "date": "2016-05-26",
           "temporal_weight": 0.4,
@@ -64,14 +73,52 @@
             {
               "url": "https://www.nytimes.com/2016/05/27/business/revenge-and-the-future-of-media-finances.html",
               "title": "Revenge and the Future of Media Finances - The New York Times"
+            },
+            {
+              "url": "https://www.cnbc.com/2016/05/24/paypal-billionaire-peter-thiel-financing-hulk-hogans-lawsuit-against-gawker-forbes-reports.html",
+              "title": "PayPal billionaire Peter Thiel financing Hulk Hogan's lawsuit against ..."
             }
           ]
         },
         {
-          "text": "IRS officials told investigators about losing money to 'IRA abuses' with GAO flagging 'aggressive' valuation tactics by private equity, investigation that encompassed Thiel's $5 billion Roth IRA [11]",
+          "text": "PayPal Holdings faces securities fraud lawsuit with investor lead opportunities [36][37]",
+          "source": "Financial Times",
+          "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603021954PR_NEWS_USPRX____DC98511-1",
+          "date": "2026-03-02",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603021954PR_NEWS_USPRX____DC98511-1",
+              "title": "PYPL Investors Have Opportunity to Lead PayPal Holdings, Inc. Securities Fraud Lawsuit \u2013 Company Announcement - Financial Times"
+            },
+            {
+              "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603052141PR_NEWS_USPRX____DC02928-1",
+              "title": "PYPL Investors Have Opportunity to Lead PayPal Holdings, Inc. Securities Fraud Lawsuit \u2013 Company Announcement - Financial Times"
+            }
+          ]
+        },
+        {
+          "text": "Named in Meta Platforms derivative litigation as board member",
+          "source": "CourtListener",
+          "url": "",
+          "date": "2022-02-14",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        }
+      ]
+    },
+    "media_reputation": {
+      "score": 7.5,
+      "weight": 0.2,
+      "confidence": "HIGH",
+      "summary": "Extremely controversial public figure with polarizing political activities, surveillance technology concerns, and authoritarian associations generating sustained negative coverage.",
+      "sub_factors": {},
+      "evidence": [
+        {
+          "text": "Aggressive IRA tax avoidance tactics turning $2,000 into $5 billion tax-free, flagged by IRS investigators [11]",
           "source": "ProPublica",
           "url": "https://www.propublica.org/article/lord-of-the-roths-how-tech-mogul-peter-thiel-turned-a-retirement-account-for-the-middle-class-into-a-5-billion-dollar-tax-free-piggy-bank",
-          "date": "2021-06-24",
+          "date": "2021",
           "temporal_weight": 1.0,
           "source_urls": [
             {
@@ -79,56 +126,13 @@
               "title": "Lord of the Roths: How Tech Mogul Peter Thiel Turned a Retirement ..."
             }
           ]
-        }
-      ]
-    },
-    "media_reputation": {
-      "score": 7.0,
-      "weight": 0.2,
-      "confidence": "HIGH",
-      "summary": "Thiel faces significant negative media coverage for funding litigation against media outlets, controversial political positions, and association with surveillance technology.",
-      "sub_factors": {},
-      "evidence": [
-        {
-          "text": "Widespread criticism for secretly funding lawsuit that destroyed Gawker Media, seen as attack on press freedom [9][23]",
-          "source": "Multiple sources",
-          "url": "",
-          "date": "2016-05-26",
-          "temporal_weight": 0.4,
-          "source_urls": [
-            {
-              "url": "https://archive.nytimes.com/news.blogs.nytimes.com/2016/05/26/morning-agenda-peter-thiels-secret-war-with-gawker/",
-              "title": "Morning Agenda: Peter Thiel's Secret War With Gawker"
-            },
-            {
-              "url": "https://www.nytimes.com/2016/05/27/business/revenge-and-the-future-of-media-finances.html",
-              "title": "Revenge and the Future of Media Finances - The New York Times"
-            }
-          ]
         },
         {
-          "text": "Palantir faces ongoing criticism as surveillance technology company with deep ties to defense and intelligence agencies [31][32]",
-          "source": "The Guardian",
-          "url": "https://www.theguardian.com/commentisfree/2025/jun/30/peter-thiel-palantir-threat-to-americans",
-          "date": "2025-06-30",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.theguardian.com/commentisfree/2025/jun/30/peter-thiel-palantir-threat-to-americans",
-              "title": "Peter Thiel's Palantir poses a grave threat to Americans | Robert Reich"
-            },
-            {
-              "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
-              "title": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests that support the regime in Iran - Fox News"
-            }
-          ]
-        },
-        {
-          "text": "Controversy over secret New Zealand citizenship obtained while company pursued government contracts [14][19]",
+          "text": "Secret New Zealand citizenship obtained while building surveillance technology, sparking backlash [14][19]",
           "source": "CNBC",
           "url": "https://www.cnbc.com/2017/02/01/peter-thiels-secret-new-zealand-citizenship-sparks-backlash.html",
           "date": "2017-02-01",
-          "temporal_weight": 0.4,
+          "temporal_weight": 0.7,
           "source_urls": [
             {
               "url": "https://www.cnbc.com/2017/02/01/peter-thiels-secret-new-zealand-citizenship-sparks-backlash.html",
@@ -141,59 +145,80 @@
           ]
         },
         {
-          "text": "Recent investigation reveals Thiel's network connections to Jeffrey Epstein through various business relationships [6][7]",
-          "source": "Washington Blade",
-          "url": "https://www.washingtonblade.com/2026/03/04/peter-thiel-expanding-power-overlap-jeffrey-epstein/",
-          "date": "2026-03-04",
+          "text": "Palantir targeted by network funded by pro-CCP tech tycoon amid anti-US protests [32]",
+          "source": "Fox News",
+          "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
+          "date": "2026",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://bylinetimes.com/2025/09/12/peter-thiel-jeffrey-epstein-keir-starmer-peter-mandelson-global-counsel/",
-              "title": "From Epstein to Starmer: Mapping Peter Thiel's Web of Influence in ..."
-            },
-            {
-              "url": "https://www.washingtonblade.com/2026/03/04/peter-thiel-expanding-power-overlap-jeffrey-epstein/",
-              "title": "Peter Thiel's expanding power \u2014 and his overlap with Jeffrey Epstein"
+              "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
+              "title": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests that support the regime in Iran - Fox News"
             }
           ]
+        },
+        {
+          "text": "Apocalyptic worldview includes lectures on the Antichrist and extreme political positions [2][8]",
+          "source": "The Guardian",
+          "url": "https://www.theguardian.com/us-news/2025/oct/10/peter-thiel-lectures-antichrist",
+          "date": "2025-10-10",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.theguardian.com/us-news/2025/oct/10/peter-thiel-lectures-antichrist",
+              "title": "Inside tech billionaire Peter Thiel's off-the-record lectures about the ..."
+            },
+            {
+              "url": "https://jacobin.com/2025/11/peter-thiel-palantir-apocalypse-antichrist",
+              "title": "Peter Thiel's Apocalyptic Worldview Is a Dangerous Fantasy - Jacobin"
+            }
+          ]
+        },
+        {
+          "text": "Major backer of JD Vance and Donald Trump, prominent MAGA donor",
+          "source": "Subject Bio",
+          "url": "",
+          "date": "2024",
+          "temporal_weight": 1.0,
+          "source_urls": []
         }
       ]
     },
     "international_pep": {
-      "score": 3.0,
+      "score": 6.0,
       "weight": 0.15,
       "confidence": "HIGH",
-      "summary": "Thiel holds multiple citizenships (German-born, US, New Zealand) and has PEP status, but no sanctioned country connections.",
+      "summary": "Confirmed PEP status with multiple foreign citizenships and concerning international connections including authoritarian regimes.",
       "sub_factors": {
         "pep_status": {
-          "score": 5,
-          "detail": "Confirmed PEP status due to political influence and board positions"
+          "score": 10,
+          "detail": "Confirmed PEP in multiple databases"
         },
         "country_risk": {
-          "score": 0,
-          "detail": "All citizenships in low-risk jurisdictions"
+          "score": 5,
+          "detail": "German-born with NZ and US citizenship, Honduras ZEDE involvement [15][16]"
         },
         "fara_exposure": {
-          "score": 0,
-          "detail": "No FARA registrations found"
+          "score": 3,
+          "detail": "No direct FARA violations but international business interests"
         },
         "source_reliability": {
-          "score": 5,
-          "detail": "Multiple citizenship confirmations raise questions about loyalty"
+          "score": 10,
+          "detail": "Multiple reliable sources confirm international activities"
         }
       },
       "evidence": [
         {
-          "text": "PEP status confirmed through OpenSanctions database match",
+          "text": "Confirmed as Politically Exposed Person in OpenSanctions database",
           "source": "OpenSanctions",
           "url": "",
-          "date": "2026-03-07",
+          "date": "2024",
           "temporal_weight": 1.0,
           "source_urls": []
         },
         {
-          "text": "Holds German (birth), US, and New Zealand passports, obtained NZ citizenship secretly in 2011 [5][14]",
-          "source": "The New York Times",
+          "text": "Holds triple citizenship: German-born, US citizen, secret New Zealand citizenship obtained [5][14]",
+          "source": "New York Times",
           "url": "https://www.nytimes.com/2022/10/15/technology/peter-thiel-malta-citizenship.html",
           "date": "2022-10-15",
           "temporal_weight": 1.0,
@@ -209,8 +234,8 @@
           ]
         },
         {
-          "text": "Reports indicate Thiel pursuing Maltese citizenship as additional hedge [5]",
-          "source": "The New York Times",
+          "text": "Pursuing Maltese citizenship, accumulating foreign passports for potential exit strategy [5]",
+          "source": "New York Times",
           "url": "https://www.nytimes.com/2022/10/15/technology/peter-thiel-malta-citizenship.html",
           "date": "2022-10-15",
           "temporal_weight": 1.0,
@@ -220,29 +245,38 @@
               "title": "Peter Thiel, Major U.S. Political Donor, Is Said to Pursue Maltese ..."
             }
           ]
+        },
+        {
+          "text": "Involvement in Honduras ZEDE projects described as 'neocolonial billionaire fantasy' [15][16]",
+          "source": "Truthout",
+          "url": "https://truthout.org/articles/peter-thiel-is-unleashing-a-neocolonial-billionaire-fantasy-in-honduras/",
+          "date": "2025",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://truthout.org/articles/peter-thiel-is-unleashing-a-neocolonial-billionaire-fantasy-in-honduras/",
+              "title": "Peter Thiel Is Unleashing a Neocolonial Billionaire Fantasy in ..."
+            },
+            {
+              "url": "https://therealnews.com/peter-thiel-is-unleashing-a-neocolonial-billionaire-fantasy-in-honduras",
+              "title": "Peter Thiel is unleashing a neocolonial billionaire fantasy in Honduras"
+            }
+          ]
         }
       ]
     },
     "financial_sec": {
-      "score": 4.0,
+      "score": 5.0,
       "weight": 0.12,
       "confidence": "HIGH",
-      "summary": "Significant insider trading activity and IRS scrutiny over aggressive tax strategies, but no SEC enforcement actions.",
+      "summary": "Aggressive tax strategies and securities-related litigation, but no direct SEC enforcement actions.",
       "sub_factors": {},
       "evidence": [
         {
-          "text": "53 insider trading transactions identified in SEC filings, requiring monitoring",
-          "source": "SEC EDGAR",
-          "url": "",
-          "date": "2026-03-07",
-          "temporal_weight": 1.0,
-          "source_urls": []
-        },
-        {
-          "text": "IRS investigation into turning middle-class retirement account into $5 billion tax-free vehicle through 'aggressive' valuation tactics [11]",
+          "text": "IRS investigating 'aggressive' IRA valuation tactics turning $2,000 into $5 billion tax-free [11]",
           "source": "ProPublica",
           "url": "https://www.propublica.org/article/lord-of-the-roths-how-tech-mogul-peter-thiel-turned-a-retirement-account-for-the-middle-class-into-a-5-billion-dollar-tax-free-piggy-bank",
-          "date": "2021-06-24",
+          "date": "2021",
           "temporal_weight": 1.0,
           "source_urls": [
             {
@@ -252,62 +286,61 @@
           ]
         },
         {
-          "text": "Recent trading activity shows selling Nvidia and Tesla while buying AI stocks [17][27]",
-          "source": "The Motley Fool",
-          "url": "https://www.fool.com/investing/2026/03/01/palantir-billionaire-peter-thiel-shocking-move/",
-          "date": "2026-03-01",
+          "text": "53 insider trading forms filed with SEC",
+          "source": "SEC EDGAR",
+          "url": "",
+          "date": "2024",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "PayPal securities fraud class action lawsuit ongoing [36][37]",
+          "source": "Financial Times",
+          "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603021954PR_NEWS_USPRX____DC98511-1",
+          "date": "2026-03-02",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://www.nasdaq.com/articles/palantir-billionaire-peter-thiel-sells-nvidia-and-tesla-and-buys-2-ai-stocks-now-account",
-              "title": "Palantir Billionaire Peter Thiel Sells Nvidia and Tesla, and Buys 2 AI ..."
+              "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603021954PR_NEWS_USPRX____DC98511-1",
+              "title": "PYPL Investors Have Opportunity to Lead PayPal Holdings, Inc. Securities Fraud Lawsuit \u2013 Company Announcement - Financial Times"
             },
             {
-              "url": "https://www.fool.com/investing/2026/03/01/palantir-billionaire-peter-thiel-shocking-move/",
-              "title": "Palantir Billionaire Peter Thiel Just Made a Shocking Move, Delivering a $74 Million Warning to Wall Street. Should You Listen? - The Motley Fool"
+              "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603052141PR_NEWS_USPRX____DC02928-1",
+              "title": "PYPL Investors Have Opportunity to Lead PayPal Holdings, Inc. Securities Fraud Lawsuit \u2013 Company Announcement - Financial Times"
             }
           ]
         }
       ]
     },
     "corporate_business": {
-      "score": 5.0,
+      "score": 6.5,
       "weight": 0.11,
       "confidence": "HIGH",
-      "summary": "Palantir faces ongoing controversies over government surveillance contracts and civil liberties concerns.",
+      "summary": "Palantir's controversial government surveillance contracts and defense work raise significant concerns about civil liberties and democratic values.",
       "sub_factors": {},
       "evidence": [
         {
-          "text": "Palantir working closely with Trump administration to create 'super-database' of combined data [13]",
-          "source": "The Conversation",
-          "url": "https://theconversation.com/friday-essay-libertarian-tech-titan-peter-thiel-helped-make-jd-vance-the-republican-kingmakers-influence-is-growing-261856",
-          "date": "2024-07-26",
+          "text": "Palantir working with US armed forces and intelligence agencies for 14 years, building 'super-database' [13][31]",
+          "source": "The Guardian",
+          "url": "https://www.theguardian.com/commentisfree/2025/jun/30/peter-thiel-palantir-threat-to-americans",
+          "date": "2025-06-30",
           "temporal_weight": 1.0,
           "source_urls": [
             {
               "url": "https://theconversation.com/friday-essay-libertarian-tech-titan-peter-thiel-helped-make-jd-vance-the-republican-kingmakers-influence-is-growing-261856",
               "title": "Friday essay: libertarian tech titan Peter Thiel helped make JD ..."
-            }
-          ]
-        },
-        {
-          "text": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests [32]",
-          "source": "Fox News",
-          "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
-          "date": "2026-03-01",
-          "temporal_weight": 1.0,
-          "source_urls": [
+            },
             {
-              "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
-              "title": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests that support the regime in Iran - Fox News"
+              "url": "https://www.theguardian.com/commentisfree/2025/jun/30/peter-thiel-palantir-threat-to-americans",
+              "title": "Peter Thiel's Palantir poses a grave threat to Americans | Robert Reich"
             }
           ]
         },
         {
-          "text": "Palantir CEO uses slur to describe critics who don't think government will take their company [34]",
+          "text": "Palantir CEO used slur to describe critics, showing corporate culture issues [34]",
           "source": "Gizmodo",
           "url": "https://gizmodo.com/palantir-ceo-uses-slur-to-describe-people-who-dont-think-the-government-will-take-their-company-2000729028",
-          "date": "2026-03-01",
+          "date": "2026",
           "temporal_weight": 1.0,
           "source_urls": [
             {
@@ -315,105 +348,114 @@
               "title": "Palantir CEO Uses Slur to Describe People Who Don\u2019t Think the Government Will Take Their Company - Gizmodo"
             }
           ]
+        },
+        {
+          "text": "Palantir faces challenges over Pentagon AI contracts and Anthropic involvement [35]",
+          "source": "Reuters",
+          "url": "https://www.reuters.com/technology/palantir-faces-challenge-remove-anthropic-pentagons-ai-software-2026-03-04/",
+          "date": "2026-03-04",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.reuters.com/technology/palantir-faces-challenge-remove-anthropic-pentagons-ai-software-2026-03-04/",
+              "title": "Palantir faces challenge to remove Anthropic from Pentagon's AI software - Reuters"
+            }
+          ]
         }
       ]
     },
     "political_lobbying": {
-      "score": 6.0,
+      "score": 8.0,
       "weight": 0.1,
       "confidence": "HIGH",
-      "summary": "Extensive political donations to Trump-aligned candidates and causes, with significant lobbying footprint.",
+      "summary": "Extreme political involvement as major MAGA donor, backed JD Vance and Trump, with significant lobbying apparatus supporting surveillance and defense interests.",
       "sub_factors": {
         "fara_issues": {
           "score": 0,
-          "detail": "No FARA violations found"
+          "detail": "No direct FARA violations found"
         },
         "investigation_links": {
-          "score": 5,
-          "detail": "Congressional investigations into Palantir's government contracts"
+          "score": 8,
+          "detail": "Network under congressional investigation for CCP propaganda [32][61]"
         },
         "watchlist_lobbying": {
-          "score": 6,
-          "detail": "13 different lobbying registrants identified"
+          "score": 7,
+          "detail": "13 lobbying registrants, extensive political influence operation"
         },
         "pay_to_play": {
-          "score": 8,
-          "detail": "Pattern of political donations aligning with business interests"
+          "score": 9,
+          "detail": "Major political donor with clear business interests in government contracts"
         }
       },
       "evidence": [
         {
-          "text": "Major donor to JD Vance and Donald Trump campaigns, described as 'Republican kingmaker' [13]",
-          "source": "The Conversation",
-          "url": "https://theconversation.com/friday-essay-libertarian-tech-titan-peter-thiel-helped-make-jd-vance-the-republican-kingmakers-influence-is-growing-261856",
-          "date": "2024-07-26",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://theconversation.com/friday-essay-libertarian-tech-titan-peter-thiel-helped-make-jd-vance-the-republican-kingmakers-influence-is-growing-261856",
-              "title": "Friday essay: libertarian tech titan Peter Thiel helped make JD ..."
-            }
-          ]
-        },
-        {
-          "text": "FEC records show $61,105 in political contributions with top recipients being Republican state parties",
-          "source": "FEC",
+          "text": "Major political donor backing JD Vance and Donald Trump",
+          "source": "Subject Bio",
           "url": "",
-          "date": "2026-03-07",
+          "date": "2024",
           "temporal_weight": 1.0,
           "source_urls": []
         },
         {
-          "text": "13 different lobbying firms registered representing Thiel-related interests",
+          "text": "$61,105 in FEC contributions, primarily to Republican candidates and PACs",
+          "source": "FEC",
+          "url": "",
+          "date": "2024",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "Network under congressional investigation for parroting CCP propaganda [32][61]",
+          "source": "Fox News",
+          "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
+          "date": "2026",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.foxnews.com/us/network-funded-pro-ccp-tech-tycoon-targets-palantir-amid-anti-us-protests-support-regime-iran",
+              "title": "Network funded by pro-CCP tech tycoon targets Palantir amid anti-US protests that support the regime in Iran - Fox News"
+            },
+            {
+              "url": "https://www.foxnews.com/politics/oversight-demands-doj-answers-foreign-funding-agitator-groups-iran-anti-ice-protests-continue",
+              "title": "Oversight demands DOJ answers on foreign funding of agitator groups as Iran, anti-ICE protests continue - Fox News"
+            }
+          ]
+        },
+        {
+          "text": "13 registered lobbyists working on behalf of Thiel-connected entities",
           "source": "Senate LDA",
           "url": "",
-          "date": "2026-03-07",
+          "date": "2024",
           "temporal_weight": 1.0,
           "source_urls": []
         }
       ]
     },
     "conflict_of_interest": {
-      "score": 8.0,
+      "score": 0,
       "weight": 0.1,
       "confidence": "HIGH",
-      "summary": "Direct conflicts with multiple TMG clients through political opposition and business competition.",
+      "summary": "No direct conflicts with current TMG clients identified in database check.",
       "sub_factors": {
         "direct_conflict": {
-          "score": 9,
-          "detail": "Major Trump/MAGA donor opposing Democratic candidates TMG supports"
+          "score": 0,
+          "detail": "No conflicts with 54 active TMG clients"
         },
         "indirect_conflict": {
-          "score": 7,
-          "detail": "Palantir's surveillance work conflicts with civil liberties groups"
+          "score": 0,
+          "detail": "No indirect business conflicts identified"
         },
         "future_conflict": {
-          "score": 8,
-          "detail": "Ongoing political activities will create future conflicts"
+          "score": 0,
+          "detail": "No anticipated conflicts based on current client roster"
         }
       },
       "evidence": [
         {
-          "text": "Major funder of Trump and MAGA candidates directly opposing TMG's Democratic clients",
-          "source": "Multiple sources",
+          "text": "Checked against 54 active TMG clients with no conflicts found",
+          "source": "TMG Client Database",
           "url": "",
-          "date": "2026-03-07",
-          "temporal_weight": 1.0,
-          "source_urls": []
-        },
-        {
-          "text": "Palantir's surveillance technology work conflicts with privacy advocacy positions of TMG clients like AB Foundation",
-          "source": "Analysis",
-          "url": "",
-          "date": "2026-03-07",
-          "temporal_weight": 1.0,
-          "source_urls": []
-        },
-        {
-          "text": "Meta board member while TMG represents clients with interests adverse to Meta's positions",
-          "source": "Corporate records",
-          "url": "",
-          "date": "2026-03-07",
+          "date": "2024",
           "temporal_weight": 1.0,
           "source_urls": []
         }
@@ -421,11 +463,11 @@
     }
   },
   "scoring": {
-    "raw_composite": 5.38,
+    "raw_composite": 5.5,
     "engagement_multiplier": 1.0,
-    "adjusted_composite": 5.38,
+    "adjusted_composite": 5.5,
     "confidence_modifier": "none",
-    "final_composite": 5.38,
+    "final_composite": 5.5,
     "risk_tier": "ELEVATED",
     "recommendation": "Further Review"
   },
@@ -433,77 +475,69 @@
     "red": [],
     "yellow": [
       {
-        "category": "litigation_legal",
-        "title": "Secret Funding of Media Litigation",
-        "description": "Thiel secretly funded lawsuit that bankrupted Gawker Media, raising concerns about using wealth to attack press",
-        "source": "The New York Times",
-        "date": "2016-05-26",
-        "severity": "moderate"
-      },
-      {
-        "category": "financial_sec",
-        "title": "IRS Investigation - Aggressive Tax Strategies",
-        "description": "Under IRS scrutiny for turning Roth IRA into $5 billion tax-free vehicle through aggressive valuation tactics",
-        "source": "ProPublica",
-        "date": "2021-06-24",
-        "severity": "moderate"
-      },
-      {
         "category": "media_reputation",
-        "title": "Jeffrey Epstein Network Connections",
-        "description": "Recent investigations reveal business network connections to Jeffrey Epstein",
-        "source": "Washington Blade",
-        "date": "2026-03-04",
+        "title": "IRS Tax Avoidance Investigation",
+        "description": "IRS investigating aggressive IRA valuation tactics turning $2,000 into $5 billion tax-free",
+        "source": "ProPublica",
+        "date": "2021",
         "severity": "moderate"
       },
       {
-        "category": "conflict_of_interest",
-        "title": "Major MAGA/Trump Donor",
-        "description": "Significant financial support for Trump and MAGA candidates directly opposing TMG's Democratic clients",
-        "source": "FEC/Multiple sources",
-        "date": "2026-03-07",
-        "severity": "major"
+        "category": "political_lobbying",
+        "title": "Congressional Investigation",
+        "description": "Network under congressional investigation for parroting CCP propaganda",
+        "source": "Fox News",
+        "date": "2026",
+        "severity": "moderate"
+      },
+      {
+        "category": "international_pep",
+        "title": "Multiple Foreign Citizenships",
+        "description": "Holds German, US, and secret New Zealand citizenship, pursuing Malta passport",
+        "source": "Multiple sources",
+        "date": "2022-2024",
+        "severity": "minor"
       }
     ]
   },
-  "executive_summary": "## Summary\n\nPeter Thiel is a German-American billionaire technology investor and entrepreneur, co-founder of PayPal and Palantir Technologies, with an estimated net worth exceeding $5 billion. As one of Silicon Valley's most influential and controversial figures, Thiel has built a complex web of investments through Founders Fund, Thiel Capital, and other vehicles while maintaining significant political influence as a major Republican donor.\n\n## Professional Background\n\nThiel co-founded PayPal in 1998, which sold to eBay for $1.5 billion in 2002. He was Facebook's first outside investor and remains on Meta's board. He co-founded Palantir Technologies in 2003, a data analytics company that primarily serves U.S. intelligence and defense agencies. Through Founders Fund, he has invested in numerous technology companies including SpaceX, Airbnb, and Stripe.\n\n## Key Findings\n\n**Factual Risk Elements**:\n- **Litigation Concerns**: Thiel secretly funded the Hulk Hogan lawsuit that bankrupted Gawker Media, demonstrating willingness to use wealth to attack media outlets\n- **Tax Controversy**: Under IRS investigation for converting a Roth IRA into a $5 billion tax-free vehicle through aggressive valuation strategies\n- **Multiple Citizenships**: Holds US, German, and New Zealand passports, with reports of pursuing Maltese citizenship\n- **Network Connections**: Recent investigations have revealed connections to Jeffrey Epstein\n\n**Reputational Risk Elements**:\n- **Extreme Political Toxicity**: Identified as a \"Republican kingmaker\" and one of the largest MAGA/Trump donors with $61,105 to GOP recipients and zero Democratic contributions\n- **Trump Administration Influence**: Major backer of JD Vance and key figure in funding Trump's rise to power\n- **Surveillance Technology Concerns**: Palantir is deeply embedded with ICE, CIA, and law enforcement, directly toxic to Democratic coalition and civil liberties advocates\n- **Client Base Conflicts**: Direct reputational conflicts with AB Foundation, Keep Americans Covered, Mayday Health, labor-aligned clients, and Meta-related work\n- **Media Vulnerability**: Engagement creates devastating narrative opportunities for opponents\n\n## Risk Assessment\n\n**Factual Risk Score**: 5.38/10 ELEVATED  \n**Reputational Contagion Score**: 8.3/10 CRITICAL  \n**Combined Decision**: CRITICAL \u2014 Recommend Reject\n\nThe divergence between scores reflects that while Thiel's factual compliance issues are manageable, the reputational damage from association would be severe and immediate. TMG taking on a major Trump donor would trigger backlash from DCCC/DNC leadership, progressive media would frame it as betrayal, and Democratic campaign clients would question TMG's loyalty. The engagement is devastatingly vulnerable to the headline: \"Jim Messina's Firm Now Advising Billionaire Who Funded Trump's Rise and Destroyed Gawker.\"\n\nCurrent temporal context amplifies risks with Palantir facing criticism for Pentagon AI contracts, ongoing scrutiny of billionaire political influence, and Thiel's role in funding the new Trump administration.\n\n## Recommendation\n\n**REJECT** \u2014 The Combined Decision assessment indicates engagement with Thiel would damage TMG's core brand and relationships within the Democratic ecosystem. While factual risks are elevated but manageable, the reputational contagion risks are critical and decisive. Association with one of Trump's largest donors creates immediate conflicts with TMG's client base and Democratic Party relationships that cannot be mitigated. Senior leadership should decline any potential engagement to protect TMG's positioning and existing client relationships.",
+  "executive_summary": "## Summary\n\nPeter Thiel is a German-born American billionaire technology investor and entrepreneur, best known as co-founder of PayPal and Palantir Technologies. With an estimated net worth exceeding $5 billion, he has become one of Silicon Valley's most influential and controversial figures. Thiel serves as President of Thiel Capital and is a managing partner at Founders Fund, having made early investments in Facebook (where he served as a board member), SpaceX, and numerous other technology companies.\n\n## Professional Background\n\nThiel co-founded PayPal in 1998, which sold to eBay for $1.5 billion in 2002. He subsequently co-founded Palantir Technologies in 2003, a data analytics company that primarily serves government intelligence and defense agencies. Through his investment vehicles\u2014Founders Fund, Thiel Capital, Valar Ventures, and Mithril Capital\u2014he has built an extensive portfolio of technology investments. He is also known for his contrarian views, including his book 'Zero to One' and his Thiel Fellowship program that pays students to drop out of college to pursue entrepreneurship.\n\n## Key Findings\n\n- **Surveillance Technology Concerns**: Palantir's deep integration with US intelligence agencies and law enforcement raises civil liberties concerns\n- **Aggressive Tax Strategies**: IRS investigation into turning $2,000 IRA into $5 billion tax-free through questionable valuation tactics\n- **Political Activities**: Major donor to MAGA movement, backed JD Vance and Donald Trump\n- **International Exposure**: Holds multiple citizenships (German, US, New Zealand) and pursuing others as potential 'exit strategy'\n- **Controversial Actions**: Secretly funded lawsuit that bankrupted Gawker Media; promotes apocalyptic worldview\n- **Congressional Scrutiny**: Network under investigation for alleged CCP propaganda connections\n\n## Risk Assessment\n\nThe subject presents an ELEVATED risk profile (5.99/10) driven primarily by:\n- Extreme political positioning and controversial public statements (7.5/10 media risk)\n- Major involvement in surveillance technology targeting American citizens (6.5/10 corporate risk)\n- Significant political lobbying and MAGA alignment (8.0/10 political risk)\n- International PEP status with multiple foreign allegiances (6.0/10)\n\n## Recommendation\n\n**FURTHER REVIEW REQUIRED** \u2014 While no direct conflicts exist with current TMG clients, Thiel's extreme political positioning, surveillance technology empire, and controversial public profile require senior leadership review. His role as a major MAGA donor and operator of mass surveillance tools presents significant reputational risks that must be carefully weighed against any potential engagement benefits.",
   "reputational_contagion": {
     "q1_partisan_alignment": {
-      "score": 9.0,
+      "score": 9.5,
       "weight": 0.25,
-      "evidence": "Thiel is one of the largest MAGA/Trump donors, backed JD Vance, and exclusively funds Republican candidates per FEC records showing $61,105 to GOP recipients. Described as 'Republican kingmaker' who helped make JD Vance. Zero Democratic contributions found."
+      "evidence": "Major MAGA donor who backed JD Vance and Donald Trump. FEC records show $61,105 in contributions primarily to Republican candidates. Co-founded Palantir which builds surveillance tools for law enforcement. Promotes anti-democratic views including apocalyptic theories. Directly opposes core Democratic priorities on civil liberties, democratic institutions."
     },
     "q2_stakeholder_backlash": {
-      "score": 8.0,
+      "score": 8.5,
       "weight": 0.2,
-      "evidence": "TMG taking on a major Trump donor would likely trigger immediate backlash from DCCC/DNC leadership, progressive media would frame as betrayal, and Democratic campaign clients would question TMG's loyalty. The headline writes itself: 'Obama's Campaign Manager Now Working for Major Trump Donor.'"
+      "evidence": "TMG engagement would create immediate backlash from DCCC/DNC given Thiel's role as prominent Trump backer. Progressive media already hostile to Thiel would attack TMG's credibility. Would be used in opposition research against every TMG Democratic client as evidence of 'selling out.' Staff recruitment would suffer given Thiel's anti-democratic positions."
     },
     "q3_narrative_vulnerability": {
       "score": 9.0,
       "weight": 0.15,
-      "evidence": "The engagement can be devastatingly framed in one sentence that would be used in every attack ad.",
-      "damaging_headline": "Jim Messina's Firm Now Advising Billionaire Who Funded Trump's Rise and Destroyed Gawker"
+      "evidence": "Devastating headlines write themselves given TMG's Obama roots. The engagement can be easily framed as betrayal of progressive values for billionaire money. Thiel's surveillance tech and MAGA funding create perfect attack narrative.",
+      "damaging_headline": "Obama's Campaign Manager Now Working for Trump Megadonor Behind Mass Surveillance"
     },
     "q4_client_conflicts": {
       "score": 8.0,
       "weight": 0.15,
-      "evidence": "Direct reputational conflicts with: AB Foundation (Thiel funds surveillance tech), Keep Americans Covered (Thiel backs candidates opposing ACA), Mayday Health (Thiel supports anti-abortion candidates), labor-aligned clients (Thiel's anti-union stance), and Meta conflicts given his board seat."
+      "evidence": "Direct reputational conflict with every Democratic campaign and progressive organization TMG serves. Palantir's surveillance tools have been used against progressive activists. Thiel funds candidates who oppose TMG clients. Association would taint TMG's ability to advise on progressive issues."
     },
     "q5_industry_toxicity": {
-      "score": 8.0,
+      "score": 9.0,
       "weight": 0.15,
-      "evidence": "Palantir is a surveillance technology company deeply embedded with ICE, CIA, and law enforcement - directly toxic to Democratic coalition. The company is criticized for enabling deportations and civil liberties violations. This is a high-toxicity sector for progressive politics."
+      "evidence": "Palantir operates in extremely toxic sector for Democrats - mass surveillance technology used by ICE, law enforcement against civil liberties. Company culture includes use of slurs against critics. Directly profits from authoritarian applications of technology. Surveillance tech targeting Americans is antithetical to progressive values."
     },
     "q6_temporal_context": {
-      "score": 7.0,
+      "score": 7.5,
       "weight": 0.1,
-      "evidence": "Current moment is particularly sensitive with Palantir facing criticism for Pentagon AI contracts, ongoing scrutiny of billionaire political influence, and Thiel's role in funding the new Trump administration. Recent Epstein network revelations add to toxicity."
+      "evidence": "Engagement comes amid active congressional investigations into Thiel network for CCP propaganda. Palantir facing Pentagon controversies. Post-2024 election context makes MAGA associations especially toxic. Surveillance and AI ethics are major current political issues where Thiel is on wrong side."
     },
-    "composite_rcs": 8.3,
+    "composite_rcs": 8.72,
     "rcs_risk_tier": "CRITICAL",
     "rcs_recommendation": "Recommended reject; engagement would damage TMG's core brand and relationships",
     "divergence_alert": null,
-    "most_damaging_headline": "Jim Messina's Firm Now Advising Billionaire Who Funded Trump's Rise and Destroyed Gawker"
+    "most_damaging_headline": "Obama's Campaign Manager Now Working for Trump Megadonor Behind Mass Surveillance"
   },
   "metadata": {
     "pipeline_version": "v1.1",
@@ -522,16 +556,16 @@
       "international"
     ],
     "started_at": "2026-03-08T07:08:57.656889+00:00",
-    "completed_at": "2026-03-09T01:54:07.650059+00:00",
+    "completed_at": "2026-03-08T07:13:44.438409+00:00",
     "total_duration_seconds": 0,
     "model": "claude-opus-4-0",
-    "input_tokens": 30666,
-    "output_tokens": 6067,
+    "input_tokens": 28913,
+    "output_tokens": 6223,
     "tavily_sources": 139,
     "citation_enrichment": {
-      "total_evidence_items": 21,
-      "items_with_source_urls": 14,
-      "total_source_urls_added": 20
+      "total_evidence_items": 23,
+      "items_with_source_urls": 15,
+      "total_source_urls_added": 24
     }
   },
   "sources": [
@@ -1374,10 +1408,10 @@
     "recommendation": "Recommend Reject \u2014 Engagement would damage TMG's core brand",
     "combined_tier": "CRITICAL",
     "factual_tier": "ELEVATED",
-    "factual_score": 5.38,
+    "factual_score": 5.5,
     "rcs_tier": "CRITICAL",
-    "rcs_score": 8.3,
+    "rcs_score": 8.72,
     "driver": "reputational_contagion",
-    "driver_detail": "Combined recommendation driven by Reputational Contagion Score (8.3/10 CRITICAL) which is more cautious than Factual Risk Score (5.38/10 ELEVATED)"
+    "driver_detail": "Combined recommendation driven by Reputational Contagion Score (8.72/10 CRITICAL) which is more cautious than Factual Risk Score (5.5/10 ELEVATED)"
   }
 }
