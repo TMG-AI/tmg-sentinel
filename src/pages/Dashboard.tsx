@@ -69,8 +69,8 @@ export default function Dashboard() {
       bgColor: "bg-[hsl(var(--risk-low)/0.08)]",
     },
     { 
-      label: "Avg. Turnaround", 
-      value: avgTurnaround, 
+      label: "Total Vettings", 
+      value: vettings.length, 
       icon: Clock, 
       color: "text-accent",
       bgColor: "bg-accent/8",
