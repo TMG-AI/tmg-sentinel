@@ -19,8 +19,11 @@ export default function Dashboard() {
     loadVettings();
   }, [loadVettings]);
 
-  const active = vettings.filter((v) => v.status === "running" || v.status === "pending").length;
-  const awaiting = vettings.filter((v) => v.status === "completed" && !v.decision).length;
+  const completedYear = vettings.filter((v) => {
+    if (!v.completed_at) return false;
+    const d = new Date(v.completed_at);
+    return d.getFullYear() === new Date().getFullYear();
+  }).length;
   const completedMonth = vettings.filter((v) => {
     if (!v.completed_at) return false;
     const d = new Date(v.completed_at);
@@ -48,20 +51,6 @@ export default function Dashboard() {
 
   const stats = [
     { 
-      label: "Active Vettings", 
-      value: active, 
-      icon: Activity, 
-      color: "text-primary",
-      bgColor: "bg-primary/8",
-    },
-    { 
-      label: "Awaiting Decision", 
-      value: awaiting, 
-      icon: AlertTriangle, 
-      color: "text-[hsl(var(--risk-moderate))]",
-      bgColor: "bg-[hsl(var(--risk-moderate)/0.08)]",
-    },
-    { 
       label: "Completed This Month", 
       value: completedMonth, 
       icon: CheckCircle, 
@@ -69,8 +58,8 @@ export default function Dashboard() {
       bgColor: "bg-[hsl(var(--risk-low)/0.08)]",
     },
     { 
-      label: "Total Vettings", 
-      value: vettings.length, 
+      label: "Total Vettings 2026", 
+      value: completedYear, 
       icon: Clock, 
       color: "text-accent",
       bgColor: "bg-accent/8",

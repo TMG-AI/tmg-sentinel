@@ -34,7 +34,7 @@ function resultToVettingRequest(result: VettingResultJSON, filename: string): Ve
     engagement_type: inferEngagementType(result),
     vetting_level: (result.metadata?.vetting_level as any) || "standard_vet",
     requested_by: "Pipeline",
-    requested_at: result.metadata?.started_at || new Date().toISOString(),
+    requested_at: result.metadata?.completed_at || result.metadata?.started_at || new Date().toISOString(),
     status: result.gates.sanctions.status === "FAIL" || result.gates.debarment.status === "FAIL" ? "gates_failed" : "completed",
     pipeline_progress: null,
     result_json: result,
