@@ -1276,5 +1276,228 @@
     "rcs_score": 7.83,
     "driver": "reputational_contagion",
     "driver_detail": "Combined recommendation driven by Reputational Contagion Score (7.83/10 HIGH) which is more cautious than Factual Risk Score (3.72/10 MODERATE)"
+  },
+  "key_executives": [
+    {
+      "name": "Cohen Stephen Andrew",
+      "title": "See Remarks",
+      "is_officer": true,
+      "is_director": true,
+      "fec_total": 43100.0,
+      "fec_count": 13,
+      "fec_top_recipients": [
+        { "name": "NRCC", "total": 20000.0, "count": 2 },
+        { "name": "ELISE FOR CONGRESS", "total": 5400.0, "count": 3 },
+        { "name": "FRIENDS OF DICK DURBIN", "total": 5200.0, "count": 2 },
+        { "name": "MISSOURIANS FOR KANDER", "total": 3000.0, "count": 2 },
+        { "name": "PATRICK RYAN FOR CONGRESS", "total": 2700.0, "count": 1 }
+      ],
+      "news_count": 10,
+      "news_headlines": [
+        "Palantir sues engineers who left to form 'copycat' Percepta AI - Yahoo Finance",
+        "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
+        "Palantir sues former employees, says Percepta AI CEO set out to 'pillage' top developers - cnbc.com"
+      ],
+      "sanctions_flag": true
+    },
+    {
+      "name": "Karp Alexander C.",
+      "title": "See Remarks",
+      "is_officer": true,
+      "is_director": true,
+      "fec_total": 275400.0,
+      "fec_count": 239,
+      "fec_top_recipients": [
+        { "name": "CORNYN VICTORY COMMITTEE", "total": 100000.0, "count": 1 },
+        { "name": "NRSC", "total": 88000.0, "count": 2 },
+        { "name": "MARK WARNER VICTORY FUND", "total": 22000.0, "count": 1 },
+        { "name": "TEAM NUNN", "total": 12000.0, "count": 1 },
+        { "name": "DEMOCRATIC PARTY OF VIRGINIA", "total": 10000.0, "count": 1 }
+      ],
+      "news_count": 10,
+      "news_headlines": [
+        "Palantir sues ex-employees over AI startup, alleging \"deception,\" \"stolen documents\" - Axios",
+        "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
+        "Tech giant Palantir helps the US government monitor its citizens. Its CEO wants Silicon Valley to find its moral compass - The Conversation"
+      ],
+      "sanctions_flag": true
+    },
+    {
+      "name": "Buckley Jeffrey",
+      "title": "See Remarks",
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 1634.67,
+      "fec_count": 273,
+      "fec_top_recipients": [
+        { "name": "LASHER FOR CONGRESS", "total": 1000.0, "count": 1 },
+        { "name": "BURNS AND MCDONNELL INC. PAC", "total": 349.92, "count": 2 },
+        { "name": "WINRED", "total": 150.0, "count": 8 },
+        { "name": "ACTBLUE", "total": 134.75, "count": 9 }
+      ],
+      "news_count": 10,
+      "news_headlines": [
+        "Palantir sues engineers who left to form 'copycat' Percepta AI - Yahoo Finance",
+        "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
+        "Palantir \u2014 Colorado\u2019s largest public company \u2014 is leaving Denver for Miami - The Denver Post"
+      ],
+      "sanctions_flag": false
+    },
+    {
+      "name": "Taylor Ryan D.",
+      "title": "See Remarks",
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 1671.0,
+      "fec_count": 11,
+      "fec_top_recipients": [
+        { "name": "REPUBLICAN NATIONAL COMMITTEE", "total": 871.0, "count": 7 },
+        { "name": "CARSON AMERICA", "total": 350.0, "count": 2 },
+        { "name": "NATIONAL REPUBLICAN CONGRESSIONAL COMMITTEE", "total": 300.0, "count": 1 },
+        { "name": "FLORIDA DENTAL POLITICAL ACTION COMMITTEE", "total": 150.0, "count": 1 }
+      ],
+      "news_count": 10,
+      "news_headlines": [
+        "Palantir sues ex-employees over AI startup, alleging \"deception,\" \"stolen documents\" - Axios",
+        "Palantir sues engineers who left to form 'copycat' Percepta AI - Yahoo Finance",
+        "Palantir \u2014 Colorado\u2019s largest public company \u2014 is leaving Denver for Miami - The Denver Post"
+      ],
+      "sanctions_flag": true
+    },
+    {
+      "name": "Glazer David A.",
+      "title": "See Remarks",
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 0,
+      "fec_count": 0,
+      "fec_top_recipients": [],
+      "news_count": 10,
+      "news_headlines": [
+        "Palantir sues ex-employees over AI startup, alleging \"deception,\" \"stolen documents\" - Axios",
+        "Palantir sues engineers who left to form 'copycat' Percepta AI - Yahoo Finance",
+        "Palantir sues engineers who left to form 'copycat' AI firm - iTnews"
+      ],
+      "sanctions_flag": true
+    },
+    {
+      "name": "Sankar Shyam",
+      "title": "See Remarks",
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 65824.99,
+      "fec_count": 170,
+      "fec_top_recipients": [
+        { "name": "YOUNG VICTORY COMMITTEE", "total": 12000.0, "count": 1 },
+        { "name": "FRIENDS OF TODD YOUNG, INC.", "total": 7000.0, "count": 2 },
+        { "name": "IOWANS FOR ZACH NUNN", "total": 7000.0, "count": 5 },
+        { "name": "SHEEHY VICTORY COMMITTEE", "total": 7000.0, "count": 1 },
+        { "name": "HUSTED FOR SENATE", "total": 7000.0, "count": 3 }
+      ],
+      "news_count": 10,
+      "news_headlines": [
+        "Palantir sues ex-employees over AI startup, alleging \"deception,\" \"stolen documents\" - Axios",
+        "Palantir sues engineers who left to form 'copycat' Percepta AI - Yahoo Finance",
+        "Palantir sues engineers who left to form 'copycat' AI firm - iTnews"
+      ],
+      "sanctions_flag": false
+    },
+    {
+      "name": "THIEL PETER",
+      "title": "",
+      "is_officer": false,
+      "is_director": true,
+      "fec_total": 61105.0,
+      "fec_count": 533,
+      "fec_top_recipients": [
+        { "name": "MAINE REPUBLICAN PARTY", "total": 10000.0, "count": 1 },
+        { "name": "REPUBLICAN CAMPAIGN COMMITTEE OF NEW MEXICO", "total": 10000.0, "count": 1 },
+        { "name": "CONGRESSIONAL LEADERSHIP FUND", "total": 10000.0, "count": 2 },
+        { "name": "MICHIGAN REPUBLICAN PARTY", "total": 10000.0, "count": 1 },
+        { "name": "KEAN FOR CONGRESS INC", "total": 7000.0, "count": 2 }
+      ],
+      "news_count": 10,
+      "news_headlines": [
+        "Palantir sues ex-employees over AI startup, alleging \"deception,\" \"stolen documents\" - Axios",
+        "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
+        "Palantir Sues CEO of Rival AI Firm, Alleges Widespread Effort to Poach Employees - The Wall Street Journal"
+      ],
+      "sanctions_flag": true
+    },
+    {
+      "name": "Stat Lauren Elaina Friedman",
+      "title": "",
+      "is_officer": false,
+      "is_director": true,
+      "fec_total": 0,
+      "fec_count": 0,
+      "fec_top_recipients": [],
+      "news_count": 10,
+      "news_headlines": [
+        "Palantir \u2014 Colorado\u2019s largest public company \u2014 is leaving Denver for Miami - The Denver Post",
+        "Palantir Sues CEO of Rival AI Firm, Alleges Widespread Effort to Poach Employees - The Wall Street Journal",
+        "PLTR Investors Have Opportunity to Join Palantir Technologies Inc. Fraud Investigation with the Schall Law Firm - Business Wire"
+      ],
+      "sanctions_flag": false
+    }
+  ],
+  "government_contracts": {
+    "total_awards": 414,
+    "total_amount": 3937199588.77,
+    "agencies_count": 15,
+    "top_agencies": [
+      { "agency": "Department of Defense", "total": 2312643416.79, "count": 172 },
+      { "agency": "Department of Health and Human Services", "total": 405348501.93, "count": 96 },
+      { "agency": "Department of Homeland Security", "total": 352592360.04, "count": 17 },
+      { "agency": "Department of Justice", "total": 209253822.34, "count": 57 },
+      { "agency": "Department of the Treasury", "total": 195956175.16, "count": 28 },
+      { "agency": "Department of Veterans Affairs", "total": 118431141.73, "count": 2 },
+      { "agency": "Department of State", "total": 106969868.9, "count": 14 },
+      { "agency": "Department of Energy", "total": 90967788.61, "count": 1 },
+      { "agency": "Department of Transportation", "total": 58203372.35, "count": 6 },
+      { "agency": "Securities and Exchange Commission", "total": 50351556.83, "count": 3 }
+    ],
+    "top_awards": [
+      {
+        "award_amount": 292680689.24,
+        "awarding_agency": "Department of Defense",
+        "awarding_sub_agency": "Department of the Army",
+        "description": "TASK ORDER #1 FOR MAVEN SMART SYSTEM - USER INTERFACE/USER EXPERIENCE (UI/UX) PROTOTYPE",
+        "start_date": "2024-06-18",
+        "end_date": "2026-05-31"
+      },
+      {
+        "award_amount": 275959237.71,
+        "awarding_agency": "Department of Defense",
+        "awarding_sub_agency": "U.S. Special Operations Command",
+        "description": "PALANTIR GOTHAM MONTHLY TERM LICENSES",
+        "start_date": "2016-05-24",
+        "end_date": "2021-05-25"
+      },
+      {
+        "award_amount": 227580359.39,
+        "awarding_agency": "Department of Defense",
+        "awarding_sub_agency": "Department of the Army",
+        "description": "CDAO MSS TASK ORDER OFF OF CONTRACT W519TC25D0039",
+        "start_date": "2025-10-15",
+        "end_date": "2029-05-31"
+      },
+      {
+        "award_amount": 195724055.5,
+        "awarding_agency": "Department of Defense",
+        "awarding_sub_agency": "Department of the Air Force",
+        "description": "PROVIDES ACCESS TO AGILE, SCALABLE DATA PLATFORM WITH ROBUST DATA STREAMING,STORAGE TECHNOLOGIES",
+        "start_date": "2021-05-01",
+        "end_date": "2023-06-30"
+      },
+      {
+        "award_amount": 145008922.61,
+        "awarding_agency": "Department of Homeland Security",
+        "awarding_sub_agency": "U.S. Immigration and Customs Enforcement",
+        "description": "INVESTIGATIVE CASE MANAGEMENT (ICM) OPERATIONS AND MAINTENANCE (O&M) SUPPORT SERVICES AND CUSTOM ENHANCEMENTS",
+        "start_date": "2022-09-26",
+        "end_date": "2026-04-04"
+      }
+    ]
   }
 }
