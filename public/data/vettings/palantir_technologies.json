@@ -1351,6 +1351,11 @@
         "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
         "Palantir \u2014 Colorado\u2019s largest public company \u2014 is leaving Denver for Miami - The Denver Post"
       ],
+      "news_urls": [
+        "https://finance.yahoo.com/news/palantir-sues-engineers-left-form-155756889.html",
+        "https://www.itnews.com.au/news/palantir-sues-engineers-who-left-to-form-copycat-ai-firm-621436",
+        "https://www.denverpost.com/2026/02/17/palantir-moving-headquarters-miami/"
+      ],
       "sanctions_flag": false
     },
     {
