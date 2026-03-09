@@ -69,11 +69,7 @@ export default function Dashboard() {
   return (
     <div className="page-container">
       {/* Page Header */}
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">Active Vettings</h1>
-          <p className="text-sm text-muted-foreground mt-1">Monitor ongoing vetting requests and review results</p>
-        </div>
+      <div className="flex items-center justify-end mb-8">
         <Link to="/submit">
           <Button className="gap-2">
             <Plus className="w-4 h-4" />
