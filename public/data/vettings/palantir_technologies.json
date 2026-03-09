@@ -1325,6 +1325,11 @@
         "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
         "Tech giant Palantir helps the US government monitor its citizens. Its CEO wants Silicon Valley to find its moral compass - The Conversation"
       ],
+      "news_urls": [
+        "https://www.axios.com/2025/10/30/ai-palantir-general-catalyst-lawsuit",
+        "https://www.itnews.com.au/news/palantir-sues-engineers-who-left-to-form-copycat-ai-firm-621436",
+        "https://theconversation.com/tech-giant-palantir-helps-the-us-government-monitor-its-citizens-its-ceo-wants-silicon-valley-to-find-its-moral-compass-260824"
+      ],
       "sanctions_flag": false
     },
     {
