@@ -1452,6 +1452,11 @@
         "Palantir sues engineers who left to form 'copycat' AI firm - iTnews",
         "Palantir Sues CEO of Rival AI Firm, Alleges Widespread Effort to Poach Employees - The Wall Street Journal"
       ],
+      "news_urls": [
+        "https://www.axios.com/2025/10/30/ai-palantir-general-catalyst-lawsuit",
+        "https://www.itnews.com.au/news/palantir-sues-engineers-who-left-to-form-copycat-ai-firm-621436",
+        "https://www.wsj.com/business/palantir-sues-ceo-of-rival-ai-firm-alleges-widespread-effort-to-poach-employees-9c297986"
+      ],
       "sanctions_flag": false
     },
     {
