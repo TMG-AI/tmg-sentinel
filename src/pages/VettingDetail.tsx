@@ -470,56 +470,79 @@ export default function VettingDetail() {
       )}
 
       {/* ===== CLIENT CONFLICTS TAB ===== */}
-      {activeTab === "conflicts" && conflictDim && !gatesFailed && (
+      {activeTab === "conflicts" && !gatesFailed && (
         <div className="mb-6 space-y-4">
-          {/* Conflict overview */}
-          <div className="glass-card p-5">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="section-title mb-0 flex items-center gap-2"><AlertTriangle className="w-4 h-4" /> Client Conflict Analysis</h2>
-              <div className="flex items-center gap-2">
-                <span className={`text-xl font-bold ${getSubScoreColor(conflictDim.score)}`}>{conflictDim.score.toFixed(1)}</span>
-                <span className="text-xs text-muted-foreground">/ 10</span>
-              </div>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">{conflictDim.summary}</p>
-          </div>
-
-          {/* Sub-factor cards */}
-          {Object.entries(conflictDim.sub_factors).map(([key, sf]) => {
-            const label = key === "direct_conflict" ? "Direct Conflict" : key === "indirect_conflict" ? "Indirect Conflict" : "Future / Emerging Conflict";
-            const chips = parseClientChips(sf.detail);
-            return (
-              <div key={key} className={`glass-card p-4 border-l-4 ${sf.score >= 7 ? "border-l-[hsl(var(--risk-high))]" : sf.score >= 4 ? "border-l-[hsl(var(--risk-elevated))]" : "border-l-[hsl(var(--risk-low))]"}`}>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-semibold text-foreground">{label}</span>
-                  <span className={`text-sm font-bold px-2 py-0.5 rounded ${getSubScoreBg(sf.score)} ${getSubScoreColor(sf.score)}`}>
-                    {sf.score}/10
-                  </span>
+          {/* Primary: RCS conflict assessment (richer data) */}
+          {rca?.q4_client_conflicts && rca.q4_client_conflicts.score > 0 && (
+            <div className={`glass-card p-5 border-l-4 ${rca.q4_client_conflicts.score >= 7 ? "border-l-[hsl(var(--risk-high))]" : rca.q4_client_conflicts.score >= 4 ? "border-l-[hsl(var(--risk-elevated))]" : "border-l-[hsl(var(--risk-low))]"}`}>
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="section-title mb-0 flex items-center gap-2"><AlertTriangle className="w-4 h-4" /> Client Conflict Analysis</h2>
+                <div className="flex items-center gap-2">
+                  <span className={`text-xl font-bold ${getSubScoreColor(rca.q4_client_conflicts.score)}`}>{rca.q4_client_conflicts.score.toFixed(1)}</span>
+                  <span className="text-xs text-muted-foreground">/ 10</span>
+                  <span className="text-xs text-muted-foreground ml-1">({(rca.q4_client_conflicts.weight * 100).toFixed(0)}% weight)</span>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-3">{sf.detail}</p>
-                {chips.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {chips.map((c, i) => (
-                      <span key={i} className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                        c.tier === "HIGH" ? "bg-[hsl(var(--risk-high)/0.10)] text-[hsl(var(--risk-high))] border border-[hsl(var(--risk-high)/0.25)]"
-                        : c.tier === "MEDIUM" ? "bg-[hsl(var(--risk-moderate)/0.10)] text-[hsl(var(--risk-moderate))] border border-[hsl(var(--risk-moderate)/0.25)]"
-                        : "bg-muted text-muted-foreground border border-border"
-                      }`}>
-                        {c.name} ({c.tier})
-                      </span>
-                    ))}
-                  </div>
-                )}
               </div>
-            );
-          })}
+              <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden mb-3">
+                <div className={`h-full rounded-full transition-all ${getScoreBarColor(rca.q4_client_conflicts.score)}`} style={{ width: `${(rca.q4_client_conflicts.score / 10) * 100}%` }} />
+              </div>
+              {/* Split evidence into bullet points on semicolons */}
+              <ul className="space-y-2">
+                {rca.q4_client_conflicts.evidence.split(';').map((point, i) => {
+                  const trimmed = point.replace(/\s*\[\d+\]\s*/g, ' ').trim();
+                  if (!trimmed) return null;
+                  return (
+                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground leading-relaxed">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-muted-foreground/40 flex-shrink-0" />
+                      {trimmed.charAt(0).toUpperCase() + trimmed.slice(1)}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
 
-          {/* Evidence items for conflict dimension */}
-          {conflictDim.evidence.length > 0 && (
+          {/* Factual sub-factors (only show if they have non-zero scores) */}
+          {conflictDim && Object.entries(conflictDim.sub_factors).some(([, sf]) => sf.score > 0) && (
+            <>
+              <h3 className="text-xs font-semibold text-muted-foreground tracking-wider">Factual Conflict Sub-Factors</h3>
+              {Object.entries(conflictDim.sub_factors).filter(([, sf]) => sf.score > 0).map(([key, sf]) => {
+                const label = key === "direct_conflict" ? "Direct Conflict" : key === "indirect_conflict" ? "Indirect Conflict" : "Future / Emerging Conflict";
+                const chips = parseClientChips(sf.detail);
+                return (
+                  <div key={key} className={`glass-card p-4 border-l-4 ${sf.score >= 7 ? "border-l-[hsl(var(--risk-high))]" : sf.score >= 4 ? "border-l-[hsl(var(--risk-elevated))]" : "border-l-[hsl(var(--risk-low))]"}`}>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-semibold text-foreground">{label}</span>
+                      <span className={`text-sm font-bold px-2 py-0.5 rounded ${getSubScoreBg(sf.score)} ${getSubScoreColor(sf.score)}`}>
+                        {sf.score}/10
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-3">{sf.detail}</p>
+                    {chips.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {chips.map((c, i) => (
+                          <span key={i} className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                            c.tier === "HIGH" ? "bg-[hsl(var(--risk-high)/0.10)] text-[hsl(var(--risk-high))] border border-[hsl(var(--risk-high)/0.25)]"
+                            : c.tier === "MEDIUM" ? "bg-[hsl(var(--risk-moderate)/0.10)] text-[hsl(var(--risk-moderate))] border border-[hsl(var(--risk-moderate)/0.25)]"
+                            : "bg-muted text-muted-foreground border border-border"
+                          }`}>
+                            {c.name} ({c.tier})
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </>
+          )}
+
+          {/* Evidence items */}
+          {conflictDim && conflictDim.evidence.length > 0 && conflictDim.evidence.some(ev => ev.text && !ev.text.toLowerCase().includes('no conflicts found')) && (
             <div className="glass-card p-5">
-              <h3 className="text-xs font-semibold text-muted-foreground tracking-wider mb-3">Supporting Evidence ({conflictDim.evidence.length})</h3>
+              <h3 className="text-xs font-semibold text-muted-foreground tracking-wider mb-3">Supporting Evidence ({conflictDim.evidence.filter(ev => !ev.text.toLowerCase().includes('no conflicts found')).length})</h3>
               <div className="space-y-2">
-                {conflictDim.evidence.map((ev, i) => {
+                {conflictDim.evidence.filter(ev => !ev.text.toLowerCase().includes('no conflicts found')).map((ev, i) => {
                   const hasSourceUrls = ev.source_urls && ev.source_urls.length > 0;
                   const hasUrl = !!ev.url;
                   return (
@@ -552,26 +575,20 @@ export default function VettingDetail() {
             </div>
           )}
 
-          {/* Reputational cross-reference */}
-          {rca?.q4_client_conflicts && (
-            <div className="glass-card p-4 border border-[hsl(var(--risk-moderate)/0.2)]">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-muted-foreground tracking-wide">Reputational Conflict Assessment</span>
-                <span className={`text-sm font-bold px-2 py-0.5 rounded ${getSubScoreBg(rca.q4_client_conflicts.score)} ${getSubScoreColor(rca.q4_client_conflicts.score)}`}>
-                  {rca.q4_client_conflicts.score}/10
-                </span>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">{rca.q4_client_conflicts.evidence}</p>
-            </div>
-          )}
-
           {/* Divergence note */}
-          {conflictDim && rca?.q4_client_conflicts && Math.abs(conflictDim.score - rca.q4_client_conflicts.score) > 3 && (
+          {conflictDim && rca?.q4_client_conflicts && conflictDim.score !== rca.q4_client_conflicts.score && Math.abs(conflictDim.score - rca.q4_client_conflicts.score) > 3 && (
             <div className="p-3 rounded-lg bg-[hsl(var(--risk-moderate)/0.06)] border border-[hsl(var(--risk-moderate)/0.15)] flex items-start gap-2">
               <AlertTriangle className="w-4 h-4 text-[hsl(var(--risk-moderate))] flex-shrink-0 mt-0.5" />
               <p className="text-xs text-muted-foreground">
                 Factual conflict score ({conflictDim.score}) differs significantly from reputational conflict score ({rca.q4_client_conflicts.score}) — review both assessments.
               </p>
+            </div>
+          )}
+
+          {/* Empty state */}
+          {(!rca?.q4_client_conflicts || rca.q4_client_conflicts.score === 0) && (!conflictDim || conflictDim.score === 0) && (
+            <div className="glass-card p-5 text-center">
+              <p className="text-sm text-muted-foreground">No client conflicts identified.</p>
             </div>
           )}
         </div>
