@@ -1110,6 +1110,71 @@ def run_synthesis(intake: dict) -> dict:
         "driver_detail": combined_driver_detail,
     }
 
+    # ─── Rewrite executive summary to reflect Combined Decision ──
+    # The original summary only reflects factual risk. We need it to
+    # incorporate the RCS and Combined Decision as the authoritative recommendation.
+    original_summary = synthesized.get("executive_summary", "")
+    if original_summary:
+        divergence_text = rca.get("divergence_alert", "") or ""
+        headline_text = rca.get("most_damaging_headline", "") or ""
+
+        rewrite_prompt = f"""You are rewriting an executive summary for a TMG vetting report.
+The original summary was written based ONLY on factual risk. It needs to be updated to reflect
+the FULL picture: both the Factual Risk Score AND the Reputational Contagion Score (RCS),
+with the Combined Decision as the authoritative final recommendation.
+
+SUBJECT: {name}
+
+FACTUAL RISK: {final_composite}/10 — {tier_info['tier']} — {recommendation}
+REPUTATIONAL CONTAGION SCORE (RCS): {composite_rcs}/10 — {rcs_tier_info['tier']} — {rcs_tier_info['recommendation']}
+COMBINED DECISION: {combined_tier} — {combined_recommendation}
+DRIVER: {combined_driver_detail}
+
+RCS QUESTION SCORES:
+- Q1 Partisan Alignment: {rca.get('q1_partisan_alignment', {}).get('score', 'N/A')}/10 — {rca.get('q1_partisan_alignment', {}).get('evidence', '')}
+- Q2 Stakeholder Backlash: {rca.get('q2_stakeholder_backlash', {}).get('score', 'N/A')}/10 — {rca.get('q2_stakeholder_backlash', {}).get('evidence', '')}
+- Q3 Narrative Vulnerability: {rca.get('q3_narrative_vulnerability', {}).get('score', 'N/A')}/10 — {rca.get('q3_narrative_vulnerability', {}).get('evidence', '')}
+- Q4 Client Conflicts: {rca.get('q4_client_conflicts', {}).get('score', 'N/A')}/10 — {rca.get('q4_client_conflicts', {}).get('evidence', '')}
+- Q5 Industry Toxicity: {rca.get('q5_industry_toxicity', {}).get('score', 'N/A')}/10 — {rca.get('q5_industry_toxicity', {}).get('evidence', '')}
+- Q6 Temporal Context: {rca.get('q6_temporal_context', {}).get('score', 'N/A')}/10 — {rca.get('q6_temporal_context', {}).get('evidence', '')}
+
+MOST DAMAGING HEADLINE: {headline_text}
+{('DIVERGENCE ALERT: ' + divergence_text) if divergence_text else ''}
+
+ORIGINAL EXECUTIVE SUMMARY (to preserve the good factual content):
+{original_summary}
+
+INSTRUCTIONS:
+1. Keep the ## Summary and ## Professional Background sections largely intact (they have good factual content)
+2. REWRITE the ## Key Findings section to include BOTH factual findings AND reputational risk findings
+3. REWRITE the ## Risk Assessment section to present BOTH scores:
+   - Factual Risk Score: X/10 TIER
+   - Reputational Contagion Score: X/10 TIER
+   - Combined Decision: TIER — Recommendation (this is the authoritative one)
+   - If there's a divergence, explain it clearly
+4. REWRITE the ## Recommendation section to match the COMBINED DECISION, not just the factual score
+5. Include the most damaging headline in the risk assessment
+6. Keep the tone professional and suitable for TMG leadership
+7. Do NOT add any extra sections or markdown beyond the existing structure
+
+Return ONLY the rewritten executive summary in markdown format. No JSON wrapping, no code blocks."""
+
+        try:
+            print("  Rewriting executive summary with Combined Decision...")
+            rewrite_response = client.messages.create(
+                model="claude-sonnet-4-20250514",
+                max_tokens=2000,
+                messages=[{"role": "user", "content": rewrite_prompt}],
+            )
+            rewritten = rewrite_response.content[0].text.strip()
+            if rewritten and "## Summary" in rewritten:
+                synthesized["executive_summary"] = rewritten
+                print("  Executive summary updated with dual scores + combined decision")
+            else:
+                print("  WARNING: Rewrite didn't produce valid summary, keeping original")
+        except Exception as e:
+            print(f"  WARNING: Could not rewrite executive summary: {e}")
+
     # ─── Append structured executive & contract data for Lovable ──
     exec_data = step_data.get("executives", {})
     if exec_data and not exec_data.get("skipped"):
