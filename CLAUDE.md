@@ -1,6 +1,38 @@
 # Vetting Pipeline Project - Session Status
 
-## Last Updated: 2026-03-08 (Session 7)
+## Last Updated: 2026-03-08 (Session 8 — evening)
+
+## Completed (Session 8)
+- **Executive summary rewrite** — Added post-synthesis Claude Sonnet call to rewrite exec summary with BOTH factual + RCS scores and Combined Decision. Before: summaries only reflected factual risk (Palantir said "CONDITIONAL APPROVE"). After: summaries reflect Combined Decision (Palantir says "REJECT — HIGH").
+- **Client conflict analysis strengthened** — Updated synthesis prompt to REQUIRE naming specific TMG clients by name with sensitivity tiers in conflict_of_interest sub-factors. Before: vague "ICE conflicts with civil liberties groups" (score 5.5). After: "Google LLC (HIGH), Coinbase (HIGH), TikTok (HIGH), AB Foundation, AB Democracy Matters" (score 7.0).
+- **Pipeline memo updated** — `TMG_Vetting_Pipeline_Memo.docx` updated with Session 7 changes: Step 11 (Executive ID), Step 14 (Gov Contracts), Combined Decision section, updated examples with deep dive data.
+- **Lovable vettings fixed** — Cleaned up `public/data/vettings/` to match `_deep` filenames in index. Removed stale non-deep copies.
+- **All pushed to GitHub** — `palantir_technologies_deep.json` and `peter_thiel_deep.json` updated with rewritten exec summaries and stronger COI analysis.
+
+## Key Code Changes (Session 8)
+- **`scripts/synthesize.py`** (~line 1112): Added `rewrite_prompt` block that calls Claude Sonnet to rewrite executive summary after combined_decision is computed. Uses the original summary content but updates Risk Assessment and Recommendation sections with both scores.
+- **`scripts/synthesize.py`** (~line 160): Strengthened `format_conflicts_for_prompt()` — now requires Claude to name specific TMG clients, check every client against research data, and include sensitivity tiers.
+- **`scripts/synthesize.py`** (~line 549): Added conflict_of_interest-specific instructions in dimension text — explicitly tells Claude to name clients and check Google LLC, Coinbase, etc.
+
+## Current Test Results (Session 8)
+### Peter Thiel Deep Dive
+- Factual: 5.38/10 ELEVATED
+- RCS: 8.3/10 CRITICAL
+- Combined: **CRITICAL — Recommend Reject**
+- Headline: "Jim Messina's Firm Now Advising Billionaire Who Funded Trump's Rise and Destroyed Gawker"
+
+### Palantir Deep Dive
+- Factual: 3.72/10 MODERATE
+- RCS: 7.83/10 HIGH
+- Combined: **HIGH — Recommend Reject (requires unanimous partner approval)**
+- Headline: "Obama's Campaign Manager's Firm Now Working with Trump Donor's Surveillance Company Behind ICE Deportations"
+- Divergence Alert: YES
+- COI: 7.0/10 — Google LLC (HIGH), Coinbase (HIGH), TikTok (HIGH), AB Foundation, AB Democracy Matters
+
+## Known Issues / Caution
+- **Synthesis variance**: Each re-run produces slightly different scores since Claude is non-deterministic. Factual scores bounce ±0.5, RCS ±0.3. COI is most variable because it depends on Claude's interpretation of "conflict."
+- **Executives + contracts data not in deep dive**: The `palantir_technologies_deep.json` `steps_completed` list only shows 11 steps — executives and contracts steps ran in the standard vet but raw data wasn't loaded into the deep dive synthesis because subject_id differs. The `key_executives` and `government_contracts` fields may be missing from the deep dive JSON.
+- **Lovable caching**: Lovable may cache old JSON files. After pushing, user may need to trigger a new deploy or hard-refresh.
 
 ## Architecture Decision (Session 4)
 **Lovable CANNOT run Python code.** The FastAPI server / localhost approach from Session 3 was wrong — Lovable previews run in the cloud and can't reach localhost. After evaluating options (Vercel, n8n, ngrok), we chose the **Palantir model**:
