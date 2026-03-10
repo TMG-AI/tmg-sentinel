@@ -75,7 +75,7 @@ export default function SubmitVetting() {
     }
   };
 
-  const vettingLevelCards: { key: VettingLevel; icon: React.ReactNode; steps: string[] }[] = [
+  const vettingLevelCards: { key: VettingLevel; icon: ReactNode; steps: string[] }[] = [
     {
       key: "quick_screen",
       icon: <Zap className="w-5 h-5" />,

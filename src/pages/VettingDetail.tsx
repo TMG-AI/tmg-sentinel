@@ -215,7 +215,7 @@ export default function VettingDetail() {
     toast({ title: "Vetting Reopened", description: "Decision has been cleared." });
   };
 
-  const handleUploadJSON = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUploadJSON = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
