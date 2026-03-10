@@ -947,7 +947,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
         </div>
       </div>
 
-      {(exec.fec_top_recipients.length > 0 || exec.news_headlines.length > 0) && (
+      {((exec.fec_top_recipients?.length ?? 0) > 0 || (exec.news_headlines?.length ?? 0) > 0) && (
         <button
           onClick={() => setExpanded(!expanded)}
           className="w-full mt-3 pt-2 border-t text-xs font-medium text-primary hover:text-primary/80 flex items-center justify-center gap-1"
