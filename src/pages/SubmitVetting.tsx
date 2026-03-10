@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SubjectType, EngagementType, VettingLevel, TEAM_MEMBERS, ENGAGEMENT_LABELS, ENGAGEMENT_MULTIPLIERS, VETTING_LEVEL_LABELS } from "@/lib/types";
+import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -32,32 +33,46 @@ export default function SubmitVetting() {
 
   const canSubmit = subjectName.trim() && (requestedBy || otherName);
 
-  const handleSubmit = () => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async () => {
     const by = requestedBy === "Other" ? otherName : requestedBy;
     setShowConfirm(false);
+    setSubmitting(true);
 
-    const subject = `New Vetting Request: ${subjectName.trim()}`;
-    const body = [
-      `Subject Name: ${subjectName.trim()}`,
-      `Subject Type: ${subjectType}`,
-      `Company Affiliation: ${companyAffiliation || "N/A"}`,
-      `Country: ${country || "N/A"}`,
-      `City: ${city || "N/A"}`,
-      `Brief Bio: ${briefBio || "N/A"}`,
-      `Referral Source: ${referralSource || "N/A"}`,
-      `Engagement Type: ${ENGAGEMENT_LABELS[engagementType]}`,
-      `Vetting Level: ${VETTING_LEVEL_LABELS[vettingLevel].title}`,
-      `Requested By: ${by}`,
-    ].join("\n");
+    try {
+      const { data, error } = await supabase.functions.invoke("send-vetting-email", {
+        body: {
+          subject_name: subjectName.trim(),
+          subject_type: subjectType,
+          company_affiliation: companyAffiliation || undefined,
+          country: country || undefined,
+          city: city || undefined,
+          brief_bio: briefBio || undefined,
+          referral_source: referralSource || undefined,
+          engagement_type: ENGAGEMENT_LABELS[engagementType],
+          vetting_level: VETTING_LEVEL_LABELS[vettingLevel].title,
+          requested_by: by,
+        },
+      });
 
-    window.location.href = `mailto:shannon@themessinagroup.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (error) throw error;
 
-    toast({
-      title: "Vetting request emailed to Shannon.",
-      description: `Request for ${subjectName.trim()} has been prepared.`,
-    });
-
-    setTimeout(() => navigate("/"), 500);
+      toast({
+        title: "Vetting request sent!",
+        description: `Request for ${subjectName.trim()} has been emailed to Shannon.`,
+      });
+      setTimeout(() => navigate("/"), 500);
+    } catch (err: any) {
+      console.error("Send error:", err);
+      toast({
+        title: "Failed to send",
+        description: err.message || "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const vettingLevelCards: { key: VettingLevel; icon: React.ReactNode; steps: string[] }[] = [
@@ -229,7 +244,7 @@ export default function SubmitVetting() {
 
         <Button
           size="lg"
-          disabled={!canSubmit}
+          disabled={!canSubmit || submitting}
           onClick={() => setShowConfirm(true)}
           className="w-full bg-[hsl(var(--risk-low))] hover:bg-[hsl(var(--risk-low)/0.9)] text-[hsl(var(--risk-low-foreground))] font-semibold text-base py-6 rounded-xl"
         >
