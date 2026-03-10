@@ -18,7 +18,7 @@ import {
   BarChart3, Flag, Link2, Users, Landmark, ChevronUp, DollarSign, Globe, Info,
 } from "lucide-react";
 import { isInternationalSubject, getCountryFlag } from "@/lib/international-utils";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, type ReactNode, type ChangeEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 type SourceItem = { id: number; url: string; title: string; score: number };
@@ -154,7 +154,7 @@ type TabId = "summary" | "gates" | "scorecard" | "rca" | "conflicts" | "executiv
 interface TabDef {
   id: TabId;
   label: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   show: boolean;
 }
 
@@ -215,7 +215,7 @@ export default function VettingDetail() {
     toast({ title: "Vetting Reopened", description: "Decision has been cleared." });
   };
 
-  const handleUploadJSON = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUploadJSON = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();

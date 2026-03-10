@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { SubjectType, EngagementType, VettingLevel, TEAM_MEMBERS, ENGAGEMENT_LABELS, ENGAGEMENT_MULTIPLIERS, VETTING_LEVEL_LABELS } from "@/lib/types";
 import { supabase } from "@/integrations/supabase/client";
@@ -75,7 +75,7 @@ export default function SubmitVetting() {
     }
   };
 
-  const vettingLevelCards: { key: VettingLevel; icon: React.ReactNode; steps: string[] }[] = [
+  const vettingLevelCards: { key: VettingLevel; icon: ReactNode; steps: string[] }[] = [
     {
       key: "quick_screen",
       icon: <Zap className="w-5 h-5" />,
