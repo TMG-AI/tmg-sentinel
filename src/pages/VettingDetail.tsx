@@ -192,6 +192,9 @@ export default function VettingDetail() {
   const contracts = result?.government_contracts;
   const gatesFailed = gates?.sanctions.status === "FAIL" || gates?.debarment.status === "FAIL";
   const conflictDim = dimensions?.conflict_of_interest;
+  const isIntl = isInternationalSubject(result?.subject?.country || v.country);
+  const countryFlag = getCountryFlag(result?.subject?.country || v.country);
+  const tavilySources = (result?.metadata as any)?.tavily_sources ?? result?.sources?.length ?? 0;
 
   const handleDecisionClick = (d: Decision) => {
     setPendingDecision(d);
