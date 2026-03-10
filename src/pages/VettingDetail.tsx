@@ -154,7 +154,7 @@ type TabId = "summary" | "gates" | "scorecard" | "rca" | "conflicts" | "executiv
 interface TabDef {
   id: TabId;
   label: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   show: boolean;
 }
 
