@@ -959,7 +959,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
 
       {expanded && (
         <div className="mt-3 space-y-3">
-          {exec.fec_top_recipients.length > 0 && (
+          {(exec.fec_top_recipients?.length ?? 0) > 0 && (
             <div>
               <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-1.5">Top FEC Recipients</h5>
               <div className="space-y-1">
