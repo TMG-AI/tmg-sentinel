@@ -25,6 +25,8 @@ export function VettingCard({ vetting: v, onClick }: Props) {
   const combined = v.result_json?.combined_decision;
   const contracts = v.result_json?.government_contracts;
   const hasDivergence = !!rca?.divergence_alert;
+  const countryFlag = getCountryFlag(v.country);
+  const isIntl = isInternationalSubject(v.country);
 
   // Primary recommendation from combined_decision
   const primaryTier = combined?.combined_tier || v.risk_tier;
