@@ -266,7 +266,15 @@ export default function VettingDetail() {
       <div className="glass-card p-6 mb-0 rounded-b-none border-b-0">
         <div className="flex flex-col lg:flex-row lg:items-start gap-6">
           <div className="flex-1">
-            <h1 className="text-3xl font-bold text-foreground mb-3">{v.subject_name}</h1>
+            <h1 className="text-3xl font-bold text-foreground mb-3">
+              {countryFlag && <span className="mr-2">{countryFlag}</span>}
+              {v.subject_name}
+              {isIntl && !countryFlag && v.country && (
+                <Badge variant="outline" className="ml-2 text-xs align-middle bg-muted">
+                  {v.country}
+                </Badge>
+              )}
+            </h1>
             <div className="flex items-center gap-2 flex-wrap mb-3">
               <Badge variant="outline" className={v.subject_type === "individual" ? "bg-[hsl(var(--domestic-political)/0.08)] text-[hsl(var(--domestic-political))] border-[hsl(var(--domestic-political)/0.15)]" : "bg-[hsl(var(--accent)/0.08)] text-[hsl(var(--accent))] border-[hsl(var(--accent)/0.15)]"}>
                 {v.subject_type === "individual" ? "Individual" : "Organization"}
