@@ -15,8 +15,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogD
 import {
   CheckCircle, XCircle, ArrowLeft, AlertTriangle, ExternalLink, Upload,
   Shield, Skull, FileText, Clock, Newspaper, ChevronDown, ShieldAlert,
-  BarChart3, Flag, Link2, Users, Landmark, ChevronUp, DollarSign, Globe, Info,
+  BarChart3, Flag, Link2, Users, Landmark, ChevronUp, DollarSign, Globe, Info, Printer,
 } from "lucide-react";
+import { usePrintVettingReport } from "@/hooks/usePrintVettingReport";
 import { isInternationalSubject, getCountryFlag } from "@/lib/international-utils";
 import { useState, useRef, useEffect, type ReactNode, type ChangeEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -164,6 +165,7 @@ export default function VettingDetail() {
   const { vettings, makeDecision, reopenVetting, uploadResults, loadVettings } = useVettingStore();
   useEffect(() => { loadVettings(); }, [loadVettings]);
   const { toast } = useToast();
+  const { printReport } = usePrintVettingReport();
 
   const v = vettings.find((x) => x.id === id);
   const [decisionNotes, setDecisionNotes] = useState("");
@@ -257,10 +259,18 @@ export default function VettingDetail() {
 
   return (
     <div className="page-container max-w-5xl">
-      {/* Back */}
-      <button onClick={() => navigate(-1)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-4 transition-colors">
-        <ArrowLeft className="w-4 h-4" /> Back
-      </button>
+      {/* Back + Print */}
+      <div className="flex items-center justify-between mb-4">
+        <button onClick={() => navigate(-1)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <ArrowLeft className="w-4 h-4" /> Back
+        </button>
+        {v.status === "completed" && (
+          <Button variant="outline" size="sm" onClick={() => printReport(v)} className="gap-2">
+            <Printer className="w-4 h-4" />
+            Print Report
+          </Button>
+        )}
+      </div>
 
       {/* Header */}
       <div className="glass-card p-6 mb-0 rounded-b-none border-b-0">
