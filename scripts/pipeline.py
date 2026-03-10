@@ -43,7 +43,7 @@ def run_pipeline(
     brief_bio: str = None,
     referral_source: str = None,
     engagement_type: str = "domestic_corporate",
-    vetting_level: str = "standard_vet",
+    vetting_level: str = "deep_dive",
     requested_by: str = "Shannon",
     from_step: int = None,
     force: bool = False,
@@ -314,7 +314,7 @@ if __name__ == "__main__":
     parser.add_argument("--referral", default=None, help="How they came to TMG / referral source")
     parser.add_argument("--engagement", default="domestic_corporate",
                         choices=list(config.ENGAGEMENT_MULTIPLIERS.keys()))
-    parser.add_argument("--level", default="standard_vet",
+    parser.add_argument("--level", default="deep_dive",
                         choices=list(config.VETTING_LEVELS.keys()))
     parser.add_argument("--from-step", type=int, default=None, help="Start from this step")
     parser.add_argument("--no-synthesis", action="store_true",

@@ -111,20 +111,10 @@ ENDPOINTS = {
 
 # ─── Vetting Levels ─────────────────────────────────────────
 VETTING_LEVELS = {
-    "quick_screen": {
-        "label": "Quick Screen",
-        "steps": [0, 1, 2, 3, 13],  # Intake, Sanctions, Debarment, Basic News, Synthesis
-        "description": "Sanctions, debarment, basic news scan. ~5 minutes.",
-    },
-    "standard_vet": {
-        "label": "Standard Vet",
-        "steps": [0, 1, 2, 3, 4, 5, 15, 6, 7, 8, 10, 11, 14, 13],  # + Network Discovery, Exec ID, Gov Contracts
-        "description": "Full domestic background check with deep news, corporate network, executive vetting, gov contracts. ~25 minutes.",
-    },
     "deep_dive": {
         "label": "Deep Dive",
         "steps": [0, 1, 2, 3, 4, 5, 15, 6, 7, 8, 9, 10, 11, 12, 14, 13],  # Everything
-        "description": "Comprehensive investigation with corporate network, executive vetting and gov contracts. ~40 minutes.",
+        "description": "Comprehensive investigation with corporate network, executive vetting and gov contracts.",
     },
 }
 

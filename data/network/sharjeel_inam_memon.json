@@ -1,0 +1,38 @@
+{
+  "step": 15,
+  "step_name": "Corporate Network Discovery",
+  "subject_id": "sharjeel_inam_memon",
+  "subject_name": "Sharjeel Inam Memon",
+  "subject_type": "individual",
+  "summary": {
+    "companies_found": 0,
+    "officer_positions_found": 0,
+    "associated_entities": 0,
+    "co_directors_found": 0,
+    "tavily_sources": 0
+  },
+  "companies": [],
+  "officer_positions": [],
+  "associated_entities": [],
+  "co_directors": [],
+  "tavily_network_searches": [
+    {
+      "query": "Sharjeel Inam Memon director board member company",
+      "results": []
+    },
+    {
+      "query": "Sharjeel Inam Memon business ventures companies founded",
+      "results": []
+    },
+    {
+      "query": "Sharjeel Inam Memon corporate affiliations subsidiaries",
+      "results": []
+    }
+  ],
+  "metadata": {
+    "checked_at": "2026-03-10T06:02:45.860442+00:00",
+    "source": "Tavily (fallback)",
+    "opencorporates_available": false,
+    "country_filter": "Pakistan"
+  }
+}

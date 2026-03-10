@@ -1,0 +1,2646 @@
+{
+  "subject": {
+    "name": "Sharjeel Inam Memon",
+    "type": "individual",
+    "company": "",
+    "country": "Pakistan",
+    "city": "Karachi, Sindh"
+  },
+  "gates": {
+    "sanctions": {
+      "status": "PASS",
+      "sources_checked": [
+        "OpenSanctions",
+        "Interpol"
+      ],
+      "matches": [],
+      "checked_at": "2026-03-10T00:00:00Z"
+    },
+    "debarment": {
+      "status": "PASS",
+      "sources_checked": [
+        "No debarment sources checked"
+      ],
+      "matches": [],
+      "checked_at": "2026-03-10T00:00:00Z"
+    }
+  },
+  "dimensions": {
+    "litigation_legal": {
+      "score": 8.5,
+      "weight": 0.12,
+      "confidence": "HIGH",
+      "summary": "Subject faces multiple active corruption cases including Rs5.76 billion advertising fraud, money laundering, and assets beyond means charges, with liquor bottles recovered from hospital room while in custody.",
+      "sub_factors": {
+        "criminal_cases": {
+          "score": 9,
+          "detail": "Active NAB corruption cases for Rs5.76 billion fraud [6][10][11], liquor bottles found in hospital room while in custody [1][2][37], indicted in February 2018 [41]"
+        },
+        "civil_fraud_corruption": {
+          "score": 9,
+          "detail": "Rs5.76 billion advertising corruption as Information Minister [6][13][21], assets beyond means reference filed [16][28][29], benami properties/accounts allegations [49][55]"
+        },
+        "repeated_civil_litigation": {
+          "score": 7,
+          "detail": "Multiple corruption references filed by NAB including advertising fraud, assets beyond means, money laundering [7][11][74]"
+        },
+        "past_resolved": {
+          "score": 6,
+          "detail": "Granted bail in Rs5.76 billion case in 2019 [6][18], but cases remain active with trial ongoing [12][30][33]"
+        },
+        "bankruptcy": {
+          "score": 0,
+          "detail": "No bankruptcy issues found"
+        }
+      },
+      "evidence": [
+        {
+          "text": "Sharjeel Memon indicted in Rs5.76 billion corruption case involving misappropriation of government advertising funds [41][72]",
+          "source": "Geo News",
+          "url": "https://www.geo.tv/latest/182049-sharjeel-memon-12-others-indicted-in-corruption-reference",
+          "date": "2018-02-15",
+          "temporal_weight": 0.4,
+          "source_urls": [
+            {
+              "url": "https://www.geo.tv/latest/182049-sharjeel-memon-12-others-indicted-in-corruption-reference",
+              "title": "Sharjeel Memon, 12 others indicted in corruption reference"
+            },
+            {
+              "url": "https://www.thenews.com.pk/print/281644-sharjeel-memon-12-others-indicted-in-corruption-reference",
+              "title": "Sharjeel Memon, 12 others indicted in corruption reference"
+            }
+          ]
+        },
+        {
+          "text": "Chief Justice recovered liquor bottles from Sharjeel Memon's hospital room while he was in judicial custody [1][2]",
+          "source": "The News International",
+          "url": "https://www.thenews.com.pk/print/362871-cj-inspects-sub-jail-recovers-liquor-from-sharjeel-s-room",
+          "date": "2018-09-01",
+          "temporal_weight": 0.4,
+          "source_urls": [
+            {
+              "url": "https://www.thenews.com.pk/print/362871-cj-inspects-sub-jail-recovers-liquor-from-sharjeel-s-room",
+              "title": "CJ inspects sub-jail: recovers liquor from Sharjeel's room"
+            },
+            {
+              "url": "https://indianexpress.com/article/pakistan/pakistan-saqib-nisar-sharjeel-inam-memon-ziauddin-hospital-5335211/",
+              "title": "Pakistan: Chief Justice finds alcohol bottles in ex-minister Sharjeel ..."
+            }
+          ]
+        },
+        {
+          "text": "NAB alleges Sharjeel caused Rs5 billion losses to national exchequer through corrupt advertising practices [13][21]",
+          "source": "The News International",
+          "url": "https://www.thenews.com.pk/print/100865-NAB-probing-Rs5-bn-misappropriation-charge-against-Sharjeel-Memon",
+          "date": "2016",
+          "temporal_weight": 0.4,
+          "source_urls": [
+            {
+              "url": "https://www.geo.tv/latest/101448-Sharjeel-inflicted-Rs5bn-losses-to-national-exchequer-NAB",
+              "title": "Sharjeel inflicted Rs5bn losses to national exchequer: NAB"
+            },
+            {
+              "url": "https://www.thenews.com.pk/print/100865-NAB-probing-Rs5-bn-misappropriation-charge-against-Sharjeel-Memon",
+              "title": "NAB probing Rs5 bn misappropriation charge against Sharjeel ..."
+            }
+          ]
+        },
+        {
+          "text": "NAB filed assets beyond means reference alleging Sharjeel amassed Rs2.43 billion through corrupt means [42]",
+          "source": "Pakistan Today",
+          "url": "https://www.pakistantoday.com.pk/2021/10/25/former-ppp-minister-memon-indicted-in-assets-reference",
+          "date": "2021-10-25",
+          "temporal_weight": 0.7,
+          "source_urls": [
+            {
+              "url": "https://www.pakistantoday.com.pk/2021/10/25/former-ppp-minister-memon-indicted-in-assets-reference",
+              "title": "Former PPP minister Memon indicted in assets reference"
+            }
+          ]
+        }
+      ]
+    },
+    "media_reputation": {
+      "score": 7.5,
+      "weight": 0.3,
+      "confidence": "HIGH",
+      "summary": "Extensive negative coverage of corruption scandals, liquor recovery incident, and ongoing NAB investigations spanning multiple years with consistent reporting across Pakistani media.",
+      "sub_factors": {
+        "scandal_coverage": {
+          "score": 8,
+          "detail": "Major coverage of Rs5.76 billion corruption scandal, liquor bottles found in hospital, multiple corruption cases"
+        },
+        "pattern_negativity": {
+          "score": 8,
+          "detail": "Consistent negative coverage from 2016-2026 across multiple outlets regarding corruption allegations"
+        },
+        "credibility_sources": {
+          "score": 7,
+          "detail": "Coverage from reputable Pakistani outlets including Dawn, The News, Express Tribune, Geo News"
+        }
+      },
+      "evidence": [
+        {
+          "text": "Named in Pandora Papers as former Sindh information minister involved in offshore dealings [4]",
+          "source": "EFSAS",
+          "url": "https://www.efsas.org/commentaries/the-pandora-papers-south-asia-october-2021/",
+          "date": "2021-10",
+          "temporal_weight": 0.7,
+          "source_urls": [
+            {
+              "url": "https://www.efsas.org/commentaries/the-pandora-papers-south-asia-october-2021/",
+              "title": "The Pandora Papers reflect a deep-seated malaise in South Asia in ..."
+            }
+          ]
+        },
+        {
+          "text": "Widespread media coverage of liquor bottles recovery from hospital room while in custody, with CJP personal involvement [1][2][9][37][62]",
+          "source": "Multiple outlets",
+          "url": "",
+          "date": "2018-09",
+          "temporal_weight": 0.4,
+          "source_urls": [
+            {
+              "url": "https://www.thenews.com.pk/print/362871-cj-inspects-sub-jail-recovers-liquor-from-sharjeel-s-room",
+              "title": "CJ inspects sub-jail: recovers liquor from Sharjeel's room"
+            },
+            {
+              "url": "https://indianexpress.com/article/pakistan/pakistan-saqib-nisar-sharjeel-inam-memon-ziauddin-hospital-5335211/",
+              "title": "Pakistan: Chief Justice finds alcohol bottles in ex-minister Sharjeel ..."
+            },
+            {
+              "url": "https://www.thenews.com.pk/print/363076-jit-formed-to-probe-recovery-of-liquor-from-sharjeel-memon-s-hospital-room",
+              "title": "JIT formed to probe recovery of liquor from Sharjeel Memon's ..."
+            },
+            {
+              "url": "https://en.neonews.pk/01-Sep-2018/sharjeel-memon-shifted-to-jail-after-liquor-bottles-recovered-from-hospital-room",
+              "title": "Sharjeel Memon shifted to jail after liquor bottles recovered from ..."
+            },
+            {
+              "url": "https://en.dailypakistan.com.pk/01-Sep-2018/sharjeel-memon-shifted-to-jail-after-cjp-nisar-recovers-liquor-bottles-from-hospital-room",
+              "title": "Sharjeel Memon shifted to jail after CJP Nisar recovers liquor bottles ..."
+            }
+          ]
+        },
+        {
+          "text": "Arrested by NAB after 'hours-long cat and mouse game' highlighting dramatic corruption arrest [5]",
+          "source": "Dawn",
+          "url": "https://www.dawn.com/news/1365702",
+          "date": "2017-10",
+          "temporal_weight": 0.4,
+          "source_urls": [
+            {
+              "url": "https://www.dawn.com/news/1365702",
+              "title": "Sharjeel Memon arrested by NAB after hours-long cat and mouse ..."
+            }
+          ]
+        },
+        {
+          "text": "Ongoing negative coverage of corruption trials and NAB investigations through 2023-2024 [12][30][33][43][44][45]",
+          "source": "Multiple outlets",
+          "url": "",
+          "date": "2023-2024",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://inp.net.pk/news-detail/pakistan/court-says-sharjeel-memons-trial-in-nab-case-will-start-from-where-it-was-stopped",
+              "title": "Court says Sharjeel Memon's trial in NAB case will start from where ..."
+            },
+            {
+              "url": "https://www.nation.com.pk/21-Sep-2023/court-says-sharjeel-memon-s-trial-in-nab-case-will-start-from-where-it-was-suspended",
+              "title": "Court says Sharjeel Memon's trial in NAB case will start from where ..."
+            },
+            {
+              "url": "https://www.pakistantoday.com.pk/2023/09/20/court-says-sharjeel-memons-trial-in-nab-case-will-start-from-where-it-was-stopped",
+              "title": "Court says Sharjeel Memon's trial in NAB case will start from where ..."
+            },
+            {
+              "url": "https://www.dawn.com/news/1860734",
+              "title": "Court returns Rs5bn graft reference against Sharjeel, others to NAB"
+            },
+            {
+              "url": "https://www.thenews.com.pk/print/1233246-court-returns-rs3-2bn-graft-reference-against-sharjeel-others-to-nab",
+              "title": "Court returns Rs3.2bn graft reference against Sharjeel, others to NAB"
+            },
+            {
+              "url": "https://www.dawn.com/news/1877201",
+              "title": "Graft case against Sharjeel sent back to NAB - Newspaper - Dawn"
+            }
+          ]
+        }
+      ]
+    },
+    "international_pep": {
+      "score": 8.0,
+      "weight": 0.3,
+      "confidence": "HIGH",
+      "summary": "Confirmed PEP as Senior Minister of Sindh, Pakistan with active corruption investigations and high country risk due to Pakistan's corruption perception.",
+      "sub_factors": {
+        "pep_status": {
+          "score": 10,
+          "detail": "Confirmed PEP - current Senior Minister and Information Minister of Sindh, Pakistan [34][35]"
+        },
+        "country_risk": {
+          "score": 8,
+          "detail": "Pakistan has high corruption risk, ranked poorly on Transparency International indices"
+        },
+        "fara_exposure": {
+          "score": 6,
+          "detail": "As senior Pakistani government official seeking US representation, FARA registration would be required"
+        },
+        "source_reliability": {
+          "score": 7,
+          "detail": "OpenSanctions PEP match with score 1.00, confirmed by multiple news sources"
+        }
+      },
+      "evidence": [
+        {
+          "text": "OpenSanctions confirms PEP status with match score 1.00 for Sharjeel Inam as Pakistani government official",
+          "source": "OpenSanctions",
+          "url": "",
+          "date": "2026-03",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "Currently serving as Senior Minister and Information Minister of Sindh province [34][35][53]",
+          "source": "Business Recorder",
+          "url": "https://www.brecorder.com/news/40254059/sharjeel-inam-memon-a-politician-who-is-widely-known-for-his-political-acumen",
+          "date": "2023",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.brecorder.com/news/40254059/sharjeel-inam-memon-a-politician-who-is-widely-known-for-his-political-acumen",
+              "title": "Sharjeel Inam Memon - a politician who is widely known for his ..."
+            },
+            {
+              "url": "https://www.brecorder.com/news/40343275",
+              "title": "IK convicted for 'deceiving' public: Sharjeel - Pakistan"
+            },
+            {
+              "url": "https://www.thenews.com.pk/print/1270618-sharjeel-assures-industrialists-of-resolution-of-business-community-s-issues",
+              "title": "Sharjeel assures industrialists of resolution of business community's ..."
+            }
+          ]
+        },
+        {
+          "text": "Pakistan Peoples Party (PPP) senior leader and former provincial minister in multiple capacities [10][17]",
+          "source": "Wikipedia/Gulf News",
+          "url": "https://en.wikipedia.org/wiki/Sharjeel_Memon",
+          "date": "2024",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://en.wikipedia.org/wiki/Sharjeel_Memon",
+              "title": "Sharjeel Memon - Wikipedia"
+            },
+            {
+              "url": "https://gulfnews.com/world/asia/pakistan/sharjeel-memon-arrested-on-corruption-charges-1.2111462",
+              "title": "Sharjeel Memon arrested on corruption charges - Gulf News"
+            }
+          ]
+        }
+      ]
+    },
+    "financial_sec": {
+      "score": 7.0,
+      "weight": 0.06,
+      "confidence": "HIGH",
+      "summary": "Allegations of money laundering, benami accounts, and Rs2.43 billion in unexplained assets with ongoing NAB investigations.",
+      "sub_factors": {
+        "money_laundering": {
+          "score": 8,
+          "detail": "Money laundering allegations linked to advertising corruption scandal and benami accounts [49]"
+        },
+        "unexplained_wealth": {
+          "score": 7,
+          "detail": "NAB alleges assets of Rs2.43 billion beyond known sources of income [42]"
+        },
+        "regulatory_issues": {
+          "score": 6,
+          "detail": "Multiple NAB investigations and references for financial crimes"
+        }
+      },
+      "evidence": [
+        {
+          "text": "NAB investigating money laundering allegations connected to Rs5.76 billion corruption case [28][49]",
+          "source": "Dawn",
+          "url": "https://www.dawn.com/news/1492855",
+          "date": "2019",
+          "temporal_weight": 0.7,
+          "source_urls": [
+            {
+              "url": "https://www.dawn.com/news/1492855",
+              "title": "NAB to probe allegations of assets beyond means, money ... - Dawn"
+            },
+            {
+              "url": "https://www.globalvillagespace.com/misuse-of-power-nab-files-reference-against-syed-murad-ali-shah/",
+              "title": "'Misuse of power': NAB files reference against Syed Murad Ali Shah -"
+            }
+          ]
+        },
+        {
+          "text": "Declared assets of Rs160 million in nomination forms, but NAB alleges Rs2.43 billion in unexplained wealth [38][42]",
+          "source": "Dawn/Pakistan Today",
+          "url": "https://www.dawn.com/news/1415253",
+          "date": "2018-2021",
+          "temporal_weight": 0.7,
+          "source_urls": [
+            {
+              "url": "https://www.dawn.com/news/1415253",
+              "title": "Sharjeel declares Rs160m assets in nomination form - Dawn"
+            },
+            {
+              "url": "https://www.pakistantoday.com.pk/2021/10/25/former-ppp-minister-memon-indicted-in-assets-reference",
+              "title": "Former PPP minister Memon indicted in assets reference"
+            }
+          ]
+        },
+        {
+          "text": "Allegations of benami properties and accounts used to hide corrupt proceeds [49][55]",
+          "source": "Global Village Space",
+          "url": "https://www.globalvillagespace.com/misuse-of-power-nab-files-reference-against-syed-murad-ali-shah/",
+          "date": "2021",
+          "temporal_weight": 0.7,
+          "source_urls": [
+            {
+              "url": "https://www.globalvillagespace.com/misuse-of-power-nab-files-reference-against-syed-murad-ali-shah/",
+              "title": "'Misuse of power': NAB files reference against Syed Murad Ali Shah -"
+            },
+            {
+              "url": "https://www.dawn.com/news/1523553",
+              "title": "IO issued notice for not filing report in Sharjeel's assets case - Pakistan"
+            }
+          ]
+        }
+      ]
+    },
+    "corporate_business": {
+      "score": 5.0,
+      "weight": 0.07,
+      "confidence": "MEDIUM",
+      "summary": "Limited corporate involvement found beyond government role, but allegations of corrupt dealings with advertising companies and property investments.",
+      "sub_factors": {
+        "business_practices": {
+          "score": 6,
+          "detail": "Allegations of kickbacks from advertising companies worth Rs5 billion"
+        },
+        "property_dealings": {
+          "score": 5,
+          "detail": "Multiple properties in Karachi and agricultural land, some allegedly benami"
+        },
+        "corporate_governance": {
+          "score": 4,
+          "detail": "No direct corporate leadership roles found"
+        }
+      },
+      "evidence": [
+        {
+          "text": "Approved advertising contracts worth Rs5 billion to seven companies with alleged kickbacks [21]",
+          "source": "The News International",
+          "url": "https://www.thenews.com.pk/print/100865-NAB-probing-Rs5-bn-misappropriation-charge-against-Sharjeel-Memon",
+          "date": "2016",
+          "temporal_weight": 0.4,
+          "source_urls": [
+            {
+              "url": "https://www.thenews.com.pk/print/100865-NAB-probing-Rs5-bn-misappropriation-charge-against-Sharjeel-Memon",
+              "title": "NAB probing Rs5 bn misappropriation charge against Sharjeel ..."
+            }
+          ]
+        },
+        {
+          "text": "Owns properties in Defence Karachi and agricultural land per asset declarations [38]",
+          "source": "Dawn",
+          "url": "https://www.dawn.com/news/1415253",
+          "date": "2018",
+          "temporal_weight": 0.4,
+          "source_urls": [
+            {
+              "url": "https://www.dawn.com/news/1415253",
+              "title": "Sharjeel declares Rs160m assets in nomination form - Dawn"
+            }
+          ]
+        }
+      ]
+    },
+    "political_lobbying": {
+      "score": 6.0,
+      "weight": 0.05,
+      "confidence": "HIGH",
+      "summary": "Senior Pakistani politician seeking FARA representation raises concerns given corruption allegations and anti-US rhetoric in some statements.",
+      "sub_factors": {
+        "fara_issues": {
+          "score": 8,
+          "detail": "Seeking FARA registration as foreign government official with active corruption cases"
+        },
+        "investigation_links": {
+          "score": 6,
+          "detail": "Subject of multiple NAB investigations while in government position"
+        },
+        "watchlist_lobbying": {
+          "score": 5,
+          "detail": "No direct lobbying violations found but corruption in government role"
+        },
+        "pay_to_play": {
+          "score": 5,
+          "detail": "Allegations of kickbacks in government advertising contracts"
+        }
+      },
+      "evidence": [
+        {
+          "text": "As Senior Minister of Sindh seeking US representation, FARA registration required with 1.3x risk multiplier applied",
+          "source": "Vetting parameters",
+          "url": "",
+          "date": "2026",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "Made inflammatory statements about Israeli lobby and US politics, claiming PTI receives support from Israel [14][52]",
+          "source": "Tribune/Business Recorder",
+          "url": "https://tribune.com.pk/story/2505638/sharjeel-memon-alleges-israeli-lobby-working-globally-to-support-imran-khan",
+          "date": "2024",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.brecorder.com/news/40326923/sco-moot-sharjeel-steps-up-criticism-of-pti-founder",
+              "title": "SCO moot: Sharjeel steps up criticism of PTI founder - Pakistan"
+            },
+            {
+              "url": "https://tribune.com.pk/story/2505638/sharjeel-memon-alleges-israeli-lobby-working-globally-to-support-imran-khan",
+              "title": "Sharjeel Memon alleges Israeli lobby working globally to support ..."
+            }
+          ]
+        }
+      ]
+    },
+    "conflict_of_interest": {
+      "score": 7.0,
+      "weight": 0.1,
+      "confidence": "HIGH",
+      "summary": "Significant conflicts with TMG's reputation and values given corruption allegations, plus potential concerns for Google and other tech clients regarding anti-Western rhetoric.",
+      "sub_factors": {
+        "direct_conflict": {
+          "score": 6,
+          "detail": "No direct business conflicts with TMG clients identified"
+        },
+        "indirect_conflict": {
+          "score": 8,
+          "detail": "Corruption allegations and anti-Western rhetoric could concern Google LLC (HIGH), Coinbase (HIGH), and other US corporate clients"
+        },
+        "future_conflict": {
+          "score": 7,
+          "detail": "Ongoing corruption cases and inflammatory political statements pose reputational risk to TMG's brand"
+        }
+      },
+      "evidence": [
+        {
+          "text": "Anti-Israel and anti-Western conspiracy rhetoric could concern Google LLC (HIGH sensitivity) and other tech clients [14][52]",
+          "source": "Tribune",
+          "url": "https://tribune.com.pk/story/2505638/sharjeel-memon-alleges-israeli-lobby-working-globally-to-support-imran-khan",
+          "date": "2024",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.brecorder.com/news/40326923/sco-moot-sharjeel-steps-up-criticism-of-pti-founder",
+              "title": "SCO moot: Sharjeel steps up criticism of PTI founder - Pakistan"
+            },
+            {
+              "url": "https://tribune.com.pk/story/2505638/sharjeel-memon-alleges-israeli-lobby-working-globally-to-support-imran-khan",
+              "title": "Sharjeel Memon alleges Israeli lobby working globally to support ..."
+            }
+          ]
+        },
+        {
+          "text": "Corruption allegations incompatible with TMG's work for transparency advocates like AB Foundation (HIGH) and Keep Americans Covered (HIGH)",
+          "source": "Analysis",
+          "url": "",
+          "date": "2026",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        },
+        {
+          "text": "Association with Pakistani politician under multiple corruption investigations could damage TMG's reputation with all HIGH sensitivity clients",
+          "source": "Analysis",
+          "url": "",
+          "date": "2026",
+          "temporal_weight": 1.0,
+          "source_urls": []
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "raw_composite": 7.44,
+    "engagement_multiplier": 1.3,
+    "adjusted_composite": 9.67,
+    "confidence_modifier": "none",
+    "final_composite": 9.67,
+    "risk_tier": "HIGH",
+    "recommendation": "Recommend Reject"
+  },
+  "flags": {
+    "red": [
+      {
+        "category": "litigation_legal",
+        "title": "Active corruption prosecutions",
+        "description": "Subject faces multiple active NAB corruption cases including Rs5.76 billion advertising fraud with formal indictment",
+        "source": "NAB/Multiple outlets",
+        "date": "2018-ongoing",
+        "severity": "critical"
+      },
+      {
+        "category": "litigation_legal",
+        "title": "Liquor found in custody",
+        "description": "Chief Justice personally discovered liquor bottles in hospital room while subject was in judicial custody",
+        "source": "The News International",
+        "date": "2018-09-01",
+        "severity": "major"
+      },
+      {
+        "category": "media_reputation",
+        "title": "Pandora Papers mention",
+        "description": "Named in Pandora Papers leak regarding offshore financial dealings",
+        "source": "EFSAS",
+        "date": "2021-10",
+        "severity": "major"
+      }
+    ],
+    "yellow": [
+      {
+        "category": "financial_sec",
+        "title": "Unexplained wealth",
+        "description": "NAB alleges Rs2.43 billion in assets beyond known income sources",
+        "source": "Pakistan Today",
+        "date": "2021",
+        "severity": "moderate"
+      },
+      {
+        "category": "political_lobbying",
+        "title": "Anti-Western rhetoric",
+        "description": "Public statements alleging Israeli lobby controls US politics and supports political opponents",
+        "source": "Tribune",
+        "date": "2024",
+        "severity": "moderate"
+      },
+      {
+        "category": "international_pep",
+        "title": "High-risk jurisdiction",
+        "description": "Senior government official from Pakistan, which has high corruption perception index",
+        "source": "OpenSanctions",
+        "date": "2026",
+        "severity": "moderate"
+      }
+    ]
+  },
+  "executive_summary": "## Summary\n\nSharjeel Inam Memon is a senior Pakistani politician currently serving as Senior Minister and Information Minister of Sindh province. A long-time member of the Pakistan Peoples Party (PPP), he has held multiple ministerial positions in the Sindh government. However, his political career has been overshadowed by serious corruption allegations and legal troubles.\n\n## Professional Background\n\nMemon is an agriculturist by profession with declared assets of Rs160 million, though investigators allege his actual wealth far exceeds this amount. He has served in various capacities in the Sindh government, including as Information Minister and Local Government Minister. He was removed from the provincial cabinet in December 2015 while abroad and subsequently faced arrest in 2017.\n\n## Key Findings\n\n**Factual Risk Factors:**\n- **Active Corruption Cases**: Currently facing multiple National Accountability Bureau (NAB) cases including a Rs5.76 billion advertising corruption scandal\n- **Criminal Conduct**: Liquor bottles were discovered by Pakistan's Chief Justice in his hospital room while in judicial custody in 2018\n- **Money Laundering**: Under investigation for money laundering and maintaining assets beyond known sources of income (Rs2.43 billion alleged)\n- **Pandora Papers**: Named in the Pandora Papers leak regarding offshore financial dealings\n- **Anti-Western Rhetoric**: Has made inflammatory statements alleging Israeli lobby influence in Pakistani and US politics\n\n**Reputational Risk Factors:**\n- **Media Vulnerability**: Extremely high potential for damaging headlines combining corruption allegations with the liquor incident\n- **Stakeholder Backlash**: Representing a foreign official under multiple corruption investigations would likely trigger significant backlash from progressive media and civil society groups\n- **Client Conflicts**: Anti-Israel conspiracy rhetoric directly conflicts with many US corporate clients' values, while corruption allegations conflict with transparency-focused clients\n- **Industry Risk**: Foreign government representation carries elevated risk when involving officials from high-corruption countries under active investigation\n\n## Risk Assessment\n\n**Factual Risk Score**: 9.67/10 HIGH  \n**Reputational Contagion Score**: 5.7/10 ELEVATED  \n**Combined Decision**: HIGH \u2014 Recommend Reject\n\nThe Combined Decision is driven by the Factual Risk Score, which presents a more cautious assessment than the Reputational Contagion Score. While the reputational risks are manageable with proper stakeholder sign-off, the factual corruption evidence and criminal conduct create insurmountable integrity concerns.\n\n**Most Damaging Potential Headline**: \"Obama's Campaign Manager's Firm Now Represents Pakistani Minister Who Had Liquor Bottles in Hospital While Facing Corruption Charges\"\n\nThe combination of active corruption prosecutions totaling billions, documented criminal behavior while in judicial custody, and systematic abuse of public office creates an unacceptable factual risk profile regardless of reputational mitigation strategies.\n\n## Recommendation\n\n**RECOMMEND REJECT** \u2014 The subject's extremely high factual risk profile makes this engagement unsuitable for TMG. The scale of alleged corruption (Rs5.76 billion), active money laundering investigations, and documented criminal conduct while in custody demonstrate systematic integrity failures that cannot be mitigated through reputational risk management. While stakeholder backlash could theoretically be managed with proper sign-off and justification, the underlying factual evidence of corruption and contempt for legal process presents fundamental concerns that would damage TMG's credibility and compromise our ability to serve existing clients effectively.",
+  "reputational_contagion": {
+    "q1_partisan_alignment": {
+      "score": 2.0,
+      "weight": 0.25,
+      "evidence": "Subject is a Pakistan Peoples Party politician with no US partisan alignment. However, anti-US and anti-Israel conspiracy theories ('Israeli lobby working globally') show hostility to US democratic institutions and allies."
+    },
+    "q2_stakeholder_backlash": {
+      "score": 7.0,
+      "weight": 0.2,
+      "evidence": "TMG representing a foreign official under multiple corruption investigations would likely trigger significant backlash. Progressive media would frame this as TMG abandoning principles for money, similar to Messina's UK Conservative work criticism."
+    },
+    "q3_narrative_vulnerability": {
+      "score": 9.0,
+      "weight": 0.15,
+      "evidence": "Extremely vulnerable to damaging headlines given corruption cases and liquor incident",
+      "damaging_headline": "Obama's Campaign Manager's Firm Now Represents Pakistani Minister Who Had Liquor Bottles in Hospital While Facing Corruption Charges"
+    },
+    "q4_client_conflicts": {
+      "score": 6.0,
+      "weight": 0.15,
+      "evidence": "Anti-Israel conspiracy rhetoric directly conflicts with many US corporate clients' values. Corruption allegations conflict with transparency-focused clients like AB Foundation and Google's ethical standards."
+    },
+    "q5_industry_toxicity": {
+      "score": 7.0,
+      "weight": 0.15,
+      "evidence": "Foreign government representation is moderate risk, but representing officials under active corruption investigation from high-corruption countries elevates this significantly."
+    },
+    "q6_temporal_context": {
+      "score": 5.0,
+      "weight": 0.1,
+      "evidence": "Current US-Pakistan tensions and focus on foreign influence in US politics makes this moderately sensitive timing, though not at peak sensitivity."
+    },
+    "composite_rcs": 5.7,
+    "rcs_risk_tier": "ELEVATED",
+    "rcs_recommendation": "Requires Jim/Tara/partner sign-off with written justification",
+    "divergence_alert": null,
+    "most_damaging_headline": "Obama's Campaign Manager's Firm Now Represents Pakistani Minister Who Had Liquor Bottles in Hospital While Facing Corruption Charges"
+  },
+  "metadata": {
+    "pipeline_version": "v1.1",
+    "vetting_level": "deep_dive",
+    "steps_completed": [
+      "intake",
+      "sanctions",
+      "news",
+      "corporate",
+      "executives",
+      "international",
+      "network"
+    ],
+    "started_at": "2026-03-10T06:02:28.976839+00:00",
+    "completed_at": "2026-03-10T06:07:35.510637+00:00",
+    "total_duration_seconds": 0,
+    "model": "claude-opus-4-0",
+    "input_tokens": 36384,
+    "output_tokens": 6245,
+    "tavily_sources": 329,
+    "citation_enrichment": {
+      "total_evidence_items": 21,
+      "items_with_source_urls": 17,
+      "total_source_urls_added": 37
+    }
+  },
+  "sources": [
+    {
+      "id": 1,
+      "url": "https://www.thenews.com.pk/print/362871-cj-inspects-sub-jail-recovers-liquor-from-sharjeel-s-room",
+      "title": "CJ inspects sub-jail: recovers liquor from Sharjeel's room",
+      "score": 0.99941623
+    },
+    {
+      "id": 2,
+      "url": "https://indianexpress.com/article/pakistan/pakistan-saqib-nisar-sharjeel-inam-memon-ziauddin-hospital-5335211/",
+      "title": "Pakistan: Chief Justice finds alcohol bottles in ex-minister Sharjeel ...",
+      "score": 0.99482024
+    },
+    {
+      "id": 3,
+      "url": "https://www.nation.com.pk/29-Jun-2016/tirade-against-sharjeel-memon",
+      "title": "Tirade against Sharjeel Memon - The Nation",
+      "score": 0.9947391
+    },
+    {
+      "id": 4,
+      "url": "https://www.efsas.org/commentaries/the-pandora-papers-south-asia-october-2021/",
+      "title": "The Pandora Papers reflect a deep-seated malaise in South Asia in ...",
+      "score": 0.9874721
+    },
+    {
+      "id": 5,
+      "url": "https://www.dawn.com/news/1365702",
+      "title": "Sharjeel Memon arrested by NAB after hours-long cat and mouse ...",
+      "score": 0.9805807
+    },
+    {
+      "id": 6,
+      "url": "https://www.thenews.com.pk/print/489927-sharjeel-memon-gets-bail-in-rs5-78-billion-corruption-case",
+      "title": "Sharjeel Memon gets bail in Rs5.78 billion corruption case",
+      "score": 0.917251
+    },
+    {
+      "id": 7,
+      "url": "https://www.brecorder.com/news/508171/nab-authorizes-investigation-against-ex-minister-sharjeel-memon",
+      "title": "NAB authorizes investigation against ex-minister Sharjeel Memon",
+      "score": 0.89324445
+    },
+    {
+      "id": 8,
+      "url": "https://www.brecorder.com/news/4365680/nab-asked-to-tell-whether-any-inquiry-under-way-against-sharjeel-201601082880",
+      "title": "NAB asked to tell whether any inquiry under way against Sharjeel ...",
+      "score": 0.8825193
+    },
+    {
+      "id": 9,
+      "url": "https://www.thenews.com.pk/print/363076-jit-formed-to-probe-recovery-of-liquor-from-sharjeel-memon-s-hospital-room",
+      "title": "JIT formed to probe recovery of liquor from Sharjeel Memon's ...",
+      "score": 0.8800674
+    },
+    {
+      "id": 10,
+      "url": "https://en.wikipedia.org/wiki/Sharjeel_Memon",
+      "title": "Sharjeel Memon - Wikipedia",
+      "score": 0.87113565
+    },
+    {
+      "id": 11,
+      "url": "https://arynews.tv/court-indictment-sharjeel-inam-memon-corruption",
+      "title": "Court defers indictment of Sharjeel Inam Memon in corruption ...",
+      "score": 0.86303437
+    },
+    {
+      "id": 12,
+      "url": "https://inp.net.pk/news-detail/pakistan/court-says-sharjeel-memons-trial-in-nab-case-will-start-from-where-it-was-stopped",
+      "title": "Court says Sharjeel Memon's trial in NAB case will start from where ...",
+      "score": 0.8571119
+    },
+    {
+      "id": 13,
+      "url": "https://www.geo.tv/latest/101448-Sharjeel-inflicted-Rs5bn-losses-to-national-exchequer-NAB",
+      "title": "Sharjeel inflicted Rs5bn losses to national exchequer: NAB",
+      "score": 0.85008353
+    },
+    {
+      "id": 14,
+      "url": "https://www.brecorder.com/news/40326923/sco-moot-sharjeel-steps-up-criticism-of-pti-founder",
+      "title": "SCO moot: Sharjeel steps up criticism of PTI founder - Pakistan",
+      "score": 0.84858394
+    },
+    {
+      "id": 15,
+      "url": "https://english.aaj.tv/news/10394466/accountability-court-dismisses-memon-plea-against-corruption-reference",
+      "title": "Accountability Court dismisses Memon plea against corruption ...",
+      "score": 0.8415267
+    },
+    {
+      "id": 16,
+      "url": "https://www.brecorder.com/news/40129039",
+      "title": "Sharjeel Memon, others plead not guilty - Business Recorder",
+      "score": 0.8386933
+    },
+    {
+      "id": 17,
+      "url": "https://gulfnews.com/world/asia/pakistan/sharjeel-memon-arrested-on-corruption-charges-1.2111462",
+      "title": "Sharjeel Memon arrested on corruption charges - Gulf News",
+      "score": 0.8338803
+    },
+    {
+      "id": 18,
+      "url": "https://arynews.tv/sharjeel-memon-farmhouse-raid-nab",
+      "title": "NAB raids farmhouse belonging to Sharjeel Memon - ARY News",
+      "score": 0.83290404
+    },
+    {
+      "id": 19,
+      "url": "https://www.nation.com.pk/06-Jul-2021/nab-summons-sharjeel-memon-today",
+      "title": "NAB summons Sharjeel Memon today - The Nation",
+      "score": 0.8325776
+    },
+    {
+      "id": 20,
+      "url": "http://www.dawn.com/news/1162501",
+      "title": "Inappropriate of MQM to question JIT's credibility, says Sharjeel ...",
+      "score": 0.8315952
+    },
+    {
+      "id": 21,
+      "url": "https://www.thenews.com.pk/print/100865-NAB-probing-Rs5-bn-misappropriation-charge-against-Sharjeel-Memon",
+      "title": "NAB probing Rs5 bn misappropriation charge against Sharjeel ...",
+      "score": 0.8306082
+    },
+    {
+      "id": 22,
+      "url": "https://gulfnews.com/world/asia/pakistan/pakistan-rangers-chief-summoned-in-baloch-case-1.1669949",
+      "title": "Pakistan: Rangers chief summoned in Baloch case - Gulf News",
+      "score": 0.8286204
+    },
+    {
+      "id": 23,
+      "url": "https://www.nation.com.pk/E-Paper/islamabad/2021-07-06/page-1/detail-7",
+      "title": "NAB summons Sharjeel Memon today - The Nation",
+      "score": 0.8145405
+    },
+    {
+      "id": 24,
+      "url": "https://www.pakistantoday.com.pk/2019/06/21/nab-seeks-sharjeel-memons-arrest-in-illegal-assets-probe",
+      "title": "NAB seeks Sharjeel Memon's arrest in illegal assets probe",
+      "score": 0.8124067
+    },
+    {
+      "id": 25,
+      "url": "https://tribune.com.pk/story/2354257/1",
+      "title": "Memon urges NAB to action against fake recruitments",
+      "score": 0.81133276
+    },
+    {
+      "id": 26,
+      "url": "https://www.nation.com.pk/20-Apr-2017/panamagate-nawaz-should-step-down-as-pm-during-jit-probe-says-sharjeel",
+      "title": "Panamagate: 'Nawaz should step down as PM during JIT probe ...",
+      "score": 0.81025416
+    },
+    {
+      "id": 27,
+      "url": "https://arynews.tv/us-consulate-karachi-shooting-death-toll-rises",
+      "title": "Death toll rises to 11 in US Consulate Karachi shooting - ARY News",
+      "score": 0.80844593
+    },
+    {
+      "id": 28,
+      "url": "https://www.dawn.com/news/1492855",
+      "title": "NAB to probe allegations of assets beyond means, money ... - Dawn",
+      "score": 0.8080827
+    },
+    {
+      "id": 29,
+      "url": "https://dunyanews.tv/en/Pakistan/671460-Assets-beyond-means-case-SHC-removes-Sharjeel-Memons-name-from-ECL",
+      "title": "Assets beyond means case: SHC removes Sharjeel Memon's name ...",
+      "score": 0.8058924
+    },
+    {
+      "id": 30,
+      "url": "https://www.nation.com.pk/21-Sep-2023/court-says-sharjeel-memon-s-trial-in-nab-case-will-start-from-where-it-was-suspended",
+      "title": "Court says Sharjeel Memon's trial in NAB case will start from where ...",
+      "score": 0.7999589
+    },
+    {
+      "id": 31,
+      "url": "https://www.dawn.com/news/1492966",
+      "title": "NAB opens probe into Sharjeel's 'multi-billion-rupee' properties - Dawn",
+      "score": 0.7837407
+    },
+    {
+      "id": 32,
+      "url": "https://www.brecorder.com/news/40169475",
+      "title": "NA Secretariat: Sharjeel demands NAB take action against fake ...",
+      "score": 0.7769112
+    },
+    {
+      "id": 33,
+      "url": "https://www.pakistantoday.com.pk/2023/09/20/court-says-sharjeel-memons-trial-in-nab-case-will-start-from-where-it-was-stopped",
+      "title": "Court says Sharjeel Memon's trial in NAB case will start from where ...",
+      "score": 0.77589405
+    },
+    {
+      "id": 34,
+      "url": "https://www.brecorder.com/news/40254059/sharjeel-inam-memon-a-politician-who-is-widely-known-for-his-political-acumen",
+      "title": "Sharjeel Inam Memon - a politician who is widely known for his ...",
+      "score": 0.767847
+    },
+    {
+      "id": 35,
+      "url": "https://www.brecorder.com/news/40343275",
+      "title": "IK convicted for 'deceiving' public: Sharjeel - Pakistan",
+      "score": 0.7663815
+    },
+    {
+      "id": 36,
+      "url": "https://www.urdupoint.com/politics/politician/sharjeel-inam-memon-19901.html",
+      "title": "Sharjeel Inam Memon - Profile, Political Career & Election History",
+      "score": 0.7634314
+    },
+    {
+      "id": 37,
+      "url": "https://en.neonews.pk/01-Sep-2018/sharjeel-memon-shifted-to-jail-after-liquor-bottles-recovered-from-hospital-room",
+      "title": "Sharjeel Memon shifted to jail after liquor bottles recovered from ...",
+      "score": 0.7533401
+    },
+    {
+      "id": 38,
+      "url": "https://www.dawn.com/news/1415253",
+      "title": "Sharjeel declares Rs160m assets in nomination form - Dawn",
+      "score": 0.75027883
+    },
+    {
+      "id": 39,
+      "url": "https://www.thenews.com.pk/print/1082504-elected-local-govt-leaders-to-be-fully-empowered-irrespective-of-political-affiliations-sharjeel",
+      "title": "Elected local govt leaders to be fully empowered irrespective of ...",
+      "score": 0.7500592
+    },
+    {
+      "id": 40,
+      "url": "https://www.nation.com.pk/03-Jan-2023/pti-s-politics-based-on-lies-sharjeel-memon",
+      "title": "PTI's politics based on lies: Sharjeel Memon - The Nation",
+      "score": 0.7489592
+    },
+    {
+      "id": 41,
+      "url": "https://www.geo.tv/latest/182049-sharjeel-memon-12-others-indicted-in-corruption-reference",
+      "title": "Sharjeel Memon, 12 others indicted in corruption reference",
+      "score": 0.7489592
+    },
+    {
+      "id": 42,
+      "url": "https://www.pakistantoday.com.pk/2021/10/25/former-ppp-minister-memon-indicted-in-assets-reference",
+      "title": "Former PPP minister Memon indicted in assets reference",
+      "score": 0.74563974
+    },
+    {
+      "id": 43,
+      "url": "https://www.dawn.com/news/1860734",
+      "title": "Court returns Rs5bn graft reference against Sharjeel, others to NAB",
+      "score": 0.7429634
+    },
+    {
+      "id": 44,
+      "url": "https://www.thenews.com.pk/print/1233246-court-returns-rs3-2bn-graft-reference-against-sharjeel-others-to-nab",
+      "title": "Court returns Rs3.2bn graft reference against Sharjeel, others to NAB",
+      "score": 0.740494
+    },
+    {
+      "id": 45,
+      "url": "https://www.dawn.com/news/1877201",
+      "title": "Graft case against Sharjeel sent back to NAB - Newspaper - Dawn",
+      "score": 0.73846215
+    },
+    {
+      "id": 46,
+      "url": "https://arynews.tv/sharjeel-memon-decries-leniency-towards-sharifs-corruption-cases",
+      "title": "Sharjeel decries leniency towards Sharifs in corruption cases",
+      "score": 0.73846215
+    },
+    {
+      "id": 47,
+      "url": "https://tribune.com.pk/story/2594925/feb-27-marks-historic-defeat-for-india-and-its-proxies-sharjeel-memon",
+      "title": "Feb 27 marks historic defeat for India and its proxies: Sharjeel Memon",
+      "score": 0.7128128
+    },
+    {
+      "id": 48,
+      "url": "https://www.pakistantoday.com.pk/2016/10/07/memon-to-face-more-corruption-cases-upon-return",
+      "title": "Memon to face more corruption cases upon return - Pakistan Today",
+      "score": 0.7120925
+    },
+    {
+      "id": 49,
+      "url": "https://www.globalvillagespace.com/misuse-of-power-nab-files-reference-against-syed-murad-ali-shah/",
+      "title": "'Misuse of power': NAB files reference against Syed Murad Ali Shah -",
+      "score": 0.6877354
+    },
+    {
+      "id": 50,
+      "url": "https://english.aaj.tv/news/30340215/sharjeel-memon-alleges-pml-n-always-came-in-power-through-rigged-election",
+      "title": "Sharjeel Memon alleges PML-N always came in power through ...",
+      "score": 0.6816637
+    },
+    {
+      "id": 51,
+      "url": "https://www.dawn.com/news/1122363/pakistan-has-never-had-rigging-free-elections-sharjeel-memon",
+      "title": "Pakistan has never had rigging-free elections: Sharjeel Memon",
+      "score": 0.67243975
+    },
+    {
+      "id": 52,
+      "url": "https://tribune.com.pk/story/2505638/sharjeel-memon-alleges-israeli-lobby-working-globally-to-support-imran-khan",
+      "title": "Sharjeel Memon alleges Israeli lobby working globally to support ...",
+      "score": 0.6690754
+    },
+    {
+      "id": 53,
+      "url": "https://www.thenews.com.pk/print/1270618-sharjeel-assures-industrialists-of-resolution-of-business-community-s-issues",
+      "title": "Sharjeel assures industrialists of resolution of business community's ...",
+      "score": 0.6654328
+    },
+    {
+      "id": 54,
+      "url": "https://www.brecorder.com/news/40386717",
+      "title": "British Dy HC, Sharjeel discuss energy initiatives - Business Recorder",
+      "score": 0.6383174
+    },
+    {
+      "id": 55,
+      "url": "https://www.dawn.com/news/1523553",
+      "title": "IO issued notice for not filing report in Sharjeel's assets case - Pakistan",
+      "score": 0.63804686
+    },
+    {
+      "id": 56,
+      "url": "https://www.thenews.com.pk/print/1274722-sharjeel-orders-expediting-preparations-for-launch-of-e-taxi-service",
+      "title": "Sharjeel orders expediting preparations for launch of e-taxi service",
+      "score": 0.63152665
+    },
+    {
+      "id": 57,
+      "url": "https://pid.gov.pk/site/press_detail/17991",
+      "title": "PR No.80 PRESIDENT URGES NAB TO PROSECUTE ... - PID",
+      "score": 0.6238588
+    },
+    {
+      "id": 58,
+      "url": "https://www.thenews.com.pk/print/490612-defence-to-cross-examine-witness-in-sharjeel-case-today",
+      "title": "Defence to cross-examine witness in Sharjeel case today",
+      "score": 0.5737984
+    },
+    {
+      "id": 59,
+      "url": "https://www.brecorder.com/news/40388764/sharjeel-says-sindh-govt-committed-to-addressing-business-communitys-concerns",
+      "title": "Sharjeel says Sindh govt committed to addressing business ...",
+      "score": 0.5717911
+    },
+    {
+      "id": 60,
+      "url": "https://www.dawn.com/news/1516515",
+      "title": "Judgement reserved on maintainability of reference against Sharjeel ...",
+      "score": 0.53648347
+    },
+    {
+      "id": 61,
+      "url": "https://www.dawn.com/news/1433717",
+      "title": "Charge sheet filed against Sharjeel Memon in liquor case - Dawn",
+      "score": 0.522617
+    },
+    {
+      "id": 62,
+      "url": "https://en.dailypakistan.com.pk/01-Sep-2018/sharjeel-memon-shifted-to-jail-after-cjp-nisar-recovers-liquor-bottles-from-hospital-room",
+      "title": "Sharjeel Memon shifted to jail after CJP Nisar recovers liquor bottles ...",
+      "score": 0.5157425
+    },
+    {
+      "id": 63,
+      "url": "https://afkaraffairs.wordpress.com/2014/11/11/creative-ideas-of-sharjeel-to-plunder-taxpayer-money/",
+      "title": "Creative ideas of Sharjeel to plunder taxpayer money - AF-KAR",
+      "score": 0.5150107
+    },
+    {
+      "id": 64,
+      "url": "https://caselaw.shc.gov.pk/caselaw/view-file/MTU0OTQzY2Ztcy1kYzgz",
+      "title": "ORDER SHEET - CASELAW - High Court of Sindh",
+      "score": 0.5065188
+    },
+    {
+      "id": 65,
+      "url": "https://www.dawn.com/news/1526260",
+      "title": "Court orders IO to start proclamation process of two absconding ...",
+      "score": 0.50564
+    },
+    {
+      "id": 66,
+      "url": "https://www.dawn.com/news/1886896",
+      "title": "Body to regulate e-taxi service soon, says Sharjeel Inam - Dawn",
+      "score": 0.50329643
+    },
+    {
+      "id": 67,
+      "url": "https://www.theguardian.com/world/2024/apr/01/asif-ali-zardari-pakistan-president-benazir-bhutto",
+      "title": "Villain to some, hero to others: Asif Ali Zardari returns as Pakistan ...",
+      "score": 0.4948006
+    },
+    {
+      "id": 68,
+      "url": "https://www.nation.com.pk/02-Sep-2018/614923?version=amp",
+      "title": "Sharjeel sent back to jail after Justice raid - The Nation",
+      "score": 0.48381975
+    },
+    {
+      "id": 69,
+      "url": "https://www.brecorder.com/news/40410705",
+      "title": "300 pink electric scooters distributed: Sharjeel heaps praise on ...",
+      "score": 0.477969
+    },
+    {
+      "id": 70,
+      "url": "https://www.globalvillagespace.com/sharjeel-memon-indictment-shows-the-discriminatory-role-institutions-play-for-ppp-and-pml-n/",
+      "title": "Sharjeel Memon indictment shows the discriminatory role institutions ...",
+      "score": 0.477238
+    },
+    {
+      "id": 71,
+      "url": "https://www.thenews.com.pk/print/97245-NAB-gets-tough-with-PPP-Sindh-leaders",
+      "title": "NAB gets tough with PPP Sindh leaders - The News International",
+      "score": 0.47154015
+    },
+    {
+      "id": 72,
+      "url": "https://www.thenews.com.pk/print/281644-sharjeel-memon-12-others-indicted-in-corruption-reference",
+      "title": "Sharjeel Memon, 12 others indicted in corruption reference",
+      "score": 0.46293488
+    },
+    {
+      "id": 73,
+      "url": "http://www.brecorder.com/news/376563",
+      "title": "Sharjeel Memon, eleven others sent to jail on judicial remand",
+      "score": 0.43611822
+    },
+    {
+      "id": 74,
+      "url": "https://www.pakistantoday.com.pk/2021/01/19/nab-files-corruption-reference-against-sindh-cm",
+      "title": "NAB files corruption reference against Sindh CM - Pakistan Today",
+      "score": 0.4292146
+    },
+    {
+      "id": 75,
+      "url": "https://www.brecorder.com/news/40410855",
+      "title": "Public transport fares: Sharjeel takes notice of hike - Pakistan",
+      "score": 0.40896168
+    },
+    {
+      "id": 76,
+      "url": "https://www.brecorder.com/news/40410855/public-transport-fares-sharjeel-takes-notice-of-hike",
+      "title": "Public transport fares: Sharjeel takes notice of hike - Pakistan",
+      "score": 0.40896168
+    },
+    {
+      "id": 77,
+      "url": "https://english.aaj.tv/news/330435796/sharjeel-memon-slams-centre-punjab-government-over-wheat-crisis",
+      "title": "Sharjeel Memon slams Centre, Punjab government over wheat crisis",
+      "score": 0.40655622
+    },
+    {
+      "id": 78,
+      "url": "https://jinnah.edu/static/uploads/2020/12/Research-Paper-5.pdf",
+      "title": "Discovering Myths of Industrial Fire of Baldia-Factory Pakistan",
+      "score": 0.40528452
+    },
+    {
+      "id": 79,
+      "url": "https://www.thenews.pk/print/1401825-sharjeel-flays-afghan-regime-for-becoming-india-s-proxy",
+      "title": "Sharjeel flays Afghan regime for becoming India's proxy",
+      "score": 0.39096457
+    },
+    {
+      "id": 80,
+      "url": "https://www.dawn.com/news/1431098",
+      "title": "SC orders formation of JIT to probe 'mega corruption' fake accounts ...",
+      "score": 0.37195808
+    },
+    {
+      "id": 81,
+      "url": "https://tribune.com.pk/story/2232060/witnesses-summoned-corruption-reference-sharjeel-memon",
+      "title": "Witnesses summoned in corruption reference against Sharjeel Memon",
+      "score": 0.27652246
+    },
+    {
+      "id": 82,
+      "url": "https://thenextweb.com/news/unmasking-the-illusion-of-safety-online",
+      "title": "Unmasking the Illusion of Safety Online - The Next Web",
+      "score": 0.1997607
+    },
+    {
+      "id": 83,
+      "url": "https://tribune.com.pk/story/2595689/experts-stress-solar-policy-clarity",
+      "title": "Experts stress solar policy clarity - The Express Tribune",
+      "score": 0.14961861
+    },
+    {
+      "id": 84,
+      "url": "https://www.cnbc.com/2026/03/10/cctv-script-10/03/26.html",
+      "title": "CCTV Script 10/03/26 - CNBC",
+      "score": 0.13968979
+    },
+    {
+      "id": 85,
+      "url": "https://www.marinelink.com/news/cleanup-louisiana-oil-spill-underway-536668",
+      "title": "Clean-Up Of Louisiana Oil Spill Underway - Marine News Magazine",
+      "score": 0.12696932
+    },
+    {
+      "id": 86,
+      "url": "https://sports.yahoo.com/articles/fresh-controversy-hits-pakistan-t20-100400543.html",
+      "title": "Fresh controversy hits Pakistan: T20 World Cup player fined after alleged misconduct with female hotel staff in Sri Lanka - Yahoo Sports",
+      "score": 0.109982915
+    },
+    {
+      "id": 87,
+      "url": "https://www.justice.gov/opa/pr/iranian-intelligence-agent-convicted-terrorism-and-murder-hire-connection-foiled-plot",
+      "title": "Iranian Intelligence Agent Convicted of Terrorism and Murder for Hire in Connection with Foiled Plot to Assassinate U.S. Politicians and Government Officials - Department of Justice (.gov)",
+      "score": 0.0998121
+    },
+    {
+      "id": 88,
+      "url": "https://www.thehindu.com/business/Economy/pm-modi-post-budget-webinar-on-agriculture-rural-transformation/article70710636.ece",
+      "title": "Need to make agricultural products export-oriented, globally-competitive: PM Modi - The Hindu",
+      "score": 0.098079324
+    },
+    {
+      "id": 89,
+      "url": "https://www.prnewswire.com/news-releases/metc-investors-have-opportunity-to-lead-ramaco-resources-inc-securities-fraud-lawsuit-with-the-schall-law-firm-302707827.html",
+      "title": "METC Investors Have Opportunity to Lead Ramaco Resources, Inc. Securities Fraud Lawsuit with the Schall Law Firm - PR Newswire",
+      "score": 0.09067929
+    },
+    {
+      "id": 90,
+      "url": "https://apnews.com/article/lebanon-israel-ahmed-shukr-ron-arad-kidnapping-09c7e1026bba9874f3d62d8085982609",
+      "title": "A retired Lebanese security officer vanishes and his family thinks it was a covert Israeli abduction - AP News",
+      "score": 0.08642383
+    },
+    {
+      "id": 91,
+      "url": "https://www.insurancejournal.com/news/international/2026/03/05/860569.htm",
+      "title": "Oil Tanker Suffers Explosion in Northern Persian Gulf - Insurance Journal",
+      "score": 0.08359832
+    },
+    {
+      "id": 92,
+      "url": "https://www.vitallaw.com/news/fraud-and-manipulation-e-d-pa-class-certified-in-action-against-pharma-company-for-allegedly-misleading-investors/sld01fec365f5867a4799a045935452a8db4e",
+      "title": "FRAUD AND MANIPULATION\u2014E.D. Pa.:... - VitalLaw.com",
+      "score": 0.08190829
+    },
+    {
+      "id": 93,
+      "url": "https://www.marinelink.com/news/rising-sanctions-compliance-complexity-536506",
+      "title": "Rising Sanctions, Compliance Complexity Increase Global Shipping Risks - Marine News Magazine",
+      "score": 0.08076994
+    },
+    {
+      "id": 94,
+      "url": "https://www.jpost.com/middle-east/article-889223",
+      "title": "India\u2019s strategic silence on US-Israel Iran war - The Jerusalem Post",
+      "score": 0.08076994
+    },
+    {
+      "id": 95,
+      "url": "https://www.propublica.org/article/trump-administration-financial-disclosures-steve-feinberg",
+      "title": "Documents Reveal a Web of Financial Ties Between Trump Officials and the Industries They Help Regulate - ProPublica",
+      "score": 0.079732
+    },
+    {
+      "id": 96,
+      "url": "https://www.legalfutures.co.uk/latest-news/participation-more-important-than-stars-in-law-firm-linkedin-posting",
+      "title": "\u201cParticipation more important than stars\u201d in law firm LinkedIn posting - Legal Futures",
+      "score": 0.07744104
+    },
+    {
+      "id": 97,
+      "url": "https://www.hrmagazine.co.uk/content/news/doctor-suspended-over-offensive-comments-on-workplace-whatsapp",
+      "title": "Doctor suspended over offensive comments on workplace WhatsApp - HR Magazine",
+      "score": 0.07529205
+    },
+    {
+      "id": 98,
+      "url": "https://www.occrp.org/en/project/dubais-golden-sands",
+      "title": "Dubai's Golden Sands - OCCRP",
+      "score": 0.075210504
+    },
+    {
+      "id": 99,
+      "url": "https://www.masslive.com/boston/2026/03/quincy-official-accused-of-using-city-funds-for-steak-tips-selfportrait-heads-toward-plea-deal.html?outputType=amp",
+      "title": "Quincy official accused of using city funds for steak tips, self\u2011portrait heads toward plea deal - MassLive.com",
+      "score": 0.074885115
+    },
+    {
+      "id": 100,
+      "url": "https://mronline.org/2026/03/07/the-filthy-rich-and-what-to-do-about-them/",
+      "title": "The filthy rich, and what to do about them - MR Online",
+      "score": 0.07480398
+    },
+    {
+      "id": 101,
+      "url": "https://www.telecomasia.net/blog/pakistan-cricket-board-responds-to-telecom-asia-sport-and-other-media-reports/",
+      "title": "Pakistan Cricket Board Responds to Telecom Asia Sport and Other Media Reports - Telecom Asia Sport",
+      "score": 0.07391672
+    },
+    {
+      "id": 102,
+      "url": "https://timesofindia.indiatimes.com/technology/tech-news/its-paradox-many-women-in-workforce-few-rainmakers/articleshow/129172730.cms",
+      "title": "IT\u2019s paradox: many women in workforce, few rainmakers - The Times of India",
+      "score": 0.07272241
+    },
+    {
+      "id": 103,
+      "url": "https://www.infosecurity-magazine.com/news/iranian-crypto-leaked-database/",
+      "title": "Leaked Database Sheds Light on Iranian Crypto Sanctions Evasion - Infosecurity Magazine",
+      "score": 0.07248569
+    },
+    {
+      "id": 104,
+      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603052141PR_NEWS_USPRX____DC02928-1",
+      "title": "PYPL Investors Have Opportunity to Lead PayPal Holdings, Inc. Securities Fraud Lawsuit \u2013 Company Announcement - Financial Times",
+      "score": 0.07201439
+    },
+    {
+      "id": 105,
+      "url": "https://thedailycpec.com/pakistan-highlights-agriculture-and-food-security-for-stability/",
+      "title": "Pakistan Highlights Agriculture and Food Security for Stability - The Daily CPEC",
+      "score": 0.07201439
+    },
+    {
+      "id": 106,
+      "url": "https://timesofindia.indiatimes.com/business/india-business/its-paradox-many-women-in-workforce-few-rainmakers/articleshow/129189077.cms",
+      "title": "IT's paradox: Many women in workforce, few rainmakers - The Times of India",
+      "score": 0.07185793
+    },
+    {
+      "id": 107,
+      "url": "https://www.chicagotribune.com/2026/03/06/lockport-mcdonalds-sued-child-labor-violations/",
+      "title": "Illinois attorney general sues Lockport McDonald\u2019s owner for alleged child labor law violations - Chicago Tribune",
+      "score": 0.07170176
+    },
+    {
+      "id": 108,
+      "url": "https://www.reuters.com/business/energy/after-official-hails-mining-potential-us-allows-some-transactions-venezuelan-2026-03-06/",
+      "title": "After official hails mining potential, US allows some transactions of Venezuelan gold - Reuters",
+      "score": 0.068046756
+    },
+    {
+      "id": 109,
+      "url": "https://www.greenwichtime.com/politics/article/mccrory-community-investment-board-21953152.php",
+      "title": "Dan Haar: Sen. McCrory exits key Connecticut board amid investigation, slams audit - Greenwich Time",
+      "score": 0.06708697
+    },
+    {
+      "id": 110,
+      "url": "https://www.chronicle.com/article/the-lobbying-arms-race",
+      "title": "The Lobbying Arms Race - The Chronicle of Higher Education",
+      "score": 0.06642989
+    },
+    {
+      "id": 111,
+      "url": "https://www.nbcnews.com/dateline/cold-case-spotlight/detectives-work-solve-1977-illinois-homicide-sharrey-case-dateline-rcna262003",
+      "title": "Niece pushing for 1977 Illinois homicide of Sharrey Case to be solved - NBC News",
+      "score": 0.0662122
+    },
+    {
+      "id": 112,
+      "url": "https://news.bloomberglaw.com/ip-law/binance-probe-exemplifies-the-perils-of-surface-remediation",
+      "title": "Binance Probe Exemplifies the Perils of \u2018Surface Remediation\u2019 - Bloomberg Law News",
+      "score": 0.06400119
+    },
+    {
+      "id": 113,
+      "url": "https://www.jpost.com/middle-east/article-888705",
+      "title": "Iran, Hezbollah linked to global narcotics trafficking - The Jerusalem Post",
+      "score": 0.061723232
+    },
+    {
+      "id": 114,
+      "url": "https://www.dawn.com/news/1980036/addressing-fuelflation-in-the-agriculture-sector",
+      "title": "Addressing fuelflation in the agriculture sector - Dawn",
+      "score": 0.060646243
+    },
+    {
+      "id": 115,
+      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603061611PR_NEWS_USPRX____DC02956-1",
+      "title": "NASDAQ: PYPL: Kessler Topaz Meltzer & Check, LLP Announces the Filing of a Securities Fraud Class Action Lawsuit Against PayPal Holdings, Inc. \u2013 Company Announcement - FT.com - Financial Times",
+      "score": 0.060246922
+    },
+    {
+      "id": 116,
+      "url": "https://www.greenwichtime.com/news/article/us-designates-afghanistan-as-a-sponsor-of-22050121.php",
+      "title": "US designates Afghanistan as a sponsor of wrongful detention, accuses it of 'hostage diplomacy' - Greenwich Time",
+      "score": 0.060180597
+    },
+    {
+      "id": 117,
+      "url": "https://www.ynetnews.com/article/b1amkzfkwx",
+      "title": "Marked as Iran\u2019s next leader, now missing: The secretive son of Ali Khamenei - ynetnews",
+      "score": 0.060180597
+    },
+    {
+      "id": 118,
+      "url": "https://www.bbc.com/news/articles/cy031d1ny7jo",
+      "title": "US allows India to buy Russian oil during US-Israel war with Iran - BBC",
+      "score": 0.059455637
+    },
+    {
+      "id": 119,
+      "url": "https://maritime-executive.com/article/two-iranian-boxships-under-way-with-likely-rocket-fuel-cargoes",
+      "title": "Two Iranian Boxships Under Way With Likely Rocket Fuel Cargoes - The Maritime Executive",
+      "score": 0.05758342
+    },
+    {
+      "id": 120,
+      "url": "https://www.wsj.com/world/middle-east/u-a-e-explores-freezing-iranian-assets-to-punish-tehran-for-attacks-904503de?gaa_at=eafs&gaa_n=AWEtsqc7h4A_Tm52WIOleimG56eYuleu6sQ9dD31UYk_1gpffrZD9aO300_d&gaa_ts=69ac3677&gaa_sig=9dsYUAMwwvX-9rvDLVTFrI9pLC1r4wEw6x4LHyXtyjaE8HCXLbnKtuOGVxSFh5jFGqygm6ukNmyzQje-ovTZBw%3D%3D",
+      "title": "Exclusive | U.A.E. Explores Freezing Iranian Assets to Punish Tehran for Attacks - WSJ",
+      "score": 0.056887858
+    },
+    {
+      "id": 121,
+      "url": "https://www.marinelink.com/news/iran-says-countries-expel-us-israel-536745",
+      "title": "Iran Says Countries that Expel US, Israel Envoys Can Pass Strait of Hormuz - Marine News Magazine",
+      "score": 0.056574304
+    },
+    {
+      "id": 122,
+      "url": "https://timesofindia.indiatimes.com/city/patna/tribal-women-boost-incomes-through-traditional-skills-in-west-champaran/articleshow/129286346.cms",
+      "title": "Threads of change: Champaran tribal women weave path to self-reliance - The Times of India",
+      "score": 0.056076013
+    },
+    {
+      "id": 123,
+      "url": "https://www.cbsnews.com/news/war-iran-americans-jailed-evin-prison/",
+      "title": "War with Iran fuels mounting concern for safety of Americans jailed in the country - CBS News",
+      "score": 0.05582841
+    },
+    {
+      "id": 124,
+      "url": "https://www.ynetnews.com/business/article/hy1digey11l",
+      "title": "Secret bank accounts and luxury real estate: who will inherit Khamenei\u2019s multibillion-dollar fortune? - Ynetnews",
+      "score": 0.055152804
+    },
+    {
+      "id": 125,
+      "url": "https://www.theguardian.com/world/2026/mar/03/ofcom-urged-clarify-palestine-action-content-removed-online",
+      "title": "Ofcom urged to clarify if Palestine Action content should still be removed online - The Guardian",
+      "score": 0.05503079
+    },
+    {
+      "id": 126,
+      "url": "https://www.reuters.com/business/finance/turkeys-halkbank-us-justice-department-deferred-prosecution-agreement-judge-says-2026-03-09/",
+      "title": "Turkey's Halkbank, U.S. Justice Department in deferred prosecution agreement, judge says - Reuters",
+      "score": 0.054304067
+    },
+    {
+      "id": 127,
+      "url": "https://time.com/7383185/profits-took-over-american-politics/",
+      "title": "How Profits Took Over American Politics - Time Magazine",
+      "score": 0.054243922
+    },
+    {
+      "id": 128,
+      "url": "https://www.lakeshorepublicmedia.org/npr-news/2026-03-05/oscar-nominated-iranian-dissident-warns-against-repeat-of-the-past",
+      "title": "Oscar-nominated Iranian dissident warns against 'repeat of the past' - Lakeshore Public Media",
+      "score": 0.05406384
+    },
+    {
+      "id": 129,
+      "url": "https://www.jpost.com/middle-east/iran-news/article-889383",
+      "title": "Iran says will hold assets of anti-regime Iranians abroad - The Jerusalem Post",
+      "score": 0.053884324
+    },
+    {
+      "id": 130,
+      "url": "https://www.theguardian.com/us-news/2026/mar/05/us-waiver-india-russian-oil",
+      "title": "US grants waiver to allow India to buy Russian oil amid Iran war - The Guardian",
+      "score": 0.053645857
+    },
+    {
+      "id": 131,
+      "url": "https://www.bloomberg.com/news/articles/2026-03-06/us-issues-license-to-allow-some-russian-oil-sales-to-india-mme5qix4",
+      "title": "Iran War: US Issues License to Allow Some Russian Oil Sales to India - Bloomberg.com",
+      "score": 0.05352699
+    },
+    {
+      "id": 132,
+      "url": "https://www.jpost.com/international/article-889164",
+      "title": "LA Iranians turn to social media, Fox News for war updates - The Jerusalem Post",
+      "score": 0.053112928
+    },
+    {
+      "id": 133,
+      "url": "https://www.globalvillagespace.com/online-classes-work-from-home-plan-under-consideration-to-cut-energy-use-in-pakistan/",
+      "title": "Online Classes, Work-From-Home Plan Under Consideration to Cut Energy Use in Pakistan - Global Village Space",
+      "score": 0.052877672
+    },
+    {
+      "id": 134,
+      "url": "https://scanx.trade/stock-market-news/stocks/poly-medicure-shares-updated-investor-presentation-highlighting-manufacturing-capabilities/34432290",
+      "title": "Poly Medicure Shares Updated Investor Presentation Highlighting Manufacturing Capabilities - scanx.trade",
+      "score": 0.052760426
+    },
+    {
+      "id": 135,
+      "url": "https://www.haaretz.com/israel-news/israel-security/2026-03-06/ty-article/.premium/wsj-uae-mulls-financial-crackdown-on-iranian-assets-after-iran-strikes/0000019c-c1e3-d600-a9be-d1f35b200000",
+      "title": "WSJ: UAE Mulls Financial Crackdown on Iranian Assets After Iran Strikes - Haaretz",
+      "score": 0.05165867
+    },
+    {
+      "id": 136,
+      "url": "https://www.jpost.com/middle-east/iran-news/article-888675",
+      "title": "Fake UK executive fronted $1 b. IRGC crypto scheme - The Jerusalem Post",
+      "score": 0.051601294
+    },
+    {
+      "id": 137,
+      "url": "https://m.economictimes.com/news/india/pm-modi-speaks-on-agriculture-and-rural-transformation-post-budget-webinar-live/videoshow/129136397.cms",
+      "title": "PM Modi speaks on Agriculture and Rural Transformation | Post-budget webinar | LIVE - The Economic Times",
+      "score": 0.051087577
+    },
+    {
+      "id": 138,
+      "url": "https://www.forbes.com/sites/tonybradley/2026/03/08/linkedins-verified-badge-is-a-trust-signal-but-whos-watching/",
+      "title": "LinkedIn's Verified Badge Is A Trust Signal\u2014But Who's Watching? - Forbes",
+      "score": 0.050298072
+    },
+    {
+      "id": 139,
+      "url": "https://www.foxnews.com/us/miami-developer-accused-85m-fraud-scheme-blowing-investor-cash-yacht-rolex",
+      "title": "Miami developer accused of $85M fraud scheme, blowing investor cash on yacht, Rolex - Fox News",
+      "score": 0.05007463
+    },
+    {
+      "id": 140,
+      "url": "https://www.greenwichtime.com/news/world/article/what-to-know-as-a-son-of-iran-s-late-supreme-21958804.php",
+      "title": "What to know as a son of Iran's late supreme leader is a possible candidate to replace his father - Greenwich Time",
+      "score": 0.04996327
+    },
+    {
+      "id": 141,
+      "url": "https://www.reuters.com/world/india/indias-idfc-first-bank-pays-645-billion-rupees-settle-claims-tied-suspected-2026-03-10/",
+      "title": "India's IDFC First Bank pays 6.45 billion rupees to settle claims tied to suspected fraud - Reuters",
+      "score": 0.04985212
+    },
+    {
+      "id": 142,
+      "url": "https://www.law360.com/bankruptcy-authority/mid-cap/articles/2448452/former-iowa-biz-president-convicted-of-bankruptcy-crimes",
+      "title": "Former Iowa Biz President Convicted Of Bankruptcy Crimes - Law360",
+      "score": 0.04985212
+    },
+    {
+      "id": 143,
+      "url": "https://www.euronews.com/business/2026/03/09/bapco-declares-force-majeure-as-iran-sets-bahrains-only-refinery-ablaze",
+      "title": "Bahrain declares force majeure as Iran sets its only refinery ablaze - Euronews.com",
+      "score": 0.049685873
+    },
+    {
+      "id": 144,
+      "url": "https://thedailycpec.com/pakistan-agriculture-graduates-receive-advanced-training-in-china/",
+      "title": "Pakistan Agriculture Graduates Receive Advanced Training in China - The Daily CPEC",
+      "score": 0.049630567
+    },
+    {
+      "id": 145,
+      "url": "https://news.bloomberglaw.com/us-law-week/case-individual-employment-rights-procedural-due-process-la-ct-app-4th-cir",
+      "title": "Case: Individual Employment Rights/Procedural Due Process (La. Ct. App., 4th Cir.) - Bloomberg Law News",
+      "score": 0.049354926
+    },
+    {
+      "id": 146,
+      "url": "https://www.nytimes.com/2026/03/09/us/billionaires-federal-election-campaign-contributions.html",
+      "title": "Billionaires Made 19% of Federal Election Campaign Contributions in 2024 - The New York Times",
+      "score": 0.049299963
+    },
+    {
+      "id": 147,
+      "url": "https://www.law.com/2026/03/05/sec-justin-sun-strike-proposed-10m-settlement/",
+      "title": "SEC, Justin Sun Strike Proposed $10M Settlement - Law.com",
+      "score": 0.049190234
+    },
+    {
+      "id": 148,
+      "url": "https://confidencial.digital/en/english/attorney-generals-office-seizes-u-s-owned-mining-company-and-hands-it-over-to-a-chinese-businessman/",
+      "title": "U.S.-Owned BHMB Mining Company Seized in Nicaragua and Handed Over to a \u201cChinese Businessman\u201d - Confidencial Nicaragua",
+      "score": 0.049026065
+    },
+    {
+      "id": 149,
+      "url": "https://talkingpointsmemo.com/morning-memo/inside-the-dhs-campaign-against-u-s-citizens",
+      "title": "Inside The DHS Campaign Against U.S. Citizens - Talking Points Memo",
+      "score": 0.04897146
+    },
+    {
+      "id": 150,
+      "url": "https://markets.financialcontent.com/stocks/article/thenewswire-2026-3-8-paypal-holdings-inc-pypl-class-action-lawsuit-seeks-recovery-for-investors-april-20-2026-deadline-contact-kessler-topaz-meltzer-and-check-llp",
+      "title": "FinancialContent - PayPal Holdings, Inc. (PYPL) Class Action Lawsuit Seeks Recovery for Investors; April 20, 2026, Deadline - Contact Kessler Topaz Meltzer & Check, LLP - FinancialContent",
+      "score": 0.048105557
+    },
+    {
+      "id": 151,
+      "url": "https://www.globalvillagespace.com/india-said-saturday-it-was-pushing-ahead-with-imports-of-russian-oil-after-a-temporary-us-waiver-to-import-crude-from-moscow-due-war-in-the-mideast-but-adding-it-did-not-need-washingtons-permiss/",
+      "title": "Russia has provided Iran with information that can help Tehran strike US military - Global Village Space",
+      "score": 0.04794482
+    },
+    {
+      "id": 152,
+      "url": "https://www.law360.com/compliance/articles/2449666/investors-accuse-alston-bird-of-aiding-328m-crypto-fraud-",
+      "title": "Investors Accuse Alston & Bird Of Aiding $328M Crypto Fraud - Law360",
+      "score": 0.047891367
+    },
+    {
+      "id": 153,
+      "url": "https://fortune.com/2026/03/05/markwayne-mullin-multimillionaire-dhs-cattle-ranch-kristi-noem/",
+      "title": "Meet Markwayne Mullin, the new multimillionaire head of DHS, who owns a cattle ranch in Oklahoma - Fortune",
+      "score": 0.047837958
+    },
+    {
+      "id": 154,
+      "url": "https://www.wsj.com/world/middle-east/u-a-e-explores-freezing-iranian-assets-to-punish-tehran-for-attacks-904503de?gaa_at=eafs&gaa_n=AWEtsqew33jVwsoHqumhF0gefQ6Mr4hogvMMJxOd6YfI0OQ48AAqpxK1Xzbq&gaa_ts=69aa24c6&gaa_sig=yE01hQNVkFq5G1jOaCTd5PthdRBhJ9vJnoZMEqfRUr_Nt-tuYx3JR7y-rDH12HHDfSVcriZbFiZESX7l1PZCVg%3D%3D",
+      "title": "Exclusive | U.A.E. Explores Freezing Iranian Assets to Punish Tehran for Attacks - WSJ",
+      "score": 0.047678076
+    },
+    {
+      "id": 155,
+      "url": "https://farmonaut.com/blogs/agriculture-labor-key-issues-solutions-for-2026",
+      "title": "Agriculture Labor: Key Issues & Solutions For 2026 - Farmonaut",
+      "score": 0.04735984
+    },
+    {
+      "id": 156,
+      "url": "https://www.vitallaw.com/news/fraud-and-manipulation-s-d-n-y-shareholders-sue-apollo-black-and-rowan-for-concealing-epstein-ties/sld019737b9618a7741329801c7d561eadc30",
+      "title": "FRAUD AND MANIPULATION\u2014S.D.N.Y.: Shareholders sue Apollo, Black, and Rowan for concealing Epstein ties - VitalLaw.com",
+      "score": 0.047148798
+    },
+    {
+      "id": 157,
+      "url": "https://www.washingtonpost.com/world/2026/03/08/lebanon-israel-ahmed-shukr-ron-arad-kidnapping/673855f6-1b0b-11f1-a29c-fd43da9a479a_story.html",
+      "title": "A retired Lebanese security officer vanishes and his family thinks it was a covert Israeli abduction - The Washington Post",
+      "score": 0.04683392
+    },
+    {
+      "id": 158,
+      "url": "https://www.premiumtimesng.com/business/business-news/862092-strait-of-hormuz-closed-3000-vessels-20000-seafarers-stranded-in-middle-east-imo.html",
+      "title": "Strait of Hormuz closed, 3000 vessels, 20,000 seafarers stranded in Middle East \u2013 IMO - Premium Times Nigeria",
+      "score": 0.046781633
+    },
+    {
+      "id": 159,
+      "url": "https://allure.vanguardngr.com/2026/03/faith-morey-introduces-the-grace-circle-to-lagos/",
+      "title": "Faith Morey Introduces The Grace Circle to Lagos - Vanguard Allure",
+      "score": 0.046677228
+    },
+    {
+      "id": 160,
+      "url": "https://www.law360.com/bankruptcy-authority/large-cap/articles/2449954/calif-judge-blasts-ex-venture-capitalist-in-axing-svb-suit",
+      "title": "Calif. Judge Blasts Ex-Venture Capitalist In Axing SVB Suit - Law360",
+      "score": 0.046625108
+    },
+    {
+      "id": 161,
+      "url": "https://www.fintechfutures.com/m-a/fundbank-acquires-ireland-s-trrue-chain-for-10m",
+      "title": "FundBank acquires Ireland's Trrue Chain for \u20ac10m - FinTech Futures",
+      "score": 0.04615852
+    },
+    {
+      "id": 162,
+      "url": "https://www.janes.com/osint-insights/defence-and-national-security-analysis/appointment-of-mojtaba-khamenei-as-supreme-leader-of-iran-very-likely-indicates-that-elite-cohesion-will-remain-strong-in-the-immediate-term",
+      "title": "Appointment of Mojtaba Khamenei as Supreme Leader of Iran very likely indicates that elite cohesion will remain strong in the immediate-term - Janes",
+      "score": 0.045901228
+    },
+    {
+      "id": 163,
+      "url": "https://www.marinelink.com/news/bahrains-bapco-declares-force-majeure-536693",
+      "title": "Bahrain\u2019s Bapco Declares Force Majeure After Refinery Attack - Marine News Magazine",
+      "score": 0.0457987
+    },
+    {
+      "id": 164,
+      "url": "https://www.nbcnews.com/news/us-news/man-trial-assassination-plot-says-possible-targets-included-trump-bide-rcna261874",
+      "title": "Man on trial in assassination plot says possible targets included Trump, Biden, Haley - NBC News",
+      "score": 0.04569639
+    },
+    {
+      "id": 165,
+      "url": "https://www.law.com/newyorklawjournal/2026/03/04/white-house-launches-new-national-fraud-enforcement-division/",
+      "title": "White House Launches New National Fraud Enforcement Division - Law.com",
+      "score": 0.045594286
+    },
+    {
+      "id": 166,
+      "url": "https://maritime-executive.com/article/belgium-fines-sanctioned-tanker-10m-and-detains-it-for-safety-violations",
+      "title": "Belgium Fines Sanctioned Tanker \u20ac10M and Detains it for Safety Violations - The Maritime Executive",
+      "score": 0.045441553
+    },
+    {
+      "id": 167,
+      "url": "https://www.carlsonlaw.com/jim-ratigan-rockefeller-seabrook/",
+      "title": "Jim Ratigan: Rockefeller Advisor Lands Investor Complaint - carlsonlaw.com",
+      "score": 0.04539074
+    },
+    {
+      "id": 168,
+      "url": "https://www.newsfilecorp.com/release/286577/FBRT-INVESTOR-DEADLINE-APPROACHING-Faruqi-Faruqi-LLP-Reminds-Franklin-BSP-Realty-Trust-FBRT-Investors-of-Securities-Class-Action-Deadline-on-April-27-2026",
+      "title": "FBRT INVESTOR DEADLINE APPROACHING: Faruqi & Faruqi, LLP Reminds Franklin BSP Realty Trust (FBRT) Investors of Securities Class Action Deadline on April 27, 2026 - TMX Newsfile",
+      "score": 0.045137525
+    },
+    {
+      "id": 169,
+      "url": "https://www.law.com/thelegalintelligencer/2026/03/05/navigating-the-2026-employment-law-shift/",
+      "title": "Navigating the 2026 Employment Law Shift - Law.com",
+      "score": 0.045137525
+    },
+    {
+      "id": 170,
+      "url": "https://www.nytimes.com/2026/03/06/nyregion/guilty-iran-trump-merchant-trial.html",
+      "title": "Pakistani Man Convicted of Attempted Terrorism in Plot to Kill Trump - The New York Times",
+      "score": 0.04503662
+    },
+    {
+      "id": 171,
+      "url": "https://www.cnbc.com/2026/03/09/one-big-reason-ships-and-insurers-are-unwilling-to-risk-strait-of-hormuz.html",
+      "title": "There's another big reason why shipping companies and insurers aren't willing to risk the Strait of Hormuz - CNBC",
+      "score": 0.044885658
+    },
+    {
+      "id": 172,
+      "url": "https://www.bbc.com/news/articles/c8egjnp4j7jo",
+      "title": "Pakistani man found guilty in Iran-backed plot to kill US politicians - BBC",
+      "score": 0.044735186
+    },
+    {
+      "id": 173,
+      "url": "https://www.philanthropy.com/opinion/opinion-kennedy-investigations-0326/",
+      "title": "Congress and the Media Should Turn Up the Heat on Nonprofits - Chronicle of Philanthropy",
+      "score": 0.044585183
+    },
+    {
+      "id": 174,
+      "url": "https://www.cnn.com/2026/03/09/politics/trump-afghanistan-state-sponsor-wrongful-detention",
+      "title": "Trump administration designates Afghanistan as state sponsor of wrongful detention - CNN",
+      "score": 0.043842368
+    },
+    {
+      "id": 175,
+      "url": "https://www.marinelink.com/news/belgium-imposes-m-euro-bail-seized-ethera-536434",
+      "title": "Belgium Imposes 10M Euro Bail On Seized Ethera Tanker - Marine News Magazine",
+      "score": 0.043548565
+    },
+    {
+      "id": 176,
+      "url": "https://www.greenwichtime.com/connecticut/article/ct-investment-scheme-andrew-komarow-charged-21954623.php",
+      "title": "Former CT investment adviser shifted millions in high-risk scheme, feds say - Greenwich Time",
+      "score": 0.043256637
+    },
+    {
+      "id": 177,
+      "url": "https://sports.yahoo.com/articles/negreira-case-investigation-extended-six-110300667.html",
+      "title": "\ud83d\udea8 Negreira case investigation extended by six more months - Yahoo Sports",
+      "score": 0.04311137
+    },
+    {
+      "id": 178,
+      "url": "https://www.marinelink.com/news/seafarers-year-jail-term-upheld-turkish-536735",
+      "title": "Seafarer\u2019s 30-Year Jail Term Upheld by Turkish Supreme Court - Marine News Magazine",
+      "score": 0.04296658
+    },
+    {
+      "id": 179,
+      "url": "https://www.cbsnews.com/news/man-accused-plot-assassinate-trump-testifies-iran-pressured-him/",
+      "title": "Man accused of plot to assassinate Trump testifies Iran pressured him, says Biden and Haley were other possible targets - CBS News",
+      "score": 0.0428703
+    },
+    {
+      "id": 180,
+      "url": "https://www.bitget.com/amp/news/detail/12560605245067",
+      "title": "Ghana looks to shift artisanal gold refining amid Dubai flight disruptions - Bitget",
+      "score": 0.04267837
+    },
+    {
+      "id": 181,
+      "url": "https://www.latimes.com/california/story/2026-03-06/billionaire-ron-burkle-accuses-former-protege-of-multimillion-dollar-fraud",
+      "title": "Billionaire Ron Burkle accuses his political power-broker prot\u00e9g\u00e9 of multimillion-dollar fraud - Los Angeles Times",
+      "score": 0.04263052
+    },
+    {
+      "id": 182,
+      "url": "https://www.espn.com/nba/story/_/id/48093618/prosecutors-extend-formal-plea-agreements-poker-case",
+      "title": "Prosecutors to extend formal plea agreements in poker case - ESPN",
+      "score": 0.042439613
+    },
+    {
+      "id": 183,
+      "url": "https://ianslive.in/high-taxes-choke-investment-in-pakistan--20260303145104",
+      "title": "High taxes choke investment in Pakistan - IANS LIVE",
+      "score": 0.042202137
+    },
+    {
+      "id": 184,
+      "url": "https://news.bloomberglaw.com/us-law-week/case-wage-hour-private-attorneys-general-act-n-d-cal",
+      "title": "Case: Wage & Hour/Private Attorneys General Act (N.D. Cal.) - Bloomberg Law News",
+      "score": 0.041450717
+    },
+    {
+      "id": 185,
+      "url": "https://www.greenwichtime.com/news/politics/article/justice-department-official-eyes-cases-against-21960040.php",
+      "title": "Justice Department official eyes cases against Cuba leaders as Trump floats 'friendly takeover' - Greenwich Time",
+      "score": 0.041357696
+    },
+    {
+      "id": 186,
+      "url": "https://www.law.com/dailybusinessreview/2026/03/05/miami-bankruptcy-judge-fast-tracks-pat-mcgrath-cosmetics-restructuring/",
+      "title": "Miami Bankruptcy Judge Fast-Tracks Pat McGrath Cosmetics Restructuring - Law.com",
+      "score": 0.04131126
+    },
+    {
+      "id": 187,
+      "url": "https://www.law360.com/fintech/articles/2450109/sec-ordered-to-release-info-on-text-messaging-sweeps",
+      "title": "SEC Ordered To Release Info On Text Messaging Sweeps - Law360",
+      "score": 0.04121853
+    },
+    {
+      "id": 188,
+      "url": "https://www.theguardian.com/us-news/2026/mar/03/minnesota-investigation-us-immigration-officers",
+      "title": "Minnesota launches investigation that could bring charges against US immigration officers - The Guardian",
+      "score": 0.040895566
+    },
+    {
+      "id": 189,
+      "url": "https://www.law360.com/employment-authority/wage-hour/articles/2448567/ye-s-ex-worker-not-sure-of-own-declaration-in-wages-trial",
+      "title": "Ye's Ex-Worker 'Not Sure' Of Own Declaration In Wages Trial - Law360",
+      "score": 0.04080373
+    },
+    {
+      "id": 190,
+      "url": "https://www.businesswire.com/news/home/20260308671309/en/EAF-Investors-Have-Opportunity-to-Join-GrafTech-International-Ltd.-Fraud-Investigation-with-the-Schall-Law-Firm",
+      "title": "EAF Investors Have Opportunity to Join GrafTech International Ltd. Fraud Investigation with the Schall Law Firm - Business Wire",
+      "score": 0.04075789
+    },
+    {
+      "id": 191,
+      "url": "https://thehill.com/homenews/state-watch/5764521-minnesota-investigation-trump-immigration-enforcement-officers/",
+      "title": "Minnesota launches investigation that could lead to charges against immigration officers - The Hill",
+      "score": 0.04075789
+    },
+    {
+      "id": 192,
+      "url": "https://sundiatapost.com/bwalas-self-indicting-post-interview-alibi-for-poor-performance-by-farooq-kperogi/",
+      "title": "Bwala\u2019s Self-Indicting Post-Interview Alibi for Poor Performance, By Farooq Kperogi - SundiataPost",
+      "score": 0.04062067
+    },
+    {
+      "id": 193,
+      "url": "https://www.lokmattimes.com/business/high-taxes-choke-investment-in-pakistan-1/",
+      "title": "High taxes choke investment in Pakistan - lokmattimes.com",
+      "score": 0.04062067
+    },
+    {
+      "id": 194,
+      "url": "https://www.fnlondon.com/articles/its-about-leadership-discipline-uae-law-firm-says-wfh-employees-will-have-annual-leave-deducted-0ef1b390",
+      "title": "\u2018It\u2019s about leadership, discipline\u2019: UAE law firm says WFH employees will have annual leave deducted - Financial News London",
+      "score": 0.03953867
+    },
+    {
+      "id": 195,
+      "url": "https://www.bitget.com/amp/news/detail/12560605244504",
+      "title": "Trump woos Venezuela with potential deals as relations reset - Bitget",
+      "score": 0.039140087
+    },
+    {
+      "id": 196,
+      "url": "https://www.cnbc.com/2026/03/09/iran-war-oil-tankers-strait-of-hormuz.html",
+      "title": "Oil tankers transiting Strait of Hormuz 'must be very careful,' Iran foreign ministry warns - CNBC",
+      "score": 0.039096043
+    },
+    {
+      "id": 197,
+      "url": "https://www.vitallaw.com/news/corporate-governance-del-ch-mfw-not-triggered-as-vote-wasn-t-fully-informed/sld01b25de4f3ff1d401cb624f421a36a9c5d",
+      "title": "CORPORATE GOVERNANCE\u2014Del. Ch.: MFW not triggered as vote wasn't fully informed - VitalLaw.com",
+      "score": 0.039052043
+    },
+    {
+      "id": 198,
+      "url": "https://www.janes.com/osint-insights/defence-news/sea/iran-conflict-2026-the-demise-of-the-iranian-navies",
+      "title": "Iran conflict 2026: The demise of the Iranian navies - Janes",
+      "score": 0.039052043
+    },
+    {
+      "id": 199,
+      "url": "https://www.socialnews.xyz/2026/03/03/high-taxes-choke-investment-in-pakistan/",
+      "title": "High taxes choke investment in Pakistan - Social News XYZ",
+      "score": 0.03887651
+    },
+    {
+      "id": 200,
+      "url": "https://minutemirror.com.pk/pakistan-invites-swedish-firms-to-expand-mining-investment-beyond-reko-diq-517424/",
+      "title": "Pakistan invites Swedish firms to expand mining investment beyond Reko Diq - Minute Mirror",
+      "score": 0.038789026
+    },
+    {
+      "id": 201,
+      "url": "https://www.latimes.com/entertainment-arts/business/story/2026-03-07/paramount-vegas-gambler-cipriani-jeff-shell-ron-meyer-nbcuniversal-patty-glaser-charlotte-kirk-hollywood",
+      "title": "How top Paramount executive\u2019s ties with Vegas gambler unraveled - Los Angeles Times",
+      "score": 0.03870174
+    },
+    {
+      "id": 202,
+      "url": "https://www.bwlegalworld.com/article/mohit-kundu-joins-dhaval-vusssonji-associates-as-a-partner-in-its-real-estate-practice-596525",
+      "title": "Mohit Kundu Joins Dhaval Vusssonji & Associates as a Partner in its Real Estate Practice - BW Legal World",
+      "score": 0.038571153
+    },
+    {
+      "id": 203,
+      "url": "https://www.bbc.com/news/articles/cy8lwnyj40eo",
+      "title": "Naveed Akram: Alleged Bondi gunman seeks court order to suppress family's identity - BBC",
+      "score": 0.038354453
+    },
+    {
+      "id": 204,
+      "url": "https://insurancenewsnet.com/innarticle/sec-in-active-and-detailed-settlement-talks-with-accused-scammer-tai-lopez",
+      "title": "SEC in \u2018active and detailed\u2019 settlement talks with accused scammer Tai Lopez - InsuranceNewsNet",
+      "score": 0.038268104
+    },
+    {
+      "id": 205,
+      "url": "https://www.cnbc.com/video/2026/03/03/markets-will-be-closely-watching-gilt-remit-and-borrowing-expectations-in-spring-statement--analyst.html",
+      "title": "Markets focus on UK borrowing expectations in Spring Statement, analyst says - CNBC",
+      "score": 0.03809596
+    },
+    {
+      "id": 206,
+      "url": "https://www.pinkvilla.com/entertainment/exclusives/exclusive-raja-shivaji-and-cocktail-2-teaser-attached-to-ranveer-singh-and-aditya-dhars-dhurandhar-2-1401289",
+      "title": "EXCLUSIVE: Raja Shivaji and Cocktail 2 teaser attached to Ranveer Singh and Aditya Dhar\u2019s Dhurandhar 2 - Pinkvilla",
+      "score": 0.037881825
+    },
+    {
+      "id": 207,
+      "url": "https://www.crowell.com/en/insights/firm-news/former-special-counsel-to-the-fbi-director-and-federal-prosecutor-rajeev-raghavan-joins-crowell-and-morings-privacy-and-cybersecurity-group",
+      "title": "Former Special Counsel to the FBI Director and Federal Prosecutor Rajeev Raghavan Joins Crowell & Moring\u2019s Privacy & Cybersecurity Group - Crowell & Moring LLP",
+      "score": 0.037881825
+    },
+    {
+      "id": 208,
+      "url": "https://www.premiumtimesng.com/news/top-news/862192-food-prices-dropped-by-50-amid-agricultural-reforms-minister.html",
+      "title": "Food prices dropped by 50% amid agricultural reforms \u2014 Minister - Premium Times Nigeria",
+      "score": 0.037608635
+    },
+    {
+      "id": 209,
+      "url": "https://www.huffpost.com/entry/ap-ml-iran-us-mojtaba-khamenei-profile-supreme-leader_n_69a826b7e4b0d5c345654fac",
+      "title": "A Son Of Iran's Late Supreme Leader Is A Possible Candidate To Replace His Father As War Rages - HuffPost",
+      "score": 0.037541617
+    },
+    {
+      "id": 210,
+      "url": "https://ca.investing.com/news/company-news/dhruv-consultancy-services-ltd-bom541302-q3-2026-earnings-call-highlights-strategic--4503939",
+      "title": "Dhruv Consultancy Services Ltd (BOM:541302) Q3 2026 Earnings Call Highlights: Strategic ... By GuruFocus - Investing.com Canada",
+      "score": 0.037414793
+    },
+    {
+      "id": 211,
+      "url": "https://thekashmirhorizon.com/2026/03/10/director-agriculture-kashmir-inaugurates-training-prog-in-srinagar/",
+      "title": "Director Agriculture Kashmir inaugurates Training Prog in Srinagar - The Kashmir Horizon",
+      "score": 0.037120476
+    },
+    {
+      "id": 212,
+      "url": "https://www.law360.com/bankruptcy-authority/mid-cap/articles/2447925/charges-signal-tougher-stance-on-execs-bankruptcy-fraud",
+      "title": "Charges Signal Tougher Stance On Execs' Bankruptcy Fraud - Law360",
+      "score": 0.036703885
+    },
+    {
+      "id": 213,
+      "url": "https://seekingalpha.com/article/4879931-the-market-just-got-riskier-and-i-could-not-be-more-bullish",
+      "title": "The Market Just Got Riskier - And I Couldn't Be More Bullish - Seeking Alpha",
+      "score": 0.036579784
+    },
+    {
+      "id": 214,
+      "url": "https://www.nbcnews.com/news/us-news/luigi-mangione-trials-cases-court-when-date-charges-prison-what-know-rcna257102",
+      "title": "What you need to know about the Luigi Mangione prosecutions - NBC News",
+      "score": 0.036291793
+    },
+    {
+      "id": 215,
+      "url": "https://www.cbsnews.com/detroit/video/jury-deliberations-underway-in-dale-warner-murder-trial/",
+      "title": "Jury deliberations underway in Dale Warner murder trial - CBS News",
+      "score": 0.03625082
+    },
+    {
+      "id": 216,
+      "url": "https://www.globalbankingandfinance.com/ubs-told-tone-down-lobbying-dispute-swiss-government-ft/",
+      "title": "UBS Urged to Scale Back Lobbying Amid Swiss Government Capital Dispute - Global Banking & Finance Review\u00ae",
+      "score": 0.036087416
+    },
+    {
+      "id": 217,
+      "url": "https://chicago.suntimes.com/crime/2026/03/09/chicago-ice-border-patrol-trump-loevy-oneill-burke-special-prosecutor",
+      "title": "Chicago law firm leading push to appoint special prosecutor to target ICE, Border Patrol agents - Chicago Sun-Times",
+      "score": 0.036087416
+    },
+    {
+      "id": 218,
+      "url": "https://techcrunch.com/2026/03/03/the-candidate-that-silicon-valley-built-is-now-the-one-they-want-to-tear-down/",
+      "title": "The candidate that Silicon Valley built is now the one they want to tear down - TechCrunch",
+      "score": 0.035924714
+    },
+    {
+      "id": 219,
+      "url": "https://news.bloomberglaw.com/us-law-week/federal-prosecutor-used-fabricated-quotes-false-cites-in-filing",
+      "title": "Federal Prosecutor Used Fabricated Quotes in Court Filing - Bloomberg Law News",
+      "score": 0.035843626
+    },
+    {
+      "id": 220,
+      "url": "https://www.law360.com/articles/2450515/meet-the-committee-counsel-in-eddie-bauer-stores-ch-11",
+      "title": "Meet The Committee Counsel In Eddie Bauer Stores Ch. 11 - Law360",
+      "score": 0.035440832
+    },
+    {
+      "id": 221,
+      "url": "https://kalkinemedia.com/uk/stocks/metals-and-mining/ftse-watch-what-the-taseko-mines-insider-move-means",
+      "title": "FTSE Watch: What the Taseko Mines Insider Move Means - Kalkine Media",
+      "score": 0.035320852
+    },
+    {
+      "id": 222,
+      "url": "https://www.carlsonlaw.com/b-riley-franchise-group/",
+      "title": "B. Riley Shareholder Lawsuit: Franchise Group Allegations - carlsonlaw.com",
+      "score": 0.035241075
+    },
+    {
+      "id": 223,
+      "url": "https://wwd.com/beauty-industry-news/beauty-features/ras-luxury-skincare-raises-7-5-million-series-b-funding-1238645395/",
+      "title": "RAS Luxury Skincare Raises $7.5 Million in Series B Funding - WWD",
+      "score": 0.035241075
+    },
+    {
+      "id": 224,
+      "url": "https://www.inp.net.pk/article-detail/inp-wealthpk/electric-vehicles-present-major-opportunity-to-transform-pakistans-automobile-industry",
+      "title": "Electric vehicles present major opportunity to transform Pakistan\u2019s automobile industry-INP - Independent News Pakistan",
+      "score": 0.034963243
+    },
+    {
+      "id": 225,
+      "url": "https://www.cnet.com/news/social-media/instagram-threads-and-linkedin-engagement-dipped-last-year-heres-whats-happening-to-our-feeds/",
+      "title": "People Spent Less Time on Instagram, Threads, LinkedIn Last Year. Here's Why - CNET",
+      "score": 0.034844812
+    },
+    {
+      "id": 226,
+      "url": "https://www.reuters.com/world/us/pakistani-man-says-iran-forced-him-into-plot-kill-trump-media-say-2026-03-05/",
+      "title": "Pakistani man says Iran forced him into plot to kill Trump, media say - Reuters",
+      "score": 0.034844812
+    },
+    {
+      "id": 227,
+      "url": "https://www.quiverquant.com/news/Press+Release%3A+Farm+Bill+Advances+in+House+Agriculture+Committee+with+Support+from+Congressman+Dave+Taylor",
+      "title": "Press Release: Farm Bill Advances in House Agriculture Committee with Support from Congressman Dave Taylor - Quiver Quantitative",
+      "score": 0.03480542
+    },
+    {
+      "id": 228,
+      "url": "https://www.bbc.com/news/articles/c204ymjnn80o",
+      "title": "Istanbul's ex-mayor to stand trial on corruption charges - BBC",
+      "score": 0.034726776
+    },
+    {
+      "id": 229,
+      "url": "https://www.carsonnow.org/03/04/2026/david-a-bailey-announces-candidacy-for-carson-city-district-attorney",
+      "title": "David A. Bailey announces candidacy for Carson City District Attorney - Carson Now",
+      "score": 0.034687515
+    },
+    {
+      "id": 230,
+      "url": "https://www.lawfuel.com/trustpilot-appoint-20-year-legal-veteran-as-group-general-counsel/",
+      "title": "Trustpilot Appoint 20 Year Legal Veteran As Group General Counsel - LawFuel",
+      "score": 0.0345309
+    },
+    {
+      "id": 231,
+      "url": "https://www.law.com/nationallawjournal/2026/03/04/sec-pcaob-enforcement-hit-multiyear-lows-in-2025-report-says/",
+      "title": "SEC, PCAOB Enforcement Hit Multiyear Lows in 2025, Report Says - Law.com",
+      "score": 0.03433609
+    },
+    {
+      "id": 232,
+      "url": "https://www.theguardian.com/world/2026/mar/04/mojtaba-khamenei-son-of-former-supreme-leader-tipped-to-become-irans-next-head-of-state",
+      "title": "Mojtaba Khamenei, son of former supreme leader, tipped to become Iran\u2019s next head of state - The Guardian",
+      "score": 0.033988096
+    },
+    {
+      "id": 233,
+      "url": "https://gizmodo.com/trump-bros-back-a-drone-company-as-the-pentagon-prepares-to-spend-billions-2000731374",
+      "title": "Trump Bros Back a Drone Company as the Pentagon Prepares to Spend Billions - Gizmodo",
+      "score": 0.033949643
+    },
+    {
+      "id": 234,
+      "url": "https://www.reuters.com/sustainability/boards-policy-regulation/lucky-numbers-collusion-how-an-indian-cement-cartel-came-unstuck-2026-03-09/",
+      "title": "Exclusive: Lucky numbers and collusion: how an Indian cement cartel came unstuck - Reuters",
+      "score": 0.033911232
+    },
+    {
+      "id": 235,
+      "url": "https://maritime-executive.com/article/after-strikes-on-dubai-uae-may-target-iran-s-shadow-fleet-operators",
+      "title": "After Strikes on Dubai, UAE May Target Iran's Shadow Fleet Operators - The Maritime Executive",
+      "score": 0.033872854
+    },
+    {
+      "id": 236,
+      "url": "https://www.cbsnews.com/minnesota/video/minnesota-fraud-czar-testifies-at-state-capitol/",
+      "title": "Minnesota fraud czar testifies at state capitol - CBS News",
+      "score": 0.03356739
+    },
+    {
+      "id": 237,
+      "url": "https://www.washingtonpost.com/world/2026/03/09/turkey-istanbul-mayor-trial-corruption-case/9f15f9e0-1b8f-11f1-a29c-fd43da9a479a_story.html",
+      "title": "Istanbul's mayor goes on trial with some 400 defendants in corruption case - The Washington Post",
+      "score": 0.033415657
+    },
+    {
+      "id": 238,
+      "url": "https://globalarbitrationreview.com/article/panel-rules-in-bahamas-port-dispute",
+      "title": "Panel rules in Bahamas port dispute - Global Arbitration Review",
+      "score": 0.03277815
+    },
+    {
+      "id": 239,
+      "url": "https://www.property118.com/section-24-timeline-of-how-the-debate-unfolded/",
+      "title": "Section 24 timeline of how the debate unfolded - Property118",
+      "score": 0.032741014
+    },
+    {
+      "id": 240,
+      "url": "https://www.law.com/dailybusinessreview/2026/03/04/frank-a-rubino-veteran-miami-defense-attorney-dies-at-80/",
+      "title": "Frank A. Rubino, Veteran Miami Defense Attorney, Dies at 80 - Law.com",
+      "score": 0.03270392
+    },
+    {
+      "id": 241,
+      "url": "https://www.hindustantimes.com/cricket/damning-report-a-pakistan-player-behaved-inappropriately-with-a-female-hotel-staff-member-in-kandy-101772693556615.html",
+      "title": "Damning report: A Pakistan player behaved inappropriately with a female hotel staff member in Kandy | Cricket - Hindustan Times",
+      "score": 0.03270392
+    },
+    {
+      "id": 242,
+      "url": "https://www.law.com/legaltechnews/2026/03/05/the-metadata-trap-why-data-privacy-matters-when-lawyers-use-ai/",
+      "title": "The Metadata Trap: Why Data Privacy Matters When Lawyers Use AI - Law.com",
+      "score": 0.03255596
+    },
+    {
+      "id": 243,
+      "url": "https://www.theguardian.com/us-news/2026/mar/05/pakistani-man-trial-trump-assassination-plot-iran",
+      "title": "Pakistani man on trial in Brooklyn for Trump assassination plot says he was recruited by Iran - The Guardian",
+      "score": 0.032298584
+    },
+    {
+      "id": 244,
+      "url": "https://www.vitallaw.com/news/local-legislation-tennessee-state-lawmakers-consider-ufcw-backed-bills-targeting-self-checkout-and-retail-surveillance-practices/eld015f07fdb58c2c48db85636b6de6bd73b3",
+      "title": "LOCAL LEGISLATION\u2014TENNESSEE\u2014State... - VitalLaw.com",
+      "score": 0.032298584
+    },
+    {
+      "id": 245,
+      "url": "https://www.law.com/2026/03/09/growing-chorus-of-decisions-fed-district-courts-overwhelmingly-rule-against-fintechs-cash-advances-claims/",
+      "title": "'Growing Chorus of Decisions:' Fed. District Courts Overwhelmingly Rule Against Fintech's Cash Advances Claims - Law.com",
+      "score": 0.032079544
+    },
+    {
+      "id": 246,
+      "url": "https://abcnews.com/Business/wireStory/mrbeasts-company-fired-video-editor-after-kalshi-accused-130800223",
+      "title": "MrBeast's company fired a video editor after Kalshi accused the employee of insider trading - ABC News",
+      "score": 0.031359725
+    },
+    {
+      "id": 247,
+      "url": "https://www.marinelink.com/news/indias-mrpl-declares-force-majeure-fuel-536518?cid=10",
+      "title": "India's MRPL Declares Force Majeure on Fuel Exports as Iran Conflict Disrupts Crude Supplies - Marine News Magazine",
+      "score": 0.031146845
+    },
+    {
+      "id": 248,
+      "url": "https://www.law.com/newyorklawjournal/2026/03/09/ny-federal-judge-rejects-terrorfinancing-case-against-binance-zhao/",
+      "title": "NY Federal Judge Rejects Terror\u2011Financing Case Against Binance, Zhao - Law.com",
+      "score": 0.03107619
+    },
+    {
+      "id": 249,
+      "url": "https://www.washingtonpost.com/national-security/2026/03/06/justice-department-fbi-iran-weakness/",
+      "title": "U.S. national security offices, weakened by firings, confront Mideast war - The Washington Post",
+      "score": 0.030935358
+    },
+    {
+      "id": 250,
+      "url": "https://jerseyvindicator.org/2026/03/08/former-new-jersey-watchdog-kevin-walsh-joins-philadelphia-law-firm/",
+      "title": "Former New Jersey watchdog Kevin Walsh joins Philadelphia law firm - The Jersey Vindicator",
+      "score": 0.030795148
+    },
+    {
+      "id": 251,
+      "url": "https://www.sfchronicle.com/sf/article/public-defender-contempt-21957407.php",
+      "title": "Why an S.F. judge might hold the city\u2019s public defender in contempt of court - San Francisco Chronicle",
+      "score": 0.03065555
+    },
+    {
+      "id": 252,
+      "url": "https://news.bloomberglaw.com/daily-labor-report/federal-prosecutor-used-fabricated-quotes-false-cites-in-filing",
+      "title": "Federal Prosecutor Used Fabricated Quotes, False Cites in Filing - Bloomberg Law News",
+      "score": 0.030585974
+    },
+    {
+      "id": 253,
+      "url": "https://www.medianews4u.com/news18-rising-bharat-2026-pm-modi-unveils-bold-vision-of-self-reliance-ai-leadership-and-global-influence/",
+      "title": "News18 Rising Bharat 2026: PM Modi Unveils Bold Vision of Self-Reliance, AI Leadership and Global Influence - MediaNews4U",
+      "score": 0.030585974
+    },
+    {
+      "id": 254,
+      "url": "https://www.thedailybeast.com/donald-trump-sons-don-jr-and-eric-trumps-sons-launch-jaw-dropping-bid-to-cash-in-on-dads-war-in-iran/",
+      "title": "Trump\u2019s Sons Launch Jaw-Dropping Bid to Cash in on Dad\u2019s War - The Daily Beast",
+      "score": 0.030516557
+    },
+    {
+      "id": 255,
+      "url": "https://globalarbitrationreview.com/article/dp-world-denied-security-in-fight-over-djibouti-port-funds",
+      "title": "DP World denied security in fight over Djibouti port funds - Global Arbitration Review",
+      "score": 0.030171758
+    },
+    {
+      "id": 256,
+      "url": "https://www.dawn.com/news/1978959/organic-for-whom",
+      "title": "Organic for whom? - Dawn",
+      "score": 0.030171758
+    },
+    {
+      "id": 257,
+      "url": "https://worldoil.com/news/2026/3/3/extended-hormuz-closure-could-push-oil-toward-110-analyst-warns/",
+      "title": "Extended Hormuz closure could push oil toward $110, analyst warns - World Oil",
+      "score": 0.030034896
+    },
+    {
+      "id": 258,
+      "url": "https://www.quiverquant.com/news/Press+Release%3A+Morgan+Griffith+Commends+%2418.9+Million+Manufacturing+Investment+in+Henry+County",
+      "title": "Press Release: Morgan Griffith Commends $18.9 Million Manufacturing Investment in Henry County - Quiver Quantitative",
+      "score": 0.029830731
+    },
+    {
+      "id": 259,
+      "url": "https://www.law.com/newyorklawjournal/2026/03/03/meet-the-judges-handling-thousands-of-tariff-refund-suits/",
+      "title": "Meet the Judges Handling Thousands of Tariff Refund Suits - Law.com",
+      "score": 0.029695367
+    },
+    {
+      "id": 260,
+      "url": "https://www.marinelink.com/news/pakistan-navy-launches-shipping-security-536731",
+      "title": "Pakistan Navy Launches Shipping Security Operation - Marine News Magazine",
+      "score": 0.029627915
+    },
+    {
+      "id": 261,
+      "url": "https://www.devdiscourse.com/article/headlines/3830480-punjabs-ambitious-agriculture-overhaul-paving-the-way-for-sustainable-farming",
+      "title": "Punjab's Ambitious Agriculture Overhaul: Paving the Way for Sustainable Farming - Devdiscourse",
+      "score": 0.029359564
+    },
+    {
+      "id": 262,
+      "url": "https://www.law.com/americanlawyer/2026/03/04/hogan-lovells-thriving-amid-growing-global-uncertainty-boosts-revenue-by-108-in-2025/",
+      "title": "Hogan Lovells, Thriving Amid Growing Global Uncertainty, Boosts Revenue by 10.8% in 2025 - Law.com",
+      "score": 0.029027443
+    },
+    {
+      "id": 263,
+      "url": "https://www.law.com/thelegalintelligencer/2026/03/03/phila-jury-returns-1m-verdict-against-septa/",
+      "title": "Phila. Jury Returns $1M Verdict Against SEPTA - Law.com",
+      "score": 0.02863371
+    },
+    {
+      "id": 264,
+      "url": "https://gizmodo.com/fbi-arrests-man-who-allegedly-stole-46-million-worth-of-crypto-from-u-s-government-stockpile-2000730134",
+      "title": "FBI Arrests Man Who Allegedly Stole $46 Million Worth of Crypto from U.S. Government Stockpile - Gizmodo",
+      "score": 0.02863371
+    },
+    {
+      "id": 265,
+      "url": "https://www.jagonews24.com/en/national/news/90566",
+      "title": "PM orders language training to prepare workforce for overseas jobs - Jagonews24.com",
+      "score": 0.028568588
+    },
+    {
+      "id": 266,
+      "url": "https://www.law.com/international-edition/2026/03/04/good-lawyers-dont-check-their-conscience-at-the-door/",
+      "title": "Good Lawyers Don't Check Their Conscience at the Door - Law.com",
+      "score": 0.02850362
+    },
+    {
+      "id": 267,
+      "url": "https://www.greenwichtime.com/news/article/trumbull-amazon-fraud-ameer-nasir-guilty-plea-21959774.php",
+      "title": "Trumbull trucking company owner pleads guilty to wire fraud in $3.5M Amazon fraud scheme - Greenwich Time",
+      "score": 0.02850362
+    },
+    {
+      "id": 268,
+      "url": "https://www.africanfarming.com/2026/03/05/attack-on-iran-already-hits-oil-prices/",
+      "title": "Attack On Iran Already Hits Oil Prices - African Farming",
+      "score": 0.02850362
+    },
+    {
+      "id": 269,
+      "url": "https://www.worldoil.com/news/2026/3/5/eni-expands-nigeria-deepwater-plans-following-opl-245-license-conversion/",
+      "title": "Eni expands Nigeria deepwater plans following OPL 245 license conversion - World Oil",
+      "score": 0.028052807
+    },
+    {
+      "id": 270,
+      "url": "https://www.sfchronicle.com/entertainment/article/mrbeast-s-company-fired-a-video-editor-after-21957532.php",
+      "title": "MrBeast's company fired a video editor after Kalshi accused the employee of insider trading - San Francisco Chronicle",
+      "score": 0.027988976
+    },
+    {
+      "id": 271,
+      "url": "https://www.greenwichtime.com/news/world/article/istanbul-s-mayor-goes-on-trial-with-some-400-21963715.php",
+      "title": "Istanbul's mayor goes on trial with some 400 defendants in corruption case - Greenwich Time",
+      "score": 0.027798323
+    },
+    {
+      "id": 272,
+      "url": "https://www.devdiscourse.com/article/politics/3829705-indias-unstoppable-growth-a-self-determined-trajectory",
+      "title": "India's Unstoppable Growth: A Self-Determined Trajectory - Devdiscourse",
+      "score": 0.027608924
+    },
+    {
+      "id": 273,
+      "url": "https://apnews.com/article/iran-maga-media-trump-carlson-megyn-kelly-cb283ae306f172cea02f25ddc44dd56f",
+      "title": "Lock step no more: Iran war shows cracks in Trump\u2019s conservative media support - AP News",
+      "score": 0.027109984
+    },
+    {
+      "id": 274,
+      "url": "https://www.govtech.com/biz/govineer-buys-utility-billing-tech-supplier-truebill",
+      "title": "Govineer Buys Utility Billing Tech Supplier TrueBill - GovTech",
+      "score": 0.026925152
+    },
+    {
+      "id": 275,
+      "url": "https://www.modernghana.com/amp/videonews/621615",
+      "title": "Mojtaba Khamenei to succeed his father as Iran\u2019s supreme leader | BBC News - Modern Ghana",
+      "score": 0.026925152
+    },
+    {
+      "id": 276,
+      "url": "https://x.com/bobpockrass/status/2030652508050243991",
+      "title": "From earlier this week: Jimmie Johnson, Tony Kanaan talk about going from driver to team leader. @NASCARONFOX @IndyCarOnFOX - x.com",
+      "score": 0.026377967
+    },
+    {
+      "id": 277,
+      "url": "https://www.law.com/international-edition/2026/03/03/borrowers-push-to-blacklist-lender-law-firms-amid-restructuring-power-struggles/",
+      "title": "Borrowers Push to Blacklist Lender Law Firms Amid Restructuring Power Struggles - Law.com",
+      "score": 0.026197992
+    },
+    {
+      "id": 278,
+      "url": "https://www.edie.net/csrd-and-csddd-why-businesses-must-tackle-migrant-worker-abuse-in-supply-chains-to-comply/?amp=true",
+      "title": "CSRD and CSDDD: Why businesses must tackle migrant worker abuse in supply chains to comply - edie.net",
+      "score": 0.026197992
+    },
+    {
+      "id": 279,
+      "url": "https://globalarbitrationreview.com/article/sandoz-loses-icc-claim-over-drug-impurities",
+      "title": "Sandoz loses ICC claim over drug impurities - Global Arbitration Review",
+      "score": 0.025959885
+    },
+    {
+      "id": 280,
+      "url": "https://www.reuters.com/commentary/breakingviews/new-delhi-has-weak-hand-bank-deal-frenzy-2026-03-09/",
+      "title": "Breakingviews - New Delhi has weak hand in bank deal frenzy - Reuters",
+      "score": 0.025782676
+    },
+    {
+      "id": 281,
+      "url": "https://www.law.com/nationallawjournal/2026/03/05/nasdaq-filing-signals-wall-street-push-into-prediction-market-trades/",
+      "title": "Nasdaq Filing Signals Wall Street Push Into Prediction Market Trades - Law.com",
+      "score": 0.025665203
+    },
+    {
+      "id": 282,
+      "url": "https://barta24.com/english/details/national-en/280188",
+      "title": "PM for opening language training centres to develop skilled workforce for overseas jobs - \u09ac\u09be\u09b0\u09cd\u09a4\u09be \u09e8\u09ea",
+      "score": 0.025665203
+    },
+    {
+      "id": 283,
+      "url": "https://www.theguardian.com/environment/2026/mar/03/un-de-schutter-outlines-plan-for-redistributive-global-economy",
+      "title": "Global economy must stop pandering to \u2018frivolous desires of ultra-rich\u2019, says UN expert - The Guardian",
+      "score": 0.025548246
+    },
+    {
+      "id": 284,
+      "url": "https://www.cnn.com/2026/03/09/world/video/iran-kamal-kharazi-no-diplomacy-vrtc",
+      "title": "Senior Iranian official tells CNN: Iran ready for long war - CNN",
+      "score": 0.025028326
+    },
+    {
+      "id": 285,
+      "url": "https://www.hollywoodreporter.com/business/business-news/jeff-shell-lawsuit-whistleblower-who-sparked-paramount-internal-investigation-over-tv-deal-1236525364/",
+      "title": "Jeff Shell Sued by Whistleblower Who Sparked Paramount Investigation Over TV Deal - The Hollywood Reporter",
+      "score": 0.02440686
+    },
+    {
+      "id": 286,
+      "url": "https://www.theguardian.com/commentisfree/2026/mar/03/trump-iran-war-strategy",
+      "title": "What is Trump\u2019s endgame with Iran? | Robert Reich - The Guardian",
+      "score": 0.024184622
+    },
+    {
+      "id": 287,
+      "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/joint-statement-from-the-international-contact-group-for-the-great-lakes-icg-on-the-situation-in-the-eastern-democratic-republic-of-the-congo-drc",
+      "title": "Joint Statement from the International Contact Group for the Great Lakes (ICG) on the Situation in the Eastern Democratic Republic of the Congo (DRC) - U.S. Department of State (.gov)",
+      "score": 0.024145423
+    },
+    {
+      "id": 288,
+      "url": "https://x.com/MarioNawfal/status/2030155323235860867",
+      "title": "Grok's absolutely owning the rankings right now, Grok Fast takes number 1 on OpenRouter for long-context (2M tokens) and real-time trivia. Grok Thinking leads emotional intelligence with EQ-Bench3: 1586, while Grok Code Fast 1 grabs 57.6% programming - x.com",
+      "score": 0.02396436
+    },
+    {
+      "id": 289,
+      "url": "https://www.thenews.pk/print/1402670-pakistan-s-solar-growth-tied-to-china-s-industrial-power-mushahid",
+      "title": "Pakistan\u2019s solar growth tied to China\u2019s industrial power: Mushahid - thenews.pk",
+      "score": 0.023261933
+    },
+    {
+      "id": 290,
+      "url": "https://www.devdiscourse.com/article/headlines/3830858-strait-of-hormuz-the-fertilizer-shock-looming-over-global-agriculture",
+      "title": "Strait of Hormuz: The Fertilizer Shock Looming Over Global Agriculture - Devdiscourse",
+      "score": 0.022787457
+    },
+    {
+      "id": 291,
+      "url": "https://www.law.com/texaslawyer/2026/03/03/lawyers-accidentally-reveal-trade-secrets-that-was-very-surprising/",
+      "title": "Lawyers Accidentally Reveal Trade Secrets: 'That Was Very Surprising' - Law.com",
+      "score": 0.022631409
+    },
+    {
+      "id": 292,
+      "url": "https://tribune.com.pk/story/2596532/womens-economic-contribution-through-farming-praised",
+      "title": "Women's economic contribution through farming praised - The Express Tribune",
+      "score": 0.022631409
+    },
+    {
+      "id": 293,
+      "url": "https://www.law.com/njlawjournal/2026/03/03/court-notes-scarcity-of-case-law-cannabis-regulation/",
+      "title": "Court Notes Scarcity of Case Law: Cannabis Regulation - Law.com",
+      "score": 0.02093424
+    },
+    {
+      "id": 294,
+      "url": "https://www.cnbc.com/video/2026/03/04/u-s-resilience-resilient-goldman-sachs-sharmin-mossavar-rahmani-on-2026-outlook.html",
+      "title": "'U.S. Resilience Resilient': Goldman Sachs' Sharmin Mossavar-Rahmani on 2026 outlook - CNBC",
+      "score": 0.02074295
+    },
+    {
+      "id": 295,
+      "url": "https://tribune.com.pk/story/2596605/israel-faces-difficulty-stopping-hezbollah-drones-officials-warn-of-long-war",
+      "title": "Israel faces difficulty stopping Hezbollah drones, officials warn of long war - The Express Tribune",
+      "score": 0.02074295
+    },
+    {
+      "id": 296,
+      "url": "https://www.geo.tv/latest/654436-king-charles-cancer-type-revealed",
+      "title": "King Charles cancer type revealed? - Geo News",
+      "score": 0.02074295
+    },
+    {
+      "id": 297,
+      "url": "https://www.brecorder.com/news/40410689/digital-transformation-in-agriculture",
+      "title": "Digital transformation in agriculture - Business Recorder",
+      "score": 0.020553375
+    },
+    {
+      "id": 298,
+      "url": "https://worldoil.com/news/2026/3/6/angola-welcomes-oil-price-surge-but-warns-rally-may-be-temporary/",
+      "title": "Angola welcomes oil price surge but warns rally may be temporary - World Oil",
+      "score": 0.01999476
+    },
+    {
+      "id": 299,
+      "url": "https://www.jpost.com/israel-news/article-888835",
+      "title": "Mirilashvili on Benjamin Netanyahu, Donald Trump, and Israel\u2019s priorities - The Jerusalem Post",
+      "score": 0.019857448
+    },
+    {
+      "id": 300,
+      "url": "https://www.lrb.co.uk/the-paper/v48/n04/james-butler/need-a-lord-on-the-board",
+      "title": "James Butler \u00b7 \u2018Need a lord on the board?\u2019: Mandelson and the Lobbyists - London Review of Books",
+      "score": 0.019857448
+    },
+    {
+      "id": 301,
+      "url": "https://www.accessnewswire.com/newsroom/en/business-and-professional-services/select-medical-sem-stock-notice-does-16.50-per-share-represent-a-1144981",
+      "title": "SELECT MEDICAL (SEM) STOCK NOTICE: Does $16.50 Per Share Represent a Fair Buyout Price for Select Medical Shareholders? Kaskela Law Firm is Investigating the Fairness of the Buyout Price and Encourages SEM Shareholders to Exercise their Legal - ACCESS Newswire",
+      "score": 0.019096619
+    },
+    {
+      "id": 302,
+      "url": "https://meyka.com/blog/gspc-today-march-08-capitol-protest-puts-usisrael-policy-risk-in-focus-0803/",
+      "title": "^GSPC Today, March 08: Capitol Protest Puts US\u2013Israel Policy Risk in Focus - Meyka",
+      "score": 0.019052766
+    },
+    {
+      "id": 303,
+      "url": "https://www.law.com/texaslawyer/2026/03/03/king--spalding-adds-3-more-winston-trial-partners-in-dallas-/",
+      "title": "King & Spalding Adds 3 More Winston Trial Partners in Dallas - Law.com",
+      "score": 0.019009009
+    },
+    {
+      "id": 304,
+      "url": "https://natlawreview.com/article/proposed-dhs-rule-would-revise-asylum-based-work-authorization-eligibility-employer",
+      "title": "Proposed DHS Rule Would Revise Asylum\u2011Based Work Authorization Eligibility: Employer Considerations - The National Law Review",
+      "score": 0.01879171
+    },
+    {
+      "id": 305,
+      "url": "https://www.blackenterprise.com/ghana-mining-ep-205-million-funding/",
+      "title": "Ghanaian Mining Company Secures $205 Million Investment To Expand Mining Operations - Black Enterprise",
+      "score": 0.018705472
+    },
+    {
+      "id": 306,
+      "url": "https://www.marinelink.com/news/m-barrels-venezuelan-crude-headed-china-536725",
+      "title": "1M Barrels Of Venezuelan Crude Headed To China - Marine News Magazine",
+      "score": 0.018662501
+    },
+    {
+      "id": 307,
+      "url": "https://www.politico.com/news/2026/03/03/the-iranian-exile-group-that-played-washington-for-this-moment-00808052",
+      "title": "The Iranian exile group that played Washington for this moment - Politico",
+      "score": 0.018491575
+    },
+    {
+      "id": 308,
+      "url": "https://www.wsj.com/articles/saniya-jamil-e0c0b1df?gaa_at=eafs&gaa_n=AWEtsqetWXXPKLKSOqfv2wnpDSb7OjcTDfjXstiDGrc3YMtPDIUdekGBsTys&gaa_ts=69ae4f1c&gaa_sig=z4Re3tWafcA4gDBLFF03nGJ82SrTCvj96yOVmmDc5MdI2G40XvtHPsPqUPKku-4GT7OsqcYkkaGCFhiv5oUO5g%3D%3D",
+      "title": "Saniya Jamil - WSJ",
+      "score": 0.018322192
+    },
+    {
+      "id": 309,
+      "url": "https://news.bloomberglaw.com/securities-law/us-panel-probes-underwriters-role-in-chinese-stock-manipulation",
+      "title": "US Panel Probes Underwriters\u2019 Role in Chinese Stock Manipulation - Bloomberg Law News",
+      "score": 0.01823807
+    },
+    {
+      "id": 310,
+      "url": "https://finance.yahoo.com/news/ghanaian-mining-company-secures-205-180000591.html",
+      "title": "Ghanaian Mining Company Secures $205 Million Investment To Expand Mining Operations - Yahoo Finance",
+      "score": 0.017946618
+    },
+    {
+      "id": 311,
+      "url": "https://www.theguardian.com/world/2026/mar/03/nepal-gen-z-election-popular-former-rapper-balen",
+      "title": "Nepal\u2019s gen-Z election: can popular former rapper Balen topple a veteran political heavyweight? - The Guardian",
+      "score": 0.017823111
+    },
+    {
+      "id": 312,
+      "url": "https://www.thehindu.com/opinion/op-ed/gender-agriculture-and-climate-change/article70718818.ece",
+      "title": "Gender, agriculture and climate change - The Hindu",
+      "score": 0.01697999
+    },
+    {
+      "id": 313,
+      "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/a-statement-on-u-s-venezuela-relations",
+      "title": "A Statement on U.S.-Venezuela Relations - U.S. Department of State (.gov)",
+      "score": 0.015603534
+    },
+    {
+      "id": 314,
+      "url": "https://www.jpost.com/middle-east/iran-news/article-888735",
+      "title": "Qatar arrests Iranian spies, saboteurs - The Jerusalem Post",
+      "score": 0.0113756005
+    },
+    {
+      "id": 315,
+      "url": "https://indianexpress.com/article/explained/explained-sci-tech/anthropic-vs-pentagon-us-supply-chain-risk-standoff-claude-ai-10571260/lite/",
+      "title": "Anthropic to fight US govt in court over \u2018supply-chain risk\u2019 label: Behind the standoff, and what it means for Claude AI - The Indian Express",
+      "score": 0.010448625
+    },
+    {
+      "id": 316,
+      "url": "https://www.newsweek.com/racist-antisemitic-messages-linked-to-florida-republican-group-chat-11635626",
+      "title": "Racist, Antisemitic Messages Linked to Florida Republican Group Chat - Newsweek",
+      "score": 0.009232215
+    },
+    {
+      "id": 317,
+      "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/statement-from-assistant-secretary-dylan-johnson-on-ensuring-the-safety-of-american-citizens-in-the-middle-east-2",
+      "title": "Statement from Assistant Secretary Dylan Johnson on Ensuring the Safety of American Citizens in the Middle East - U.S. Department of State (.gov)",
+      "score": 0.008610767
+    },
+    {
+      "id": 318,
+      "url": "https://www.bloomberg.com/news/articles/2026-03-07/musk-s-spam-frustration-was-confusing-to-ex-twitter-executives",
+      "title": "Musk\u2019s Spam Frustration Was \u2018Confusing\u2019 to Ex-Twitter Executives - Bloomberg",
+      "score": 0.0074317735
+    },
+    {
+      "id": 319,
+      "url": "https://www.thesunchronicle.com/news/nation_world/south-florida-university-probes-racist-group-chat-tied-to-a-local-gop-official/article_c0e90698-61d8-5d1d-99a2-f32603e06514.html",
+      "title": "South Florida university probes racist group chat tied to a local GOP official - The Sun Chronicle",
+      "score": 0.007121429
+    },
+    {
+      "id": 320,
+      "url": "https://www.theguardian.com/world/2026/mar/09/istanbul-mayor-ekrem-imamoglu-trial-corruption-turkey",
+      "title": "Istanbul\u2019s mayor goes on trial with 400 others in effort \u2018to remove him from politics\u2019 - The Guardian",
+      "score": 0.0070938617
+    },
+    {
+      "id": 321,
+      "url": "https://timesofindia.indiatimes.com/city/jaipur/indian-army-dg-eme-reviews-tech-innovations-operational-readiness-in-rajasthans-desert/articleshow/129327625.cms",
+      "title": "Indian Army DG EME reviews tech innovations, operational readiness in Rajasthan's desert - The Times of India",
+      "score": 0.007039046
+    },
+    {
+      "id": 322,
+      "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/status-of-u-s-embassy-kuwait-city",
+      "title": "Status of U.S. Embassy Kuwait City - U.S. Department of State (.gov)",
+      "score": 0.006903838
+    },
+    {
+      "id": 323,
+      "url": "https://www.livemint.com/industry/manufacturing/india-semiconductor-mission-critical-minerals-self-reliance-private-nuclear-defence-11772952324772.html",
+      "title": "India targets chip design self-reliance, eyes Indian MNC talent - Mint",
+      "score": 0.006463138
+    },
+    {
+      "id": 324,
+      "url": "https://www.hindustantimes.com/india-news/what-does-abdication-mean-explained-as-sonia-gandhi-uses-word-over-iran-supreme-leader-khamenei-death-101772524846862.html",
+      "title": "What does \u2018abdication\u2019 mean? Explained as Sonia Gandhi uses word over Iran Supreme Leader Khamenei's death | India News - Hindustan Times",
+      "score": 0.0062899017
+    },
+    {
+      "id": 325,
+      "url": "https://abovethelaw.com/2026/03/judges-to-ag-pam-bondi-its-ok-for-the-govt-to-dox-people-but-not-ok-for-people-to-dox-govt-employees/",
+      "title": "Judges To AG Pam Bondi: It\u2019s OK For The Gov\u2019t To Dox People, But Not OK For People To Dox Gov\u2019t Employees? - Above the Law",
+      "score": 0.005220126
+    },
+    {
+      "id": 326,
+      "url": "https://www.bbc.com/news/articles/c70n5l9l24po?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bnews%5D-%5Bbizdev%5D-%5Bisapi%5D&bcmt=1",
+      "title": "Look who's talking as TUV retraction underlines more unpredictable politics - BBC",
+      "score": 0.003678509
+    },
+    {
+      "id": 327,
+      "url": "https://www.livemint.com/companies/news/lloyds-india-metals-congo-copper-mining-risk-analysis-11772951595986.html",
+      "title": "Can Lloyds replicate Gadchiroli success in Congo\u2019s copper belt? - Mint",
+      "score": 0.003209961
+    },
+    {
+      "id": 328,
+      "url": "https://www.researchprofessionalnews.com/rr-he-government-playbook-2026-3-we-need-to-talk-about-shabana/",
+      "title": "We need to talk about Shabana - Research Professional News",
+      "score": 0.0025311115
+    },
+    {
+      "id": 329,
+      "url": "https://www.haaretz.com/israel-news/2026-03-08/ty-article/.premium/shin-bet-threatens-israeli-with-security-offense-charges-over-netanyahu-posts/0000019c-cd5c-dcff-a3ff-fdfeeb1b0000",
+      "title": "Shin Bet threatens Israeli with security offense charges over Netanyahu posts - Haaretz",
+      "score": 0.0024154834
+    }
+  ],
+  "combined_decision": {
+    "recommendation": "Recommend Reject",
+    "combined_tier": "HIGH",
+    "factual_tier": "HIGH",
+    "factual_score": 9.67,
+    "rcs_tier": "ELEVATED",
+    "rcs_score": 5.7,
+    "driver": "factual_risk",
+    "driver_detail": "Combined recommendation driven by Factual Risk Score (9.67/10 HIGH) which is more cautious than Reputational Contagion Score (5.7/10 ELEVATED)"
+  }
+}
