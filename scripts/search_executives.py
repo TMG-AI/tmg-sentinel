@@ -5,7 +5,8 @@ When vetting a company, identifies top executives via SEC EDGAR Form 3/4
 filings, then runs mini due diligence on each: FEC donations, targeted
 news search, and sanctions screening.
 
-For private/non-SEC companies, falls back to Tavily web search.
+For private/non-SEC companies, falls back to Tavily web search + Claude
+extraction of executive names from search results.
 
 Only runs when subject_type == "organization".
 """
@@ -26,8 +27,9 @@ from config_tavily import get_tavily_params
 
 # ─── SEC EDGAR: Find Executives via Form 3/4 ──────────────────
 
-def lookup_cik(company_name: str) -> str:
-    """Look up CIK number for a company using EDGAR full-text search."""
+def lookup_cik(company_name: str) -> tuple:
+    """Look up CIK number for a company using EDGAR full-text search.
+    Returns (cik, matched_company_name) or (None, None)."""
     try:
         resp = requests.get(
             config.ENDPOINTS["sec_efts_search"],
@@ -35,7 +37,7 @@ def lookup_cik(company_name: str) -> str:
                 "q": f'"{company_name}"',
                 "forms": "10-K",
                 "from": 0,
-                "size": 1,
+                "size": 3,  # Get a few results to check for best match
             },
             headers={"User-Agent": config.SEC_EDGAR_USER_AGENT},
             timeout=config.REQUEST_TIMEOUT,
@@ -44,13 +46,34 @@ def lookup_cik(company_name: str) -> str:
         data = resp.json()
 
         hits = data.get("hits", {}).get("hits", [])
-        if hits:
-            ciks = hits[0].get("_source", {}).get("ciks", [])
-            if ciks:
-                return str(ciks[0])
+        if not hits:
+            return None, None
+
+        # Check each hit for a company name match
+        search_lower = company_name.lower().strip()
+        search_words = set(w for w in search_lower.split() if len(w) >= 3 and w not in ("inc", "llc", "ltd", "corp", "the", "and", "corporation", "company", "technologies"))
+
+        for hit in hits:
+            source = hit.get("_source", {})
+            entity_name = (source.get("entity_name", "") or source.get("display_names", [""])[0]).lower().strip()
+            entity_words = set(w for w in entity_name.split() if len(w) >= 3 and w not in ("inc", "llc", "ltd", "corp", "the", "and", "corporation", "company", "technologies"))
+
+            # Require at least one significant word overlap
+            overlap = search_words & entity_words
+            if overlap and len(overlap) >= min(len(search_words), len(entity_words)) * 0.5:
+                ciks = source.get("ciks", [])
+                if ciks:
+                    matched_name = source.get("entity_name", "") or source.get("display_names", [""])[0]
+                    return str(ciks[0]), matched_name
+
+        # No good match found
+        first_name = hits[0].get("_source", {}).get("entity_name", "Unknown")
+        print(f"    EDGAR match rejected: searched '{company_name}', best match was '{first_name}' — not similar enough")
+        return None, None
+
     except Exception as e:
         print(f"    CIK lookup error: {e}")
-    return None
+    return None, None
 
 
 def get_form3_filings(cik: str, max_filings: int = 30) -> list:
@@ -178,12 +201,12 @@ def identify_executives_edgar(company_name: str) -> list:
     """Identify executives using SEC EDGAR Form 3/4 filings."""
     print(f"    Searching SEC EDGAR for executives of '{company_name}'...")
 
-    cik = lookup_cik(company_name)
+    cik, matched_name = lookup_cik(company_name)
     if not cik:
         print(f"    No CIK found for '{company_name}' — will use Tavily fallback")
         return []
 
-    print(f"    Found CIK: {cik}")
+    print(f"    Found CIK: {cik} (matched: {matched_name})")
     time.sleep(0.15)  # SEC rate limit: 10 req/sec
 
     filings = get_form3_filings(cik, max_filings=30)
@@ -266,15 +289,18 @@ def identify_executives_edgar(company_name: str) -> list:
 # ─── Tavily Fallback: Find Executives via Web Search ──────────
 
 def identify_executives_tavily(company_name: str) -> list:
-    """Identify executives via Tavily web search (fallback for private companies)."""
+    """Identify executives via Tavily web search + Claude extraction.
+    For private companies not in SEC EDGAR."""
     print(f"    Searching web for executives of '{company_name}'...")
 
     queries = [
-        f'"{company_name}" CEO CFO CTO executive leadership team',
-        f'"{company_name}" board of directors officers',
+        f'"{company_name}" CEO founder leadership team executives',
+        f'"{company_name}" CFO CTO COO president board directors',
+        f'"{company_name}" executive team Crunchbase OR LinkedIn OR Bloomberg',
     ]
 
-    all_results = []
+    all_content = []
+    raw_results = []
     for query in queries:
         try:
             params = get_tavily_params("news_basic", query)
@@ -286,27 +312,81 @@ def identify_executives_tavily(company_name: str) -> list:
             )
             resp.raise_for_status()
             data = resp.json()
-            all_results.extend(data.get("results", []))
+            results = data.get("results", [])
+            raw_results.extend(results)
+            for r in results:
+                content = r.get("content", "") or ""
+                title = r.get("title", "") or ""
+                all_content.append(f"{title}\n{content}")
             time.sleep(config.REQUEST_DELAY)
         except Exception as e:
             print(f"    Tavily search error: {e}")
 
-    # We can't parse structured executive data from web results,
-    # but we return the raw results for the synthesis prompt to interpret
-    if all_results:
-        print(f"    Found {len(all_results)} web results about executives")
+    if not all_content:
+        print(f"    No web results found for executives")
+        return []
 
-    return [{
-        "source": "Tavily web search",
-        "results": [
-            {
-                "title": r.get("title", ""),
-                "url": r.get("url", ""),
-                "content": (r.get("content", "") or "")[:500],
-            }
-            for r in all_results[:10]
-        ],
-    }]
+    print(f"    Found {len(raw_results)} web results, extracting executive names with Claude...")
+
+    # Use Claude to extract structured executive names from search results
+    try:
+        import anthropic
+        client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
+
+        combined_text = "\n---\n".join(all_content[:10])  # Cap at 10 results
+
+        extraction_prompt = f"""From the following web search results about {company_name}, extract the names and titles of key executives (CEO, CFO, CTO, COO, President, Founder, board members, etc.).
+
+Return ONLY a JSON array. Each element should have "name" (full name, natural order like "John Smith") and "title" (their role). Maximum 10 executives. Most senior first.
+
+If you cannot confidently identify any executives, return an empty array [].
+
+Search results:
+{combined_text}
+
+Return ONLY the JSON array, no other text."""
+
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",  # Fast + cheap for extraction
+            max_tokens=1000,
+            messages=[{"role": "user", "content": extraction_prompt}],
+        )
+
+        response_text = response.content[0].text.strip()
+
+        # Parse JSON from response (handle markdown code blocks)
+        if "```" in response_text:
+            json_match = re.search(r'```(?:json)?\s*(\[.*?\])\s*```', response_text, re.DOTALL)
+            if json_match:
+                response_text = json_match.group(1)
+
+        extracted = json.loads(response_text)
+
+        if not isinstance(extracted, list):
+            extracted = []
+
+        # Convert to standard exec format
+        executives = []
+        for item in extracted[:10]:
+            name = item.get("name", "").strip()
+            title = item.get("title", "").strip()
+            if name:
+                executives.append({
+                    "name": name,
+                    "is_director": any(w in title.lower() for w in ["director", "board", "chairman"]),
+                    "is_officer": any(w in title.lower() for w in ["ceo", "cfo", "cto", "coo", "president", "chief", "officer", "founder"]),
+                    "is_ten_percent_owner": "founder" in title.lower(),
+                    "officer_title": title,
+                    "source": "Tavily + Claude extraction",
+                })
+
+        print(f"    Extracted {len(executives)} executives from web results")
+        return executives
+
+    except Exception as e:
+        print(f"    Claude extraction failed: {e}")
+        # Return empty — synthesis will work without exec data
+        return []
 
 
 # ─── Mini-Vet: FEC + News + Sanctions for Each Executive ──────
@@ -455,14 +535,17 @@ def run_mini_vet(executive: dict, company_name: str) -> dict:
 
     # Normalize name from EDGAR format to natural order for news/sanctions queries
     # EDGAR uses "LAST FIRST MIDDLE" or "Last, First Middle"
-    if "," in name:
+    # Tavily-extracted names are already in natural order
+    if executive.get("source") == "Tavily + Claude extraction":
+        display_name = name  # Already in natural order
+    elif "," in name:
         # "Cohen, Stephen Andrew" → "Stephen Andrew Cohen"
         last, rest = name.split(",", 1)
         display_name = f"{rest.strip()} {last.strip()}"
     else:
         parts = name.split()
         if len(parts) >= 2 and parts[0].isupper() and len(parts[0]) > 1:
-            # "THIEL PETER" or "Cohen Stephen Andrew" → "Stephen Andrew Cohen" / "Peter Thiel"
+            # "THIEL PETER" or "Cohen Stephen Andrew" → "Peter Thiel"
             display_name = " ".join(parts[1:]) + " " + parts[0]
             display_name = display_name.strip().title()
         else:
@@ -520,13 +603,15 @@ def run_executive_search(intake: dict) -> dict:
     # Try SEC EDGAR first (public companies)
     executives = identify_executives_edgar(name)
     identification_source = "SEC EDGAR Form 3/4"
-    tavily_fallback = None
 
     if not executives:
-        # Fallback to Tavily for private companies
-        tavily_fallback = identify_executives_tavily(name)
-        identification_source = "Tavily web search"
-        print(f"    Using Tavily fallback for executive identification")
+        # Fallback to Tavily + Claude for private companies
+        executives = identify_executives_tavily(name)
+        identification_source = "Tavily + Claude extraction"
+        if executives:
+            print(f"    Using Tavily + Claude extraction for executive identification")
+        else:
+            print(f"    WARNING: Could not identify executives via EDGAR or Tavily")
 
     # Mini-vet the top executives (cap at 8 to manage API costs)
     MAX_EXEC_VET = 8
@@ -539,7 +624,7 @@ def run_executive_search(intake: dict) -> dict:
         for i, exec_info in enumerate(to_vet):
             exec_name = exec_info.get("name", "Unknown")
             title = exec_info.get("officer_title", "")
-            role = title or ("Director" if exec_info.get("is_director") else "10%+ Owner")
+            role = title or ("Director" if exec_info.get("is_director") else "Executive")
             print(f"    [{i+1}/{len(to_vet)}] {exec_name} — {role}")
 
             vetted = run_mini_vet(exec_info, name)
@@ -574,7 +659,6 @@ def run_executive_search(intake: dict) -> dict:
             }
             for e in executives
         ],
-        "tavily_fallback": tavily_fallback,
         "metadata": {
             "checked_at": datetime.now(timezone.utc).isoformat(),
             "source": identification_source,
@@ -587,7 +671,7 @@ def run_executive_search(intake: dict) -> dict:
         json.dump(result, f, indent=2)
 
     total_donations = result["summary"]["total_fec_contributions"]
-    print(f"  ✅ Step 11: {len(executives)} executives found, {len(vetted_executives)} vetted, ${total_donations:,.0f} in FEC donations → {output_path.name}")
+    print(f"  ✅ Step 11: {len(executives)} executives found ({identification_source}), {len(vetted_executives)} vetted, ${total_donations:,.0f} in FEC donations → {output_path.name}")
 
     return result
 
