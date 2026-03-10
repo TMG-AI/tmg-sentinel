@@ -5,6 +5,7 @@ import {
 } from "@/lib/vetting-utils";
 import { CheckCircle, XCircle, Loader2, AlertTriangle, Skull, Clock, ChevronRight, ShieldAlert, Landmark } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { isInternationalSubject, getCountryFlag } from "@/lib/international-utils";
 
 interface Props {
   vetting: VettingRequest;
@@ -24,6 +25,8 @@ export function VettingCard({ vetting: v, onClick }: Props) {
   const combined = v.result_json?.combined_decision;
   const contracts = v.result_json?.government_contracts;
   const hasDivergence = !!rca?.divergence_alert;
+  const countryFlag = getCountryFlag(v.country);
+  const isIntl = isInternationalSubject(v.country);
 
   // Primary recommendation from combined_decision
   const primaryTier = combined?.combined_tier || v.risk_tier;
@@ -49,7 +52,11 @@ export function VettingCard({ vetting: v, onClick }: Props) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2.5 mb-2 flex-wrap">
             <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors truncate">
+              {countryFlag && <span className="mr-1.5">{countryFlag}</span>}
               {v.subject_name}
+              {isIntl && !countryFlag && v.country && (
+                <span className="ml-1.5 text-xs font-medium text-muted-foreground align-middle">({v.country})</span>
+              )}
             </h3>
             <Badge variant="outline" className={v.subject_type === "individual" ? "bg-[hsl(var(--domestic-political)/0.08)] text-[hsl(var(--domestic-political))] border-[hsl(var(--domestic-political)/0.15)]" : "bg-[hsl(var(--accent)/0.08)] text-[hsl(var(--accent))] border-[hsl(var(--accent)/0.15)]"}>
               {v.subject_type === "individual" ? "Individual" : "Organization"}

@@ -15,8 +15,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogD
 import {
   CheckCircle, XCircle, ArrowLeft, AlertTriangle, ExternalLink, Upload,
   Shield, Skull, FileText, Clock, Newspaper, ChevronDown, ShieldAlert,
-  BarChart3, Flag, Link2, Users, Landmark, ChevronUp, DollarSign,
+  BarChart3, Flag, Link2, Users, Landmark, ChevronUp, DollarSign, Globe, Info,
 } from "lucide-react";
+import { isInternationalSubject, getCountryFlag } from "@/lib/international-utils";
 import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -191,6 +192,9 @@ export default function VettingDetail() {
   const contracts = result?.government_contracts;
   const gatesFailed = gates?.sanctions.status === "FAIL" || gates?.debarment.status === "FAIL";
   const conflictDim = dimensions?.conflict_of_interest;
+  const isIntl = isInternationalSubject(result?.subject?.country || v.country);
+  const countryFlag = getCountryFlag(result?.subject?.country || v.country);
+  const tavilySources = (result?.metadata as any)?.tavily_sources ?? result?.sources?.length ?? 0;
 
   const handleDecisionClick = (d: Decision) => {
     setPendingDecision(d);
@@ -262,7 +266,15 @@ export default function VettingDetail() {
       <div className="glass-card p-6 mb-0 rounded-b-none border-b-0">
         <div className="flex flex-col lg:flex-row lg:items-start gap-6">
           <div className="flex-1">
-            <h1 className="text-3xl font-bold text-foreground mb-3">{v.subject_name}</h1>
+            <h1 className="text-3xl font-bold text-foreground mb-3">
+              {countryFlag && <span className="mr-2">{countryFlag}</span>}
+              {v.subject_name}
+              {isIntl && !countryFlag && v.country && (
+                <Badge variant="outline" className="ml-2 text-xs align-middle bg-muted">
+                  {v.country}
+                </Badge>
+              )}
+            </h1>
             <div className="flex items-center gap-2 flex-wrap mb-3">
               <Badge variant="outline" className={v.subject_type === "individual" ? "bg-[hsl(var(--domestic-political)/0.08)] text-[hsl(var(--domestic-political))] border-[hsl(var(--domestic-political)/0.15)]" : "bg-[hsl(var(--accent)/0.08)] text-[hsl(var(--accent))] border-[hsl(var(--accent)/0.15)]"}>
                 {v.subject_type === "individual" ? "Individual" : "Organization"}
@@ -342,6 +354,21 @@ export default function VettingDetail() {
         </div>
       )}
 
+      {/* International Subject Banner */}
+      {isIntl && (
+        <div className="p-4 border-x border-border bg-primary/5 border-t border-t-primary/20">
+          <div className="flex items-start gap-3">
+            <Globe className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+            <div>
+              <span className="text-sm font-bold text-primary">🌍 International Subject — {result?.subject?.country || v.country}</span>
+              <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                US-only databases (FEC, SEC, CourtListener, Senate LDA, SAM.gov, USAspending) were not searched. Risk assessment is based on international sources: OpenSanctions PEP data, Tavily web search ({tavilySources} sources), and country-specific corruption searches.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Tab Navigation */}
       <div className="sticky top-0 z-20 bg-card border border-border rounded-b-xl mb-6 overflow-x-auto">
         <div className="flex items-center gap-1 px-3 py-2">
@@ -364,24 +391,51 @@ export default function VettingDetail() {
 
       {/* ===== SUMMARY TAB ===== */}
       {activeTab === "summary" && result?.executive_summary && (
-        <div className="glass-card p-6 mb-6">
-          <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
-          <div className="max-w-none text-foreground space-y-2">
-            {result.executive_summary.split("\n").filter(line => line.trim() !== "").map((line, i) => {
-              const clean = (s: string) => s.replace(/\s*\[\d+\]\s*/g, ' ').replace(/\*\*(.*?)\*\*/g, "$1").trim();
-              const renderText = (text: string) => {
-                if (text.includes("REJECT —") || text.includes("REJECT —")) {
-                  const parts = text.split(/(REJECT\s*[—\u2014])/);
-                  return parts.map((part, j) => /REJECT\s*[—\u2014]/.test(part) ? <span key={j} className="font-black text-[hsl(var(--risk-critical))]">{part}</span> : part);
-                }
-                return text;
-              };
-              if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-5 mb-2 text-foreground">{renderText(clean(line.replace("## ", "")))}</h3>;
-              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground mt-4 mb-1.5">{renderText(clean(line))}</p>;
-              if (line.startsWith("- ")) return <li key={i} className="text-muted-foreground ml-4 mb-1.5 leading-relaxed">{renderText(clean(line.replace("- ", "")))}</li>;
-              return <p key={i} className="text-muted-foreground mb-2 leading-relaxed">{renderText(clean(line))}</p>;
-            })}
+        <div className="space-y-6 mb-6">
+          <div className="glass-card p-6">
+            <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
+            <div className="max-w-none text-foreground space-y-2">
+              {result.executive_summary.split("\n").filter(line => line.trim() !== "").map((line, i) => {
+                const clean = (s: string) => s.replace(/\s*\[\d+\]\s*/g, ' ').replace(/\*\*(.*?)\*\*/g, "$1").trim();
+                const renderText = (text: string) => {
+                  if (text.includes("REJECT —") || text.includes("REJECT —")) {
+                    const parts = text.split(/(REJECT\s*[—\u2014])/);
+                    return parts.map((part, j) => /REJECT\s*[—\u2014]/.test(part) ? <span key={j} className="font-black text-[hsl(var(--risk-critical))]">{part}</span> : part);
+                  }
+                  return text;
+                };
+                if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-5 mb-2 text-foreground">{renderText(clean(line.replace("## ", "")))}</h3>;
+                if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground mt-4 mb-1.5">{renderText(clean(line))}</p>;
+                if (line.startsWith("- ")) return <li key={i} className="text-muted-foreground ml-4 mb-1.5 leading-relaxed">{renderText(clean(line.replace("- ", "")))}</li>;
+                return <p key={i} className="text-muted-foreground mb-2 leading-relaxed">{renderText(clean(line))}</p>;
+              })}
+            </div>
           </div>
+
+          {/* Pipeline Steps */}
+          {result.metadata?.steps_completed && (
+            <div className="glass-card p-5">
+              <h3 className="section-title flex items-center gap-2"><Shield className="w-4 h-4" /> Pipeline Steps</h3>
+              <div className="flex flex-wrap gap-2">
+                {result.metadata.steps_completed.map((step, i) => (
+                  <span key={i} className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full bg-[hsl(var(--risk-low)/0.08)] text-[hsl(var(--risk-low))] border border-[hsl(var(--risk-low)/0.15)]">
+                    <CheckCircle className="w-3 h-3" />
+                    {step}
+                  </span>
+                ))}
+                {isIntl && (
+                  <>
+                    {["FEC / Campaign Finance", "SEC Filings", "Court Records", "Lobbying Disclosures", "Bankruptcy", "Gov Contracts", "Gov Debarment"].map((step, i) => (
+                      <span key={`na-${i}`} className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full bg-muted text-muted-foreground/50 border border-border line-through">
+                        {step}
+                        <span className="no-underline ml-1 text-[10px]">N/A</span>
+                      </span>
+                    ))}
+                  </>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
