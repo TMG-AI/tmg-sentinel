@@ -1,5 +1,8 @@
 # Vetting Pipeline Project - Session Status
 
+## User Preferences
+- **NEVER produce Markdown (.md) files** for memos, reports, or documents. Always use DOCX format. Shannon shares these with colleagues.
+
 ## Last Updated: 2026-03-10 (Session 11)
 
 ## Completed (Session 11) — Perplexity-Recommended Improvements
