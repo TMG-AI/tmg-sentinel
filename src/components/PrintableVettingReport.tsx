@@ -46,6 +46,42 @@ const sectionHeader = (title: string) => ({
   color: "#111827",
 });
 
+/** Find the source URL by citation number like [1] */
+function findSourceUrl(sources: { id: number; url: string; title: string; score: number }[] | undefined, id: number): string | undefined {
+  return sources?.find(s => s.id === id)?.url;
+}
+
+/** Render text with inline [n] citations turned into clickable links */
+function renderTextWithCitations(text: string, sources: { id: number; url: string; title: string; score: number }[] | undefined): (string | JSX.Element)[] {
+  if (!sources || sources.length === 0) return [cleanText(text)];
+  const parts: (string | JSX.Element)[] = [];
+  const regex = /\[(\d+)\]/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  const cleaned = text.replace(/\*\*(.*?)\*\*/g, "$1");
+  while ((match = regex.exec(cleaned)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(cleaned.slice(lastIndex, match.index));
+    }
+    const id = parseInt(match[1], 10);
+    const url = findSourceUrl(sources, id);
+    if (url) {
+      parts.push(
+        <a key={`cite-${match.index}`} href={url} target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", textDecoration: "underline" }}>
+          [{id}]
+        </a>
+      );
+    } else {
+      parts.push(`[${id}]`);
+    }
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < cleaned.length) {
+    parts.push(cleaned.slice(lastIndex));
+  }
+  return parts;
+}
+
 export function PrintableVettingReport({ vetting: v }: PrintableVettingReportProps) {
   const result = v.result_json;
   const combined = result?.combined_decision;
@@ -56,6 +92,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
   const executives = result?.key_executives;
   const contracts = result?.government_contracts;
   const scoring = result?.scoring;
+  const sources = result?.sources;
   const primaryTier = combined?.combined_tier || v.risk_tier;
   const tc = getTierStyle(primaryTier);
 
@@ -121,7 +158,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
 
       {/* DIVERGENCE ALERT */}
       {rca?.divergence_alert && (
-        <div style={{ marginBottom: "1.25rem", padding: "0.75rem", borderRadius: "6px", borderLeft: "4px solid #ea580c", backgroundColor: "#fff7ed", pageBreakInside: "avoid" }}>
+        <div style={{ marginBottom: "1.25rem", padding: "0.75rem", borderRadius: "6px", borderLeft: "4px solid #ea580c", backgroundColor: "#fff7ed" }}>
           <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "#ea580c", margin: "0 0 0.25rem", textTransform: "uppercase" }}>⚠ Divergence Alert</p>
           <p style={{ fontSize: "0.8rem", color: "#374151", margin: 0 }}>{rca.divergence_alert}</p>
         </div>
@@ -129,15 +166,15 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
 
       {/* EXECUTIVE SUMMARY */}
       {result?.executive_summary && (
-        <div style={{ marginBottom: "1.5rem", pageBreakInside: "avoid" }}>
+        <div style={{ marginBottom: "1.5rem" }}>
           <h2 style={sectionHeader("Executive Summary")}>Executive Summary</h2>
           <div style={{ fontSize: "0.8rem", color: "#374151", lineHeight: 1.6 }}>
             {result.executive_summary.split("\n").filter(l => l.trim()).map((line, i) => {
               const clean = cleanText(line);
               if (line.startsWith("## ")) return <h3 key={i} style={{ fontSize: "0.85rem", fontWeight: 700, marginTop: "0.75rem", marginBottom: "0.25rem", color: "#111827" }}>{clean.replace("## ", "")}</h3>;
               if (line.startsWith("**") && line.endsWith("**")) return <p key={i} style={{ fontWeight: 700, color: "#111827", marginTop: "0.5rem", marginBottom: "0.25rem" }}>{clean}</p>;
-              if (line.startsWith("- ")) return <li key={i} style={{ marginLeft: "1rem", marginBottom: "0.25rem", color: "#374151" }}>{clean.replace("- ", "")}</li>;
-              return <p key={i} style={{ marginBottom: "0.35rem", color: "#374151" }}>{clean}</p>;
+              if (line.startsWith("- ")) return <li key={i} style={{ marginLeft: "1rem", marginBottom: "0.25rem", color: "#374151" }}>{renderTextWithCitations(line.replace("- ", ""), sources)}</li>;
+              return <p key={i} style={{ marginBottom: "0.35rem", color: "#374151" }}>{renderTextWithCitations(line, sources)}</p>;
             })}
           </div>
         </div>
@@ -145,7 +182,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
 
       {/* GATES */}
       {gates && (
-        <div style={{ marginBottom: "1.5rem", pageBreakInside: "avoid" }}>
+        <div style={{ marginBottom: "1.5rem" }}>
           <h2 style={sectionHeader("Compliance Gates")}>Compliance Gates</h2>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
             {(["sanctions", "debarment"] as const).map(gateKey => {
@@ -174,7 +211,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
 
       {/* RISK SCORECARD */}
       {dimensionOrder.length > 0 && (
-        <div style={{ marginBottom: "1.5rem", pageBreakInside: "avoid" }}>
+        <div style={{ marginBottom: "1.5rem" }}>
           <h2 style={sectionHeader("Risk Scorecard")}>Risk Scorecard</h2>
           <table style={{ width: "100%", fontSize: "0.75rem", borderCollapse: "collapse" }}>
             <thead>
@@ -193,7 +230,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
                   <td style={{ padding: "0.5rem", textAlign: "center", fontWeight: 700, color: scoreColor(dim.score) }}>{dim.score.toFixed(1)}</td>
                   <td style={{ padding: "0.5rem", textAlign: "center", color: "#6b7280" }}>{(dim.weight * 100).toFixed(0)}%</td>
                   <td style={{ padding: "0.5rem", textAlign: "center", color: "#6b7280" }}>{dim.confidence}</td>
-                  <td style={{ padding: "0.5rem", fontSize: "0.7rem", color: "#4b5563", maxWidth: "300px" }}>{cleanText(dim.summary).slice(0, 200)}{dim.summary.length > 200 ? "…" : ""}</td>
+                  <td style={{ padding: "0.5rem", fontSize: "0.7rem", color: "#4b5563" }}>{cleanText(dim.summary)}</td>
                 </tr>
               ))}
               {scoring && (
@@ -215,7 +252,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
         <div style={{ marginBottom: "1.5rem" }}>
           <h2 style={sectionHeader("Detailed Evidence by Dimension")}>Detailed Evidence by Dimension</h2>
           {dimensionOrder.map(([key, dim]) => (
-            <div key={key} style={{ marginBottom: "1rem", pageBreakInside: "avoid" }}>
+            <div key={key} style={{ marginBottom: "1rem" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.375rem" }}>
                 <h3 style={{ fontSize: "0.8rem", fontWeight: 600, margin: 0 }}>{DIMENSION_LABELS[key] || key}</h3>
                 <span style={{ fontSize: "0.7rem", fontWeight: 700, color: scoreColor(dim.score) }}>{dim.score.toFixed(1)}/10</span>
@@ -227,7 +264,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
                   {Object.entries(dim.sub_factors).map(([sfKey, sf]) => (
                     <div key={sfKey} style={{ display: "flex", gap: "0.5rem", fontSize: "0.7rem", marginBottom: "0.2rem" }}>
                       <span style={{ fontWeight: 600, color: scoreColor(sf.score), minWidth: "30px" }}>{sf.score}/10</span>
-                      <span style={{ color: "#4b5563" }}>{sfKey.replace(/_/g, " ")}: {cleanText(sf.detail).slice(0, 150)}{sf.detail.length > 150 ? "…" : ""}</span>
+                      <span style={{ color: "#4b5563" }}>{sfKey.replace(/_/g, " ")}: {renderTextWithCitations(sf.detail, sources)}</span>
                     </div>
                   ))}
                 </div>
@@ -235,10 +272,16 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
               {/* Evidence */}
               {dim.evidence.length > 0 && (
                 <ul style={{ margin: 0, paddingLeft: "1.25rem", fontSize: "0.7rem", color: "#4b5563" }}>
-                  {dim.evidence.slice(0, 4).map((ev, i) => (
+                  {dim.evidence.map((ev, i) => (
                     <li key={i} style={{ marginBottom: "0.2rem" }}>
-                      {cleanText(ev.text).slice(0, 200)}{ev.text.length > 200 ? "…" : ""}
-                      {ev.source && <span style={{ color: "#9ca3af" }}> ({ev.source})</span>}
+                      {renderTextWithCitations(ev.text, sources)}
+                      {ev.source && ev.url ? (
+                        <a href={ev.url} target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", textDecoration: "underline", marginLeft: "0.25rem", fontSize: "0.65rem" }}>
+                          ({ev.source})
+                        </a>
+                      ) : ev.source ? (
+                        <span style={{ color: "#9ca3af", marginLeft: "0.25rem" }}> ({ev.source})</span>
+                      ) : null}
                     </li>
                   ))}
                 </ul>
@@ -250,7 +293,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
 
       {/* REPUTATIONAL CONTAGION */}
       {rca && (
-        <div style={{ marginBottom: "1.5rem", pageBreakInside: "avoid" }}>
+        <div style={{ marginBottom: "1.5rem" }}>
           <h2 style={sectionHeader("Reputational Contagion Analysis")}>Reputational Contagion Analysis</h2>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
             <span style={{ fontSize: "1.25rem", fontWeight: 700, color: scoreColor(rca.composite_rcs) }}>{rca.composite_rcs.toFixed(2)}</span>
@@ -280,7 +323,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
                     <td style={{ padding: "0.4rem", fontWeight: 500 }}>{RCS_QUESTION_LABELS[qKey]}</td>
                     <td style={{ padding: "0.4rem", textAlign: "center", fontWeight: 700, color: scoreColor(q.score) }}>{q.score.toFixed(1)}</td>
                     <td style={{ padding: "0.4rem", textAlign: "center", color: "#6b7280" }}>{(q.weight * 100).toFixed(0)}%</td>
-                    <td style={{ padding: "0.4rem", fontSize: "0.65rem", color: "#4b5563", maxWidth: "350px" }}>{cleanText(q.evidence).slice(0, 200)}{q.evidence.length > 200 ? "…" : ""}</td>
+                    <td style={{ padding: "0.4rem", fontSize: "0.65rem", color: "#4b5563" }}>{renderTextWithCitations(q.evidence, sources)}</td>
                   </tr>
                 );
               })}
@@ -298,7 +341,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
 
       {/* FLAGS */}
       {flags && (flags.red.length > 0 || flags.yellow.length > 0) && (
-        <div style={{ marginBottom: "1.5rem", pageBreakInside: "avoid" }}>
+        <div style={{ marginBottom: "1.5rem" }}>
           <h2 style={sectionHeader("Flags")}>Flags</h2>
           {flags.red.length > 0 && (
             <div style={{ marginBottom: "0.75rem" }}>
@@ -306,7 +349,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
               {flags.red.map((f, i) => (
                 <div key={i} style={{ padding: "0.5rem", borderLeft: "3px solid #ef4444", backgroundColor: "#fef2f2", borderRadius: "4px", marginBottom: "0.375rem" }}>
                   <p style={{ fontWeight: 600, fontSize: "0.75rem", margin: "0 0 0.15rem", color: "#111827" }}>{f.title}</p>
-                  <p style={{ fontSize: "0.7rem", color: "#374151", margin: 0 }}>{cleanText(f.description)}</p>
+                  <p style={{ fontSize: "0.7rem", color: "#374151", margin: 0 }}>{renderTextWithCitations(f.description, sources)}</p>
                   <p style={{ fontSize: "0.6rem", color: "#9ca3af", margin: "0.15rem 0 0" }}>{f.source} · {f.date}</p>
                 </div>
               ))}
@@ -318,7 +361,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
               {flags.yellow.map((f, i) => (
                 <div key={i} style={{ padding: "0.5rem", borderLeft: "3px solid #f59e0b", backgroundColor: "#fffbeb", borderRadius: "4px", marginBottom: "0.375rem" }}>
                   <p style={{ fontWeight: 600, fontSize: "0.75rem", margin: "0 0 0.15rem", color: "#111827" }}>{f.title}</p>
-                  <p style={{ fontSize: "0.7rem", color: "#374151", margin: 0 }}>{cleanText(f.description)}</p>
+                  <p style={{ fontSize: "0.7rem", color: "#374151", margin: 0 }}>{renderTextWithCitations(f.description, sources)}</p>
                   <p style={{ fontSize: "0.6rem", color: "#9ca3af", margin: "0.15rem 0 0" }}>{f.source} · {f.date}</p>
                 </div>
               ))}
@@ -329,7 +372,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
 
       {/* KEY EXECUTIVES */}
       {executives && executives.length > 0 && (
-        <div style={{ marginBottom: "1.5rem", pageBreakInside: "avoid" }}>
+        <div style={{ marginBottom: "1.5rem" }}>
           <h2 style={sectionHeader("Key Executives")}>Key Executives ({executives.length})</h2>
           <table style={{ width: "100%", fontSize: "0.7rem", borderCollapse: "collapse" }}>
             <thead>
@@ -357,7 +400,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
           </table>
           {/* Top FEC recipients per exec */}
           {executives.filter(e => e.fec_top_recipients.length > 0).slice(0, 3).map((exec, i) => (
-            <div key={i} style={{ marginTop: "0.5rem", pageBreakInside: "avoid" }}>
+            <div key={i} style={{ marginTop: "0.5rem" }}>
               <p style={{ fontSize: "0.65rem", fontWeight: 600, color: "#6b7280", marginBottom: "0.2rem" }}>{exec.name} — Top Recipients:</p>
               <div style={{ fontSize: "0.65rem", color: "#4b5563" }}>
                 {exec.fec_top_recipients.slice(0, 3).map((r, j) => (
@@ -371,7 +414,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
 
       {/* GOVERNMENT CONTRACTS */}
       {contracts && (
-        <div style={{ marginBottom: "1.5rem", pageBreakInside: "avoid" }}>
+        <div style={{ marginBottom: "1.5rem" }}>
           <h2 style={sectionHeader("Government Contracts")}>Government Contracts</h2>
           <div style={{ display: "flex", gap: "2rem", marginBottom: "0.75rem" }}>
             <div>
@@ -424,7 +467,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
                     <tr key={i} style={{ borderBottom: "1px solid #f3f4f6" }}>
                       <td style={{ padding: "0.3rem", fontWeight: 600 }}>{formatUSD(aw.award_amount)}</td>
                       <td style={{ padding: "0.3rem" }}>{aw.awarding_sub_agency || aw.awarding_agency}</td>
-                      <td style={{ padding: "0.3rem", maxWidth: "250px" }}>{aw.description.slice(0, 100)}{aw.description.length > 100 ? "…" : ""}</td>
+                      <td style={{ padding: "0.3rem" }}>{aw.description}</td>
                       <td style={{ padding: "0.3rem", whiteSpace: "nowrap" }}>{aw.start_date} — {aw.end_date}</td>
                     </tr>
                   ))}
@@ -436,25 +479,29 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
       )}
 
       {/* SOURCES */}
-      {result?.sources && result.sources.length > 0 && (
-        <div style={{ marginBottom: "1.5rem", pageBreakInside: "avoid" }}>
-          <h2 style={sectionHeader("Research Sources")}>Research Sources ({result.sources.length})</h2>
-          <div style={{ fontSize: "0.65rem", color: "#4b5563", columns: "2", columnGap: "1.5rem" }}>
-            {[...result.sources].sort((a, b) => b.score - a.score).slice(0, 40).map((src, i) => (
-              <p key={i} style={{ margin: "0 0 0.2rem", breakInside: "avoid" }}>
-                [{src.id}] {src.title}
+      {sources && sources.length > 0 && (
+        <div style={{ marginBottom: "1.5rem" }}>
+          <h2 style={sectionHeader("Research Sources")}>Research Sources ({sources.length})</h2>
+          <div style={{ fontSize: "0.65rem", color: "#4b5563" }}>
+            {[...sources].sort((a, b) => b.score - a.score).map((src, i) => (
+              <p key={i} style={{ margin: "0 0 0.3rem" }}>
+                <span style={{ color: "#9ca3af", marginRight: "0.25rem" }}>[{src.id}]</span>
+                {src.url ? (
+                  <a href={src.url} target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", textDecoration: "underline" }}>
+                    {src.title}
+                  </a>
+                ) : (
+                  src.title
+                )}
               </p>
             ))}
-            {result.sources.length > 40 && (
-              <p style={{ fontStyle: "italic", color: "#9ca3af" }}>+ {result.sources.length - 40} more sources</p>
-            )}
           </div>
         </div>
       )}
 
       {/* PIPELINE METADATA */}
       {result?.metadata && (
-        <div style={{ marginBottom: "1rem", pageBreakInside: "avoid" }}>
+        <div style={{ marginBottom: "1rem" }}>
           <h2 style={sectionHeader("Pipeline Metadata")}>Pipeline Metadata</h2>
           <div style={{ fontSize: "0.7rem", color: "#6b7280", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.25rem 1rem" }}>
             <p style={{ margin: 0 }}>Version: {result.metadata.pipeline_version}</p>
