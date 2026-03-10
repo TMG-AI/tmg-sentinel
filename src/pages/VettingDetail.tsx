@@ -18,7 +18,7 @@ import {
   BarChart3, Flag, Link2, Users, Landmark, ChevronUp, DollarSign, Globe, Info,
 } from "lucide-react";
 import { isInternationalSubject, getCountryFlag } from "@/lib/international-utils";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, type ReactNode, type ChangeEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 type SourceItem = { id: number; url: string; title: string; score: number };
