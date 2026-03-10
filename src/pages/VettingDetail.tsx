@@ -972,7 +972,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
               </div>
             </div>
           )}
-          {exec.news_headlines.length > 0 && (
+          {(exec.news_headlines?.length ?? 0) > 0 && (
             <div>
               <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-1.5">Headlines</h5>
               <ul className="space-y-1">
