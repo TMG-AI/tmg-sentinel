@@ -23,6 +23,7 @@ export function usePrintVettingReport() {
               body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
               .no-print { display: none !important; }
               @page { size: letter; margin: 0.4in; }
+              * { page-break-inside: auto !important; break-inside: auto !important; page-break-before: auto !important; page-break-after: auto !important; }
             }
             .print-controls { position: fixed; top: 1rem; right: 1rem; z-index: 1000; display: flex; gap: 0.5rem; }
             .print-btn { padding: 0.5rem 1rem; background: #111827; color: white; border: none; border-radius: 0.375rem; cursor: pointer; font-weight: 500; font-size: 0.875rem; }
