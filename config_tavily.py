@@ -40,6 +40,10 @@ EXCLUDE_DOMAINS_NOISE = [
     "pissedconsumer.com", "scamadviser.com", "celebrity-net-worth.com",
     "famousbirthdays.com", "imdb.com", "pinterest.com", "tiktok.com",
     "instagram.com", "facebook.com", "linkedin.com",
+    # Job boards and salary sites — useless for risk assessment
+    "levels.fyi", "ziprecruiter.com", "lensa.com", "dealhub.io",
+    "jobs.a16z.com", "jobs.lever.co", "boards.greenhouse.io",
+    "salary.com", "payscale.com", "careerbuilder.com",
 ]
 
 TAVILY_GLOBAL_EXCLUDE = (

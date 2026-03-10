@@ -368,6 +368,48 @@ TAVILY_REVERSE_QUERIES = [
     "sanctions evasion {country}",
 ]
 
+# ─── Industry Context Queries ─────────────────────────────────
+# Sector-level background queries that do NOT include the subject name.
+# These provide industry context for the synthesis but are NOT used in risk scoring.
+# Keyed by sector (inferred from bio/engagement in search_news.py).
+TAVILY_INDUSTRY_CONTEXT_QUERIES = {
+    "defense_tech": [
+        "defense technology industry controversy ethics 2024 2025",
+        "autonomous weapons AI military ethics debate",
+        "defense contractor government oversight accountability",
+        "border surveillance technology civil liberties concerns",
+        "Pentagon defense tech startup contracting controversy",
+    ],
+    "energy": [
+        "oil gas industry environmental controversy 2024 2025",
+        "energy company regulatory enforcement actions",
+        "fossil fuel industry climate litigation",
+    ],
+    "pharma_health": [
+        "pharmaceutical industry pricing controversy 2024 2025",
+        "biotech regulatory enforcement FDA warning",
+        "healthcare company fraud whistleblower",
+    ],
+    "finance": [
+        "financial services industry regulatory enforcement 2024 2025",
+        "bank fintech compliance controversy",
+        "investment fund SEC enforcement action",
+    ],
+    "tech": [
+        "big tech industry regulation antitrust 2024 2025",
+        "AI technology ethics controversy surveillance",
+        "tech company data privacy enforcement",
+    ],
+    "government": [
+        "political corruption trends enforcement 2024 2025",
+        "government official ethics violations investigations",
+    ],
+    "general_corporate": [
+        "corporate governance scandal controversy 2024 2025",
+        "ESG controversy corporate accountability",
+    ],
+}
+
 # ─── Pipeline Settings ──────────────────────────────────────
 REQUEST_DELAY = 0.5  # seconds between API calls (rate limiting)
 REQUEST_TIMEOUT = 30  # seconds (bumped from 15 — CourtListener pagination was timing out)

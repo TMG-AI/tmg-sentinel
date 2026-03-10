@@ -3,7 +3,30 @@
 ## User Preferences
 - **NEVER produce Markdown (.md) files** for memos, reports, or documents. Always use DOCX format. Shannon shares these with colleagues.
 
-## Last Updated: 2026-03-10 (Session 11)
+## Last Updated: 2026-03-10 (Session 12)
+
+## Completed (Session 12) — Source Relevance Split + Vetting Level Simplification
+
+1. **Risk vs. Context source split** — Tavily search results are now split into two buckets:
+   - **Risk sources**: Mention the subject (company name, exec names) in title or content. ONLY these are used for risk scoring in synthesis.
+   - **Context sources**: Industry/sector background that doesn't mention the subject. Presented to Claude as background only, explicitly excluded from scoring.
+   - This fixes the Anduril problem where 90% of 278 sources were irrelevant defense industry noise.
+
+2. **Industry context queries** — New `TAVILY_INDUSTRY_CONTEXT_QUERIES` in config.py. Sector-level searches (defense_tech, energy, pharma, finance, tech, government) that run WITHOUT the subject name. Tagged as context, not used for scoring.
+
+3. **Relevance filter in search_news.py** — `_build_relevance_terms()` extracts subject name parts and company name parts. `_is_relevant()` checks if title/content mentions any term. Sources from subject-specific queries that don't mention the subject are moved to context.
+
+4. **Vetting levels simplified** — Removed `quick_screen` and `standard_vet`. Everything is now `deep_dive` by default. No `--level` flag needed.
+
+5. **Anduril Industries vetting completed** — Deep dive run, results in `data/unified/anduril_industries.json`.
+
+6. **Sharjeel Inam Memon vetting completed** — Pakistan deep dive, pushed to Lovable.
+
+### Key Code Changes (Session 12)
+- **`scripts/search_news.py`**: Added `_build_relevance_terms()`, `_is_relevant()`, `_infer_sector()`. Results split into `risk_sources` and `context_sources`. Industry context queries run separately. Output JSON now has `risk_sources`, `context_sources`, `risk_source_count`, `context_source_count` fields.
+- **`config.py`**: Removed `quick_screen` and `standard_vet` from `VETTING_LEVELS`. Added `TAVILY_INDUSTRY_CONTEXT_QUERIES` dict with 7 sector configs.
+- **`scripts/synthesize.py`**: `collect_tavily_sources()` now returns tuple `(risk_sources, context_sources)`. `format_news_for_prompt()` uses `risk_sources`. New `format_context_for_prompt()` for background. Prompt explicitly tells Claude not to use context sources for scoring. Unified JSON output includes `context_sources` array.
+- **`scripts/pipeline.py`**: Default vetting level changed to `deep_dive`.
 
 ## Completed (Session 11) — Perplexity-Recommended Improvements
 Based on Perplexity report analyzing pipeline gaps vs. professional due diligence firms (Kroll, Control Risks, Nardello). Five high-value changes implemented:

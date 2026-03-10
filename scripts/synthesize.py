@@ -30,24 +30,31 @@ except ImportError:
 
 # ─── Tavily Source Collection ──────────────────────────────
 
-def collect_tavily_sources(step_data: dict) -> list:
+def collect_tavily_sources(step_data: dict) -> tuple:
     """
-    Collect ALL Tavily sources from news + international step data into a
-    deduplicated master sources array with IDs, matching Palantir's pattern.
-    Returns: [{"id": 1, "url": "...", "title": "...", "score": 0.85}, ...]
+    Collect Tavily sources from news + international step data, split into
+    risk_sources (mention subject) and context_sources (industry background).
+
+    Risk sources are used for scoring. Context sources are presented as background only.
+
+    Returns: (risk_sources, context_sources)
+      Each: [{"id": 1, "url": "...", "title": "...", "score": 0.85}, ...]
     """
     seen_urls = set()
-    sources = []
+    risk_sources = []
+    context_sources = []
     source_id = 1
 
-    # Collect from news/media searches
+    # Collect RISK sources from news (pre-filtered by search_news.py)
     news = step_data.get("news", {})
-    for search in news.get("searches", []):
-        for r in search.get("results", []):
+
+    # Use risk_sources if available (new format), fall back to all searches (old format)
+    if news.get("risk_sources"):
+        for r in news["risk_sources"]:
             url = r.get("url", "")
             if url and url not in seen_urls:
                 seen_urls.add(url)
-                sources.append({
+                risk_sources.append({
                     "id": source_id,
                     "url": url,
                     "title": r.get("title", ""),
@@ -55,15 +62,46 @@ def collect_tavily_sources(step_data: dict) -> list:
                     "content_snippet": (r.get("content", "") or "")[:300],
                 })
                 source_id += 1
+    else:
+        # Backward compatibility: old format without risk/context split
+        for search in news.get("searches", []):
+            for r in search.get("results", []):
+                url = r.get("url", "")
+                if url and url not in seen_urls:
+                    seen_urls.add(url)
+                    risk_sources.append({
+                        "id": source_id,
+                        "url": url,
+                        "title": r.get("title", ""),
+                        "score": r.get("score", 0),
+                        "content_snippet": (r.get("content", "") or "")[:300],
+                    })
+                    source_id += 1
 
-    # Collect from international foreign media searches
+    # Collect CONTEXT sources from news
+    context_id = 1
+    for r in news.get("context_sources", []):
+        url = r.get("url", "")
+        if url and url not in seen_urls:
+            seen_urls.add(url)
+            context_sources.append({
+                "id": context_id,
+                "url": url,
+                "title": r.get("title", ""),
+                "score": r.get("score", 0),
+                "content_snippet": (r.get("content", "") or "")[:300],
+                "category": "industry_context",
+            })
+            context_id += 1
+
+    # Collect from international foreign media searches (these are subject-specific = risk)
     intl = step_data.get("international", {})
     for search in intl.get("foreign_media", []):
         for r in search.get("results", []):
             url = r.get("url", "")
             if url and url not in seen_urls:
                 seen_urls.add(url)
-                sources.append({
+                risk_sources.append({
                     "id": source_id,
                     "url": url,
                     "title": r.get("title", ""),
@@ -72,13 +110,13 @@ def collect_tavily_sources(step_data: dict) -> list:
                 })
                 source_id += 1
 
-    # Collect from country-specific corruption searches
+    # Collect from country-specific corruption searches (subject-specific = risk)
     for search in intl.get("corruption_searches", []):
         for r in search.get("results", []):
             url = r.get("url", "")
             if url and url not in seen_urls:
                 seen_urls.add(url)
-                sources.append({
+                risk_sources.append({
                     "id": source_id,
                     "url": url,
                     "title": r.get("title", ""),
@@ -88,12 +126,15 @@ def collect_tavily_sources(step_data: dict) -> list:
                 source_id += 1
 
     # Sort by relevance score descending
-    sources.sort(key=lambda s: s.get("score", 0), reverse=True)
+    risk_sources.sort(key=lambda s: s.get("score", 0), reverse=True)
+    context_sources.sort(key=lambda s: s.get("score", 0), reverse=True)
     # Reassign IDs after sort so [1] = most relevant
-    for i, s in enumerate(sources):
+    for i, s in enumerate(risk_sources):
+        s["id"] = i + 1
+    for i, s in enumerate(context_sources):
         s["id"] = i + 1
 
-    return sources
+    return risk_sources, context_sources
 
 
 def build_sources_reference(sources: list) -> str:
@@ -282,6 +323,8 @@ def format_debarment_for_prompt(data: dict) -> str:
 
 
 def format_news_for_prompt(data: dict, sources: list = None) -> str:
+    """Format risk-relevant news sources for the prompt. Only sources that
+    directly mention the subject are included here for risk scoring."""
     if not data:
         return "No news data available."
     # Build URL→source_id lookup for [n] references
@@ -289,18 +332,46 @@ def format_news_for_prompt(data: dict, sources: list = None) -> str:
     if sources:
         url_to_id = {s["url"]: s["id"] for s in sources}
 
-    lines = [f"Mode: {data.get('mode', 'unknown')}, {data.get('total_unique_sources', 0)} unique sources across {data.get('total_queries', 0)} queries"]
-    for search in data.get("searches", [])[:15]:
-        if search.get("answer"):
-            lines.append(f"\nQuery: {search['query']}")
-            lines.append(f"Answer: {search['answer'][:500]}")
-        for r in search.get("results", [])[:5]:
+    risk_count = data.get("risk_source_count", data.get("total_unique_sources", 0))
+    context_count = data.get("context_source_count", 0)
+    lines = [f"Mode: {data.get('mode', 'unknown')}, {risk_count} risk-relevant sources (+ {context_count} industry context, shown separately)"]
+
+    # Use risk_sources if available (new format)
+    if data.get("risk_sources"):
+        for r in data["risk_sources"][:80]:  # Cap at 80 for prompt size
             url = r.get("url", "")
             sid = url_to_id.get(url)
             ref = f" [{sid}]" if sid else ""
             lines.append(f"  - {r.get('title', '')}{ref}: {r.get('content', '')[:250]}")
             if url:
                 lines.append(f"    URL: {url}")
+    else:
+        # Backward compatibility: old format
+        for search in data.get("searches", [])[:15]:
+            if search.get("answer"):
+                lines.append(f"\nQuery: {search['query']}")
+                lines.append(f"Answer: {search['answer'][:500]}")
+            for r in search.get("results", [])[:5]:
+                url = r.get("url", "")
+                sid = url_to_id.get(url)
+                ref = f" [{sid}]" if sid else ""
+                lines.append(f"  - {r.get('title', '')}{ref}: {r.get('content', '')[:250]}")
+                if url:
+                    lines.append(f"    URL: {url}")
+    return "\n".join(lines)
+
+
+def format_context_for_prompt(data: dict) -> str:
+    """Format industry context sources — background only, NOT for risk scoring."""
+    if not data:
+        return ""
+    context = data.get("context_sources", [])
+    if not context:
+        return ""
+
+    lines = ["INDUSTRY CONTEXT (background only — DO NOT use for risk scoring):"]
+    for r in context[:20]:  # Cap at 20 context sources
+        lines.append(f"  - {r.get('title', '')}: {r.get('content', '')[:200]}")
     return "\n".join(lines)
 
 
@@ -671,6 +742,7 @@ def build_synthesis_prompt(intake: dict, step_data: dict, sources: list = None) 
     sanctions_text = format_sanctions_for_prompt(step_data.get("sanctions", {}))
     debarment_text = format_debarment_for_prompt(step_data.get("debarment", {}))
     news_text = format_news_for_prompt(step_data.get("news", {}), sources=sources)
+    context_text = format_context_for_prompt(step_data.get("news", {}))
     litigation_text = format_litigation_for_prompt(step_data.get("litigation", {}))
     corporate_text = format_corporate_for_prompt(step_data.get("corporate", {}))
     fec_text = format_fec_for_prompt(step_data.get("fec", {}))
@@ -775,8 +847,14 @@ You have a numbered source reference list below. When writing evidence items:
 ## DEBARMENT / EXCLUSION DATA (Step 2)
 {debarment_text}
 
-## NEWS / MEDIA DATA (Steps 3/10)
+## NEWS / MEDIA DATA (Steps 3/10) — RISK-RELEVANT SOURCES ONLY
+These sources directly mention the subject. Use these for risk scoring.
 {news_text}
+
+## INDUSTRY CONTEXT (background only)
+These are general industry/sector sources. Use for background understanding ONLY.
+DO NOT use these sources to score the subject — they are not about the subject specifically.
+{context_text}
 
 ## LITIGATION / COURT RECORDS (Step 4)
 {litigation_text}
@@ -1030,9 +1108,9 @@ def run_synthesis(intake: dict) -> dict:
     # Load all step data
     step_data = load_all_step_data(subject_id, vetting_level)
 
-    # Collect all Tavily sources into master list
-    sources = collect_tavily_sources(step_data)
-    print(f"  Collected {len(sources)} unique web sources for citation enrichment")
+    # Collect Tavily sources split by relevance
+    sources, context_sources = collect_tavily_sources(step_data)
+    print(f"  Collected {len(sources)} risk sources + {len(context_sources)} context sources")
 
     # Build prompt (with sources for [n] citations)
     prompt = build_synthesis_prompt(intake, step_data, sources=sources)
@@ -1080,11 +1158,17 @@ def run_synthesis(intake: dict) -> dict:
     synthesized = enrich_evidence_with_sources(synthesized, sources)
 
     # ── Inject master sources array ──
-    # Strip content_snippet from output (was only for prompt building)
+    # Only risk-relevant sources (directly mention subject) used for scoring
     synthesized["sources"] = [
         {"id": s["id"], "url": s["url"], "title": s["title"], "score": s["score"]}
         for s in sources
     ]
+    # Industry context sources (background only, not used for scoring)
+    if context_sources:
+        synthesized["context_sources"] = [
+            {"id": s["id"], "url": s["url"], "title": s["title"], "score": s["score"]}
+            for s in context_sources
+        ]
 
     # ── Validate and fix scoring ──
     dimensions = synthesized.get("dimensions", {})
