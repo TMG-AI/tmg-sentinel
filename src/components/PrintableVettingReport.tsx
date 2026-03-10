@@ -400,7 +400,7 @@ export function PrintableVettingReport({ vetting: v }: PrintableVettingReportPro
             </tbody>
           </table>
           {/* Top FEC recipients per exec */}
-          {executives.filter(e => e.fec_top_recipients.length > 0).slice(0, 3).map((exec, i) => (
+          {executives.filter(e => (e.fec_top_recipients?.length ?? 0) > 0).slice(0, 3).map((exec, i) => (
             <div key={i} style={{ marginTop: "0.5rem" }}>
               <p style={{ fontSize: "0.65rem", fontWeight: 600, color: "#6b7280", marginBottom: "0.2rem" }}>{exec.name} — Top Recipients:</p>
               <div style={{ fontSize: "0.65rem", color: "#4b5563" }}>

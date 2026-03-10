@@ -934,7 +934,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
             </span>
           </div>
           {/* Top headline always visible */}
-          {exec.news_headlines.length > 0 && (
+          {(exec.news_headlines?.length ?? 0) > 0 && (
             <div className="mt-2 text-xs text-muted-foreground">
               <span className="mr-1">•</span>
               {exec.news_urls?.[0] ? (
@@ -947,7 +947,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
         </div>
       </div>
 
-      {(exec.fec_top_recipients.length > 0 || exec.news_headlines.length > 0) && (
+      {((exec.fec_top_recipients?.length ?? 0) > 0 || (exec.news_headlines?.length ?? 0) > 0) && (
         <button
           onClick={() => setExpanded(!expanded)}
           className="w-full mt-3 pt-2 border-t text-xs font-medium text-primary hover:text-primary/80 flex items-center justify-center gap-1"
@@ -959,7 +959,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
 
       {expanded && (
         <div className="mt-3 space-y-3">
-          {exec.fec_top_recipients.length > 0 && (
+          {(exec.fec_top_recipients?.length ?? 0) > 0 && (
             <div>
               <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-1.5">Top FEC Recipients</h5>
               <div className="space-y-1">
@@ -972,7 +972,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
               </div>
             </div>
           )}
-          {exec.news_headlines.length > 0 && (
+          {(exec.news_headlines?.length ?? 0) > 0 && (
             <div>
               <h5 className="text-xs font-semibold text-muted-foreground tracking-wider mb-1.5">Headlines</h5>
               <ul className="space-y-1">
