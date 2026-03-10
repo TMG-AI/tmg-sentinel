@@ -152,7 +152,7 @@
           ]
         },
         {
-          "text": "China sanctioned Anduril executives and the company over Taiwan arms sales [25]",
+          "text": "China sanctioned Anduril executives and the company over Taiwan arms sales [22]",
           "source": "PBS NewsHour",
           "url": "https://www.pbs.org/newshour/world/china-sanctions-20-u-s-defense-companies-and-10-executives-over-taiwan-arms-sale",
           "date": "2025",
@@ -204,7 +204,7 @@
       },
       "evidence": [
         {
-          "text": "China imposed sanctions on Anduril and executives over Taiwan arms sales [25]",
+          "text": "China imposed sanctions on Anduril and executives over Taiwan arms sales [22]",
           "source": "PBS NewsHour",
           "url": "https://www.pbs.org/newshour/world/china-sanctions-20-u-s-defense-companies-and-10-executives-over-taiwan-arms-sale",
           "date": "2025",
@@ -431,7 +431,7 @@
           "source_urls": []
         },
         {
-          "text": "China sanctions on Anduril create conflict with TikTok Inc. and TikTok USDS Joint Venture LLC clients [25]",
+          "text": "China sanctions on Anduril create conflict with TikTok Inc. and TikTok USDS Joint Venture LLC clients [22]",
           "source": "PBS NewsHour",
           "url": "https://www.pbs.org/newshour/world/china-sanctions-20-u-s-defense-companies-and-10-executives-over-taiwan-arms-sale",
           "date": "2025",
@@ -2502,112 +2502,25 @@
   },
   "key_executives": [
     {
-      "name": "James D Jr Taiclet",
-      "title": "Chairman, President & CEO",
-      "is_officer": true,
-      "is_director": true,
-      "fec_total": 8300.0,
-      "fec_count": 60,
-      "fec_top_recipients": [
-        {
-          "name": "LOCKHEED MARTIN CORPORATION EMPLOYEES' POLITICAL ACTION COMMITTEE",
-          "total": 8300.0,
-          "count": 20
-        }
-      ],
-      "news_count": 0,
-      "news_headlines": [],
-      "sanctions_flag": true
+      "name": "Palmer Luckey",
+      "title": "Founder",
+      "sanctions_status": "China sanctions (Dec 2025) over Taiwan arms sales"
     },
     {
-      "name": "Lightfoot Robert M JR",
-      "title": "President Space",
-      "is_officer": true,
-      "is_director": false,
-      "fec_total": 0,
-      "fec_count": 0,
-      "fec_top_recipients": [],
-      "news_count": 0,
-      "news_headlines": [],
-      "sanctions_flag": true
+      "name": "Brian Schimpf",
+      "title": "CEO & Co-Founder"
     },
     {
-      "name": "Ulmer Gregory M",
-      "title": "President Aeronautics",
-      "is_officer": true,
-      "is_director": false,
-      "fec_total": 0,
-      "fec_count": 0,
-      "fec_top_recipients": [],
-      "news_count": 0,
-      "news_headlines": [],
-      "sanctions_flag": true
+      "name": "Trae Stephens",
+      "title": "Co-Founder & Executive Chairman"
     },
     {
-      "name": "Scott Evan T",
-      "title": "Chief Financial Officer",
-      "is_officer": true,
-      "is_director": false,
-      "fec_total": 0,
-      "fec_count": 0,
-      "fec_top_recipients": [],
-      "news_count": 1,
-      "news_headlines": [
-        "Lockheed announces $1bn investment to 'double-down' on improving F-35's operational readiness - FlightGlobal"
-      ],
-      "sanctions_flag": true
+      "name": "Matt Grimm",
+      "title": "Chief Financial Officer"
     },
     {
-      "name": "St John Frank A",
-      "title": "Chief Operating Officer",
-      "is_officer": true,
-      "is_director": false,
-      "fec_total": 0,
-      "fec_count": 0,
-      "fec_top_recipients": [],
-      "news_count": 10,
-      "news_headlines": [
-        "Palmer Luckey - Forbes",
-        "Anduril Industries Valuation Today (Dec. 14, 2025): $30.5B Official, Up to ~$68.45B Implied by Private-Market Pricing - ts2.tech",
-        "Anduril partners with Rheinmetall to bring capabilities to European market - Janes"
-      ],
-      "sanctions_flag": true
-    },
-    {
-      "name": "O'Connor Kevin J.",
-      "title": "SVP & General Counsel",
-      "is_officer": true,
-      "is_director": false,
-      "fec_total": 0,
-      "fec_count": 0,
-      "fec_top_recipients": [],
-      "news_count": 0,
-      "news_headlines": [],
-      "sanctions_flag": true
-    },
-    {
-      "name": "Paul Harry Edward III",
-      "title": "Vice President & Controller",
-      "is_officer": true,
-      "is_director": false,
-      "fec_total": 0,
-      "fec_count": 0,
-      "fec_top_recipients": [],
-      "news_count": 0,
-      "news_headlines": [],
-      "sanctions_flag": false
-    },
-    {
-      "name": "Hill Stephanie C.",
-      "title": "Pres. Rotary & Mission Systems",
-      "is_officer": true,
-      "is_director": false,
-      "fec_total": 0,
-      "fec_count": 0,
-      "fec_top_recipients": [],
-      "news_count": 0,
-      "news_headlines": [],
-      "sanctions_flag": false
+      "name": "Christian Brose",
+      "title": "President"
     }
   ],
   "government_contracts": {
@@ -2723,5 +2636,6 @@
         "end_date": "2026-08-27"
       }
     ]
-  }
+  },
+  "executive_data_note": "Executives manually corrected. EDGAR SEC search returned Lockheed Martin executives (Anduril is private/not in EDGAR). Actual Anduril leadership sourced from news and company website."
 }
