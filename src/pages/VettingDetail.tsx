@@ -934,7 +934,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
             </span>
           </div>
           {/* Top headline always visible */}
-          {exec.news_headlines.length > 0 && (
+          {(exec.news_headlines?.length ?? 0) > 0 && (
             <div className="mt-2 text-xs text-muted-foreground">
               <span className="mr-1">•</span>
               {exec.news_urls?.[0] ? (
