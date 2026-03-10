@@ -259,10 +259,18 @@ export default function VettingDetail() {
 
   return (
     <div className="page-container max-w-5xl">
-      {/* Back */}
-      <button onClick={() => navigate(-1)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-4 transition-colors">
-        <ArrowLeft className="w-4 h-4" /> Back
-      </button>
+      {/* Back + Print */}
+      <div className="flex items-center justify-between mb-4">
+        <button onClick={() => navigate(-1)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <ArrowLeft className="w-4 h-4" /> Back
+        </button>
+        {v.status === "completed" && (
+          <Button variant="outline" size="sm" onClick={() => printReport(v)} className="gap-2">
+            <Printer className="w-4 h-4" />
+            Print Report
+          </Button>
+        )}
+      </div>
 
       {/* Header */}
       <div className="glass-card p-6 mb-0 rounded-b-none border-b-0">
