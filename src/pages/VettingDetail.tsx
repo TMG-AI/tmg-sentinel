@@ -15,8 +15,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogD
 import {
   CheckCircle, XCircle, ArrowLeft, AlertTriangle, ExternalLink, Upload,
   Shield, Skull, FileText, Clock, Newspaper, ChevronDown, ShieldAlert,
-  BarChart3, Flag, Link2, Users, Landmark, ChevronUp, DollarSign, Globe, Info,
+  BarChart3, Flag, Link2, Users, Landmark, ChevronUp, DollarSign, Globe, Info, Printer,
 } from "lucide-react";
+import { usePrintVettingReport } from "@/hooks/usePrintVettingReport";
 import { isInternationalSubject, getCountryFlag } from "@/lib/international-utils";
 import { useState, useRef, useEffect, type ReactNode, type ChangeEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
