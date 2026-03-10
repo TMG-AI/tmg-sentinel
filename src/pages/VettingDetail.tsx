@@ -354,6 +354,21 @@ export default function VettingDetail() {
         </div>
       )}
 
+      {/* International Subject Banner */}
+      {isIntl && (
+        <div className="p-4 border-x border-border bg-primary/5 border-t border-t-primary/20">
+          <div className="flex items-start gap-3">
+            <Globe className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+            <div>
+              <span className="text-sm font-bold text-primary">🌍 International Subject — {result?.subject?.country || v.country}</span>
+              <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                US-only databases (FEC, SEC, CourtListener, Senate LDA, SAM.gov, USAspending) were not searched. Risk assessment is based on international sources: OpenSanctions PEP data, Tavily web search ({tavilySources} sources), and country-specific corruption searches.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Tab Navigation */}
       <div className="sticky top-0 z-20 bg-card border border-border rounded-b-xl mb-6 overflow-x-auto">
         <div className="flex items-center gap-1 px-3 py-2">

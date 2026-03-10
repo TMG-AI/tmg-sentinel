@@ -5,6 +5,7 @@ import {
 } from "@/lib/vetting-utils";
 import { CheckCircle, XCircle, Loader2, AlertTriangle, Skull, Clock, ChevronRight, ShieldAlert, Landmark } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { isInternationalSubject, getCountryFlag } from "@/lib/international-utils";
 
 interface Props {
   vetting: VettingRequest;
