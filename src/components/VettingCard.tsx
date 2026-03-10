@@ -12,7 +12,8 @@ interface Props {
   onClick: () => void;
 }
 
-function formatUSD(amount: number): string {
+function formatUSD(amount: number | null | undefined): string {
+  if (amount == null) return "$0";
   if (amount >= 1e9) return `$${(amount / 1e9).toFixed(2)}B`;
   if (amount >= 1e6) return `$${(amount / 1e6).toFixed(1)}M`;
   if (amount >= 1e3) return `$${(amount / 1e3).toFixed(0)}K`;
