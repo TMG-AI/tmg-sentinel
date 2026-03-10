@@ -391,24 +391,51 @@ export default function VettingDetail() {
 
       {/* ===== SUMMARY TAB ===== */}
       {activeTab === "summary" && result?.executive_summary && (
-        <div className="glass-card p-6 mb-6">
-          <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
-          <div className="max-w-none text-foreground space-y-2">
-            {result.executive_summary.split("\n").filter(line => line.trim() !== "").map((line, i) => {
-              const clean = (s: string) => s.replace(/\s*\[\d+\]\s*/g, ' ').replace(/\*\*(.*?)\*\*/g, "$1").trim();
-              const renderText = (text: string) => {
-                if (text.includes("REJECT —") || text.includes("REJECT —")) {
-                  const parts = text.split(/(REJECT\s*[—\u2014])/);
-                  return parts.map((part, j) => /REJECT\s*[—\u2014]/.test(part) ? <span key={j} className="font-black text-[hsl(var(--risk-critical))]">{part}</span> : part);
-                }
-                return text;
-              };
-              if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-5 mb-2 text-foreground">{renderText(clean(line.replace("## ", "")))}</h3>;
-              if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground mt-4 mb-1.5">{renderText(clean(line))}</p>;
-              if (line.startsWith("- ")) return <li key={i} className="text-muted-foreground ml-4 mb-1.5 leading-relaxed">{renderText(clean(line.replace("- ", "")))}</li>;
-              return <p key={i} className="text-muted-foreground mb-2 leading-relaxed">{renderText(clean(line))}</p>;
-            })}
+        <div className="space-y-6 mb-6">
+          <div className="glass-card p-6">
+            <h2 className="section-title flex items-center gap-2"><FileText className="w-4 h-4" /> Executive Summary</h2>
+            <div className="max-w-none text-foreground space-y-2">
+              {result.executive_summary.split("\n").filter(line => line.trim() !== "").map((line, i) => {
+                const clean = (s: string) => s.replace(/\s*\[\d+\]\s*/g, ' ').replace(/\*\*(.*?)\*\*/g, "$1").trim();
+                const renderText = (text: string) => {
+                  if (text.includes("REJECT —") || text.includes("REJECT —")) {
+                    const parts = text.split(/(REJECT\s*[—\u2014])/);
+                    return parts.map((part, j) => /REJECT\s*[—\u2014]/.test(part) ? <span key={j} className="font-black text-[hsl(var(--risk-critical))]">{part}</span> : part);
+                  }
+                  return text;
+                };
+                if (line.startsWith("## ")) return <h3 key={i} className="text-base font-bold mt-5 mb-2 text-foreground">{renderText(clean(line.replace("## ", "")))}</h3>;
+                if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-foreground mt-4 mb-1.5">{renderText(clean(line))}</p>;
+                if (line.startsWith("- ")) return <li key={i} className="text-muted-foreground ml-4 mb-1.5 leading-relaxed">{renderText(clean(line.replace("- ", "")))}</li>;
+                return <p key={i} className="text-muted-foreground mb-2 leading-relaxed">{renderText(clean(line))}</p>;
+              })}
+            </div>
           </div>
+
+          {/* Pipeline Steps */}
+          {result.metadata?.steps_completed && (
+            <div className="glass-card p-5">
+              <h3 className="section-title flex items-center gap-2"><Shield className="w-4 h-4" /> Pipeline Steps</h3>
+              <div className="flex flex-wrap gap-2">
+                {result.metadata.steps_completed.map((step, i) => (
+                  <span key={i} className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full bg-[hsl(var(--risk-low)/0.08)] text-[hsl(var(--risk-low))] border border-[hsl(var(--risk-low)/0.15)]">
+                    <CheckCircle className="w-3 h-3" />
+                    {step}
+                  </span>
+                ))}
+                {isIntl && (
+                  <>
+                    {["FEC / Campaign Finance", "SEC Filings", "Court Records", "Lobbying Disclosures", "Bankruptcy", "Gov Contracts", "Gov Debarment"].map((step, i) => (
+                      <span key={`na-${i}`} className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full bg-muted text-muted-foreground/50 border border-border line-through">
+                        {step}
+                        <span className="no-underline ml-1 text-[10px]">N/A</span>
+                      </span>
+                    ))}
+                  </>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
