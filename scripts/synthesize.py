@@ -72,6 +72,21 @@ def collect_tavily_sources(step_data: dict) -> list:
                 })
                 source_id += 1
 
+    # Collect from country-specific corruption searches
+    for search in intl.get("corruption_searches", []):
+        for r in search.get("results", []):
+            url = r.get("url", "")
+            if url and url not in seen_urls:
+                seen_urls.add(url)
+                sources.append({
+                    "id": source_id,
+                    "url": url,
+                    "title": r.get("title", ""),
+                    "score": r.get("score", 0),
+                    "content_snippet": (r.get("content", "") or "")[:300],
+                })
+                source_id += 1
+
     # Sort by relevance score descending
     sources.sort(key=lambda s: s.get("score", 0), reverse=True)
     # Reassign IDs after sort so [1] = most relevant
@@ -226,6 +241,7 @@ def load_all_step_data(subject_id: str, vetting_level: str) -> dict:
         "executives": load_step_json(config.EXECUTIVES_DIR, subject_id),
         "international": load_step_json(config.INTERNATIONAL_DIR, subject_id),
         "contracts": load_step_json(config.CONTRACTS_DIR, subject_id),
+        "network": load_step_json(config.NETWORK_DIR, subject_id),
         "manual": load_step_json(config.MANUAL_DIR, subject_id),
     }
 
@@ -403,6 +419,21 @@ def format_international_for_prompt(data: dict) -> str:
     for search in data.get("foreign_media", [])[:5]:
         if search.get("answer"):
             lines.append(f"  Media: {search['answer'][:300]}")
+
+    # Country-specific corruption searches (NEW)
+    corruption = data.get("corruption_searches", [])
+    if corruption:
+        corruption_sources = sum(len(s.get("results", [])) for s in corruption)
+        lines.append(f"\n  --- COUNTRY-SPECIFIC CORRUPTION SEARCHES ({corruption_sources} sources) ---")
+        for search in corruption:
+            if search.get("results"):
+                lines.append(f"\n  Query: {search.get('query', '')}")
+                for r in search.get("results", [])[:5]:
+                    lines.append(f"    - {r.get('title', '')}: {r.get('content', '')[:300]}")
+                    url = r.get("url", "")
+                    if url:
+                        lines.append(f"      URL: {url}")
+
     for org in data.get("nonprofits", {}).get("organizations", [])[:5]:
         lines.append(f"  Nonprofit: {org.get('name', '')} ({org.get('city', '')}, {org.get('state', '')})")
     return "\n".join(lines)
@@ -510,6 +541,77 @@ def format_contracts_for_prompt(data: dict) -> str:
     return "\n".join(lines) if lines else "No government contracts found."
 
 
+def format_network_for_prompt(data: dict) -> str:
+    if not data:
+        return "No corporate network data available."
+
+    summary = data.get("summary", {})
+    lines = []
+    lines.append(f"Companies found: {summary.get('companies_found', 0)}")
+    lines.append(f"Officer positions found: {summary.get('officer_positions_found', 0)}")
+    lines.append(f"Associated entities discovered: {summary.get('associated_entities', 0)}")
+    lines.append("")
+
+    # Companies
+    companies = data.get("companies", [])
+    if companies:
+        lines.append("Companies linked to subject:")
+        for c in companies[:10]:
+            status = c.get("current_status", "unknown")
+            lines.append(f"  - {c['name']} ({c.get('jurisdiction_code', '?')}) — {status}")
+            if c.get("incorporation_date"):
+                lines.append(f"    Incorporated: {c['incorporation_date']}")
+            if c.get("dissolution_date"):
+                lines.append(f"    Dissolved: {c['dissolution_date']}")
+        lines.append("")
+
+    # Officer positions (for individuals)
+    officers = data.get("officer_positions", [])
+    if officers:
+        lines.append("Officer/director positions held by subject:")
+        for o in officers[:15]:
+            period = ""
+            if o.get("start_date"):
+                period = f" (from {o['start_date']}"
+                if o.get("end_date"):
+                    period += f" to {o['end_date']}"
+                period += ")"
+            lines.append(f"  - {o.get('position', 'officer')} at {o.get('company_name', '?')}{period}")
+        lines.append("")
+
+    # Associated entities (the key output — names for downstream searches)
+    entities = data.get("associated_entities", [])
+    if entities:
+        lines.append("ASSOCIATED ENTITIES (discovered through corporate network):")
+        lines.append("NOTE: These are companies/people connected to the subject through corporate")
+        lines.append("registries. Check if any appear in corruption, sanctions, or news results above.")
+        for e in entities[:20]:
+            lines.append(f"  - {e['name']} — {e.get('relationship', 'associated')}")
+        lines.append("")
+
+    # Co-directors
+    co_directors = data.get("co_directors", [])
+    if co_directors:
+        lines.append("Co-directors/officers at subject's companies:")
+        for cd in co_directors[:15]:
+            lines.append(f"  - {cd['name']} ({cd.get('position', '?')} at {cd.get('company', '?')})")
+        lines.append("")
+
+    # Tavily fallback results (when OpenCorporates unavailable)
+    tavily_searches = data.get("tavily_network_searches", [])
+    if tavily_searches:
+        lines.append("Corporate network web search results (Tavily):")
+        for search in tavily_searches:
+            for r in search.get("results", [])[:5]:
+                lines.append(f"  - [{r.get('title', 'Untitled')}]({r.get('url', '')})")
+                content = r.get("content", "")
+                if content:
+                    lines.append(f"    {content[:200]}")
+        lines.append("")
+
+    return "\n".join(lines) if lines else "No corporate network data found."
+
+
 def format_manual_for_prompt(data: dict) -> str:
     if not data:
         return "No manual findings provided."
@@ -546,9 +648,13 @@ def build_synthesis_prompt(intake: dict, step_data: dict, sources: list = None) 
     vetting_level = context.get("vetting_level", "standard_vet")
     multiplier = config.ENGAGEMENT_MULTIPLIERS.get(engagement_type, 1.0)
 
+    # Use international risk weights for non-US subjects
+    is_us = country.upper() in ("US", "USA", "UNITED STATES")
+    risk_dims = config.RISK_DIMENSIONS if is_us else config.RISK_DIMENSIONS_INTERNATIONAL
+
     # Build dimension weights text
     dim_lines = []
-    for i, (k, d) in enumerate(config.RISK_DIMENSIONS.items()):
+    for i, (k, d) in enumerate(risk_dims.items()):
         line = f"  {i+1}. {d['label']} — Weight: {d['weight']*100:.0f}%"
         if k == "conflict_of_interest":
             line += (
@@ -574,6 +680,7 @@ def build_synthesis_prompt(intake: dict, step_data: dict, sources: list = None) 
     executives_text = format_executives_for_prompt(step_data.get("executives", {}))
     international_text = format_international_for_prompt(step_data.get("international", {}))
     contracts_text = format_contracts_for_prompt(step_data.get("contracts", {}))
+    network_text = format_network_for_prompt(step_data.get("network", {}))
     manual_text = format_manual_for_prompt(step_data.get("manual", {}))
 
     # Client conflict check — load enriched client list for Claude to reason about
@@ -596,6 +703,14 @@ Country: {country}
 Engagement Type: {engagement_type} (risk multiplier: {multiplier}x)
 Vetting Level: {vetting_level}
 Bio: {context.get('brief_bio', 'None provided')}
+{"" if is_us else f"""
+## INTERNATIONAL SUBJECT NOTICE
+This subject is based OUTSIDE the United States ({country}). US-only databases (FEC, SEC, CourtListener, Senate LDA, SAM.gov, USAspending) were NOT searched because they would return no relevant data. Risk dimension weights have been rebalanced to emphasize:
+- Media/Reputation (30%) — Tavily news is the primary evidence source
+- International/PEP (30%) — PEP status, country risk, FARA exposure are central
+- Conflict of Interest (10%) — TMG client conflicts still apply
+Score based on the DATA YOU HAVE. Do NOT penalize for missing US databases. Do NOT assume low risk just because US databases are empty — score based on news, sanctions, PEP, and international data.
+"""}
 
 ## YOUR TASK
 Analyze ALL the data below and produce a unified risk assessment JSON. You must:
@@ -689,6 +804,13 @@ You have a numbered source reference list below. When writing evidence items:
 
 ## GOVERNMENT CONTRACTS DATA (Step 14 — USAspending.gov)
 {contracts_text}
+
+## CORPORATE NETWORK DISCOVERY (Step 15 — OpenCorporates)
+{network_text}
+IMPORTANT: Cross-reference the associated entities above against ALL other data sections.
+If any associated entity name appears in corruption searches, sanctions results, or negative
+news coverage, flag this as a network-level risk indicator. This is how hidden connections
+(e.g., shell companies, business associates under investigation) are surfaced.
 
 ## MANUAL FINDINGS (from human researcher — treat as HIGH-CONFIDENCE primary evidence)
 {manual_text}
@@ -899,6 +1021,9 @@ def run_synthesis(intake: dict) -> dict:
     subject_id = intake["subject_id"]
     vetting_level = intake["context"]["vetting_level"]
     engagement_type = intake["context"]["engagement_type"]
+    country = intake["subject"].get("country", "US")
+    is_us_subject = country.upper() in ("US", "USA", "UNITED STATES")
+    risk_dims = config.RISK_DIMENSIONS if is_us_subject else config.RISK_DIMENSIONS_INTERNATIONAL
 
     print(f"  🧠 Step 13: Running Claude synthesis for '{name}'...")
 
@@ -967,7 +1092,7 @@ def run_synthesis(intake: dict) -> dict:
     total_weight = 0.0
     dim_confidence = []
 
-    for dim_key, dim_config in config.RISK_DIMENSIONS.items():
+    for dim_key, dim_config in risk_dims.items():
         dim_data = dimensions.get(dim_key, {})
         score = dim_data.get("score", 0)
         if isinstance(score, str):
@@ -1281,7 +1406,7 @@ Return ONLY the rewritten executive summary in markdown format. No JSON wrapping
     print(f"  Confidence: {overall_confidence}")
 
     # Print dimension scores
-    for dim_key, dim_config in config.RISK_DIMENSIONS.items():
+    for dim_key, dim_config in risk_dims.items():
         dim_data = dimensions.get(dim_key, {})
         print(f"    {dim_config['label']}: {dim_data.get('score', '?')}/10 ({dim_data.get('confidence', '?')})")
 

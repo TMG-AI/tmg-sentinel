@@ -1,6 +1,105 @@
 # Vetting Pipeline Project - Session Status
 
-## Last Updated: 2026-03-08 (Session 8 — evening)
+## Last Updated: 2026-03-10 (Session 11)
+
+## Completed (Session 11) — Perplexity-Recommended Improvements
+Based on Perplexity report analyzing pipeline gaps vs. professional due diligence firms (Kroll, Control Risks, Nardello). Five high-value changes implemented:
+
+1. **Source tier weighting in synthesis prompt** — `config_tavily.py` SOURCE_QUALITY_PROMPT now includes per-country tier weights (Tier 1=1.0, Tier 2=0.7, Tier 3=0.4, avoid=0.1) and corroboration rules. Claude must now use CONFIRMED/REPORTED/ALLEGED/UNCORROBORATED labels. Cross-check rule: stories in both pro-gov AND opposition outlets get credibility boost.
+
+2. **Universal investigator-style queries** — `config.py` adds `TAVILY_INVESTIGATOR_QUERIES` (8 queries): investigation/probe, indicted/charged, money laundering/bribery, sanctions/blacklist, tax evasion/offshore, shell company, fraud/embezzlement, arrest warrant. Applied to ALL deep searches regardless of country.
+
+3. **Red flag categories beyond corruption** — `config.py` adds `TAVILY_RED_FLAG_QUERIES` (8 queries): human rights violations, torture/extrajudicial, environmental disaster, forced labor/child labor, kleptocracy/state capture, unexplained wealth, family dynasty networks, terrorism financing. Applied to ALL deep searches.
+
+4. **Corporate Network Discovery (Step 15)** — NEW step. `scripts/search_network.py` uses OpenCorporates API (when key available) or Tavily fallback to discover corporate associations, directorships, subsidiaries, co-directors. Associated entities are cross-referenced against corruption/sanctions/news data in synthesis. This is how you organically find hidden connections (e.g., Omni Group) without hardcoding.
+
+5. **Reverse queries** — `config.py` adds `TAVILY_REVERSE_QUERIES` (4 templates): scandal-first searches like "corruption scandal {country} {sector}" that find cases first, then check if subject appears. Only for international subjects. Sector auto-inferred from bio/engagement type.
+
+### Key Code Changes (Session 11)
+- **`config_tavily.py`**: SOURCE_QUALITY_PROMPT expanded with Per-Country Source Tier Weighting and Corroboration Rules sections.
+- **`config.py`**: Added `TAVILY_INVESTIGATOR_QUERIES` (8), `TAVILY_RED_FLAG_QUERIES` (8), `TAVILY_REVERSE_QUERIES` (4). Added `OPENCORPORATES_API_KEY` env var, `NETWORK_DIR`, Step 15 to `STEP_SCRIPTS`/`STEP_NAMES`/vetting levels. Standard vet steps now: `[0, 1, 2, 3, 4, 5, 15, 6, 7, 8, 10, 11, 14, 13]`.
+- **`scripts/search_news.py`**: Deep search now appends investigator queries, red flag queries, and (for international) reverse queries. Total deep queries increased from ~20 to ~40+ per subject.
+- **NEW: `scripts/search_network.py`**: Step 15. OpenCorporates company + officer search, with Tavily fallback. Produces associated_entities list for cross-referencing.
+- **`scripts/pipeline.py`**: Added Step 15 block between Step 5 (Corporate) and Step 6 (FEC). Imports `search_network`.
+- **`scripts/synthesize.py`**: Added `format_network_for_prompt()`. Loads network data in `load_all_step_data()`. Prompt includes CORPORATE NETWORK DISCOVERY section with cross-reference instruction.
+
+### Impact on Query Volume
+- Basic queries (Step 3): unchanged (3 queries)
+- Deep queries (Step 10): ~15 → ~35-40 queries (+ 8 investigator + 8 red flag + 5 country corruption + 4 reverse)
+- Step 15 (Network): 3-5 Tavily queries (fallback mode) or 2-7 OpenCorporates API calls
+- Total per standard_vet: ~50-55 Tavily queries (was ~30-40)
+
+### OpenCorporates Setup
+To enable structured corporate data instead of Tavily fallback:
+1. Register at https://opencorporates.com (free tier: 50 requests/day)
+2. Add to `.env`: `OPENCORPORATES_API_KEY=your_key_here`
+3. Pipeline auto-detects and uses OpenCorporates when key is present
+
+### Shah Re-Run Results (Session 10)
+- **Factual Risk: 7.11/10 HIGH — Recommend Reject**
+- **RCS: 5.35/10 ELEVATED**
+- **Combined Decision: HIGH — Recommend Reject**
+- Pipeline surfaced: NAB references (Nooriabad, fake accounts, misuse of power), JIT findings, accountability court proceedings, ECL placement, benami account allegations, 2024 acquittal
+- 224 Tavily sources, 74 mentions of key corruption terms across output
+- Zero hardcoding — all found organically via country-specific corruption vocabulary
+
+## Completed (Session 10)
+- **Country-specific anti-corruption search** — NEW. `config_international.py` defines per-country anti-corruption bodies, legal terminology, and search terms. Step 12 now runs 10-14 additional Tavily queries using country-specific corruption vocabulary (e.g., "NAB reference", "accountability court" for Pakistan; "ED case", "CBI chargesheet" for India; "SFO investigation" for UK). This is the fix for the Shah vetting gap where generic queries missed NAB/JIT/fake-accounts corruption.
+- **Country configs for 12 countries** — Pakistan, India, UK, UAE, Nigeria, Kenya, South Africa, Brazil, Mexico, Turkey, Philippines, Saudi Arabia. Each has: anti-corruption bodies with abbreviations, key legal terms, tiered news sources (domain names), and avoid lists. Generic fallback terms for unconfigured countries.
+- **Tavily domain filtering fixed** — Removed `expressnews.com` from global block list (was blocking Express News Pakistan). Added 15+ regional quality press sources to `INCLUDE_INTERNATIONAL` (Dawn, The Hindu, Daily Maverick, Premium Times, Rappler, etc.) + cross-border investigative networks (Bureau of Investigative Journalism, Correctiv, Bellingcat).
+- **Deep news search enhanced** — `search_news.py` Step 10 now appends top 5 country-specific corruption terms for international subjects, so corruption coverage surfaces in the news step too, not just Step 12.
+- **Citation enrichment updated** — `synthesize.py` now collects sources from `corruption_searches` field for [n] citation matching.
+- **Prompt updated** — `format_international_for_prompt()` now includes full corruption search results with article titles and snippets.
+
+## Key Code Changes (Session 10)
+- **NEW: `config_international.py`** — Country configs with `COUNTRY_CONFIGS` dict, `normalize_country_code()`, `get_corruption_search_terms()`, `get_country_news_domains()`, `get_country_avoid_domains()`. Helper `COUNTRY_ALIASES` maps name variations → ISO codes.
+- **`scripts/search_international.py`**: Added `search_country_corruption()` function. `run_international_search()` now calls it for non-US subjects, producing `corruption_searches` field in output JSON.
+- **`scripts/search_news.py`**: Imports `get_corruption_search_terms`, appends top 5 terms to deep search templates for international subjects.
+- **`config_tavily.py`**: Removed `expressnews.com` from `EXCLUDE_DOMAINS_TABLOIDS_PARTISAN`. Expanded `INCLUDE_INTERNATIONAL` with regional quality press + investigative networks.
+- **`scripts/synthesize.py`**: `format_international_for_prompt()` now renders corruption search results. `collect_tavily_sources()` now includes corruption search sources for citation enrichment.
+
+## Ready to Re-Run: Syed Murad Ali Shah
+```bash
+cd /Users/shannonwheatman/vetting && python3 scripts/pipeline.py \
+  --name "Syed Murad Ali Shah" \
+  --type individual \
+  --country Pakistan \
+  --city "Karachi, Sindh" \
+  --engagement fara_foreign_political \
+  --level standard_vet \
+  --bio "Chief Minister of Sindh province, Pakistan. PPP politician." \
+  --referral "International engagement assessment"
+```
+Pipeline will now run 14 Pakistan-specific corruption queries in Step 12 (NAB reference, accountability court, benami accounts, etc.) in addition to 20 deep news queries (5 with corruption terms) and PEP check. Should surface the NAB Nooriabad case, JIT fake-accounts findings, and Omni Group connections that were missed in Session 9.
+
+## Completed (Session 9)
+- **International subject support** — Pipeline now handles non-US subjects correctly:
+  - `pipeline.py`: Auto-skips US-only steps (2/Debarment, 4/Litigation, 6/FEC, 7/SEC, 8/Lobbying, 9/Bankruptcy, 14/Contracts) when country ≠ US. Auto-includes Step 12 (International) for non-US subjects even on standard_vet.
+  - `config.py`: Added `RISK_DIMENSIONS_INTERNATIONAL` — rebalanced weights (Media 30%, International/PEP 30%, Litigation 12%, Financial 6%, Corporate 7%, Political 5%, COI 10%) since US databases don't apply.
+  - `synthesize.py`: Uses international weights for non-US subjects in prompt construction, score computation, and score printing. Adds "INTERNATIONAL SUBJECT NOTICE" to prompt telling Claude not to penalize for missing US data.
+- **No changes to US subject flow** — all edits gated behind `is_us` check. Existing Peter Thiel / Palantir vettings unaffected.
+
+## Key Code Changes (Session 9)
+- **`scripts/pipeline.py`** (~lines 56-77): `US_ONLY_STEPS` dict + `is_us` gate. Steps list is now copied with `list()` to avoid mutating config. Step 12 auto-inserted for non-US standard_vet.
+- **`config.py`** (~lines 222-257): `RISK_DIMENSIONS_INTERNATIONAL` dict with rebalanced weights + assert.
+- **`scripts/synthesize.py`**: Three changes:
+  - `build_synthesis_prompt()` (~line 551): Selects `risk_dims` based on country. Adds international context block to prompt.
+  - `run_synthesis()` (~line 916): Selects `risk_dims` based on country.
+  - Score computation (~line 985) and score printing (~line 1299): Use `risk_dims` instead of hardcoded `config.RISK_DIMENSIONS`.
+
+## Ready to Run: Syed Murad Ali Shah
+```bash
+cd /Users/shannonwheatman/vetting && python3 scripts/pipeline.py \
+  --name "Syed Murad Ali Shah" \
+  --type individual \
+  --country Pakistan \
+  --city "Karachi, Sindh" \
+  --engagement fara_foreign_political \
+  --level standard_vet \
+  --bio "Chief Minister of Sindh province, Pakistan. PPP politician." \
+  --referral "International engagement assessment"
+```
+Steps that will run: 0 (Intake), 1 (Sanctions), 3 (Basic News), 5 (Corporate/GLEIF), 10 (Deep News), 11 (Exec ID — will skip for individual), 12 (International/PEP), 13 (Synthesis)
 
 ## Completed (Session 8)
 - **Executive summary rewrite** — Added post-synthesis Claude Sonnet call to rewrite exec summary with BOTH factual + RCS scores and Combined Decision. Before: summaries only reflected factual risk (Palantir said "CONDITIONAL APPROVE"). After: summaries reflect Combined Decision (Palantir says "REJECT — HIGH").

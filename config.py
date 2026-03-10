@@ -33,6 +33,7 @@ SOCIAL_MEDIA_DIR = DATA_DIR / "social_media"
 EXECUTIVES_DIR = DATA_DIR / "executives"
 INTERNATIONAL_DIR = DATA_DIR / "international"
 CONTRACTS_DIR = DATA_DIR / "contracts"
+NETWORK_DIR = DATA_DIR / "network"
 MANUAL_DIR = DATA_DIR / "manual"
 UNIFIED_DIR = DATA_DIR / "unified"
 CACHE_DIR = DATA_DIR / "cache"
@@ -41,7 +42,7 @@ CACHE_DIR = DATA_DIR / "cache"
 for d in [INTAKE_DIR, SANCTIONS_DIR, DEBARMENT_DIR, NEWS_DIR, LITIGATION_DIR,
           CORPORATE_DIR, FEC_DIR, SEC_DIR, LOBBYING_DIR, BANKRUPTCY_DIR,
           SOCIAL_MEDIA_DIR, EXECUTIVES_DIR, INTERNATIONAL_DIR, CONTRACTS_DIR,
-          MANUAL_DIR, UNIFIED_DIR, CACHE_DIR]:
+          NETWORK_DIR, MANUAL_DIR, UNIFIED_DIR, CACHE_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 # ─── SSL Context (macOS Python fix) ────────────────────────
@@ -57,6 +58,7 @@ LDA_API_KEY = os.getenv("LDA_API_KEY")
 SAM_GOV_API_KEY = os.getenv("SAM_GOV_API_KEY")
 COURTLISTENER_API_TOKEN = os.getenv("COURTLISTENER_API_TOKEN")
 SEC_EDGAR_USER_AGENT = os.getenv("SEC_EDGAR_USER_AGENT", "TMG Vetting Pipeline contact@themessinagroup.com")
+OPENCORPORATES_API_KEY = os.getenv("OPENCORPORATES_API_KEY", "")  # Free tier — register at opencorporates.com
 
 # ─── API Endpoints ──────────────────────────────────────────
 ENDPOINTS = {
@@ -101,6 +103,10 @@ ENDPOINTS = {
 
     # Government Contracts (Step 14) — no API key needed
     "usaspending_awards": "https://api.usaspending.gov/api/v2/search/spending_by_award/",
+
+    # Corporate Network Discovery (Step 15) — OpenCorporates free tier
+    "opencorporates_search": "https://api.opencorporates.com/v0.4/companies/search",
+    "opencorporates_officers": "https://api.opencorporates.com/v0.4/officers/search",
 }
 
 # ─── Vetting Levels ─────────────────────────────────────────
@@ -112,13 +118,13 @@ VETTING_LEVELS = {
     },
     "standard_vet": {
         "label": "Standard Vet",
-        "steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 14, 13],  # + Exec ID, Gov Contracts
-        "description": "Full domestic background check with deep news, executive vetting, gov contracts. ~20 minutes.",
+        "steps": [0, 1, 2, 3, 4, 5, 15, 6, 7, 8, 10, 11, 14, 13],  # + Network Discovery, Exec ID, Gov Contracts
+        "description": "Full domestic background check with deep news, corporate network, executive vetting, gov contracts. ~25 minutes.",
     },
     "deep_dive": {
         "label": "Deep Dive",
-        "steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 13],  # Everything
-        "description": "Comprehensive investigation with executive vetting and gov contracts. ~35 minutes.",
+        "steps": [0, 1, 2, 3, 4, 5, 15, 6, 7, 8, 9, 10, 11, 12, 14, 13],  # Everything
+        "description": "Comprehensive investigation with corporate network, executive vetting and gov contracts. ~40 minutes.",
     },
 }
 
@@ -139,6 +145,7 @@ STEP_SCRIPTS = {
     12: "search_international.py",
     13: "synthesize.py",
     14: "search_contracts.py",
+    15: "search_network.py",
 }
 
 STEP_NAMES = {
@@ -157,6 +164,7 @@ STEP_NAMES = {
     12: "International Checks",
     13: "Claude Synthesis",
     14: "Government Contracts",
+    15: "Corporate Network Discovery (OpenCorporates)",
 }
 
 # ─── Risk Scoring Configuration ─────────────────────────────
@@ -219,6 +227,51 @@ RISK_DIMENSIONS = {
 # Verify weights sum to 1.0
 assert abs(sum(d["weight"] for d in RISK_DIMENSIONS.values()) - 1.0) < 0.001, \
     f"Risk dimension weights must sum to 1.0, got {sum(d['weight'] for d in RISK_DIMENSIONS.values())}"
+
+# International Risk Dimension Overrides
+# For non-US subjects, FEC/SEC/Lobbying data won't exist.
+# Redistribute that weight (0.10 + 0.12 + 0.10 = 0.32) to dimensions with data.
+RISK_DIMENSIONS_INTERNATIONAL = {
+    "litigation_legal": {
+        "label": "Litigation / Legal Risk",
+        "weight": 0.12,   # Reduced — no US court data, only news-based legal findings
+        "sub_factors": ["criminal_cases", "civil_fraud_corruption", "repeated_civil_litigation", "past_resolved", "bankruptcy"],
+    },
+    "media_reputation": {
+        "label": "Media / Reputation Risk",
+        "weight": 0.30,   # Major increase — Tavily news is the primary evidence source
+        "sub_factors": ["major_scandals", "investigations", "negative_coverage", "social_media_findings"],
+    },
+    "international_pep": {
+        "label": "International / PEP Risk",
+        "weight": 0.30,   # Major increase — PEP status, country risk are central for foreign subjects
+        "sub_factors": ["pep_status", "country_risk", "fara_exposure", "source_reliability"],
+    },
+    "financial_sec": {
+        "label": "Financial / Regulatory Risk",
+        "weight": 0.06,   # Reduced — no SEC data, but financial irregularities may appear in news
+        "sub_factors": ["sec_enforcement", "financial_irregularities", "unclear_financials"],
+    },
+    "corporate_business": {
+        "label": "Corporate / Business Risk",
+        "weight": 0.07,   # Slightly reduced — GLEIF still works, but no US corporate filings
+        "sub_factors": ["ownership_complexity", "shell_companies", "unclear_affiliations"],
+    },
+    "political_lobbying": {
+        "label": "Political / Lobbying Risk",
+        "weight": 0.05,   # Reduced — no LDA data, but political risk still relevant from news
+        "sub_factors": ["fara_issues", "investigation_links", "watchlist_lobbying", "pay_to_play"],
+    },
+    "conflict_of_interest": {
+        "label": "Conflict of Interest",
+        "weight": 0.10,   # Unchanged — TMG client conflicts apply regardless of country
+        "sub_factors": ["direct_conflict", "indirect_conflict", "future_conflict"],
+    },
+}
+
+# Verify international weights sum to 1.0
+assert abs(sum(d["weight"] for d in RISK_DIMENSIONS_INTERNATIONAL.values()) - 1.0) < 0.001, \
+    f"International risk dimension weights must sum to 1.0, got {sum(d['weight'] for d in RISK_DIMENSIONS_INTERNATIONAL.values())}"
 
 # Engagement Context Multipliers
 ENGAGEMENT_MULTIPLIERS = {
@@ -287,6 +340,42 @@ TAVILY_ORG_QUERIES = [
     "{name} donations political money returned rejected",
     "{name} employee dissent whistleblower internal opposition",
     "{name} surveillance enforcement immigration civil liberties",
+]
+
+# Universal investigator-style queries (per Kroll/Control Risks/Nardello patterns)
+# Pair subject name with crime categories and legal verbs.
+# Applied to ALL deep searches regardless of country.
+TAVILY_INVESTIGATOR_QUERIES = [
+    "{name} investigation probe inquiry",
+    "{name} indicted charged prosecutors",
+    "{name} money laundering bribery kickbacks",
+    "{name} sanctions blacklist designated",
+    "{name} tax evasion offshore accounts",
+    "{name} shell company front company",
+    "{name} fraud embezzlement misappropriation",
+    "{name} arrest warrant detained",
+]
+
+# Red flag category queries beyond corruption (per Perplexity recommendations)
+# Human rights, environmental, labor, kleptocracy, family/dynastic networks
+TAVILY_RED_FLAG_QUERIES = [
+    "{name} human rights violations abuses",
+    "{name} torture extrajudicial killings forced disappearance",
+    "{name} environmental disaster pollution oil spill",
+    "{name} forced labor child labor sweatshop wage theft",
+    "{name} kleptocracy state capture oligarch",
+    "{name} unexplained wealth illicit enrichment",
+    "{name} family dynasty political business network",
+    "{name} terrorism financing extremism",
+]
+
+# Reverse queries: search for the scandal first, see if subject appears.
+# Uses {country} and optionally {sector}. Only for international subjects.
+TAVILY_REVERSE_QUERIES = [
+    "corruption scandal {country} {sector}",
+    "bribery investigation {country} {sector}",
+    "money laundering {country} {sector}",
+    "sanctions evasion {country}",
 ]
 
 # ─── Pipeline Settings ──────────────────────────────────────

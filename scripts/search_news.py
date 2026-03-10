@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 from config_tavily import get_tavily_params
+from config_international import get_corruption_search_terms
 
 
 def tavily_search(query: str, step: str = "news_basic", **overrides) -> dict:
@@ -51,6 +52,43 @@ def run_news_search(intake: dict, deep: bool = False) -> dict:
     # Add org-specific queries for deep searches of organizations
     if deep and subject_type == "organization" and hasattr(config, "TAVILY_ORG_QUERIES"):
         templates.extend(config.TAVILY_ORG_QUERIES)
+
+    # Add universal investigator-style queries for all deep searches
+    if deep:
+        templates.extend(config.TAVILY_INVESTIGATOR_QUERIES)
+
+    # Add red flag category queries (human rights, environmental, etc.)
+    if deep:
+        templates.extend(config.TAVILY_RED_FLAG_QUERIES)
+
+    # Add top country-specific corruption queries for international deep searches
+    country = intake["subject"].get("country", "US")
+    is_us = country.upper() in ("US", "USA", "UNITED STATES")
+    if deep and not is_us:
+        corruption_terms = get_corruption_search_terms(country)
+        # Add top 5 corruption terms as news queries (Step 12 does the full set)
+        for term in corruption_terms[:5]:
+            templates.append("{name} " + term)
+
+    # Add reverse queries for international subjects (scandal-first searches)
+    if deep and not is_us:
+        # Infer sector from bio/engagement type for reverse queries
+        bio = intake.get("context", {}).get("brief_bio", "")
+        engagement = intake.get("context", {}).get("engagement_type", "")
+        sector = ""
+        if "minister" in bio.lower() or "governor" in bio.lower() or "political" in engagement:
+            sector = "government politics"
+        elif "ceo" in bio.lower() or "corporate" in engagement:
+            sector = "business corporate"
+        elif "military" in bio.lower() or "defense" in engagement:
+            sector = "military defense"
+
+        for tmpl in config.TAVILY_REVERSE_QUERIES:
+            templates.append(tmpl.format(
+                name="{name}",  # keep {name} for later .format() call
+                country=country,
+                sector=sector,
+            ).strip())
 
     all_results = []
     all_sources = []

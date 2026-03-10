@@ -1,0 +1,149 @@
+{
+  "step": 15,
+  "step_name": "Corporate Network Discovery",
+  "subject_id": "syed_murad_ali_shah",
+  "subject_name": "Syed Murad Ali Shah",
+  "subject_type": "individual",
+  "summary": {
+    "companies_found": 0,
+    "officer_positions_found": 0,
+    "associated_entities": 0,
+    "co_directors_found": 0,
+    "tavily_sources": 18
+  },
+  "companies": [],
+  "officer_positions": [],
+  "associated_entities": [],
+  "co_directors": [],
+  "tavily_network_searches": [
+    {
+      "query": "Syed Murad Ali Shah director board member company",
+      "results": [
+        {
+          "title": "SSGA Funds - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/826686/000119312522230056/d319918dnpx.htm",
+          "content": "15, 2021 Meeting Type: Ordinary Shareholders Record Date: # Proposal Mgt Rec Vote Cast Sponsor 1.1 Elect Tariq Al Qassabi as Director None Abstain Management 1.2 Elect Abdulmajeed Al Sultan as Director None Abstain Management 1.3 Elect Adil Dahlawi as Director None Abstain Management 1.4 Elect Mohammed bin Daoud as Director None Abstain Management 1.5 Elect Ahmed Murad as Director None Abstain Management 1.6 Elect Omar Makharish as Director None Abstain Management 1.7 Elect Mazin Abdulsalam as D",
+          "score": 0.17694198
+        },
+        {
+          "title": "DEM 2008 Form N-PX - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/896163/000113743908000360/demnpx2008.htm",
+          "content": "#     Proposal                                  Mgt Rec   Vote Cast  Sponsor\n1     Accept Financial Statements and Statutory For       For        Management\n      Reports\n2     Reappoint L.K. Jain as Director           For       For        Management\n3     Reappoint V.H. Patil as Director          For       For        Management\n4     Reappoint H.G. Gala as Director           For       For        Management\n5     Reappoint S.T. Shah as Director           For       For        Management\n6     App",
+          "score": 0.093520775
+        },
+        {
+          "title": "0001438934-21-000365.txt - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/74663/000143893421000365/0001438934-21-000365.txt",
+          "content": "NEXT THREE YEARS SESSION STARTING ON 27/07/2021 ENDING ON 26/07/2024: MR. RAAD NASSER SAAD AL-KAHTANI 11.19 VOTING ON THE ELECTION OF THE BOARD OF Mgmt Abstain Against DIRECTORS MEMBER AMONG NOMINEES FOR THE NEXT THREE YEARS SESSION STARTING ON 27/07/2021 ENDING ON 26/07/2024: MR. THAMER MUSFER AWAD AL-WADIE 11.20 VOTING ON THE ELECTION OF THE BOARD OF Mgmt Abstain Against DIRECTORS MEMBER AMONG NOMINEES FOR THE NEXT THREE YEARS SESSION STARTING ON 27/07/2021 ENDING ON 26/07/2024: MR. AHMAD TARE",
+          "score": 0.09077596
+        },
+        {
+          "title": "investment company act file number - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/744822/000070253307000018/fidstheastasia.htm",
+          "content": "YUN GONGHUI AS A DIRECTOR OF THE FIRST SESSION OF THE BOARD, AND ELECT MR. YUN GONGMIN AS A MEMBER OF THE BOARD SHALL BE A NON-EXECUTIVE DIRECTOR OF THE COMPANY",
+          "score": 0.05007463
+        },
+        {
+          "title": "annual report of proxy voting record of registered management ...",
+          "url": "https://www.sec.gov/Archives/edgar/data/909994/000093041313004355/c74813_npx.htm",
+          "content": "Old Westbury Funds, Inc. (Exact name of registrant as specified in charter). 760 Moore Rd. King of Prussia, PA 19406. (Address of principal executive",
+          "score": 0.049354926
+        },
+        {
+          "title": "0001135428-19-000113.txt - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/878719/000113542819000113/0001135428-19-000113.txt",
+          "content": "... COMPANY DATA: COMPANY CONFORMED NAME: ADVISORS' INNER CIRCLE FUND CENTRAL INDEX KEY: 0000878719 IRS NUMBER: 000000000 FISCAL YEAR END: 1031 FILING VALUES",
+          "score": 0.047306996
+        },
+        {
+          "title": "0001680359-21-000183.txt - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/1816125/000168035921000183/0001680359-21-000183.txt",
+          "content": "A-JIN INDUSTRIAL CO., LTD. Ticker: 013310 Security ID: Y0033J102 Meeting Date: MAR 31, 2021 Meeting Type: Annual Record Date: DEC 31, 2020 # Proposal Mgt Rec",
+          "score": 0.03425846
+        },
+        {
+          "title": "investment company act file number - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/1303459/000137949121003769/filing877.htm",
+          "content": "SIGNATURES ; 1.2, Elect Director Donald Glickman, Management ; 1.3, Elect Director Lindsay N. Hyde, Management ; 1.4, Elect Director Leah C. Johnson",
+          "score": 0.032592896
+        },
+        {
+          "title": "calculation of registration fee - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/1543151/000155278121000193/e21205_uber-424b7.htm",
+          "content": "Our board of directors is authorized, without stockholder approval except as required by the listing standards of the New York Stock Exchange,",
+          "score": 0.030240413
+        },
+        {
+          "title": "annual report of proxy voting record - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/852254/000120677420002700/iief_811-05833.htm",
+          "content": "Registrant Name: T. ROWE PRICE GLOBAL FUNDS, INC. Reporting Period: 07/01/2019 - 06/30/2020. FORM N-PX.",
+          "score": 0.021617446
+        }
+      ]
+    },
+    {
+      "query": "Syed Murad Ali Shah business ventures companies founded",
+      "results": [
+        {
+          "title": "0000950137-07-013131.txt - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/916620/000095013707013131/0000950137-07-013131.txt",
+          "content": "Date: JUN 26, 2007 Meeting Type: Annual Record Date: JUN 15, 2007 # Proposal Mgt Rec Vote Cast Sponsor 1 Accept Financial Statements and Statutory For For Management Reports 2 Approve Final and Interim Dividends of For For Management INR 13 Per Share 3 Reappoint M. Shah as Director For For Management 4 Reappoint H. Dani as Director For For Management 5 Reappoint M. Choksi as Director For For Management 6 Approve Shah & Co. and BSR & Associates For For Management as Joint Auditors and Authorize B",
+          "score": 0.18352078
+        },
+        {
+          "title": "Untitled",
+          "url": "https://www.sec.gov/Archives/edgar/data/878719/000113542819000113/acadian-npx.htm",
+          "content": "10  Elect Directors (Bundled)                            Management     For          Voted - For\n\n 1   Approve Merger by Absorption of Union National Bank                            \n\n       by Abu Dhabi Commercial Bank                       Management     For          Voted - For\n\n 2   Approve Merger Agreement Between Union National                                \n\n       Bank and Abu Dhabi Commercial Bank                 Management     For          Voted - For\n\n 3.a Increase Issued Capital fro",
+          "score": 0.045188066
+        },
+        {
+          "title": "China takes 'project of the century' to Pakistan - Financial Times",
+          "url": "https://www.ft.com/content/05979e18-2fe4-11e7-9555-23ef563ecf9a",
+          "content": "Keep reading for \u20ac1\n\n Global news & analysis\n Expert opinion\n FT App on Android & iOS\n First FT: the day\u2019s biggest stories\n 20+ curated newsletters\n Follow topics & set alerts with myFT\n FT Videos & Podcasts\n 10 additional monthly gift articles to share\n Lex: FT\u2019s flagship investment column\n 15+ Premium newsletters from leading experts\n FT Digital Edition: our digitised print edition\n\n## Explore more offers.\n\n### FT Digital Edition\n\n\u20ac15.99 per month\n\nOur digitised version of the FT newspaper, fo",
+          "score": 0.045087047
+        },
+        {
+          "title": "tm2026591-5_npx.txt - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/52848/000110465920099541/tm2026591-5_npx.txt",
+          "content": "... COMPANIES INVESTMENT COMPANY ACT FILE NUMBER: 811-1027 NAME OF REGISTRANT: VANGUARD WORLD FUND ADDRESS OF REGISTRANT: PO BOX 2600, VALLEY FORGE, PA 19482",
+          "score": 0.035082057
+        },
+        {
+          "title": "Glimmer of light in Pakistan's blackout crisis - Financial Times",
+          "url": "https://www.ft.com/content/12643508-2b0b-11e7-9ec8-168383da43b7",
+          "content": "# Glimmer of light in Pakistan\u2019s blackout crisis\n\n## Try unlimited access\n\nThen $75 per month. Complete digital access to quality FT journalism on any device. Cancel anytime during your trial.\n\n## Explore more offers.\n\n### Standard Digital\n\nEssential digital access to quality FT journalism on any device. Pay a year upfront and save 20%.\n\n### Premium Digital\n\nComplete digital access to quality FT journalism with expert analysis from industry leaders. Pay a year upfront and save 20%.\n\n### Premium ",
+          "score": 0.027420785
+        }
+      ]
+    },
+    {
+      "query": "Syed Murad Ali Shah corporate affiliations subsidiaries",
+      "results": [
+        {
+          "title": "Shanghai Electric Achieves Financial Close for Coal Mine Project of ...",
+          "url": "https://www.prnewswire.com/news-releases/shanghai-electric-achieves-financial-close-for-coal-mine-project-of-thar-block-1-integrated-coal-mine-power-project-in-pakistan-301013456.html",
+          "content": "Thar Block-1 Integrated Coal Mine-Power Project was developed under the umbrella of the China-Pakistan Economic Corridor (the \"CPEC\"). It is part of an effort by the Government of Pakistan to improve energy security and reduce the average cost of power generation by moving from oil to coal. The project would energize the national grid and further help with savings on foreign exchange based on fuel costs.\n\nSindh Chief Minister Syed Murad Ali Shah appreciated Shanghai Electric's support in expedit",
+          "score": 0.2855268
+        },
+        {
+          "title": "0001683863-20-012457.txt - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/908695/000168386320012457/0001683863-20-012457.txt",
+          "content": "Against Against Shareholder E Elect Timothy Leary as Director Against Against Shareholder F Elect Ashitkumar Shah as Director Against Against Shareholder 17 Authorize Repurchase of Up to 10 For For Management Percent of Issued Share Capital 18 Authorize Capital Issuances for Use in For For Management Employee Stock Purchase Plans 19 Authorize Capital Issuances for Use in For For Management Employee Stock Purchase Plans Reserved for Employees of the Group's Subsidiaries 20 Authorize Decrease in S",
+          "score": 0.064706795
+        },
+        {
+          "title": "Untitled",
+          "url": "https://www.sec.gov/Archives/edgar/data/857489/000114420419042780/tv525407-4_intlequity1684.htm",
+          "content": "COMMERCIAL TRANSACTIONS WITH COMPANY AND BE INVOLVED WITH COMPANIES WITH SIMILAR CORPORATE [...] ``` [...] ```",
+          "score": 0.041172247
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "checked_at": "2026-03-10T05:14:26.497241+00:00",
+    "source": "Tavily (fallback)",
+    "opencorporates_available": false,
+    "country_filter": "Pakistan"
+  }
+}

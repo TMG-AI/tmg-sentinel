@@ -30,6 +30,7 @@ from search_bankruptcy import run_bankruptcy_search
 from search_executives import run_executive_search
 from search_international import run_international_search
 from search_contracts import run_contracts_search
+from search_network import run_network_search
 from synthesize import run_synthesis
 
 
@@ -50,14 +51,43 @@ def run_pipeline(
 ) -> dict:
     """Run the full vetting pipeline for a subject."""
 
-    steps_to_run = config.VETTING_LEVELS[vetting_level]["steps"]
+    steps_to_run = list(config.VETTING_LEVELS[vetting_level]["steps"])
     level_label = config.VETTING_LEVELS[vetting_level]["label"]
+
+    # ─── Skip US-only steps for non-US subjects ─────────────
+    is_us = (country or "US").upper() in ("US", "USA", "UNITED STATES")
+    US_ONLY_STEPS = {
+        2: "Debarment (SAM.gov — US only)",
+        4: "Litigation (CourtListener — US courts only)",
+        6: "FEC Campaign Finance (US only)",
+        7: "SEC Filings (US only)",
+        8: "Lobbying Disclosures (US Senate LDA only)",
+        9: "Bankruptcy (US courts only)",
+        14: "Government Contracts (USAspending — US only)",
+    }
+    skipped_steps = []
+    if not is_us:
+        for step_num, reason in US_ONLY_STEPS.items():
+            if step_num in steps_to_run:
+                steps_to_run.remove(step_num)
+                skipped_steps.append(f"  Step {step_num}: {reason}")
+        # Ensure Step 12 (International) is always included for non-US subjects
+        if 12 not in steps_to_run and 13 in steps_to_run:
+            # Insert before synthesis (step 13)
+            idx = steps_to_run.index(13)
+            steps_to_run.insert(idx, 12)
 
     print("=" * 60)
     print(f"TMG VETTING PIPELINE — {level_label.upper()}")
     print(f"Subject: {name}")
+    if not is_us:
+        print(f"Country: {country} (INTERNATIONAL — US-only steps will be skipped)")
     print(f"Level: {level_label} (Steps: {steps_to_run})")
     print(f"Engagement: {engagement_type} (multiplier: {config.ENGAGEMENT_MULTIPLIERS.get(engagement_type, 1.0)}x)")
+    if skipped_steps:
+        print(f"Skipped US-only steps:")
+        for s in skipped_steps:
+            print(s)
     print("=" * 60)
 
     start_time = time.time()
@@ -134,6 +164,13 @@ def run_pipeline(
         print("STEP 5: CORPORATE FILINGS / BUSINESS REGISTRATIONS")
         print(f"{'─'*50}")
         corporate = run_corporate_search(intake)
+
+    # ─── STEP 15: Corporate Network Discovery ─────────
+    if 15 in steps_to_run and (from_step is None or from_step <= 15):
+        print(f"\n{'─'*50}")
+        print("STEP 15: CORPORATE NETWORK DISCOVERY (OpenCorporates)")
+        print(f"{'─'*50}")
+        network = run_network_search(intake)
 
     # ─── STEP 6: FEC / Campaign Finance ───────────────
     if 6 in steps_to_run and (from_step is None or from_step <= 6):

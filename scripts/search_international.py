@@ -16,6 +16,12 @@ from datetime import datetime, timezone
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 from config_tavily import get_tavily_params
+from config_international import (
+    get_corruption_search_terms,
+    get_country_news_domains,
+    get_country_avoid_domains,
+    get_country_config,
+)
 
 
 def deep_pep_check(name: str, subject_type: str = "individual") -> dict:
@@ -185,6 +191,80 @@ def search_propublica_nonprofits(name: str) -> dict:
         }
 
 
+def search_country_corruption(name: str, country: str) -> list:
+    """
+    Run country-specific anti-corruption queries via Tavily.
+    Uses institution-specific terminology from config_international.py.
+    This is the key addition for international vetting — surfaces NAB references,
+    ED cases, SFO investigations, etc. that generic queries miss.
+    """
+    corruption_terms = get_corruption_search_terms(country)
+    country_news = get_country_news_domains(country, tiers=["tier1", "tier2"])
+    country_avoid = get_country_avoid_domains(country)
+    country_cfg = get_country_config(country)
+    country_name = country_cfg.get("name", country) if country_cfg else country
+
+    if not corruption_terms:
+        print(f"    No country-specific corruption terms for '{country}', using generic")
+
+    results = []
+    seen_urls = set()
+
+    for i, term in enumerate(corruption_terms):
+        query = f"{name} {term}"
+
+        try:
+            # Alternate between authoritative country sources and open search
+            if i % 3 == 0 and country_news:
+                # Authoritative pass: include country tier 1+2 sources
+                overrides = {"include_domains": country_news, "max_results": 10}
+                step_key = "international"
+            else:
+                # Open pass: exclude global noise + country avoid list
+                extra_excludes = country_avoid if country_avoid else []
+                overrides = {"max_results": 10}
+                step_key = "international_local"
+
+            params = get_tavily_params(step_key, query, **overrides)
+            params["api_key"] = config.TAVILY_API_KEY
+
+            resp = requests.post(
+                config.ENDPOINTS["tavily_search"],
+                json=params,
+                timeout=30,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+
+            search_record = {
+                "query": query,
+                "answer": data.get("answer", ""),
+                "results": [],
+            }
+
+            for r in data.get("results", []):
+                url = r.get("url", "")
+                if url and url not in seen_urls:
+                    seen_urls.add(url)
+                    search_record["results"].append({
+                        "title": r.get("title", ""),
+                        "url": url,
+                        "content": r.get("content", "")[:500],
+                        "score": r.get("score", 0),
+                        "published_date": r.get("published_date", ""),
+                    })
+
+            results.append(search_record)
+            time.sleep(config.REQUEST_DELAY)
+
+        except Exception as e:
+            results.append({"query": query, "error": str(e), "results": []})
+
+    total_sources = sum(len(s.get("results", [])) for s in results)
+    print(f"    Country corruption search ({country_name}): {len(corruption_terms)} queries → {total_sources} sources")
+    return results
+
+
 def run_international_search(intake: dict) -> dict:
     """Run international checks for a subject."""
 
@@ -200,16 +280,25 @@ def run_international_search(intake: dict) -> dict:
     pep_result = deep_pep_check(name, subject_type)
     time.sleep(config.REQUEST_DELAY)
 
-    # 2. Foreign media search via Tavily
+    # 2. Foreign media search via Tavily (generic queries)
     foreign_media = search_foreign_media(name, country, company)
     time.sleep(config.REQUEST_DELAY)
 
-    # 3. ProPublica Nonprofit Explorer
+    # 3. Country-specific anti-corruption searches (NEW — the key addition)
+    corruption_results = []
+    if country and country.upper() not in ("US", "USA", "UNITED STATES"):
+        corruption_results = search_country_corruption(name, country)
+        time.sleep(config.REQUEST_DELAY)
+
+    # 4. ProPublica Nonprofit Explorer
     nonprofits = search_propublica_nonprofits(name)
 
-    # Count total foreign media sources
+    # Count total sources
     total_foreign_sources = sum(
         len(s.get("results", [])) for s in foreign_media
+    )
+    total_corruption_sources = sum(
+        len(s.get("results", [])) for s in corruption_results
     )
 
     result = {
@@ -220,14 +309,22 @@ def run_international_search(intake: dict) -> dict:
         "summary": {
             "pep_matches": pep_result.get("pep_matches", 0),
             "foreign_media_sources": total_foreign_sources,
+            "corruption_search_sources": total_corruption_sources,
             "nonprofit_results": nonprofits.get("total_results", 0),
         },
         "pep_check": pep_result,
         "foreign_media": foreign_media,
+        "corruption_searches": corruption_results,
         "nonprofits": nonprofits,
         "metadata": {
             "checked_at": datetime.now(timezone.utc).isoformat(),
-            "sources": ["OpenSanctions PEP", "Tavily (foreign media)", "ProPublica Nonprofit Explorer"],
+            "sources": [
+                "OpenSanctions PEP",
+                "Tavily (foreign media)",
+                "Tavily (country corruption — " + (get_country_config(country) or {}).get("name", country) + ")",
+                "ProPublica Nonprofit Explorer",
+            ],
+            "country_config_used": bool(get_country_config(country)),
         },
     }
 
@@ -237,7 +334,8 @@ def run_international_search(intake: dict) -> dict:
         json.dump(result, f, indent=2)
 
     pep_note = f" (PEP: {pep_result['pep_matches']} matches)" if pep_result.get("pep_matches") else ""
-    print(f"  ✅ Step 12: {total_foreign_sources} foreign media sources, "
+    print(f"  ✅ Step 12: {total_foreign_sources} foreign media, "
+          f"{total_corruption_sources} corruption search, "
           f"{nonprofits.get('total_results', 0)} nonprofits{pep_note} → {output_path.name}")
 
     return result

@@ -25,7 +25,8 @@ EXCLUDE_DOMAINS_TABLOIDS_PARTISAN = [
     "thegatewaypundit.com", "oann.com", "newsmax.com",
     "occupydemocrats.com", "palmerreport.com", "dailycaller.com",
     "dailywire.com", "epochtimes.com", "bipartisanreport.com",
-    "addictinginfo.org", "buzzfeed.com", "expressnews.com",
+    "addictinginfo.org", "buzzfeed.com",
+    # NOTE: expressnews.com REMOVED — it's Express News Pakistan, a legitimate source
 ]
 
 EXCLUDE_DOMAINS_STATE_MEDIA = [
@@ -85,11 +86,23 @@ INCLUDE_LEGAL = [
 ]
 
 INCLUDE_INTERNATIONAL = [
+    # International orgs & watchdogs
     "transparency.org", "globalwitness.org", "opensanctions.org",
     "worldbank.org", "fatf-gafi.org", "un.org", "state.gov",
     "icij.org", "occrp.org", "cfr.org", "hrw.org", "amnesty.org",
     "freedomhouse.org", "chathamhouse.org", "brookings.edu",
     "carnegieendowment.org", "csis.org", "rand.org",
+    # Cross-border investigative networks
+    "thebureauinvestigates.com", "correctiv.org", "bellingcat.com",
+    # Key regional quality press (English-language)
+    "dawn.com", "thenews.com.pk", "tribune.com.pk",           # Pakistan
+    "thehindu.com", "indianexpress.com", "livemint.com",       # India
+    "dailymaverick.co.za", "mg.co.za",                          # South Africa
+    "premiumtimesng.com", "thecable.ng",                        # Nigeria
+    "nation.africa",                                             # Kenya
+    "inquirer.net", "rappler.com",                               # Philippines
+    "thenationalnews.com",                                       # UAE/Gulf
+    "hurriyetdailynews.com",                                     # Turkey
 ]
 
 INCLUDE_CORPORATE = [
@@ -250,13 +263,30 @@ must be grounded in verifiable, authoritative sources. Follow these rules strict
 - For international subjects: note when coverage is limited to state-controlled
   media from the subject's country, as this may be unreliable
 
+### Per-Country Source Tier Weighting (for international subjects)
+When evaluating sources from country-specific news outlets, apply these
+quality weights based on the source domain's tier in our country config:
+- Tier 1 sources (e.g., Dawn, The Hindu, Daily Maverick): weight 1.0 — Authoritative national press
+- Tier 2 sources (e.g., Tribune, Business Recorder, Geo): weight 0.7 — Reliable but may have editorial lean
+- Tier 3 sources (e.g., The Nation, Samaa): weight 0.4 — Use with caution, requires corroboration
+- Avoid-listed sources: weight 0.1 — Do not cite as primary evidence
+
+### Corroboration Rules
+- CONFIRMED: Requires 2+ independent Tier 1/2 sources, OR 1 official government
+  document/court record. Use this label freely when met.
+- REPORTED: Single Tier 1/2 source. State the source and note it is single-source.
+- ALLEGED: Under investigation or unproven. Clearly label as allegation.
+- UNCORROBORATED: Only appears in Tier 3 or lower sources. Flag explicitly:
+  "This claim appears only in [source] and has not been independently verified."
+- Cross-check rule: If a story appears in BOTH pro-government AND opposition media
+  outlets, treat it as more credible regardless of individual outlet tier.
+- For red and yellow flags: require at least 2 independent Tier 1-5 sources
+  before flagging (except government database matches, which are standalone flags)
+
 ### Citation Requirements in Output
 - Every factual claim must cite its source with enough detail to verify
   (publication name, date, title/description)
-- Clearly distinguish between: CONFIRMED (multiple independent sources),
-  REPORTED (single quality source), ALLEGED (under investigation/unproven),
-  and UNVERIFIED (single source, not corroborated)
+- Clearly distinguish between: CONFIRMED, REPORTED, ALLEGED, and UNCORROBORATED
+  using the corroboration rules above
 - Flag any finding where the ONLY available sources are below Tier 5
-- For red and yellow flags: require at least 2 independent Tier 1-5 sources
-  before flagging (except government database matches, which are standalone flags)
 """
