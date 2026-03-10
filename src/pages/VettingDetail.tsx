@@ -165,6 +165,7 @@ export default function VettingDetail() {
   const { vettings, makeDecision, reopenVetting, uploadResults, loadVettings } = useVettingStore();
   useEffect(() => { loadVettings(); }, [loadVettings]);
   const { toast } = useToast();
+  const { printReport } = usePrintVettingReport();
 
   const v = vettings.find((x) => x.id === id);
   const [decisionNotes, setDecisionNotes] = useState("");
