@@ -3,30 +3,67 @@
 ## User Preferences
 - **NEVER produce Markdown (.md) files** for memos, reports, or documents. Always use DOCX format. Shannon shares these with colleagues.
 
-## Last Updated: 2026-03-10 (Session 12)
+## Last Updated: 2026-03-10 (Session 13)
 
-## Completed (Session 12) — Source Relevance Split + Vetting Level Simplification
+## NOT DONE — Needs Next Session
 
-1. **Risk vs. Context source split** — Tavily search results are now split into two buckets:
-   - **Risk sources**: Mention the subject (company name, exec names) in title or content. ONLY these are used for risk scoring in synthesis.
-   - **Context sources**: Industry/sector background that doesn't mention the subject. Presented to Claude as background only, explicitly excluded from scoring.
-   - This fixes the Anduril problem where 90% of 278 sources were irrelevant defense industry noise.
+### Priority 1: Fix litigation/bankruptcy/exec quality (Perplexity research pending)
+Shannon pasted a prompt into Perplexity asking about:
+1. **CourtListener party filtering** — Currently full-text search returns cases that merely MENTION the subject. Need cases where subject is a named PARTY (plaintiff/defendant). CourtListener may have party-name filtering or a separate parties endpoint.
+2. **Bankruptcy debtor vs creditor** — Anduril showed 21 bankruptcy cases but they were all CREDITOR (someone owes them money). Need to distinguish debtor (risk) vs creditor (not risk). Quick heuristic: "In re [Subject Name]" = debtor.
+3. **Private company exec identification** — Tavily+Claude fallback only found 1 exec (Palmer Luckey) for Anduril instead of 5-8. Need better sources: Crunchbase API, OpenCorporates officers endpoint, SEC Form D filings, state SOS filings.
 
-2. **Industry context queries** — New `TAVILY_INDUSTRY_CONTEXT_QUERIES` in config.py. Sector-level searches (defense_tech, energy, pharma, finance, tech, government) that run WITHOUT the subject name. Tagged as context, not used for scoring.
+**When Perplexity results come back:** Update `search_litigation.py`, `search_bankruptcy.py`, and `search_executives.py` accordingly.
 
-3. **Relevance filter in search_news.py** — `_build_relevance_terms()` extracts subject name parts and company name parts. `_is_relevant()` checks if title/content mentions any term. Sources from subject-specific queries that don't mention the subject are moved to context.
+### Priority 2: Quick fixes (can do without Perplexity)
+These three heuristic fixes can be applied NOW before the full API research:
+1. **Bankruptcy**: Check if "In re [Subject Name]" in case title → debtor (risk). Otherwise tag as creditor/other (not risk).
+2. **Litigation**: Check if subject name appears in `case_name` field (e.g., "X v. Anduril") vs just mentioned in docket text. Only flag party-level matches.
+3. **Exec extraction prompt**: Improve Claude prompt to explicitly ask for ALL C-suite, founders, and board members — not just the most prominent person.
 
-4. **Vetting levels simplified** — Removed `quick_screen` and `standard_vet`. Everything is now `deep_dive` by default. No `--level` flag needed.
+### Priority 3: Rerun Anduril after fixes
+Latest Anduril run (18:09 today) has problems:
+- Litigation scored 9.5/10 due to "United States v. Pennetta" (25 criminal flags) where connection to Anduril is unclear
+- Bankruptcy scored 8/10 for cases where Anduril is a CREDITOR (not a risk)
+- Only 1 exec identified (Palmer Luckey) — need 5-8
+- Sources: 43 risk + 285 context (Tavily working again after credit reset)
 
-5. **Anduril Industries vetting completed** — Deep dive run, results in `data/unified/anduril_industries.json`.
+### Priority 4: Anduril needs to be pushed to Lovable after rerun
+Copy fixed `data/unified/anduril_industries.json` to `public/data/vettings/` and push. Index already includes `anduril_industries.json`.
 
-6. **Sharjeel Inam Memon vetting completed** — Pakistan deep dive, pushed to Lovable.
+### Priority 5: International country research
+- DOCX memo sent to colleagues: `~/Downloads/International_Vetting_Update.docx`
+- Asked team for top 10 priority countries
+- Known needs: UK, Kenya, Ivory Coast, Mongolia, Georgia (country)
+- 12 placeholder configs exist but only Pakistan fully researched
+- Each new country needs dedicated Perplexity deep dive before pipeline is reliable
 
-### Key Code Changes (Session 12)
-- **`scripts/search_news.py`**: Added `_build_relevance_terms()`, `_is_relevant()`, `_infer_sector()`. Results split into `risk_sources` and `context_sources`. Industry context queries run separately. Output JSON now has `risk_sources`, `context_sources`, `risk_source_count`, `context_source_count` fields.
-- **`config.py`**: Removed `quick_screen` and `standard_vet` from `VETTING_LEVELS`. Added `TAVILY_INDUSTRY_CONTEXT_QUERIES` dict with 7 sector configs.
-- **`scripts/synthesize.py`**: `collect_tavily_sources()` now returns tuple `(risk_sources, context_sources)`. `format_news_for_prompt()` uses `risk_sources`. New `format_context_for_prompt()` for background. Prompt explicitly tells Claude not to use context sources for scoring. Unified JSON output includes `context_sources` array.
-- **`scripts/pipeline.py`**: Default vetting level changed to `deep_dive`.
+### Oppositional Research idea
+- Shannon asked if pipeline could be used for oppo research
+- ~70% infrastructure already exists
+- Main change: different synthesis prompt (vulnerabilities/contradictions vs risk assessment)
+- Also need: voting records, reverse donor lookup, social media deep dive
+- Not started — just discussed
+
+## Completed (Session 13)
+
+1. **Source relevance split** — Tavily results split into risk_sources (mention subject) and context_sources (industry background). Only risk sources used for scoring. Fixed Anduril 278→43 risk source problem.
+2. **Industry context queries** — `TAVILY_INDUSTRY_CONTEXT_QUERIES` in config.py with 7 sector configs.
+3. **Vetting levels simplified** — Removed `quick_screen` and `standard_vet`. Everything `deep_dive` by default.
+4. **Job/salary domains blocked** — Added levels.fyi, ziprecruiter, lensa, dealhub, greenhouse, lever, salary, payscale, careerbuilder to Tavily exclude list.
+5. **EDGAR company verification** — `lookup_cik()` now verifies company name matches before using results. Prevents Lockheed Martin execs appearing for Anduril.
+6. **Tavily+Claude exec fallback** — Private company exec identification now uses Claude Sonnet to extract structured names from web search results, then runs full mini-vets (FEC, news, sanctions).
+7. **Sharjeel Inam Memon vetting** — Pakistan deep dive completed and pushed to Lovable.
+8. **Anduril Industries vetting** — Multiple runs. Latest: 43 risk sources, 1 exec (Palmer Luckey: $127K FEC, 9 news hits). Needs rerun after fixes.
+9. **International vetting memo** — DOCX at `~/Downloads/International_Vetting_Update.docx`. Sent to colleagues asking for top 10 priority countries.
+
+### Key Code Changes (Session 13)
+- **`scripts/search_news.py`**: Added `_build_relevance_terms()`, `_is_relevant()`, `_infer_sector()`. Results split into `risk_sources` and `context_sources`. Industry context queries run separately.
+- **`scripts/search_executives.py`**: EDGAR `lookup_cik()` now returns `(cik, matched_name)` and verifies company name similarity. Tavily fallback uses Claude Sonnet to extract exec names from web results, returns structured exec list for mini-vetting.
+- **`config.py`**: Removed `quick_screen`/`standard_vet`. Added `TAVILY_INDUSTRY_CONTEXT_QUERIES`. Default level = `deep_dive`.
+- **`config_tavily.py`**: Added 10 job/salary domains to `EXCLUDE_DOMAINS_NOISE`.
+- **`scripts/synthesize.py`**: `collect_tavily_sources()` returns `(risk_sources, context_sources)`. New `format_context_for_prompt()`. Prompt tells Claude not to use context for scoring. Unified JSON includes `context_sources`.
+- **`scripts/pipeline.py`**: Default vetting level = `deep_dive`.
 
 ## Completed (Session 11) — Perplexity-Recommended Improvements
 Based on Perplexity report analyzing pipeline gaps vs. professional due diligence firms (Kroll, Control Risks, Nardello). Five high-value changes implemented:
