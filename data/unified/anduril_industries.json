@@ -2399,58 +2399,58 @@
       "title": "Founder",
       "is_officer": true,
       "is_director": false,
-      "fec_total": 127521.82,
-      "fec_count": 984,
+      "fec_total": 6426102.94,
+      "fec_count": 904,
       "fec_top_recipients": [
         {
-          "name": "ONE TEAM SENATE MAJORITY",
-          "total": 50000.0,
+          "name": "REPUBLICAN NATIONAL COMMITTEE",
+          "total": 769500.0,
+          "count": 8
+        },
+        {
+          "name": "NRCC",
+          "total": 659800.0,
+          "count": 17
+        },
+        {
+          "name": "TRUMP VICTORY",
+          "total": 562200.0,
           "count": 1
         },
         {
-          "name": "CALVERT VICTORY FUND",
-          "total": 13185.91,
-          "count": 1
+          "name": "TAKE BACK THE HOUSE 2020",
+          "total": 450000.0,
+          "count": 2
         },
         {
-          "name": "NRSC",
-          "total": 8000.0,
-          "count": 1
-        },
-        {
-          "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
-          "total": 5150.0,
+          "name": "TAKE BACK THE HOUSE 2022",
+          "total": 300000.0,
           "count": 3
         },
         {
-          "name": "HISPANIC 100 FED PAC",
-          "total": 5000.0,
+          "name": "NRSC",
+          "total": 288400.0,
+          "count": 8
+        },
+        {
+          "name": "PROTECT THE HOUSE 2024",
+          "total": 225000.0,
+          "count": 2
+        },
+        {
+          "name": "TRUMP 47 COMMITTEE, INC.",
+          "total": 200000.0,
           "count": 1
         },
         {
-          "name": "EUREKA POLITICAL ACTION COMMITTEE",
-          "total": 5000.0,
-          "count": 1
+          "name": "PROTECT THE HOUSE",
+          "total": 200000.0,
+          "count": 2
         },
         {
-          "name": "THE LINCOLN CLUB OF ORANGE COUNTY FEDERAL PAC",
-          "total": 5000.0,
-          "count": 1
-        },
-        {
-          "name": "KEN CALVERT FOR CONGRESS COMMITTEE",
-          "total": 3500.0,
-          "count": 1
-        },
-        {
-          "name": "KANSANS FOR MARSHALL",
-          "total": 3500.0,
-          "count": 1
-        },
-        {
-          "name": "ROUNDS FOR SENATE",
-          "total": 3500.0,
-          "count": 1
+          "name": "2024 THUNE REPUBLICAN SENATE VICTORY",
+          "total": 149900.0,
+          "count": 3
         }
       ],
       "news_hits": 9,
@@ -2618,32 +2618,57 @@
       "title": "Co-Founder & CEO",
       "is_officer": true,
       "is_director": false,
-      "fec_total": 37689.8,
-      "fec_count": 512,
+      "fec_total": 1388764.8,
+      "fec_count": 235,
       "fec_top_recipients": [
         {
-          "name": "ALEX PADILLA FOR SENATE",
-          "total": 4000.0,
+          "name": "HARRIS VICTORY FUND",
+          "total": 510000.0,
           "count": 2
         },
         {
-          "name": "CHRIS PAPPAS FOR SENATE",
-          "total": 3500.0,
-          "count": 1
+          "name": "DNC SERVICES CORP / DEMOCRATIC NATIONAL COMMITTEE",
+          "total": 49600.0,
+          "count": 3
         },
         {
-          "name": "COOPER FOR NORTH CAROLINA",
-          "total": 3500.0,
-          "count": 1
+          "name": "DSCC",
+          "total": 49300.0,
+          "count": 2
         },
         {
-          "name": "VINDMAN FOR CONGRESS",
-          "total": 3500.0,
-          "count": 1
+          "name": "DCCC",
+          "total": 49300.0,
+          "count": 2
         },
         {
-          "name": "JON OSSOFF FOR SENATE",
-          "total": 3500.0,
+          "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+          "total": 30020.8,
+          "count": 9
+        },
+        {
+          "name": "ADAM SMITH FOR CONGRESS COMMITTEE",
+          "total": 15500.0,
+          "count": 6
+        },
+        {
+          "name": "PAT RYAN FOR CONGRESS",
+          "total": 14600.0,
+          "count": 7
+        },
+        {
+          "name": "KATHERINE CLARK FOR CONGRESS",
+          "total": 13700.0,
+          "count": 7
+        },
+        {
+          "name": "PETE AGUILAR FOR CONGRESS",
+          "total": 13000.0,
+          "count": 6
+        },
+        {
+          "name": "BIDEN VICTORY FUND",
+          "total": 11100.0,
           "count": 1
         }
       ],
@@ -2812,13 +2837,58 @@
       "title": "Co-Founder & COO",
       "is_officer": true,
       "is_director": false,
-      "fec_total": 200.0,
-      "fec_count": 7040,
+      "fec_total": 258450.0,
+      "fec_count": 139,
       "fec_top_recipients": [
         {
-          "name": "ACTBLUE",
-          "total": 200.0,
-          "count": 20
+          "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+          "total": 30000.0,
+          "count": 6
+        },
+        {
+          "name": "DAVE MIN FOR CONGRESS",
+          "total": 10100.0,
+          "count": 5
+        },
+        {
+          "name": "BIDEN VICTORY FUND",
+          "total": 10000.0,
+          "count": 1
+        },
+        {
+          "name": "ADAM SMITH FOR CONGRESS COMMITTEE",
+          "total": 8800.0,
+          "count": 3
+        },
+        {
+          "name": "DNC SERVICES CORP / DEMOCRATIC NATIONAL COMMITTEE",
+          "total": 7200.0,
+          "count": 1
+        },
+        {
+          "name": "LAUREN UNDERWOOD FOR CONGRESS",
+          "total": 7038.09,
+          "count": 3
+        },
+        {
+          "name": "KATHERINE CLARK FOR CONGRESS",
+          "total": 7000.0,
+          "count": 2
+        },
+        {
+          "name": "SCHIFF FOR SENATE",
+          "total": 6600.0,
+          "count": 2
+        },
+        {
+          "name": "JASON CROW FOR CONGRESS",
+          "total": 5300.0,
+          "count": 2
+        },
+        {
+          "name": "PAT RYAN FOR CONGRESS",
+          "total": 5300.0,
+          "count": 3
         }
       ],
       "news_hits": 0,
@@ -2986,25 +3056,9 @@
       "title": "Co-Founder & Executive Chairman",
       "is_officer": true,
       "is_director": true,
-      "fec_total": 719.91,
-      "fec_count": 7,
-      "fec_top_recipients": [
-        {
-          "name": "PALANTIR TECHNOLOGIES INC PAC",
-          "total": 500.0,
-          "count": 1
-        },
-        {
-          "name": "ACTBLUE",
-          "total": 135.0,
-          "count": 5
-        },
-        {
-          "name": "DONALD J. TRUMP FOR PRESIDENT, INC.",
-          "total": 84.91,
-          "count": 1
-        }
-      ],
+      "fec_total": 0,
+      "fec_count": 0,
+      "fec_top_recipients": [],
       "news_hits": 1,
       "fec": {
         "total_results": 0,
@@ -3035,14 +3089,9 @@
       "title": "President & Chief Strategy Officer",
       "is_officer": true,
       "is_director": false,
-      "fec_total": 38857.5,
-      "fec_count": 182,
+      "fec_total": 25900.0,
+      "fec_count": 24,
       "fec_top_recipients": [
-        {
-          "name": "MCGUIREWOODS FEDERAL PAC",
-          "total": 25000.0,
-          "count": 5
-        },
         {
           "name": "KEN CALVERT FOR CONGRESS COMMITTEE",
           "total": 3900.0,
@@ -3054,13 +3103,43 @@
           "count": 1
         },
         {
+          "name": "PERDUE FOR SENATE",
+          "total": 2800.0,
+          "count": 1
+        },
+        {
+          "name": "KAY GRANGER CAMPAIGN FUND",
+          "total": 2800.0,
+          "count": 1
+        },
+        {
           "name": "CITIZENS FOR TURNER",
-          "total": 1500.0,
-          "count": 2
+          "total": 2000.0,
+          "count": 3
+        },
+        {
+          "name": "MCSALLY FOR SENATE INC",
+          "total": 2000.0,
+          "count": 4
         },
         {
           "name": "KATKO FOR CONGRESS",
           "total": 1500.0,
+          "count": 1
+        },
+        {
+          "name": "THE GREAT TASK",
+          "total": 1500.0,
+          "count": 1
+        },
+        {
+          "name": "JIM BANKS FOR CONGRESS, INC.",
+          "total": 1500.0,
+          "count": 2
+        },
+        {
+          "name": "LIZ CHENEY FOR WYOMING",
+          "total": 1000.0,
           "count": 1
         }
       ],
@@ -3229,18 +3308,18 @@
       "title": "President & Chief Business Officer",
       "is_officer": true,
       "is_director": false,
-      "fec_total": 39046.98,
-      "fec_count": 95,
+      "fec_total": 113580.23,
+      "fec_count": 89,
       "fec_top_recipients": [
         {
           "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
-          "total": 9999.98,
-          "count": 3
+          "total": 29999.98,
+          "count": 7
         },
         {
-          "name": "HARRIS FOR PRESIDENT",
-          "total": 5000.0,
-          "count": 2
+          "name": "PAT RYAN FOR CONGRESS",
+          "total": 13000.0,
+          "count": 4
         },
         {
           "name": "HARRIS VICTORY FUND",
@@ -3248,13 +3327,38 @@
           "count": 1
         },
         {
-          "name": "PAT RYAN FOR CONGRESS",
-          "total": 3500.0,
-          "count": 1
+          "name": "HARRIS FOR PRESIDENT",
+          "total": 5000.0,
+          "count": 2
+        },
+        {
+          "name": "SCOTT PETERS FOR CONGRESS",
+          "total": 4000.0,
+          "count": 2
+        },
+        {
+          "name": "TEXANS FOR HENRY CUELLAR CONGRESSIONAL CAMPAIGN",
+          "total": 3400.0,
+          "count": 2
         },
         {
           "name": "SCHIFF FOR SENATE",
           "total": 3300.0,
+          "count": 1
+        },
+        {
+          "name": "KATHERINE CLARK FOR CONGRESS",
+          "total": 3000.0,
+          "count": 1
+        },
+        {
+          "name": "PETERS FOR MICHIGAN",
+          "total": 3000.0,
+          "count": 4
+        },
+        {
+          "name": "BIDEN FOR PRESIDENT",
+          "total": 2800.0,
           "count": 1
         }
       ],
@@ -3423,35 +3527,9 @@
       "title": "SVP Corporate Operations",
       "is_officer": true,
       "is_director": false,
-      "fec_total": 8543.0,
-      "fec_count": 752,
-      "fec_top_recipients": [
-        {
-          "name": "SCHNEIDER FOR CONGRESS",
-          "total": 7000.0,
-          "count": 2
-        },
-        {
-          "name": "ALFONSO FOR CONGRESS",
-          "total": 1000.0,
-          "count": 1
-        },
-        {
-          "name": "OPTIMUM COMMUNICATIONS, INC. PAC",
-          "total": 343.0,
-          "count": 7
-        },
-        {
-          "name": "ACTBLUE",
-          "total": 125.0,
-          "count": 7
-        },
-        {
-          "name": "AMERICAN ASSOCIATION FOR JUSTICE POLITICAL ACTION COMMITTEE (AAJ PAC)",
-          "total": 75.0,
-          "count": 3
-        }
-      ],
+      "fec_total": 0,
+      "fec_count": 0,
+      "fec_top_recipients": [],
       "news_hits": 0,
       "fec": {
         "total_results": 0,
@@ -3465,15 +3543,9 @@
       "title": "SVP National Security Operations",
       "is_officer": true,
       "is_director": false,
-      "fec_total": 453.67,
-      "fec_count": 501,
-      "fec_top_recipients": [
-        {
-          "name": "ACTBLUE",
-          "total": 453.67,
-          "count": 20
-        }
-      ],
+      "fec_total": 0,
+      "fec_count": 0,
+      "fec_top_recipients": [],
       "news_hits": 0,
       "fec": {
         "total_results": 0,
