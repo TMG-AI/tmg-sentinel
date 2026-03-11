@@ -925,8 +925,7 @@ function ExecutiveCard({ exec }: { exec: KeyExecutive }) {
           </p>
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
-              <DollarSign className="w-3 h-3" />
-              {formatUSD(exec.fec_total)} ({exec.fec_count} contributions)
+              {formatUSD(exec.fec_total)} ({exec.fec_count ?? 0} contributions)
             </span>
             <span className="flex items-center gap-1">
               <Newspaper className="w-3 h-3" />
