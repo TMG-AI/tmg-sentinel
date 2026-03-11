@@ -526,16 +526,20 @@ Return ONLY the JSON array, no other text."""
 
 # ─── Mini-Vet: FEC + News + Sanctions for Each Executive ──────
 
-def mini_vet_fec(name: str) -> dict:
-    """Quick FEC search for an individual executive."""
+def mini_vet_fec(name: str, company_name: str = None) -> dict:
+    """Quick FEC search for an individual executive.
+    When company_name is provided, filters by contributor_employer to avoid
+    false positives from common names."""
     try:
         params = {
             "api_key": config.FEC_API_KEY,
             "contributor_name": name,
-            "sort": "-contribution_receipt_date",
+            "sort": "-contribution_receipt_amount",
             "per_page": 20,
             "is_individual": True,
         }
+        if company_name:
+            params["contributor_employer"] = company_name
         resp = requests.get(
             config.ENDPOINTS["openfec_receipts"],
             params=params,
@@ -689,8 +693,8 @@ def run_mini_vet(executive: dict, company_name: str) -> dict:
     result = dict(executive)
     result["display_name"] = display_name
 
-    # FEC donations
-    fec = mini_vet_fec(name)
+    # FEC donations (use company_name as employer filter to avoid false positives)
+    fec = mini_vet_fec(name, company_name=company_name)
     result["fec"] = fec
     time.sleep(config.REQUEST_DELAY)
 

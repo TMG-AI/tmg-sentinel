@@ -7,7 +7,7 @@
   "summary": {
     "total_executives_found": 9,
     "executives_vetted": 9,
-    "total_fec_contributions": 253032.68000000002,
+    "total_fec_contributions": 8212797.970000001,
     "sanctions_flags": 1,
     "news_flags": 4
   },
@@ -21,110 +21,160 @@
       "source": "Tavily + Claude extraction",
       "display_name": "Palmer Luckey",
       "fec": {
-        "total_results": 984,
-        "total_amount": 127521.82,
+        "total_results": 904,
+        "total_amount": 6426102.94,
         "top_recipients": [
           {
-            "name": "ONE TEAM SENATE MAJORITY",
-            "total": 50000.0,
+            "name": "REPUBLICAN NATIONAL COMMITTEE",
+            "total": 769500.0,
+            "count": 8
+          },
+          {
+            "name": "NRCC",
+            "total": 659800.0,
+            "count": 17
+          },
+          {
+            "name": "TRUMP VICTORY",
+            "total": 562200.0,
             "count": 1
           },
           {
-            "name": "CALVERT VICTORY FUND",
-            "total": 13185.91,
-            "count": 1
+            "name": "TAKE BACK THE HOUSE 2020",
+            "total": 450000.0,
+            "count": 2
           },
           {
-            "name": "NRSC",
-            "total": 8000.0,
-            "count": 1
-          },
-          {
-            "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
-            "total": 5150.0,
+            "name": "TAKE BACK THE HOUSE 2022",
+            "total": 300000.0,
             "count": 3
           },
           {
-            "name": "HISPANIC 100 FED PAC",
-            "total": 5000.0,
+            "name": "NRSC",
+            "total": 288400.0,
+            "count": 8
+          },
+          {
+            "name": "PROTECT THE HOUSE 2024",
+            "total": 225000.0,
+            "count": 2
+          },
+          {
+            "name": "TRUMP 47 COMMITTEE, INC.",
+            "total": 200000.0,
             "count": 1
           },
           {
-            "name": "EUREKA POLITICAL ACTION COMMITTEE",
-            "total": 5000.0,
-            "count": 1
+            "name": "PROTECT THE HOUSE",
+            "total": 200000.0,
+            "count": 2
           },
           {
-            "name": "THE LINCOLN CLUB OF ORANGE COUNTY FEDERAL PAC",
-            "total": 5000.0,
-            "count": 1
-          },
-          {
-            "name": "KEN CALVERT FOR CONGRESS COMMITTEE",
-            "total": 3500.0,
-            "count": 1
-          },
-          {
-            "name": "KANSANS FOR MARSHALL",
-            "total": 3500.0,
-            "count": 1
-          },
-          {
-            "name": "ROUNDS FOR SENATE",
-            "total": 3500.0,
-            "count": 1
+            "name": "2024 THUNE REPUBLICAN SENATE VICTORY",
+            "total": 149900.0,
+            "count": 3
           }
         ],
         "contributions": [
           {
-            "committee_name": "HISPANIC 100 FED PAC",
-            "amount": 5000.0,
-            "date": "2027-09-27"
+            "committee_name": "TRUMP VICTORY",
+            "amount": 562200.0,
+            "date": "2020-10-16"
           },
           {
-            "committee_name": "KEN CALVERT FOR CONGRESS COMMITTEE",
-            "amount": 3500.0,
-            "date": "2025-12-20"
+            "committee_name": "TAKE BACK THE HOUSE 2020",
+            "amount": 250000.0,
+            "date": "2020-06-24"
           },
           {
-            "committee_name": "EUREKA POLITICAL ACTION COMMITTEE",
-            "amount": 5000.0,
-            "date": "2025-12-20"
+            "committee_name": "PROTECT THE HOUSE 2024",
+            "amount": 200000.0,
+            "date": "2023-02-09"
           },
           {
-            "committee_name": "CALVERT VICTORY FUND",
-            "amount": 13185.91,
-            "date": "2025-12-20"
+            "committee_name": "TRUMP 47 COMMITTEE, INC.",
+            "amount": 200000.0,
+            "date": "2024-06-28"
+          },
+          {
+            "committee_name": "TAKE BACK THE HOUSE 2020",
+            "amount": 200000.0,
+            "date": "2019-03-14"
+          },
+          {
+            "committee_name": "REPUBLICAN NATIONAL COMMITTEE",
+            "amount": 132900.0,
+            "date": "2025-05-14"
+          },
+          {
+            "committee_name": "REPUBLICAN NATIONAL COMMITTEE",
+            "amount": 106500.0,
+            "date": "2020-02-25"
           },
           {
             "committee_name": "NRCC",
-            "amount": 1185.91,
-            "date": "2025-12-20"
+            "amount": 106500.0,
+            "date": "2020-06-24"
           },
           {
-            "committee_name": "KANSANS FOR MARSHALL",
-            "amount": 3500.0,
-            "date": "2025-12-17"
+            "committee_name": "REPUBLICAN NATIONAL COMMITTEE",
+            "amount": 106500.0,
+            "date": "2020-02-25"
           },
           {
-            "committee_name": "ROUNDS FOR SENATE",
-            "amount": 3500.0,
-            "date": "2025-12-17"
+            "committee_name": "REPUBLICAN NATIONAL COMMITTEE",
+            "amount": 106500.0,
+            "date": "2020-10-16"
           },
           {
-            "committee_name": "MOODY FOR FLORIDA",
-            "amount": 3500.0,
-            "date": "2025-12-17"
+            "committee_name": "THE LINCOLN CLUB OF ORANGE COUNTY FEDERAL IE COMMITTEE",
+            "amount": 100000.0,
+            "date": "2022-11-08"
           },
           {
-            "committee_name": "TIM SCOTT FOR AMERICA",
-            "amount": 3500.0,
-            "date": "2025-12-17"
+            "committee_name": "THUNE VICTORY COMMITTEE",
+            "amount": 100000.0,
+            "date": "2024-10-01"
           },
           {
-            "committee_name": "STEVE DAINES FOR MONTANA",
-            "amount": 3500.0,
-            "date": "2025-12-17"
+            "committee_name": "PROTECT THE HOUSE",
+            "amount": 100000.0,
+            "date": "2018-10-10"
+          },
+          {
+            "committee_name": "TAKE BACK THE HOUSE 2022",
+            "amount": 100000.0,
+            "date": "2021-07-16"
+          },
+          {
+            "committee_name": "REPUBLICAN NATIONAL COMMITTEE",
+            "amount": 100000.0,
+            "date": "2024-06-28"
+          },
+          {
+            "committee_name": "REPUBLICAN NATIONAL COMMITTEE",
+            "amount": 100000.0,
+            "date": "2024-06-28"
+          },
+          {
+            "committee_name": "PROTECT THE HOUSE",
+            "amount": 100000.0,
+            "date": "2018-06-01"
+          },
+          {
+            "committee_name": "TAKE BACK THE HOUSE 2022",
+            "amount": 100000.0,
+            "date": "2022-03-25"
+          },
+          {
+            "committee_name": "CALIFORNIA VICTORY 2018",
+            "amount": 100000.0,
+            "date": "2017-10-17"
+          },
+          {
+            "committee_name": "TAKE BACK THE HOUSE 2022",
+            "amount": 100000.0,
+            "date": "2021-10-01"
           }
         ]
       },
@@ -187,36 +237,162 @@
       "officer_title": "Co-Founder & CEO",
       "source": "Web research (anduril.com, The Org, Craft.co)",
       "fec": {
-        "total_results": 512,
-        "total_amount": 37689.8,
+        "total_results": 235,
+        "total_amount": 1388764.8,
         "top_recipients": [
           {
-            "name": "ALEX PADILLA FOR SENATE",
-            "total": 4000.0,
+            "name": "HARRIS VICTORY FUND",
+            "total": 510000.0,
             "count": 2
           },
           {
-            "name": "CHRIS PAPPAS FOR SENATE",
-            "total": 3500.0,
-            "count": 1
+            "name": "DNC SERVICES CORP / DEMOCRATIC NATIONAL COMMITTEE",
+            "total": 49600.0,
+            "count": 3
           },
           {
-            "name": "COOPER FOR NORTH CAROLINA",
-            "total": 3500.0,
-            "count": 1
+            "name": "DSCC",
+            "total": 49300.0,
+            "count": 2
           },
           {
-            "name": "VINDMAN FOR CONGRESS",
-            "total": 3500.0,
-            "count": 1
+            "name": "DCCC",
+            "total": 49300.0,
+            "count": 2
           },
           {
-            "name": "JON OSSOFF FOR SENATE",
-            "total": 3500.0,
+            "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "total": 30020.8,
+            "count": 9
+          },
+          {
+            "name": "ADAM SMITH FOR CONGRESS COMMITTEE",
+            "total": 15500.0,
+            "count": 6
+          },
+          {
+            "name": "PAT RYAN FOR CONGRESS",
+            "total": 14600.0,
+            "count": 7
+          },
+          {
+            "name": "KATHERINE CLARK FOR CONGRESS",
+            "total": 13700.0,
+            "count": 7
+          },
+          {
+            "name": "PETE AGUILAR FOR CONGRESS",
+            "total": 13000.0,
+            "count": 6
+          },
+          {
+            "name": "BIDEN VICTORY FUND",
+            "total": 11100.0,
             "count": 1
           }
         ],
-        "contributions": []
+        "contributions": [
+          {
+            "committee_name": "HARRIS VICTORY FUND",
+            "amount": 500000.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "DSCC",
+            "amount": 44300.0,
+            "date": "2025-03-14"
+          },
+          {
+            "committee_name": "DCCC",
+            "amount": 44300.0,
+            "date": "2025-03-14"
+          },
+          {
+            "committee_name": "DNC SERVICES CORP / DEMOCRATIC NATIONAL COMMITTEE",
+            "amount": 37900.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "BIDEN VICTORY FUND",
+            "amount": 11100.0,
+            "date": "2020-09-20"
+          },
+          {
+            "committee_name": "HARRIS VICTORY FUND",
+            "amount": 10000.0,
+            "date": "2024-08-03"
+          },
+          {
+            "committee_name": "W VA STATE DEMOCRATIC EX COM",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "VERMONT DEMOCRATIC PARTY",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "CONNECTICUT DEMOCRATIC STATE CENTRAL COMMITTEE",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "UTAH STATE DEMOCRATIC COMMITTEE",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "RHODE ISLAND DEMOCRATIC STATE COMMITTEE",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "NEW YORK STATE DEMOCRATIC COMMITTEE",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "GEORGIA FEDERAL ELECTIONS COMMITTEE",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "FEDERAL: COLORADO DEMOCRATIC PARTY",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "DEMOCRATIC STATE COMMITTEE (DELAWARE)",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "NEW JERSEY DEMOCRATIC STATE COMMITTEE",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "MINNESOTA DEMOCRATIC-FARMER-LABOR PARTY",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "CALIFORNIA DEMOCRATIC PARTY",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "DEMOCRATIC PARTY OF ARKANSAS",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          },
+          {
+            "committee_name": "NORTH CAROLINA DEMOCRATIC PARTY - FEDERAL",
+            "amount": 9242.0,
+            "date": "2024-09-25"
+          }
+        ]
       },
       "news": {
         "total_results": 1,
@@ -243,16 +419,162 @@
       "officer_title": "Co-Founder & COO",
       "source": "Web research (anduril.com, The Org, Craft.co)",
       "fec": {
-        "total_results": 7040,
-        "total_amount": 200.0,
+        "total_results": 139,
+        "total_amount": 258450.0,
         "top_recipients": [
           {
-            "name": "ACTBLUE",
-            "total": 200.0,
-            "count": 20
+            "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "total": 30000.0,
+            "count": 6
+          },
+          {
+            "name": "DAVE MIN FOR CONGRESS",
+            "total": 10100.0,
+            "count": 5
+          },
+          {
+            "name": "BIDEN VICTORY FUND",
+            "total": 10000.0,
+            "count": 1
+          },
+          {
+            "name": "ADAM SMITH FOR CONGRESS COMMITTEE",
+            "total": 8800.0,
+            "count": 3
+          },
+          {
+            "name": "DNC SERVICES CORP / DEMOCRATIC NATIONAL COMMITTEE",
+            "total": 7200.0,
+            "count": 1
+          },
+          {
+            "name": "LAUREN UNDERWOOD FOR CONGRESS",
+            "total": 7038.09,
+            "count": 3
+          },
+          {
+            "name": "KATHERINE CLARK FOR CONGRESS",
+            "total": 7000.0,
+            "count": 2
+          },
+          {
+            "name": "SCHIFF FOR SENATE",
+            "total": 6600.0,
+            "count": 2
+          },
+          {
+            "name": "JASON CROW FOR CONGRESS",
+            "total": 5300.0,
+            "count": 2
+          },
+          {
+            "name": "PAT RYAN FOR CONGRESS",
+            "total": 5300.0,
+            "count": 3
           }
         ],
-        "contributions": []
+        "contributions": [
+          {
+            "committee_name": "BIDEN VICTORY FUND",
+            "amount": 10000.0,
+            "date": "2020-09-20"
+          },
+          {
+            "committee_name": "DNC SERVICES CORP / DEMOCRATIC NATIONAL COMMITTEE",
+            "amount": 7200.0,
+            "date": "2020-09-20"
+          },
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 5000.0,
+            "date": "2024-11-20"
+          },
+          {
+            "committee_name": "DAVE MIN VICTORY FUND",
+            "amount": 5000.0,
+            "date": "2024-07-25"
+          },
+          {
+            "committee_name": "FAIR SHOT PAC",
+            "amount": 5000.0,
+            "date": "2025-06-10"
+          },
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 5000.0,
+            "date": "2023-01-13"
+          },
+          {
+            "committee_name": "CALIFORNIA DEMOCRATIC PARTY",
+            "amount": 5000.0,
+            "date": "2024-07-28"
+          },
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 5000.0,
+            "date": "2025-12-17"
+          },
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 5000.0,
+            "date": "2021-12-14"
+          },
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 5000.0,
+            "date": "2020-12-30"
+          },
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 5000.0,
+            "date": "2022-12-07"
+          },
+          {
+            "committee_name": "CAIT FOR NEW YORK",
+            "amount": 5000.0,
+            "date": "2025-09-29"
+          },
+          {
+            "committee_name": "KATHERINE CLARK FOR CONGRESS",
+            "amount": 3500.0,
+            "date": "2025-06-10"
+          },
+          {
+            "committee_name": "ADAM SMITH FOR CONGRESS COMMITTEE",
+            "amount": 3500.0,
+            "date": "2025-03-17"
+          },
+          {
+            "committee_name": "LAUREN UNDERWOOD FOR CONGRESS",
+            "amount": 3500.0,
+            "date": "2025-12-12"
+          },
+          {
+            "committee_name": "DEREK TRAN FOR CONGRESS",
+            "amount": 3500.0,
+            "date": "2025-12-12"
+          },
+          {
+            "committee_name": "GEORGE WHITESIDES FOR CONGRESS",
+            "amount": 3500.0,
+            "date": "2025-12-12"
+          },
+          {
+            "committee_name": "ADAM GRAY FOR CONGRESS",
+            "amount": 3500.0,
+            "date": "2025-12-12"
+          },
+          {
+            "committee_name": "MIKE LEVIN FOR CONGRESS",
+            "amount": 3500.0,
+            "date": "2025-12-12"
+          },
+          {
+            "committee_name": "KATHERINE CLARK FOR CONGRESS",
+            "amount": 3500.0,
+            "date": "2025-09-08"
+          }
+        ]
       },
       "news": {
         "total_results": 0,
@@ -273,26 +595,11 @@
       "officer_title": "Co-Founder & Executive Chairman",
       "source": "Web research (anduril.com, The Org, Craft.co)",
       "fec": {
-        "total_results": 7,
-        "total_amount": 719.91,
-        "top_recipients": [
-          {
-            "name": "PALANTIR TECHNOLOGIES INC PAC",
-            "total": 500.0,
-            "count": 1
-          },
-          {
-            "name": "ACTBLUE",
-            "total": 135.0,
-            "count": 5
-          },
-          {
-            "name": "DONALD J. TRUMP FOR PRESIDENT, INC.",
-            "total": 84.91,
-            "count": 1
-          }
-        ],
-        "contributions": []
+        "total_results": 0,
+        "total_amount": 0,
+        "top_recipients": [],
+        "contributions": [],
+        "note": "No Anduril-employer donations found. Made $720 in donations under Palantir Technologies employer (pre-Anduril)."
       },
       "news": {
         "total_results": 1,
@@ -343,14 +650,9 @@
       "officer_title": "President & Chief Strategy Officer",
       "source": "Web research (anduril.com, The Org, Craft.co)",
       "fec": {
-        "total_results": 182,
-        "total_amount": 38857.5,
+        "total_results": 24,
+        "total_amount": 25900.0,
         "top_recipients": [
-          {
-            "name": "MCGUIREWOODS FEDERAL PAC",
-            "total": 25000.0,
-            "count": 5
-          },
           {
             "name": "KEN CALVERT FOR CONGRESS COMMITTEE",
             "total": 3900.0,
@@ -362,17 +664,148 @@
             "count": 1
           },
           {
+            "name": "PERDUE FOR SENATE",
+            "total": 2800.0,
+            "count": 1
+          },
+          {
+            "name": "KAY GRANGER CAMPAIGN FUND",
+            "total": 2800.0,
+            "count": 1
+          },
+          {
             "name": "CITIZENS FOR TURNER",
-            "total": 1500.0,
-            "count": 2
+            "total": 2000.0,
+            "count": 3
+          },
+          {
+            "name": "MCSALLY FOR SENATE INC",
+            "total": 2000.0,
+            "count": 4
           },
           {
             "name": "KATKO FOR CONGRESS",
             "total": 1500.0,
             "count": 1
+          },
+          {
+            "name": "THE GREAT TASK",
+            "total": 1500.0,
+            "count": 1
+          },
+          {
+            "name": "JIM BANKS FOR CONGRESS, INC.",
+            "total": 1500.0,
+            "count": 2
+          },
+          {
+            "name": "LIZ CHENEY FOR WYOMING",
+            "total": 1000.0,
+            "count": 1
           }
         ],
-        "contributions": []
+        "contributions": [
+          {
+            "committee_name": "KEN CALVERT FOR CONGRESS COMMITTEE",
+            "amount": 2900.0,
+            "date": "2022-10-20"
+          },
+          {
+            "committee_name": "MIKE GALLAGHER FOR WISCONSIN",
+            "amount": 2900.0,
+            "date": "2021-03-31"
+          },
+          {
+            "committee_name": "PERDUE FOR SENATE",
+            "amount": 2800.0,
+            "date": "2020-01-29"
+          },
+          {
+            "committee_name": "KAY GRANGER CAMPAIGN FUND",
+            "amount": 2800.0,
+            "date": "2019-12-26"
+          },
+          {
+            "committee_name": "KATKO FOR CONGRESS",
+            "amount": 1500.0,
+            "date": "2021-05-10"
+          },
+          {
+            "committee_name": "THE GREAT TASK",
+            "amount": 1500.0,
+            "date": "2021-05-10"
+          },
+          {
+            "committee_name": "LIZ CHENEY FOR WYOMING",
+            "amount": 1000.0,
+            "date": "2020-10-05"
+          },
+          {
+            "committee_name": "CITIZENS FOR TURNER",
+            "amount": 1000.0,
+            "date": "2021-05-10"
+          },
+          {
+            "committee_name": "JIM BANKS FOR CONGRESS, INC.",
+            "amount": 1000.0,
+            "date": "2021-03-31"
+          },
+          {
+            "committee_name": "KEN CALVERT FOR CONGRESS COMMITTEE",
+            "amount": 1000.0,
+            "date": "2021-03-31"
+          },
+          {
+            "committee_name": "WOMACK FOR CONGRESS COMMITTEE",
+            "amount": 1000.0,
+            "date": "2019-12-26"
+          },
+          {
+            "committee_name": "CITIZENS FOR TURNER",
+            "amount": 500.0,
+            "date": "2021-05-18"
+          },
+          {
+            "committee_name": "MCSALLY FOR SENATE INC",
+            "amount": 500.0,
+            "date": "2020-05-25"
+          },
+          {
+            "committee_name": "MCSALLY FOR SENATE INC",
+            "amount": 500.0,
+            "date": "2020-04-25"
+          },
+          {
+            "committee_name": "MCSALLY FOR SENATE INC",
+            "amount": 500.0,
+            "date": "2020-06-25"
+          },
+          {
+            "committee_name": "ALASKANS FOR DAN SULLIVAN",
+            "amount": 500.0,
+            "date": "2022-06-24"
+          },
+          {
+            "committee_name": "ROUNDS FOR SENATE",
+            "amount": 500.0,
+            "date": "2020-03-25"
+          },
+          {
+            "committee_name": "JONI FOR IOWA",
+            "amount": 500.0,
+            "date": "2020-03-25"
+          },
+          {
+            "committee_name": "CITIZENS FOR TURNER",
+            "amount": 500.0,
+            "date": "2020-03-25"
+          },
+          {
+            "committee_name": "MCSALLY FOR SENATE INC",
+            "amount": 500.0,
+            "date": "2020-03-25"
+          }
+        ]
       },
       "news": {
         "total_results": 1,
@@ -399,18 +832,18 @@
       "officer_title": "President & Chief Business Officer",
       "source": "Web research (anduril.com, The Org, Craft.co)",
       "fec": {
-        "total_results": 95,
-        "total_amount": 39046.98,
+        "total_results": 89,
+        "total_amount": 113580.23,
         "top_recipients": [
           {
             "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
-            "total": 9999.98,
-            "count": 3
+            "total": 29999.98,
+            "count": 7
           },
           {
-            "name": "HARRIS FOR PRESIDENT",
-            "total": 5000.0,
-            "count": 2
+            "name": "PAT RYAN FOR CONGRESS",
+            "total": 13000.0,
+            "count": 4
           },
           {
             "name": "HARRIS VICTORY FUND",
@@ -418,17 +851,143 @@
             "count": 1
           },
           {
-            "name": "PAT RYAN FOR CONGRESS",
-            "total": 3500.0,
-            "count": 1
+            "name": "HARRIS FOR PRESIDENT",
+            "total": 5000.0,
+            "count": 2
+          },
+          {
+            "name": "SCOTT PETERS FOR CONGRESS",
+            "total": 4000.0,
+            "count": 2
+          },
+          {
+            "name": "TEXANS FOR HENRY CUELLAR CONGRESSIONAL CAMPAIGN",
+            "total": 3400.0,
+            "count": 2
           },
           {
             "name": "SCHIFF FOR SENATE",
             "total": 3300.0,
             "count": 1
+          },
+          {
+            "name": "KATHERINE CLARK FOR CONGRESS",
+            "total": 3000.0,
+            "count": 1
+          },
+          {
+            "name": "PETERS FOR MICHIGAN",
+            "total": 3000.0,
+            "count": 4
+          },
+          {
+            "name": "BIDEN FOR PRESIDENT",
+            "total": 2800.0,
+            "count": 1
           }
         ],
-        "contributions": []
+        "contributions": [
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 5000.0,
+            "date": "2024-09-19"
+          },
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 5000.0,
+            "date": "2022-09-30"
+          },
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 5000.0,
+            "date": "2021-04-19"
+          },
+          {
+            "committee_name": "HARRIS VICTORY FUND",
+            "amount": 5000.0,
+            "date": "2024-07-31"
+          },
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 5000.0,
+            "date": "2020-12-28"
+          },
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 5000.0,
+            "date": "2023-09-21"
+          },
+          {
+            "committee_name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "amount": 3847.98,
+            "date": "2025-12-31"
+          },
+          {
+            "committee_name": "PAT RYAN FOR CONGRESS",
+            "amount": 3500.0,
+            "date": "2025-03-03"
+          },
+          {
+            "committee_name": "HARRIS FOR PRESIDENT",
+            "amount": 3300.0,
+            "date": "2024-07-31"
+          },
+          {
+            "committee_name": "SCHIFF FOR SENATE",
+            "amount": 3300.0,
+            "date": "2024-10-08"
+          },
+          {
+            "committee_name": "PAT RYAN FOR CONGRESS",
+            "amount": 3300.0,
+            "date": "2023-02-17"
+          },
+          {
+            "committee_name": "PAT RYAN FOR CONGRESS",
+            "amount": 3300.0,
+            "date": "2023-02-17"
+          },
+          {
+            "committee_name": "KATHERINE CLARK FOR CONGRESS",
+            "amount": 3000.0,
+            "date": "2025-06-11"
+          },
+          {
+            "committee_name": "TEXANS FOR HENRY CUELLAR CONGRESSIONAL CAMPAIGN",
+            "amount": 2900.0,
+            "date": "2021-12-01"
+          },
+          {
+            "committee_name": "PAT RYAN FOR CONGRESS",
+            "amount": 2900.0,
+            "date": "2022-10-10"
+          },
+          {
+            "committee_name": "BIDEN FOR PRESIDENT",
+            "amount": 2800.0,
+            "date": "2020-09-16"
+          },
+          {
+            "committee_name": "BIDEN VICTORY FUND",
+            "amount": 2800.0,
+            "date": "2020-09-16"
+          },
+          {
+            "committee_name": "ADAM SMITH FOR CONGRESS COMMITTEE",
+            "amount": 2000.0,
+            "date": "2022-10-19"
+          },
+          {
+            "committee_name": "SCOTT PETERS FOR CONGRESS",
+            "amount": 2000.0,
+            "date": "2024-03-11"
+          },
+          {
+            "committee_name": "SCOTT PETERS FOR CONGRESS",
+            "amount": 2000.0,
+            "date": "2023-03-24"
+          }
+        ]
       },
       "news": {
         "total_results": 0,
@@ -449,35 +1008,9 @@
       "officer_title": "SVP Corporate Operations",
       "source": "Web research (anduril.com, The Org, Craft.co)",
       "fec": {
-        "total_results": 752,
-        "total_amount": 8543.0,
-        "top_recipients": [
-          {
-            "name": "SCHNEIDER FOR CONGRESS",
-            "total": 7000.0,
-            "count": 2
-          },
-          {
-            "name": "ALFONSO FOR CONGRESS",
-            "total": 1000.0,
-            "count": 1
-          },
-          {
-            "name": "OPTIMUM COMMUNICATIONS, INC. PAC",
-            "total": 343.0,
-            "count": 7
-          },
-          {
-            "name": "ACTBLUE",
-            "total": 125.0,
-            "count": 7
-          },
-          {
-            "name": "AMERICAN ASSOCIATION FOR JUSTICE POLITICAL ACTION COMMITTEE (AAJ PAC)",
-            "total": 75.0,
-            "count": 3
-          }
-        ],
+        "total_results": 0,
+        "total_amount": 0,
+        "top_recipients": [],
         "contributions": []
       },
       "news": {
@@ -499,15 +1032,9 @@
       "officer_title": "SVP National Security Operations",
       "source": "Web research (anduril.com, The Org, Craft.co)",
       "fec": {
-        "total_results": 501,
-        "total_amount": 453.67,
-        "top_recipients": [
-          {
-            "name": "ACTBLUE",
-            "total": 453.67,
-            "count": 20
-          }
-        ],
+        "total_results": 0,
+        "total_amount": 0,
+        "top_recipients": [],
         "contributions": []
       },
       "news": {
