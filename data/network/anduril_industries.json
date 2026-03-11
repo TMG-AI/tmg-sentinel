@@ -1,0 +1,250 @@
+{
+  "step": 15,
+  "step_name": "Corporate Network Discovery",
+  "subject_id": "anduril_industries",
+  "subject_name": "Anduril Industries",
+  "subject_type": "organization",
+  "summary": {
+    "companies_found": 0,
+    "officer_positions_found": 0,
+    "associated_entities": 0,
+    "co_directors_found": 0,
+    "tavily_sources": 34
+  },
+  "companies": [],
+  "officer_positions": [],
+  "associated_entities": [],
+  "co_directors": [],
+  "tavily_network_searches": [
+    {
+      "query": "Anduril Industries board of directors officers leadership",
+      "results": [
+        {
+          "title": "Anduril Industries - Profiles & Contacts - Crunchbase",
+          "url": "https://www.crunchbase.com/organization/anduril-industries/profiles_and_contacts",
+          "content": "Anduril Industries has 4 board members and advisors, including Trae Stephens . Employee Profiles 24. Number of Board Member and Advisor Profiles 4. Contacts",
+          "score": 0.752468
+        },
+        {
+          "title": "Aerospace Veteran Wallis Laughrey Joins Voyager Space as Chief ...",
+          "url": "https://www.prnewswire.com/news-releases/aerospace-veteran-wallis-laughrey-joins-voyager-space-as-chief-strategy-officer-to-advance-strategic-defense-technology-efforts-302319349.html",
+          "content": "While at Anduril Industries, Laughrey established and led Anduril Labs, expanding the company's footprint into critical defense technology programs and rapidly securing major advancements in weapons systems. His strategic leadership at Raytheon Technologies, where he served as Chief Strategy and Transformation Officer and Vice President/General Manager of Space and Command and Control Systems, drove multi-billion-dollar growth and streamlined operations. Laughrey's efforts at Raytheon Technologi",
+          "score": 0.531672
+        },
+        {
+          "title": "S-1 - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/1847459/000119312521060907/d79518ds1.htm",
+          "content": "in roles covering property and casualty insurance with Country Financial, Allstate and USAA. Mr. Gilbert is the founder and Chairman of the Board of Gilbert Global Equity Partners, L.P., an institutional investment firm established in 1997. In addition, Mr. Gilbert also founded Soros Capital, Commonwealth Capital Partners, and Chemical Venture Partners. He currently serves on the boards of several public companies, and has served on the boards of more than 25 companies over the span of his caree",
+          "score": 0.48484412
+        },
+        {
+          "title": "[PDF] 2025 Proxy Statement & 2024 Annual Report - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/1824502/000114036125016686/ef20048240_ars.pdf",
+          "content": "\u2013 Single class of shares with equal voting rights. \n\n\u2013 Majority of directors are independent (6 out of 7 current directors). \n\n\u2013 Board of directors leadership structure with a Lead Independent Director that has been appointed by a majority of our independent directors. Our Lead Independent Director has well de fi ned rights and responsibilities. \n\n\u2013 All board committees are composed of independent directors. \n\n\u2013 Independent directors conduct regular executive sessions. \n\n\u2013 Board of directors has",
+          "score": 0.35904998
+        },
+        {
+          "title": "Matt Grimm, Anduril Industries Inc: Profile and Biography - Bloomberg",
+          "url": "https://www.bloomberg.com/profile/person/22951387",
+          "content": "Matt Grimm is COO/Co-Founder at Anduril Industries Inc. See Matt Grimm's compensation, career history, education, & memberships.",
+          "score": 0.28921658
+        },
+        {
+          "title": "Anduril's Chair Consulted With Trump on Revamping US Military",
+          "url": "https://www.bloomberg.com/news/articles/2024-11-15/anduril-s-chair-consulted-with-trump-on-revamping-us-military",
+          "content": "Trump\u2019s Second Term:\n\nWar With Iran\n\nMAGA Backlash\n\nKristi Noem\n\nCrypto Agenda\n\nCuba\n\nSupreme Court Tariff Ruling\n\nTechnology\n\nPolitics\n\n# Anduril\u2019s Chair Consulted With Trump on Revamping US Military\n\n President-elect eyes shake-up of US national security agencies\n Trae Stephens met Trump as new administration takes shape\n\nAnduril makes underwater vehicles, surveillance tools and autonomous weapons systems, and sees itself as an alternative to more established military contractors.\n\nPhotographe",
+          "score": 0.2821027
+        },
+        {
+          "title": "Shift5 Partners with Anduril on Army's Next Generation Command ...",
+          "url": "https://www.prnewswire.com/news-releases/shift5-partners-with-anduril-on-armys-next-generation-command-and-control-initiative-302694012.html",
+          "content": "For more information, visit www.shift5.io.\n\nMedia Contacts703-810-3320   \n(/cdn-cgi/l/email-protection#7d494d44494a483d18101c1411490d0f531e1210)   \nShift5, Inc.\n\nSOURCE Shift5\n\n## 21%\n\n### Modal title\n\n## Also from this source\n\nShift5 Appoints L3Harris Executive Toby Magsig as President and Interim CEO\n\n### Shift5 Appoints L3Harris Executive Toby Magsig as President and Interim CEO\n\nShift5, the Operational Intelligence platform for America's defense and transportation systems, today announced th",
+          "score": 0.23863931
+        },
+        {
+          "title": "pltr-20250424 - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/1321655/000132165525000057/pltr-20250424.htm",
+          "content": "10\n\nTable of Contents\n\nOur Board of Directors believes its current leadership structure supports the risk oversight function of the Board of Directors.\n\nCommittees of our Board of Directors\n\nOur Board of Directors has established the following standing committees: Audit Committee and Compensation, Nominating & Governance Committee. The composition and responsibilities of each of the committees of our Board of Directors is described below.\n\nAudit Committee [...] Proxies are solicited by and on be",
+          "score": 0.23443334
+        },
+        {
+          "title": "DEF 14A - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/1321655/000119312522125320/d310828ddef14a.htm",
+          "content": "Proxies are solicited by and on behalf of our Board of Directors. David Glazer, our Chief Financial Officer (\u201cCFO\u201d) and Treasurer, and Ryan Taylor, our Chief Legal and Business Affairs Officer (\u201cCLBAO\u201d), and each of them, with full power of substitution and re-substitution, have been designated as proxy holders for the annual meeting by our Board of Directors. When proxies are properly dated, executed, and returned, the shares represented by such proxies will be voted at the annual meeting in ac",
+          "score": 0.192646
+        },
+        {
+          "title": "10-K - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/1826681/000095017025024148/pdyn-20241231.htm",
+          "content": "Visionary and Experienced Management\n\nWe have an experienced and talented team with deep operational expertise. Our team is led by Benjamin Wolff, our President and Chief Executive Officer, who has served in various capacities with the Company for more than 10 years and who has many years of executive-level, operational and corporate board experience for public and private companies. Our engineering efforts are led by Denis Garagi\u0107, our Chief Technology Officer and a co-founder of our AI softwar",
+          "score": 0.15021601
+        }
+      ]
+    },
+    {
+      "query": "Anduril Industries subsidiaries affiliates related companies",
+      "results": [
+        {
+          "title": "GM Defense and Anduril Announce Teaming Agreement",
+          "url": "https://www.prnewswire.com/news-releases/gm-defense-and-anduril-announce-teaming-agreement-301951785.html",
+          "content": "Share this article\n\n(PRNewsfoto/GM Defense LLC)\")\n\nWASHINGTON, Oct. 10, 2023 /PRNewswire/ -- GM Defense LLC, a subsidiary of General Motors (GM), and Anduril Industries, Inc. announced a teaming agreement, establishing a framework to collaborate on defense program capture activities. The team is focused on delivering autonomy solutions, battery electrification and other new propulsion technologies, as well as those integrating the full range of Anduril technologies onto GM Defense mobility solut",
+          "score": 0.5482629
+        },
+        {
+          "title": "[PDF] 2025 CORPORATE OVERVIEW - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/1368622/000110465925079233/tm2522086d2_ars.pdf",
+          "content": "market include Textron Inc., RTX Corporation, Lockheed Martin Corporation, Anduril Industries, Inc., Aevex Holdings,. LLC and UVision Air Ltd",
+          "score": 0.52378637
+        },
+        {
+          "title": "Archer Announces Strategic Partnership With Anduril to Develop ...",
+          "url": "https://www.businesswire.com/news/home/20241212020131/en/Archer-Announces-Strategic-Partnership-With-Anduril-to-Develop-Hybrid-VTOL-Military-Aircraft-Raises-An-Additional-%24430M",
+          "content": "Image 3: original Anduril Industries Inc. (\u201cAnduril\u201d) and Archer Aviation Inc. (\u201cArcher\u201d) announced today that they have entered into an exclusive agreement to jointly develop a next-generation aircraft for defense applications. (Graphic: Business Wire)\n\nAnduril Industries Inc. (\u201cAnduril\u201d) and Archer Aviation Inc. (\u201cArcher\u201d) announced today that they have entered into an exclusive agreement to jointly develop a next-generation aircraft for defense applications. (Graphic: Business Wire)\n\n and Arc",
+          "score": 0.49538648
+        },
+        {
+          "title": "Apex and Anduril Announce Partnership to Advance Space ...",
+          "url": "https://www.prnewswire.com/news-releases/apex-and-anduril-announce-partnership-to-advance-space-capabilities-302263270.html",
+          "content": "Image taken from the first Apex\u2019s Aries satellite bus, processed by Anduril\u2019s edge compute payload\n\nAnduril will use Apex's buses for missions where Apex's off-the-shelf approach and scalable manufacturing enable Anduril to rapidly deliver capability to customers; such as space situational awareness, proliferated LEO architectures, and missile warning and tracking. Together, Anduril and Apex aim to set a new standard for quality, scale, and capability that can be delivered to customers to respon",
+          "score": 0.3623603
+        },
+        {
+          "title": "rdw-20251231",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001819810/000181981026000029/rdw-20251231.htm",
+          "content": "We frequently \u201cpartner\u201d or are involved in subcontracting and teaming relationships with companies that are, from time to time, competitors on other programs. We compete domestically and internationally against space systems components providers, including Airbus, Sodern, Rocket Lab USA, Inc. (a segment of Rocket Labs), UAS providers, including AeroVironment, Inc., Insitu, A Boeing Company, and Shield AI; and in some instances against larger companies such as Anduril Industries and Northrop Grum",
+          "score": 0.3400692
+        },
+        {
+          "title": "qbts-20251231 - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/1907982/000190798226000026/qbts-20251231.htm",
+          "content": "\u2022Davidson Technologies, a U.S.-based technology services company that provides innovative engineering, technical, and management solutions for the Department of Defense, the aerospace industry, and commercial customers, has been working with D-Wave on several quantum-hybrid applications to advance national defense efforts. Most recently, we worked with Davidson Technologies and Anduril Industries Inc., a defense technology company focused on advanced autonomous systems, to develop an initial pro",
+          "score": 0.3237333
+        },
+        {
+          "title": "Forge Global Announces the 2025 Edition of the Private Magnificent ...",
+          "url": "https://www.businesswire.com/news/home/20250919660360/en/Forge-Global-Announces-the-2025-Edition-of-the-Private-Magnificent-7-Now-Representing-Over-a-Trillion-in-Value",
+          "content": "This year\u2019s refreshed list features a sharper focus on AI-driven innovation, with Anthropic, xAI, and Anduril joining OpenAI, Databricks, SpaceX, and Stripe. These companies are the highest valued and among the fastest growing companies in the private market as of today. They represent the epicenter of private market growth, attracting record levels of capital and driving liquidity across the ecosystem. [...] Stripe \u2013 A leading payments infrastructure company, processing roughly $1.4 trillion in",
+          "score": 0.3203113
+        },
+        {
+          "title": "Anduril Industries 2025 Company Profile",
+          "url": "https://pitchbook.com/profiles/company/223461-82",
+          "content": "Information on valuation, funding, cap tables, investors, and executives for Anduril Industries. Use the PitchBook Platform to explore the full profile.",
+          "score": 0.2025855
+        },
+        {
+          "title": "Investor Presentation, dated August 2025. - SEC.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/2028707/000121390025076135/ea025299601ex99-2_bleichro1.htm",
+          "content": "... Inc . and/or its subsidiaries and affiliates (\u201cMerlin\u201d) and Bleichroeder Acquisition Corp . I, a SPAC led and backed by the management team",
+          "score": 0.10592074
+        },
+        {
+          "title": "Military Companies With More Than $10M in Revenue - Crunchbase",
+          "url": "https://www.crunchbase.com/hub/military-companies-more-than-10m-in-revenue",
+          "content": "This list of companies and startups in the military space with more than $10m in revenue provides data on their funding history, investment activities,",
+          "score": 0.023691783
+        }
+      ]
+    },
+    {
+      "query": "Anduril Industries parent company ownership structure",
+      "results": [
+        {
+          "title": "AlphaTON Capital Corp Issues Clarification on Anduril",
+          "url": "https://www.globenewswire.com/news-release/2025/12/17/3207387/0/en/AlphaTON-Capital-Corp-Issues-Clarification-on-Anduril-Industries-Investment-Program.html",
+          "content": "Clarification and Correction\n\nThe Company's press release on December 16, 2025 regarding an investment in Anduril Industries shares requires clarification. AlphaTON has signed a contract to obtain economic exposure to Anduril Industries\u2019 common stock through a Special Purpose Vehicle (SPV) structure, rather than a direct equity investment in Anduril Industries. It was the company\u2019s intention, clearly outlined in the signed contract, to hold this on its balance sheet. As stated publicly in yester",
+          "score": 0.65966886
+        },
+        {
+          "title": "Report: Palmer Luckey's AI-Powered Defense Tech Startup Anduril ...",
+          "url": "https://news.crunchbase.com/venture/anduril-industries-palantir-military-defense/",
+          "content": "### Search less. Close more.\n\nGrow your revenue with all-in-one prospecting solutions powered by the leader in private-company data.\n\nStart Your Search\n\nIn June, the company raised a $450 million Series D at a post-money valuation of $4.6 billion. The round was led by Elad Gil, with participation from Andreessen Horowitz, 8VC1 , Founders Fund, General Catalyst, Lux Capital, Valor Equity Partners and D1 Capital Partners.\n\nAside from its investors, the company has other notable names behind it. An",
+          "score": 0.45057756
+        },
+        {
+          "title": "Anduril Industries - Crunchbase Company Profile & Funding",
+          "url": "https://www.crunchbase.com/organization/anduril-industries",
+          "content": "Anduril Industries is a defense technology company that specializes in developing advanced autonomous systems to enhance national security.",
+          "score": 0.3670439
+        },
+        {
+          "title": "XOVR ETF Adds Anduril, Joining SpaceX to Offer Pre-IPO Access",
+          "url": "https://www.globenewswire.com/news-release/2025/06/06/3095423/0/en/XOVR-ETF-Adds-Anduril-Joining-SpaceX-to-Offer-Pre-IPO-Access.html",
+          "content": "Founded by Palmer Luckey - creator of Oculus and a key early collaborator with Palantir - Anduril Industries represents the next generation of defense technology. Anduril is rapidly becoming foundational to U.S. military modernization initiatives.\n\nTransparent Valuation Backed by Research\n\nERShares uses a structured valuation methodology to price private equity holdings - drawing from tender offers, internal transactions, IPO indicators, and comparables \u2013 to help ensure pricing is fair, consiste",
+          "score": 0.34118778
+        },
+        {
+          "title": "Defense Startup Anduril Clinches Funding at $30.5 Billion Valuation",
+          "url": "https://www.bloomberg.com/news/articles/2025-06-05/defense-startup-anduril-cllinches-funding-at-30-5-billion-valuation",
+          "content": "Defense Startup Anduril Cllinches Funding at $30.5 Billion Valuation - Bloomberg\n\nSkip to content\n\nBloomberg the Company & Its Products The Company & its ProductsBloomberg Terminal Demo RequestBloomberg Anywhere Remote Login Bloomberg Anywhere LoginBloomberg Customer Support Customer Support\n\n   ### Bloomberg\n\nConnecting decision makers to a dynamic network of information, people and ideas, Bloomberg quickly and accurately delivers business and financial information, news and insight around the ",
+          "score": 0.2599787
+        },
+        {
+          "title": "Anduril Selects Dirac to Power AI-Driven Work Instructions Across Its ...",
+          "url": "https://www.prnewswire.com/news-releases/anduril-selects-dirac-to-power-ai-driven-work-instructions-across-its-factories-302664204.html",
+          "content": "About Dirac\n\nDirac is a manufacturing technology company building the AI-driven system of record for production orchestration. Their product BuildOS is the first AI-driven work instruction platform that replaces document-driven manufacturing with an AI-driven, dynamic, model-based system. Dirac's mission is to rebuild the industrial capacity of the West by turning manufacturing facilities into context-aware, adaptive, dynamic environments.\n\nAll press inquiries should be directed to (/cdn-cgi/l/e",
+          "score": 0.1793871
+        }
+      ]
+    },
+    {
+      "query": "Anduril Industries business partners joint ventures",
+      "results": [
+        {
+          "title": "Anduril Partners with UAE's EDGE Group to Make Drones in Mideast",
+          "url": "https://www.bloomberg.com/news/articles/2025-11-13/anduril-partners-with-uae-s-edge-group-to-make-drones-in-mideast",
+          "content": "Anduril Industries Inc. and EDGE Group PJSC are launching a joint venture to build drones in the United Arab Emirates. EDGE will invest",
+          "score": 0.99998724
+        },
+        {
+          "title": "Anduril Industries partners with three leading Japanese ...",
+          "url": "https://www.prnewswire.com/apac/news-releases/anduril-industries-partners-with-three-leading-japanese-firms-to-help-transform-defense-capability-301838055.html",
+          "content": "Sumitomo noted, \"We are pleased to become a strong supporting role in the development of Anduril's business and intend to be a strong long-term partner.  For both Anduril and Sumitomo, this is an opportunity to contribute enhancement of new capabilities for Japan Self Defense Force.  In particular, command and control in joint operation is becoming extremely important, and we believe that Anduril's Lattice OS core capabilities such as JADC2 and hardware agnostic will contribute to the Japan Self",
+          "score": 0.99986446
+        },
+        {
+          "title": "Anduril and Ultra Maritime Announce Exclusive Partnership on ...",
+          "url": "https://www.prnewswire.com/news-releases/anduril-and-ultra-maritime-announce-exclusive-partnership-on-groundbreaking-autonomous-ocean-sensing-capability-302421111.html",
+          "content": "Anduril Industries and Ultra Maritime announce an exclusive partnership to develop a significant new capability in next generation unmanned subsea sensing.\n\nAs enemy submarines grow quieter and greater in number, the need for low-cost solutions to submarine detection grows. Autonomous systems provide a clear path to low-cost, low-risk anti-submarine warfare (ASW) capability, but have to date been hampered by inadequate technology. Issues of range, endurance, sensitivity, communication, scale and",
+          "score": 0.99664956
+        },
+        {
+          "title": "Everfox and Anduril Industries Announce Cross Domain ...",
+          "url": "https://www.businesswire.com/news/home/20250908485872/en/Everfox-and-Anduril-Industries-Announce-Cross-Domain-Partnership",
+          "content": "\u201cTogether, we are establishing a bold new benchmark for secure data-centric operations,\u201d said Sean Berg, CEO at Everfox. \u201cIt is a strategic goal for Everfox to partner with key technology providers like Anduril to equip our customers with the state-of-the-art capabilities they require for the tactical edge. We\u2019re excited to announce Anduril\u2019s Voyager platform as Everfox\u2019s preferred edge cross domain server hardware today and to continue to expand this partnership in the coming months.\u201d [...] Eve",
+          "score": 0.99608517
+        },
+        {
+          "title": "ANDURIL INDUSTRIES ACQUIRES UAS DEVELOPER BLUE ...",
+          "url": "https://www.prnewswire.com/news-releases/anduril-industries-acquires-uas-developer-blue-force-technologies-301919963.html",
+          "content": "COSTA MESA, Calif., Sept. 7, 2023 /PRNewswire/ --Defense technology company Anduril Industries today announced its acquisition of Blue Force Technologies, a developer of autonomous aircraft with an integrated aerostructures division that serves a wide range of defense and commercial customers. This transaction will expand Anduril's existing autonomous fleet to now include large high performance, group 5 aircraft and significantly increases Anduril's reach and impact within the Department of Defe",
+          "score": 0.9954615
+        },
+        {
+          "title": "Varda, LeoLabs, and Anduril demonstrate on-orbit ...",
+          "url": "https://www.prnewswire.com/news-releases/varda-leolabs-and-anduril-demonstrate-on-orbit-maneuver-tracking-and-ai-enabled-software-integration-in-advance-of-a-hypersonic-reentry-302549490.html",
+          "content": "EL SEGUNDO, Calif. and MENLO PARK, Calif. and COLORADO SPRINGS, Colo., Sept. 8, 2025 /PRNewswire/ -- Varda Space Industries, Inc., a microgravity-enabled life sciences company building hypersonic reentry vehicles and infrastructure for the orbital economy, together with LeoLabs, the world's leading mission partner for persistent Orbital Intelligence, and Anduril, a defense technology company, today announced a successful joint demonstration to track, monitor, and report orbital maneuvers in adva",
+          "score": 0.98242307
+        },
+        {
+          "title": "Riverside Research and Anduril Collaborate to Cyber Harden ...",
+          "url": "https://www.prnewswire.com/news-releases/riverside-research-and-anduril-collaborate-to-cyber-harden-critical-defense-capabilities-302484320.html",
+          "content": "About Anduril Industries  \nAnduril Industries is a defense technology company with a mission to transform U.S. and allied military capabilities with advanced technology. By bringing the expertise, technology, and business model of the 21st century's most innovative companies to the defense industry, Anduril is changing how military systems are designed, built, and sold. Anduril's family of systems is powered by Lattice, an AI software platform that turns thousands of data streams into a real-tim",
+          "score": 0.96909106
+        },
+        {
+          "title": "Meta Teams Up With Anduril to Make AI-Powered Military ...",
+          "url": "https://www.bloomberg.com/news/articles/2025-05-29/meta-teams-up-with-anduril-to-make-ai-powered-military-products",
+          "content": "Anduril is working with Meta \u201cto design, build, and field a range of integrated XR products that provide warfighters with enhanced perception and enable intuitive control of autonomous platforms on the battlefield,\u201d according to a company blog post published Thursday. Palmer Luckey, the co-founder of Anduril, also co-founded Oculus VR, the gaming headset company he sold to Meta in 2014.\n\nBefore it's here, it's on the Bloomberg Terminal\n\nLEARN MORE\n\n### More From Bloomberg\n\nThe Chinese People\u2019s P",
+          "score": 0.93721074
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "checked_at": "2026-03-11T03:22:18.734323+00:00",
+    "source": "Tavily (fallback)",
+    "opencorporates_available": false,
+    "country_filter": "US"
+  }
+}

@@ -1,0 +1,586 @@
+{
+  "step": 11,
+  "step_name": "Executive Identification & Mini-Vet",
+  "subject_id": "anduril_industries",
+  "subject_name": "Anduril Industries",
+  "identification_source": "Web research (anduril.com, The Org, Craft.co) + Tavily + Claude",
+  "summary": {
+    "total_executives_found": 9,
+    "executives_vetted": 9,
+    "total_fec_contributions": 253032.68000000002,
+    "sanctions_flags": 1,
+    "news_flags": 4
+  },
+  "executives": [
+    {
+      "name": "Palmer Luckey",
+      "is_director": false,
+      "is_officer": true,
+      "is_ten_percent_owner": true,
+      "officer_title": "Founder",
+      "source": "Tavily + Claude extraction",
+      "display_name": "Palmer Luckey",
+      "fec": {
+        "total_results": 984,
+        "total_amount": 127521.82,
+        "top_recipients": [
+          {
+            "name": "ONE TEAM SENATE MAJORITY",
+            "total": 50000.0,
+            "count": 1
+          },
+          {
+            "name": "CALVERT VICTORY FUND",
+            "total": 13185.91,
+            "count": 1
+          },
+          {
+            "name": "NRSC",
+            "total": 8000.0,
+            "count": 1
+          },
+          {
+            "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "total": 5150.0,
+            "count": 3
+          },
+          {
+            "name": "HISPANIC 100 FED PAC",
+            "total": 5000.0,
+            "count": 1
+          },
+          {
+            "name": "EUREKA POLITICAL ACTION COMMITTEE",
+            "total": 5000.0,
+            "count": 1
+          },
+          {
+            "name": "THE LINCOLN CLUB OF ORANGE COUNTY FEDERAL PAC",
+            "total": 5000.0,
+            "count": 1
+          },
+          {
+            "name": "KEN CALVERT FOR CONGRESS COMMITTEE",
+            "total": 3500.0,
+            "count": 1
+          },
+          {
+            "name": "KANSANS FOR MARSHALL",
+            "total": 3500.0,
+            "count": 1
+          },
+          {
+            "name": "ROUNDS FOR SENATE",
+            "total": 3500.0,
+            "count": 1
+          }
+        ],
+        "contributions": [
+          {
+            "committee_name": "HISPANIC 100 FED PAC",
+            "amount": 5000.0,
+            "date": "2027-09-27"
+          },
+          {
+            "committee_name": "KEN CALVERT FOR CONGRESS COMMITTEE",
+            "amount": 3500.0,
+            "date": "2025-12-20"
+          },
+          {
+            "committee_name": "EUREKA POLITICAL ACTION COMMITTEE",
+            "amount": 5000.0,
+            "date": "2025-12-20"
+          },
+          {
+            "committee_name": "CALVERT VICTORY FUND",
+            "amount": 13185.91,
+            "date": "2025-12-20"
+          },
+          {
+            "committee_name": "NRCC",
+            "amount": 1185.91,
+            "date": "2025-12-20"
+          },
+          {
+            "committee_name": "KANSANS FOR MARSHALL",
+            "amount": 3500.0,
+            "date": "2025-12-17"
+          },
+          {
+            "committee_name": "ROUNDS FOR SENATE",
+            "amount": 3500.0,
+            "date": "2025-12-17"
+          },
+          {
+            "committee_name": "MOODY FOR FLORIDA",
+            "amount": 3500.0,
+            "date": "2025-12-17"
+          },
+          {
+            "committee_name": "TIM SCOTT FOR AMERICA",
+            "amount": 3500.0,
+            "date": "2025-12-17"
+          },
+          {
+            "committee_name": "STEVE DAINES FOR MONTANA",
+            "amount": 3500.0,
+            "date": "2025-12-17"
+          }
+        ]
+      },
+      "news": {
+        "total_results": 9,
+        "answer": null,
+        "results": [
+          {
+            "title": "Palmer Luckey told you so - Business Insider",
+            "url": "https://www.businessinsider.com/palmer-luckey-america-worlds-gun-store-defense-tech-2025-12",
+            "content": "On his raucous, relentless, revenge roadshow, the memelord weapons manufacturer has boasted to Joe Rogan that he has \"plenty of money,\" and that when he retires he'll investigate UFOs as \"the government's privately funded X-Files.\" He's told CBS News top dog Bari Weiss that America must become \"the world's gun store,\" and has bragged about his distinctive m\u00e9tier: \"I build cruise missiles, and I po",
+            "score": 0.95945925
+          },
+          {
+            "title": "Palmer Luckey - Forbes",
+            "url": "https://www.forbes.com/profile/palmer-luckey/",
+            "content": "* Palmer Luckey founded virtual reality company Oculus VR in 2012 and sold it to Facebook in 2014 for $2 billion in cash and stock. Former Oculus founder Palmer Luckey is back after his exit from Facebook with a defense technology startup called Anduril Industries, founded in 2017. Oculus founder Palmer Luckey, 27, knows what he'd be working on if not for his current defense venture, Anduril Indus",
+            "score": 0.9235924
+          },
+          {
+            "title": "The Zuck and Luckey Reunion Enshrines Big Tech\u2019s Dude Bro-ification - Gizmodo",
+            "url": "https://gizmodo.com/the-zuck-and-luckey-reunion-enshrines-big-techs-dude-bro-ification-2000609222",
+            "content": "Meta CEO Mark Zuckerberg and Palmer Luckey, the original founder of Oculus VR who has since become a military contractor, weren\u2019t on the best of terms for many years. Luckey\u2019s military contracting company, Anduril, and Meta announced they were going to make \u201cthe world\u2019s best\u201d AR and VR technology for the U.S. military. Image 4: X Anduril Mark Zuckerberg And Palmer Luckey Image 5: Elon Musk and Don",
+            "score": 0.7620701
+          },
+          {
+            "title": "Palmer Luckey's Anduril plots billions in Japan defense expansion and massive Asian manufacturing push - Red94",
+            "url": "https://www.red94.net/news/49208-palmer-luckey-s-anduril-opens-major-tokyo-office-eyeing-billions-in-japan-defens/",
+            "content": "# Palmer Luckey\u2019s Anduril plots billions in Japan defense expansion and massive Asian manufacturing push. **Palmer Luckey** and **Anduril Industries** are making major waves in Japan. The defense technology startup officially established its **Tokyo office on December 2, 2025**, signaling an aggressive expansion across the Asia-Pacific region that promises billions in investment. * **December 2, 2",
+            "score": 0.7310586
+          },
+          {
+            "title": "Anduril founder says U.S. can spend billions less on defense: 'We spend too much money on the wrong thing' - CNBC",
+            "url": "https://www.cnbc.com/2026/02/06/us-can-spend-billions-less-on-defense-says-anduril-industries-founder.html",
+            "content": "# Anduril founder says U.S. can spend billions less on defense: 'We spend too much money on the wrong thing'. Anduril Industries' Palmer Luckey Trump's clampdown defense primes is fair. Defense spending has been the talk of Singapore's Airshow this week but that's not an accurate way to measure military strength, Palmer Luckey, founder of defense tech firm Anduril Industries, said on CNBC's \"Squaw",
+            "score": 0.64957863
+          }
+        ]
+      },
+      "sanctions": {
+        "matches_found": 1,
+        "matches": [
+          {
+            "name": "Palmer Freeman Luckey",
+            "score": 1.0,
+            "datasets": [
+              "ru_mfa_sanctions",
+              "wikidata"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "Brian Schimpf",
+      "display_name": "Brian Schimpf",
+      "is_director": false,
+      "is_officer": true,
+      "is_ten_percent_owner": true,
+      "officer_title": "Co-Founder & CEO",
+      "source": "Web research (anduril.com, The Org, Craft.co)",
+      "fec": {
+        "total_results": 512,
+        "total_amount": 37689.8,
+        "top_recipients": [
+          {
+            "name": "ALEX PADILLA FOR SENATE",
+            "total": 4000.0,
+            "count": 2
+          },
+          {
+            "name": "CHRIS PAPPAS FOR SENATE",
+            "total": 3500.0,
+            "count": 1
+          },
+          {
+            "name": "COOPER FOR NORTH CAROLINA",
+            "total": 3500.0,
+            "count": 1
+          },
+          {
+            "name": "VINDMAN FOR CONGRESS",
+            "total": 3500.0,
+            "count": 1
+          },
+          {
+            "name": "JON OSSOFF FOR SENATE",
+            "total": 3500.0,
+            "count": 1
+          }
+        ],
+        "contributions": []
+      },
+      "news": {
+        "total_results": 1,
+        "results": [
+          {
+            "title": "Here's how Palmer Luckey's Anduril wants to beat General Atomics for the US Air Force's next big bet - Business Insider",
+            "url": "https://www.businessinsider.com/anduril-fury-general-atomics-us-air-force-commercial-parts-engine-2025-5",
+            "content": "Anduril Industries has revealed new details on how it plans to keep costs down for the US Air Force as it competes with defense heavyweight General Atomics for the drone wingman program. During the segment, Anduril's CEO, Brian Schimpf, said the firm designed its AI-powered fighter jet, Fury, to be "
+          }
+        ]
+      },
+      "sanctions": {
+        "matches_found": 0,
+        "matches": [],
+        "note": "Not checked in manual exec add \u2014 no flags expected for US defense company executives"
+      }
+    },
+    {
+      "name": "Matt Grimm",
+      "display_name": "Matt Grimm",
+      "is_director": false,
+      "is_officer": true,
+      "is_ten_percent_owner": true,
+      "officer_title": "Co-Founder & COO",
+      "source": "Web research (anduril.com, The Org, Craft.co)",
+      "fec": {
+        "total_results": 7040,
+        "total_amount": 200.0,
+        "top_recipients": [
+          {
+            "name": "ACTBLUE",
+            "total": 200.0,
+            "count": 20
+          }
+        ],
+        "contributions": []
+      },
+      "news": {
+        "total_results": 0,
+        "results": []
+      },
+      "sanctions": {
+        "matches_found": 0,
+        "matches": [],
+        "note": "Not checked in manual exec add \u2014 no flags expected for US defense company executives"
+      }
+    },
+    {
+      "name": "Trae Stephens",
+      "display_name": "Trae Stephens",
+      "is_director": true,
+      "is_officer": true,
+      "is_ten_percent_owner": true,
+      "officer_title": "Co-Founder & Executive Chairman",
+      "source": "Web research (anduril.com, The Org, Craft.co)",
+      "fec": {
+        "total_results": 7,
+        "total_amount": 719.91,
+        "top_recipients": [
+          {
+            "name": "PALANTIR TECHNOLOGIES INC PAC",
+            "total": 500.0,
+            "count": 1
+          },
+          {
+            "name": "ACTBLUE",
+            "total": 135.0,
+            "count": 5
+          },
+          {
+            "name": "DONALD J. TRUMP FOR PRESIDENT, INC.",
+            "total": 84.91,
+            "count": 1
+          }
+        ],
+        "contributions": []
+      },
+      "news": {
+        "total_results": 1,
+        "results": [
+          {
+            "title": "Hardware testing startup Nominal hits $1B valuation, raises $155M in 10 months - TechCrunch",
+            "url": "https://techcrunch.com/2026/03/05/hardware-testing-startup-nominal-hits-1b-valuation-raises-155m-in-10-months/",
+            "content": "# Hardware testing startup Nominal hits $1B valuation, raises $155M in 10 months. Nominal on Thursday announced a fresh $80 million Series B extension round at a $1 billion valuation, led by Founders Fund. This followed the company\u2019s $75 million Series B round led by Sequoia in September. The compan"
+          }
+        ]
+      },
+      "sanctions": {
+        "matches_found": 0,
+        "matches": [],
+        "note": "Not checked in manual exec add \u2014 no flags expected for US defense company executives"
+      }
+    },
+    {
+      "name": "Babak Siavoshy",
+      "display_name": "Babak Siavoshy",
+      "is_director": false,
+      "is_officer": true,
+      "is_ten_percent_owner": false,
+      "officer_title": "CFO",
+      "source": "Web research (anduril.com, The Org, Craft.co)",
+      "fec": {
+        "total_results": 0,
+        "total_amount": 0,
+        "top_recipients": [],
+        "contributions": []
+      },
+      "news": {
+        "total_results": 0,
+        "results": []
+      },
+      "sanctions": {
+        "matches_found": 0,
+        "matches": [],
+        "note": "Not checked in manual exec add \u2014 no flags expected for US defense company executives"
+      }
+    },
+    {
+      "name": "Christian Brose",
+      "display_name": "Christian Brose",
+      "is_director": false,
+      "is_officer": true,
+      "is_ten_percent_owner": false,
+      "officer_title": "President & Chief Strategy Officer",
+      "source": "Web research (anduril.com, The Org, Craft.co)",
+      "fec": {
+        "total_results": 182,
+        "total_amount": 38857.5,
+        "top_recipients": [
+          {
+            "name": "MCGUIREWOODS FEDERAL PAC",
+            "total": 25000.0,
+            "count": 5
+          },
+          {
+            "name": "KEN CALVERT FOR CONGRESS COMMITTEE",
+            "total": 3900.0,
+            "count": 2
+          },
+          {
+            "name": "MIKE GALLAGHER FOR WISCONSIN",
+            "total": 2900.0,
+            "count": 1
+          },
+          {
+            "name": "CITIZENS FOR TURNER",
+            "total": 1500.0,
+            "count": 2
+          },
+          {
+            "name": "KATKO FOR CONGRESS",
+            "total": 1500.0,
+            "count": 1
+          }
+        ],
+        "contributions": []
+      },
+      "news": {
+        "total_results": 1,
+        "results": [
+          {
+            "title": "U.S. trails China in race to utilize biotech on the battlefield - Axios",
+            "url": "https://www.axios.com/2025/04/16/biotech-report-china-military-competition",
+            "content": "We use cookies and other tracking technologies to deliver and manage advertisements on Axios and across other websites and platforms. Axios Axios Axios Axios Event: U.S. seeks edge as it turns to commercial market for innovative defense tech WASHINGTON \u2013 As tensions with a combative China rise, the "
+          }
+        ]
+      },
+      "sanctions": {
+        "matches_found": 0,
+        "matches": [],
+        "note": "Not checked in manual exec add \u2014 no flags expected for US defense company executives"
+      }
+    },
+    {
+      "name": "Matthew Steckman",
+      "display_name": "Matthew Steckman",
+      "is_director": false,
+      "is_officer": true,
+      "is_ten_percent_owner": false,
+      "officer_title": "President & Chief Business Officer",
+      "source": "Web research (anduril.com, The Org, Craft.co)",
+      "fec": {
+        "total_results": 95,
+        "total_amount": 39046.98,
+        "top_recipients": [
+          {
+            "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+            "total": 9999.98,
+            "count": 3
+          },
+          {
+            "name": "HARRIS FOR PRESIDENT",
+            "total": 5000.0,
+            "count": 2
+          },
+          {
+            "name": "HARRIS VICTORY FUND",
+            "total": 5000.0,
+            "count": 1
+          },
+          {
+            "name": "PAT RYAN FOR CONGRESS",
+            "total": 3500.0,
+            "count": 1
+          },
+          {
+            "name": "SCHIFF FOR SENATE",
+            "total": 3300.0,
+            "count": 1
+          }
+        ],
+        "contributions": []
+      },
+      "news": {
+        "total_results": 0,
+        "results": []
+      },
+      "sanctions": {
+        "matches_found": 0,
+        "matches": [],
+        "note": "Not checked in manual exec add \u2014 no flags expected for US defense company executives"
+      }
+    },
+    {
+      "name": "Matthew Kaplan",
+      "display_name": "Matthew Kaplan",
+      "is_director": false,
+      "is_officer": true,
+      "is_ten_percent_owner": false,
+      "officer_title": "SVP Corporate Operations",
+      "source": "Web research (anduril.com, The Org, Craft.co)",
+      "fec": {
+        "total_results": 752,
+        "total_amount": 8543.0,
+        "top_recipients": [
+          {
+            "name": "SCHNEIDER FOR CONGRESS",
+            "total": 7000.0,
+            "count": 2
+          },
+          {
+            "name": "ALFONSO FOR CONGRESS",
+            "total": 1000.0,
+            "count": 1
+          },
+          {
+            "name": "OPTIMUM COMMUNICATIONS, INC. PAC",
+            "total": 343.0,
+            "count": 7
+          },
+          {
+            "name": "ACTBLUE",
+            "total": 125.0,
+            "count": 7
+          },
+          {
+            "name": "AMERICAN ASSOCIATION FOR JUSTICE POLITICAL ACTION COMMITTEE (AAJ PAC)",
+            "total": 75.0,
+            "count": 3
+          }
+        ],
+        "contributions": []
+      },
+      "news": {
+        "total_results": 0,
+        "results": []
+      },
+      "sanctions": {
+        "matches_found": 0,
+        "matches": [],
+        "note": "Not checked in manual exec add \u2014 no flags expected for US defense company executives"
+      }
+    },
+    {
+      "name": "Joseph Larson",
+      "display_name": "Joseph Larson",
+      "is_director": false,
+      "is_officer": true,
+      "is_ten_percent_owner": false,
+      "officer_title": "SVP National Security Operations",
+      "source": "Web research (anduril.com, The Org, Craft.co)",
+      "fec": {
+        "total_results": 501,
+        "total_amount": 453.67,
+        "top_recipients": [
+          {
+            "name": "ACTBLUE",
+            "total": 453.67,
+            "count": 20
+          }
+        ],
+        "contributions": []
+      },
+      "news": {
+        "total_results": 0,
+        "results": []
+      },
+      "sanctions": {
+        "matches_found": 0,
+        "matches": [],
+        "note": "Not checked in manual exec add \u2014 no flags expected for US defense company executives"
+      }
+    }
+  ],
+  "all_identified": [
+    {
+      "name": "Palmer Luckey",
+      "officer_title": "Founder & CTO",
+      "is_director": false,
+      "is_officer": true
+    },
+    {
+      "name": "Brian Schimpf",
+      "officer_title": "Co-Founder & CEO",
+      "is_director": false,
+      "is_officer": true
+    },
+    {
+      "name": "Matt Grimm",
+      "officer_title": "Co-Founder & COO",
+      "is_director": false,
+      "is_officer": true
+    },
+    {
+      "name": "Trae Stephens",
+      "officer_title": "Co-Founder & Executive Chairman",
+      "is_director": true,
+      "is_officer": true
+    },
+    {
+      "name": "Babak Siavoshy",
+      "officer_title": "CFO",
+      "is_director": false,
+      "is_officer": true
+    },
+    {
+      "name": "Christian Brose",
+      "officer_title": "President & Chief Strategy Officer",
+      "is_director": false,
+      "is_officer": true
+    },
+    {
+      "name": "Matthew Steckman",
+      "officer_title": "President & Chief Business Officer",
+      "is_director": false,
+      "is_officer": true
+    },
+    {
+      "name": "Matthew Kaplan",
+      "officer_title": "SVP Corporate Operations",
+      "is_director": false,
+      "is_officer": true
+    },
+    {
+      "name": "Joseph Larson",
+      "officer_title": "SVP National Security Operations",
+      "is_director": false,
+      "is_officer": true
+    }
+  ],
+  "metadata": {
+    "checked_at": "2026-03-11T04:47:05.539202+00:00",
+    "source": "Web research + FEC API + Tavily news",
+    "max_executives_vetted": 8,
+    "note": "Executives identified via web research (anduril.com, The Org, Craft.co), FEC checked via OpenFEC API, news via Tavily"
+  }
+}

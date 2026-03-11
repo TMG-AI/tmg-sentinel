@@ -286,6 +286,129 @@ def identify_executives_edgar(company_name: str) -> list:
     return exec_list
 
 
+# ─── SEC Form D: Find Executives for Private Issuers ──────────
+
+def identify_executives_form_d(company_name: str) -> list:
+    """Search SEC EDGAR for Form D filings (Reg D exempt offerings).
+    Private companies raising capital often file Form D, which lists
+    executive officers, directors, and related persons."""
+    print(f"    Searching SEC EDGAR Form D for '{company_name}'...")
+    try:
+        resp = requests.get(
+            config.ENDPOINTS["sec_efts_search"],
+            params={
+                "q": f'"{company_name}"',
+                "forms": "D",
+                "from": 0,
+                "size": 5,
+            },
+            headers={"User-Agent": config.SEC_EDGAR_USER_AGENT},
+            timeout=config.REQUEST_TIMEOUT,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+
+        hits = data.get("hits", {}).get("hits", [])
+        if not hits:
+            print(f"    No Form D filings found for '{company_name}'")
+            return []
+
+        # Verify company name match (same logic as lookup_cik)
+        search_lower = company_name.lower().strip()
+        skip = {"inc", "llc", "ltd", "corp", "the", "and", "corporation", "company", "technologies"}
+        search_words = set(w for w in search_lower.split() if len(w) >= 3 and w not in skip)
+
+        matched_hit = None
+        for hit in hits:
+            source = hit.get("_source", {})
+            entity_name = (source.get("entity_name", "") or source.get("display_names", [""])[0]).lower().strip()
+            entity_words = set(w for w in entity_name.split() if len(w) >= 3 and w not in skip)
+            overlap = search_words & entity_words
+            if overlap and len(overlap) >= min(len(search_words), len(entity_words)) * 0.5:
+                matched_hit = hit
+                break
+
+        if not matched_hit:
+            print(f"    Form D results don't match '{company_name}'")
+            return []
+
+        # Get the filing to parse for related persons
+        source = matched_hit.get("_source", {})
+        file_url = source.get("file_url", "")
+        if not file_url:
+            return []
+
+        # Form D filings are XML — fetch and parse for related persons
+        time.sleep(0.15)  # SEC rate limit
+        xml_resp = requests.get(
+            f"https://www.sec.gov{file_url}" if file_url.startswith("/") else file_url,
+            headers={"User-Agent": config.SEC_EDGAR_USER_AGENT},
+            timeout=config.REQUEST_TIMEOUT,
+        )
+        xml_resp.raise_for_status()
+
+        # Parse Form D XML for relatedPersonsList
+        root = ET.fromstring(xml_resp.text)
+        ns = ""
+        if root.tag.startswith("{"):
+            ns = root.tag.split("}")[0] + "}"
+
+        executives = []
+        for person in root.findall(f".//{ns}relatedPersonInfo"):
+            name_el = person.find(f"{ns}relatedPersonName")
+            rel_el = person.find(f"{ns}relatedPersonRelationshipList")
+
+            if name_el is None:
+                continue
+
+            first = (name_el.find(f"{ns}firstName") or name_el.find("firstName"))
+            last = (name_el.find(f"{ns}lastName") or name_el.find("lastName"))
+            first_text = (first.text or "").strip() if first is not None else ""
+            last_text = (last.text or "").strip() if last is not None else ""
+
+            if not last_text:
+                continue
+
+            full_name = f"{first_text} {last_text}".strip()
+
+            # Parse relationships
+            is_director = False
+            is_officer = False
+            is_promoter = False
+            relationships = []
+            if rel_el is not None:
+                for rel in rel_el:
+                    tag = rel.tag.replace(ns, "")
+                    if rel.text and rel.text.strip():
+                        relationships.append(tag)
+                    if "Director" in tag:
+                        is_director = True
+                    elif "Officer" in tag or "Executive" in tag:
+                        is_officer = True
+                    elif "Promoter" in tag:
+                        is_promoter = True
+
+            executives.append({
+                "name": full_name,
+                "is_director": is_director,
+                "is_officer": is_officer,
+                "is_ten_percent_owner": is_promoter,
+                "officer_title": ", ".join(relationships) if relationships else "Related Person",
+                "source": "SEC Form D",
+            })
+
+        if executives:
+            print(f"    Found {len(executives)} related persons from Form D filing")
+        else:
+            print(f"    Form D filing found but no related persons extracted")
+
+        return executives
+
+    except Exception as e:
+        print(f"    Form D search error: {e}")
+        return []
+
+
 # ─── Tavily Fallback: Find Executives via Web Search ──────────
 
 def identify_executives_tavily(company_name: str) -> list:
@@ -297,6 +420,8 @@ def identify_executives_tavily(company_name: str) -> list:
         f'"{company_name}" CEO founder leadership team executives',
         f'"{company_name}" CFO CTO COO president board directors',
         f'"{company_name}" executive team Crunchbase OR LinkedIn OR Bloomberg',
+        f'"{company_name}" co-founder chief officer general counsel VP',
+        f'"{company_name}" leadership management team bios about',
     ]
 
     all_content = []
@@ -335,9 +460,19 @@ def identify_executives_tavily(company_name: str) -> list:
 
         combined_text = "\n---\n".join(all_content[:10])  # Cap at 10 results
 
-        extraction_prompt = f"""From the following web search results about {company_name}, extract the names and titles of key executives (CEO, CFO, CTO, COO, President, Founder, board members, etc.).
+        extraction_prompt = f"""From the following web search results about {company_name}, extract ALL individuals who hold any of these roles:
 
-Return ONLY a JSON array. Each element should have "name" (full name, natural order like "John Smith") and "title" (their role). Maximum 10 executives. Most senior first.
+- C-suite executives (CEO, CFO, CTO, COO, CMO, CRO, CISO, CLO, etc.)
+- Founders and co-founders
+- President and Vice Presidents (SVP, EVP)
+- Board members and board chairman
+- General Counsel
+- General Partners (if a fund/partnership)
+- Other named senior officers or key decision-makers
+
+IMPORTANT: Do NOT limit to just the most prominent person. Extract EVERY person mentioned in any of these roles, even if they appear in only one search result. Aim for 5-10 people for a typical company.
+
+Return ONLY a JSON array. Each element should have "name" (full name, natural order like "John Smith") and "title" (their most senior role). Maximum 15 executives. Most senior first.
 
 If you cannot confidently identify any executives, return an empty array [].
 
@@ -600,18 +735,23 @@ def run_executive_search(intake: dict) -> dict:
 
     print(f"  🔍 Step 11: Identifying executives for '{name}'...")
 
-    # Try SEC EDGAR first (public companies)
+    # Try SEC EDGAR Form 3/4 first (public companies)
     executives = identify_executives_edgar(name)
     identification_source = "SEC EDGAR Form 3/4"
 
     if not executives:
-        # Fallback to Tavily + Claude for private companies
+        # Try SEC Form D (private companies that raised capital)
+        executives = identify_executives_form_d(name)
+        identification_source = "SEC Form D"
+
+    if not executives:
+        # Final fallback: Tavily + Claude for companies with no SEC filings
         executives = identify_executives_tavily(name)
         identification_source = "Tavily + Claude extraction"
         if executives:
             print(f"    Using Tavily + Claude extraction for executive identification")
         else:
-            print(f"    WARNING: Could not identify executives via EDGAR or Tavily")
+            print(f"    WARNING: Could not identify executives via EDGAR, Form D, or Tavily")
 
     # Mini-vet the top executives (cap at 8 to manage API costs)
     MAX_EXEC_VET = 8

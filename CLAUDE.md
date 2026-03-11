@@ -3,30 +3,15 @@
 ## User Preferences
 - **NEVER produce Markdown (.md) files** for memos, reports, or documents. Always use DOCX format. Shannon shares these with colleagues.
 
-## Last Updated: 2026-03-10 (Session 13)
+## Last Updated: 2026-03-10 (Session 14)
 
 ## NOT DONE — Needs Next Session
 
-### Priority 1: Fix litigation/bankruptcy/exec quality (Perplexity research pending)
-Shannon pasted a prompt into Perplexity asking about:
-1. **CourtListener party filtering** — Currently full-text search returns cases that merely MENTION the subject. Need cases where subject is a named PARTY (plaintiff/defendant). CourtListener may have party-name filtering or a separate parties endpoint.
-2. **Bankruptcy debtor vs creditor** — Anduril showed 21 bankruptcy cases but they were all CREDITOR (someone owes them money). Need to distinguish debtor (risk) vs creditor (not risk). Quick heuristic: "In re [Subject Name]" = debtor.
-3. **Private company exec identification** — Tavily+Claude fallback only found 1 exec (Palmer Luckey) for Anduril instead of 5-8. Need better sources: Crunchbase API, OpenCorporates officers endpoint, SEC Form D filings, state SOS filings.
-
-**When Perplexity results come back:** Update `search_litigation.py`, `search_bankruptcy.py`, and `search_executives.py` accordingly.
-
-### Priority 2: Quick fixes (can do without Perplexity)
-These three heuristic fixes can be applied NOW before the full API research:
-1. **Bankruptcy**: Check if "In re [Subject Name]" in case title → debtor (risk). Otherwise tag as creditor/other (not risk).
-2. **Litigation**: Check if subject name appears in `case_name` field (e.g., "X v. Anduril") vs just mentioned in docket text. Only flag party-level matches.
-3. **Exec extraction prompt**: Improve Claude prompt to explicitly ask for ALL C-suite, founders, and board members — not just the most prominent person.
-
-### Priority 3: Rerun Anduril after fixes
-Latest Anduril run (18:09 today) has problems:
-- Litigation scored 9.5/10 due to "United States v. Pennetta" (25 criminal flags) where connection to Anduril is unclear
-- Bankruptcy scored 8/10 for cases where Anduril is a CREDITOR (not a risk)
-- Only 1 exec identified (Palmer Luckey) — need 5-8
-- Sources: 43 risk + 285 context (Tavily working again after credit reset)
+### Priority 1: Rerun Anduril after Perplexity fixes
+All three Perplexity-recommended fixes are now implemented. Rerun Anduril to verify:
+- Litigation: "United States v. Pennetta" should now be classified as mention_only (not flagged) unless Anduril is a named party
+- Bankruptcy: creditor cases should be classified as `is_risk: false`
+- Executives: Form D fallback + improved Claude prompt should find 5-8 execs instead of 1
 
 ### Priority 4: Anduril needs to be pushed to Lovable after rerun
 Copy fixed `data/unified/anduril_industries.json` to `public/data/vettings/` and push. Index already includes `anduril_industries.json`.
@@ -44,6 +29,32 @@ Copy fixed `data/unified/anduril_industries.json` to `public/data/vettings/` and
 - Main change: different synthesis prompt (vulnerabilities/contradictions vs risk assessment)
 - Also need: voting records, reverse donor lookup, social media deep dive
 - Not started — just discussed
+
+## Completed (Session 14) — Perplexity-Recommended Litigation/Bankruptcy/Exec Fixes
+
+All three fixes from the Perplexity research (Priority 1 & 2 from Session 13) are now implemented:
+
+1. **Litigation party-only filtering** — `search_litigation.py` now classifies each docket as `named_party` (subject appears in case caption), `party_verified` (confirmed via CourtListener `/parties/` endpoint), or `mention_only` (subject only appears in docket text). Only `named_party` and `party_verified` cases count as red/yellow flags. High-risk mention-only cases are verified via the `/api/rest/v3/parties/?docket={id}` endpoint (up to 30 checks per run). Output now includes `party_cases` and `mention_only_cases` lists.
+
+2. **Bankruptcy debtor vs creditor classification** — `search_bankruptcy.py` now uses three-tier role detection:
+   - Caption heuristic: "In re [Subject]" → debtor (risk)
+   - Caption "v." → creditor/adversary (not risk)
+   - Ambiguous → `/parties/` endpoint check for party role (up to 20 checks)
+   - Each filing now has `role`, `role_source`, and `is_risk` fields
+   - Only debtor filings flagged as risk; creditor filings explicitly marked as non-risk
+   - Summary includes `debtor_filings`, `creditor_filings`, `other_filings` counts
+
+3. **Private company exec identification** — `search_executives.py` now has three-tier identification:
+   - SEC EDGAR Form 3/4 (public companies, existing)
+   - **NEW: SEC Form D** (private companies that raised capital — extracts related persons from Reg D XML filings)
+   - Tavily + Claude (final fallback, with improved prompt)
+   - Claude extraction prompt now explicitly asks for ALL C-suite, founders, co-founders, board members, VPs, General Counsel, General Partners — not just the most prominent person. Targets 5-10 executives.
+
+### Key Code Changes (Session 14)
+- **`scripts/search_litigation.py`**: Added `_name_in_case_name()`, `check_parties_endpoint()`, `classify_party_match()`. `run_litigation_search()` now classifies each case as `named_party`/`party_verified`/`mention_only`. Only party-level matches generate red/yellow flags. High-risk mention-only cases verified via `/parties/` endpoint (up to `MAX_PARTY_CHECKS=30`).
+- **`scripts/search_bankruptcy.py`**: Added `_name_in_caption()`, `check_bankruptcy_parties()`. Rewrote `classify_bankruptcy()` with three-tier debtor/creditor detection (caption_in_re, caption_adversary, parties_endpoint). Each filing gets `role`, `role_source`, `is_risk` fields. Summary includes separate debtor/creditor/other counts.
+- **`scripts/search_executives.py`**: Added `identify_executives_form_d()` — searches SEC Form D filings for related persons (officers, directors, promoters). Run order: EDGAR Form 3/4 → Form D → Tavily+Claude. Claude prompt improved to request ALL C-suite, founders, board members, GPs (5-10 target).
+- **`config.py`**: Added `courtlistener_parties` endpoint to `ENDPOINTS` dict.
 
 ## Completed (Session 13)
 

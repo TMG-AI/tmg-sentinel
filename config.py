@@ -75,6 +75,7 @@ ENDPOINTS = {
     # Litigation (Step 4)
     "courtlistener_search": "https://www.courtlistener.com/api/rest/v4/search/",
     "courtlistener_dockets": "https://www.courtlistener.com/api/rest/v4/dockets/",
+    "courtlistener_parties": "https://www.courtlistener.com/api/rest/v3/parties/",
 
     # Corporate / Business (Step 5)
     "sec_edgar_company": "https://efts.sec.gov/LATEST/search-index",

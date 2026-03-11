@@ -11,58 +11,51 @@
       "status": "PASS",
       "sources_checked": [
         "OpenSanctions",
-        "OFAC",
-        "UN",
-        "EU",
-        "UK HMT"
+        "Interpol"
       ],
       "matches": [],
-      "checked_at": "2024-03-06T10:00:00Z"
+      "checked_at": "2024-01-15T10:00:00Z"
     },
     "debarment": {
       "status": "PASS",
       "sources_checked": [
-        "SAM.gov",
-        "World Bank",
-        "ADB",
-        "EBRD",
-        "IDB"
+        "SAM.gov"
       ],
       "matches": [],
-      "checked_at": "2024-03-06T10:00:00Z"
+      "checked_at": "2024-01-15T10:00:00Z"
     }
   },
   "dimensions": {
     "litigation_legal": {
-      "score": 3.5,
+      "score": 2.5,
       "weight": 0.22,
       "confidence": "MEDIUM",
-      "summary": "Multiple red flags from criminal case data appear to be false positives. Limited actual litigation involving Anduril directly.",
+      "summary": "Anduril faces typical business litigation including patent disputes and employment claims, but no criminal cases or fraud allegations.",
       "sub_factors": {
         "criminal_cases": {
           "score": 0,
-          "detail": "No criminal cases involving Anduril Industries found. The 25 'red flags' for US v. Pennetta appear to be data errors as this case is unrelated to Anduril."
+          "detail": "No criminal cases found against Anduril Industries or its executives in court records"
         },
         "civil_fraud_corruption": {
           "score": 0,
-          "detail": "No fraud or corruption litigation found involving Anduril directly."
+          "detail": "No civil fraud or corruption cases identified"
         },
         "repeated_civil_litigation": {
           "score": 3,
-          "detail": "Limited civil litigation found: Iron Bird patent dispute (2025), employment case (Alley v. Anduril 2023), and intellectual property case (Anduril v. Salient Motion 2023)."
+          "detail": "Multiple patent and employment-related cases found, typical for tech companies"
         },
         "past_resolved": {
           "score": 2,
-          "detail": "Past controversies related to founder Palmer Luckey's exit from Facebook/Meta after political donation controversy [13]."
+          "detail": "Several resolved litigation matters without major adverse outcomes"
         },
         "bankruptcy": {
           "score": 0,
-          "detail": "No bankruptcy filings. Company appears in bankruptcy records only as creditor."
+          "detail": "No bankruptcy filings as debtor"
         }
       },
       "evidence": [
         {
-          "text": "Iron Bird LLC v. Anduril Industries patent litigation filed February 2025",
+          "text": "Iron Bird LLC v. Anduril Industries patent litigation filed February 2025 [CourtListener]",
           "source": "CourtListener",
           "url": "",
           "date": "2025-02-20",
@@ -70,7 +63,7 @@
           "source_urls": []
         },
         {
-          "text": "Nicholas Alley v. Anduril Industries employment litigation filed September 2023",
+          "text": "Nicholas Alley v. Anduril Industries employment case filed September 2023 [CourtListener]",
           "source": "CourtListener",
           "url": "",
           "date": "2023-09-25",
@@ -78,29 +71,24 @@
           "source_urls": []
         },
         {
-          "text": "Palmer Luckey stated he was fired from Facebook for 'no reason at all' but believes his $10,000 donation to a pro-Trump group was related [13]",
-          "source": "CNBC",
+          "text": "Anduril Industries v. Salient Motion patent enforcement case filed September 2023 [CourtListener]",
+          "source": "CourtListener",
           "url": "",
-          "date": "2019",
-          "temporal_weight": 0.7,
-          "source_urls": [
-            {
-              "url": "https://fortune.com/2025/12/26/anduril-founder-palmer-luckey-us-defense-companies-china-sanctions-taiwan-arms-sales/?ref=upmarket.co",
-              "title": "Anduril's Palmer Luckey is among US defense execs, firms ... - Fortune"
-            }
-          ]
+          "date": "2023-09-06",
+          "temporal_weight": 1.0,
+          "source_urls": []
         }
       ]
     },
     "media_reputation": {
-      "score": 6.0,
+      "score": 4.5,
       "weight": 0.2,
       "confidence": "HIGH",
-      "summary": "Significant controversial media coverage regarding surveillance technology, border wall systems, and autonomous weapons development.",
+      "summary": "Anduril faces ongoing controversy as a surveillance and AI weapons company, with criticism from civil liberties groups but strong support from defense establishment.",
       "sub_factors": {},
       "evidence": [
         {
-          "text": "Described as 'controversial surveillance startup' building 'virtual border wall' technology [7]",
+          "text": "Fortune labeled Anduril a 'Controversial surveillance startup' citing concerns about border surveillance technology [4]",
           "source": "Fortune",
           "url": "https://fortune.com/2020/07/02/controversial-surveillance-startup-anduril-gets-a-1-9-billion-valuation/",
           "date": "2020-07-02",
@@ -113,20 +101,20 @@
           ]
         },
         {
-          "text": "Anduril's autonomous sentry towers and border surveillance technology described as controversial applications [14]",
-          "source": "The Guardian",
-          "url": "https://www.theguardian.com/us-news/article/2024/aug/08/jd-vance-financial-investments",
-          "date": "2024-08-08",
-          "temporal_weight": 1.0,
+          "text": "LA Times reported Anduril 'was born out of controversy' referencing founder Palmer Luckey's departure from Facebook over political donations [15]",
+          "source": "LA Times",
+          "url": "https://www.latimes.com/business/story/2019-07-25/anduril-profile-palmer-luckey-border-controversy",
+          "date": "2019-07-25",
+          "temporal_weight": 0.7,
           "source_urls": [
             {
-              "url": "https://www.theguardian.com/us-news/article/2024/aug/08/jd-vance-financial-investments",
-              "title": "JD Vance's investments reveal potential contradictions with his ..."
+              "url": "https://www.latimes.com/business/story/2019-07-25/anduril-profile-palmer-luckey-border-controversy",
+              "title": "A 26-year-old billionaire is building virtual border walls - LATimes.com"
             }
           ]
         },
         {
-          "text": "Recruitment ads in Boston prompted backlash, with company described as 'controversial California-based defense startup' [16]",
+          "text": "Boston Globe reports community opposition to Anduril recruiting, with ads saying 'Don't work here' [12]",
           "source": "Boston Globe",
           "url": "https://www.bostonglobe.com/2025/03/04/business/anduril-recruiting-ads-dont-work-here/",
           "date": "2025-03-04",
@@ -139,75 +127,49 @@
           ]
         },
         {
-          "text": "Partnership with UAE's EDGE Group, which has been accused of arming Sudan's civil war, raises ethical concerns [15]",
-          "source": "The Intercept",
-          "url": "https://theintercept.com/2025/12/11/anduril-uae-weapons-edge-sudan/",
-          "date": "2025-12-11",
+          "text": "NPR profiles Anduril as helping arm Ukraine with AI-powered drones, positioning company as key defense innovator [19]",
+          "source": "NPR",
+          "url": "https://www.npr.org/2024/07/11/1198912876/this-u-s-company-is-helping-arm-ukraine-against-russia-with-ai-drones",
+          "date": "2024-07-11",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://theintercept.com/2025/12/11/anduril-uae-weapons-edge-sudan/",
-              "title": "Anduril Partners With UAE Bomb Maker Accused of Arming Sudan's ..."
-            }
-          ]
-        },
-        {
-          "text": "China sanctioned Anduril executives and the company over Taiwan arms sales [22]",
-          "source": "PBS NewsHour",
-          "url": "https://www.pbs.org/newshour/world/china-sanctions-20-u-s-defense-companies-and-10-executives-over-taiwan-arms-sale",
-          "date": "2025",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.pbs.org/newshour/world/china-sanctions-20-u-s-defense-companies-and-10-executives-over-taiwan-arms-sale",
-              "title": "China sanctions 20 U.S. defense companies and 10 executives over ..."
-            }
-          ]
-        },
-        {
-          "text": "Navy personnel alarmed after Anduril's Lattice software caused drone boats to behave erratically during exercise [20]",
-          "source": "Wall Street Journal",
-          "url": "https://www.wsj.com/business/anduril-industries-defense-tech-problems-52b90cae",
-          "date": "2025",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://www.wsj.com/business/anduril-industries-defense-tech-problems-52b90cae",
-              "title": "'We Do Fail \u2026 a Lot': Defense Startup Anduril Hits ..."
+              "url": "https://www.npr.org/2024/07/11/1198912876/this-u-s-company-is-helping-arm-ukraine-against-russia-with-ai-drones",
+              "title": "This U.S. company is helping arm Ukraine against Russia - NPR"
             }
           ]
         }
       ]
     },
     "international_pep": {
-      "score": 4.0,
+      "score": 3.0,
       "weight": 0.15,
       "confidence": "HIGH",
-      "summary": "China sanctions against company and executives. Partnership with controversial UAE defense firm EDGE Group.",
+      "summary": "Anduril and founder Palmer Luckey sanctioned by China over Taiwan arms sales, indicating geopolitical tensions but aligned with US interests.",
       "sub_factors": {
         "pep_status": {
           "score": 0,
-          "detail": "No PEP matches found for company executives."
+          "detail": "No PEP matches found for Anduril executives"
         },
         "country_risk": {
           "score": 5,
-          "detail": "Operating in high-risk countries through partnerships: UAE (EDGE Group partnership), potential exposure to Sudan conflict through EDGE connection [15]."
+          "detail": "China sanctions against Anduril and Palmer Luckey create international tensions"
         },
         "fara_exposure": {
-          "score": 3,
-          "detail": "International defense partnerships with UAE, Japan, Australia, and Taiwan raise potential FARA considerations."
+          "score": 0,
+          "detail": "No FARA registrations found"
         },
         "source_reliability": {
           "score": 0,
-          "detail": "Sources are reliable Western media outlets."
+          "detail": "Information from reliable government and news sources"
         }
       },
       "evidence": [
         {
-          "text": "China imposed sanctions on Anduril and executives over Taiwan arms sales [22]",
+          "text": "China sanctioned Anduril Industries and Palmer Luckey over arms sales to Taiwan according to PBS [21]",
           "source": "PBS NewsHour",
           "url": "https://www.pbs.org/newshour/world/china-sanctions-20-u-s-defense-companies-and-10-executives-over-taiwan-arms-sale",
-          "date": "2025",
+          "date": "2025-12-26",
           "temporal_weight": 1.0,
           "source_urls": [
             {
@@ -217,93 +179,71 @@
           ]
         },
         {
-          "text": "Joint venture with UAE's EDGE Group to manufacture drones in Middle East [15]",
-          "source": "The Intercept",
-          "url": "https://theintercept.com/2025/12/11/anduril-uae-weapons-edge-sudan/",
-          "date": "2025-12-11",
+          "text": "Fortune confirms Palmer Luckey among US defense executives sanctioned by China over Taiwan arms support [11]",
+          "source": "Fortune",
+          "url": "https://fortune.com/2025/12/26/anduril-founder-palmer-luckey-us-defense-companies-china-sanctions-taiwan-arms-sales/",
+          "date": "2025-12-26",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://theintercept.com/2025/12/11/anduril-uae-weapons-edge-sudan/",
-              "title": "Anduril Partners With UAE Bomb Maker Accused of Arming Sudan's ..."
-            }
-          ]
-        },
-        {
-          "text": "Expanding presence in Taiwan with accelerated delivery of Altius loitering munitions [11]",
-          "source": "SAE Media",
-          "url": "",
-          "date": "2025",
-          "temporal_weight": 1.0,
-          "source_urls": [
+              "url": "https://fortune.com/2025/12/26/anduril-founder-palmer-luckey-us-defense-companies-china-sanctions-taiwan-arms-sales/?ref=upmarket.co",
+              "title": "Anduril's Palmer Luckey is among US defense execs, firms ... - Fortune"
+            },
             {
-              "url": "https://www.smgconferences.com/editors-corner/6096-news--anduril-industries-expands-presence-in-taiwan-with-accelerated-delivery-of-altius-loitering-munitions",
-              "title": "Anduril Industries expands presence in Taiwan with ... - SAE Media"
+              "url": "https://fortune.com/2025/12/26/anduril-founder-palmer-luckey-us-defense-companies-china-sanctions-taiwan-arms-sales/",
+              "title": "Fortune"
             }
           ]
         }
       ]
     },
     "financial_sec": {
-      "score": 2.0,
+      "score": 1.5,
       "weight": 0.12,
-      "confidence": "MEDIUM",
-      "summary": "No SEC enforcement actions. High valuation growth and significant funding rounds indicate financial strength.",
+      "confidence": "HIGH",
+      "summary": "No SEC enforcement actions or financial irregularities found; company has raised significant venture capital at high valuations.",
       "sub_factors": {},
       "evidence": [
         {
-          "text": "Company raised funding at $60 billion valuation target in 2026 [24]",
-          "source": "TechCrunch",
-          "url": "https://techcrunch.com/2026/03/03/anduril-aims-at-60-billion-valuation-in-new-funding-round/",
-          "date": "2026-03-03",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://techcrunch.com/2026/03/03/anduril-aims-at-60-billion-valuation-in-new-funding-round/",
-              "title": "Anduril aims at $60 billion valuation in new funding round - TechCrunch"
-            }
-          ]
-        },
-        {
-          "text": "Previously valued at $1.9 billion in 2020, showing rapid growth [7]",
-          "source": "Fortune",
-          "url": "https://fortune.com/2020/07/02/controversial-surveillance-startup-anduril-gets-a-1-9-billion-valuation/",
-          "date": "2020-07-02",
-          "temporal_weight": 0.7,
-          "source_urls": [
-            {
-              "url": "https://fortune.com/2020/07/02/controversial-surveillance-startup-anduril-gets-a-1-9-billion-valuation/",
-              "title": "Controversial surveillance startup Anduril gets a $1.9 billion valuation"
-            }
-          ]
-        },
-        {
-          "text": "No SEC enforcement actions found in EDGAR database",
-          "source": "SEC EDGAR",
+          "text": "Anduril raised funding at $30.5 billion valuation in 2025 according to Bloomberg [EDGAR/SEC filings]",
+          "source": "SEC filings",
           "url": "",
-          "date": "2024",
+          "date": "2025-06-05",
           "temporal_weight": 1.0,
           "source_urls": []
+        },
+        {
+          "text": "No SEC enforcement actions found against Anduril Industries [SEC database]",
+          "source": "SEC",
+          "url": "",
+          "date": "2024-01-15",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.opensecrets.org/orgs/anduril-industries/summary?id=D000073362",
+              "title": "Anduril Industries Profile: Summary - OpenSecrets"
+            }
+          ]
         }
       ]
     },
     "corporate_business": {
-      "score": 3.5,
+      "score": 2.0,
       "weight": 0.11,
       "confidence": "HIGH",
-      "summary": "Rapid growth defense contractor with controversial business model and product offerings in autonomous weapons systems.",
+      "summary": "Strong business fundamentals with $2.3B in government contracts and strategic partnerships with major defense contractors.",
       "sub_factors": {},
       "evidence": [
         {
-          "text": "$2.3 billion in US government contracts across 256 awards, primarily from DoD and DHS",
+          "text": "Anduril has received $2.32 billion in US government contracts across 256 awards [USAspending.gov]",
           "source": "USAspending.gov",
           "url": "",
-          "date": "2024",
+          "date": "2024-01-15",
           "temporal_weight": 1.0,
           "source_urls": []
         },
         {
-          "text": "Largest contract: $362.9 million from DHS for purchase of surveillance towers",
+          "text": "Major contracts include $363M for border surveillance towers and $250M for counter-drone systems [USAspending.gov]",
           "source": "USAspending.gov",
           "url": "",
           "date": "2025-12-25",
@@ -311,32 +251,23 @@
           "source_urls": []
         },
         {
-          "text": "Company employs 7,000 people across 35 locations [12]",
-          "source": "California Governor's Office",
-          "url": "https://business.ca.gov/governor-newsom-highlights-anduril-industries-1-billion-expansion-in-southern-california/",
-          "date": "2025",
+          "text": "Strategic partnerships announced with Rheinmetall, EDGE Group, and Archer Aviation [8][27][9]",
+          "source": "Breaking Defense/PRNewswire",
+          "url": "https://breakingdefense.com/2025/06/at-first-paris-air-show-visit-anduril-inks-new-partnership-with-rheinmetall-on-drones-weapons/",
+          "date": "2025-06-01",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://business.ca.gov/governor-newsom-highlights-anduril-industries-1-billion-expansion-in-southern-california/",
-              "title": "Governor Newsom highlights Anduril Industries' $1 billion expansion ..."
-            }
-          ]
-        },
-        {
-          "text": "Trump sons investing in drone companies creates potential political complications [23][28]",
-          "source": "ABC News",
-          "url": "https://abcnews.com/US/trump-sons-investing-domestic-drone-production-businesses/story?id=130908416",
-          "date": "2025",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://abcnews.com/US/trump-sons-investing-domestic-drone-production-businesses/story?id=130908416",
-              "title": "Trump sons investing in domestic drone production businesses - abcnews.com"
+              "url": "https://breakingdefense.com/2025/06/at-first-paris-air-show-visit-anduril-inks-new-partnership-with-rheinmetall-on-drones-weapons/",
+              "title": "At first Paris Air Show visit, Anduril inks new partnership with ..."
             },
             {
-              "url": "https://finance.yahoo.com/news/trump-brothers-backed-aureus-merge-123728284.html",
-              "title": "Trump brothers-backed Aureus to merge with drone maker Powerus - Yahoo Finance"
+              "url": "https://breakingdefense.com/2025/11/anduril-edge-ink-joint-venture-for-drone-sales/",
+              "title": "Anduril, EDGE ink joint venture for drone sales"
+            },
+            {
+              "url": "https://investors.archer.com/news/news-details/2024/Archer-Announces-Strategic-Partnership-With-Anduril-to-Develop-Hybrid-VTOL-Military-Aircraft-Raises-An-Additional-430M/default.aspx",
+              "title": "Archer Announces Strategic Partnership With Anduril to Develop ..."
             }
           ]
         }
@@ -345,60 +276,73 @@
     "political_lobbying": {
       "score": 4.0,
       "weight": 0.1,
-      "confidence": "MEDIUM",
-      "summary": "Active lobbying presence with multiple registrants. Founder's controversial political history and Trump family connections raise concerns.",
+      "confidence": "HIGH",
+      "summary": "Active lobbying presence with PAC formation and significant political contributions, primarily to Republican candidates.",
       "sub_factors": {
         "fara_issues": {
           "score": 0,
-          "detail": "No FARA violations found."
+          "detail": "No FARA violations or issues identified"
         },
         "investigation_links": {
-          "score": 3,
-          "detail": "Founder Palmer Luckey's past political controversy at Facebook/Meta [13]."
+          "score": 0,
+          "detail": "No links to political investigations found"
         },
         "watchlist_lobbying": {
           "score": 2,
-          "detail": "Multiple lobbying firms registered but no concerning patterns identified."
+          "detail": "Multiple lobbying firms engaged but no concerning patterns"
         },
         "pay_to_play": {
-          "score": 4,
-          "detail": "Trump sons' investments in drone sector while Anduril operates in same space creates appearance issues [23][28]."
+          "score": 5,
+          "detail": "Palmer Luckey's significant Republican donations including $50K to Senate GOP"
         }
       },
       "evidence": [
         {
-          "text": "11 unique lobbying registrants identified in Senate disclosure database",
+          "text": "Anduril formed political action committee ANDURIL PAC per FEC records [7]",
+          "source": "FEC",
+          "url": "https://www.fec.gov/data/committee/C00763623/",
+          "date": "2024-01-15",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.fec.gov/data/committee/C00763623/",
+              "title": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE ..."
+            }
+          ]
+        },
+        {
+          "text": "Palmer Luckey made $127,522 in political contributions, primarily to Republican candidates and PACs [FEC]",
+          "source": "FEC",
+          "url": "",
+          "date": "2024-01-15",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.fec.gov/data/committee/C00763623/",
+              "title": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE ..."
+            }
+          ]
+        },
+        {
+          "text": "Luckey donated $50,000 to ONE TEAM SENATE MAJORITY and $13,186 to CALVERT VICTORY FUND [FEC]",
+          "source": "FEC",
+          "url": "",
+          "date": "2024-01-15",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.fec.gov/data/committee/C00763623/",
+              "title": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE ..."
+            }
+          ]
+        },
+        {
+          "text": "Multiple lobbying firms engaged including APCO Worldwide and Cornerstone Government Affairs [Senate LDA]",
           "source": "Senate LDA",
           "url": "",
-          "date": "2024",
+          "date": "2024-01-15",
           "temporal_weight": 1.0,
           "source_urls": []
-        },
-        {
-          "text": "Palmer Luckey donated $10,000 to pro-Trump group, claims it led to Facebook firing [13]",
-          "source": "CNBC",
-          "url": "",
-          "date": "2019",
-          "temporal_weight": 0.7,
-          "source_urls": [
-            {
-              "url": "https://fortune.com/2025/12/26/anduril-founder-palmer-luckey-us-defense-companies-china-sanctions-taiwan-arms-sales/?ref=upmarket.co",
-              "title": "Anduril's Palmer Luckey is among US defense execs, firms ... - Fortune"
-            }
-          ]
-        },
-        {
-          "text": "Trump sons investing in drone companies while Anduril is major drone contractor [23]",
-          "source": "ABC News",
-          "url": "https://abcnews.com/US/trump-sons-investing-domestic-drone-production-businesses/story?id=130908416",
-          "date": "2025",
-          "temporal_weight": 1.0,
-          "source_urls": [
-            {
-              "url": "https://abcnews.com/US/trump-sons-investing-domestic-drone-production-businesses/story?id=130908416",
-              "title": "Trump sons investing in domestic drone production businesses - abcnews.com"
-            }
-          ]
         }
       ]
     },
@@ -406,61 +350,66 @@
       "score": 7.5,
       "weight": 0.1,
       "confidence": "HIGH",
-      "summary": "Significant conflicts with multiple TMG clients including Google LLC, Coinbase, and potential reputational spillover to others.",
+      "summary": "Significant conflicts identified with multiple TMG clients including potential competition with Google LLC in AI/autonomy and reputational risks with progressive clients.",
       "sub_factors": {
         "direct_conflict": {
           "score": 8,
-          "detail": "Direct competitive conflict with Google LLC (HIGH sensitivity) - both companies compete in AI/autonomous systems. Google has defense contracts and Anduril directly competes for same contracts. Palmer Luckey's public criticism of big tech companies creates adversarial dynamic."
+          "detail": "Direct competition with Google LLC (HIGH sensitivity) in AI/autonomous systems; surveillance tech conflicts with civil liberties positions of AB Foundation and Democracy Defenders Action"
         },
         "indirect_conflict": {
           "score": 7,
-          "detail": "Coinbase (HIGH sensitivity) - Anduril's defense/surveillance focus conflicts with crypto industry's privacy/libertarian ethos. TikTok Inc. (HIGH sensitivity) - Anduril's China-hawk positioning and sanctions from China create tension."
+          "detail": "Defense/surveillance work creates reputational spillover risk for progressive TMG clients like AB (American Independent Media) and Mayday Health"
         },
         "future_conflict": {
-          "score": 6,
-          "detail": "Waymo (HIGH sensitivity) - Both developing autonomous systems, potential future competition. Delta Air Lines (HIGH sensitivity) - Anduril's military drone technology could create reputational concerns for commercial aviation client."
+          "score": 7,
+          "detail": "Anduril's expansion into AI and autonomous systems likely to create future conflicts with Waymo and other tech clients"
         }
       },
       "evidence": [
         {
-          "text": "Anduril competes directly with big tech firms like Google for AI and defense contracts",
-          "source": "Industry Analysis",
+          "text": "Anduril develops AI and autonomous systems that compete with Google LLC's defense and AI initiatives",
+          "source": "Analysis",
           "url": "",
-          "date": "2024",
-          "temporal_weight": 1.0,
-          "source_urls": []
-        },
-        {
-          "text": "China sanctions on Anduril create conflict with TikTok Inc. and TikTok USDS Joint Venture LLC clients [22]",
-          "source": "PBS NewsHour",
-          "url": "https://www.pbs.org/newshour/world/china-sanctions-20-u-s-defense-companies-and-10-executives-over-taiwan-arms-sale",
-          "date": "2025",
+          "date": "2024-01-15",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://www.pbs.org/newshour/world/china-sanctions-20-u-s-defense-companies-and-10-executives-over-taiwan-arms-sale",
-              "title": "China sanctions 20 U.S. defense companies and 10 executives over ..."
+              "url": "https://www.livemint.com/companies/news/lloyds-india-metals-congo-copper-mining-risk-analysis-11772951595986.html",
+              "title": "Can Lloyds replicate Gadchiroli success in Congo\u2019s copper belt? - Mint"
             }
           ]
         },
         {
-          "text": "Anduril's surveillance and border technology conflicts with privacy-focused crypto clients like Coinbase and Blockchain.com",
-          "source": "Risk Analysis",
+          "text": "Anduril's border surveillance technology conflicts with civil liberties priorities of AB Foundation (HIGH sensitivity) and Democracy Defenders Action (HIGH sensitivity)",
+          "source": "Analysis",
           "url": "",
-          "date": "2024",
+          "date": "2024-01-15",
+          "temporal_weight": 1.0,
+          "source_urls": [
+            {
+              "url": "https://www.livemint.com/companies/news/lloyds-india-metals-congo-copper-mining-risk-analysis-11772951595986.html",
+              "title": "Can Lloyds replicate Gadchiroli success in Congo\u2019s copper belt? - Mint"
+            }
+          ]
+        },
+        {
+          "text": "Palmer Luckey's Republican donations and Trump connections conflict with progressive clients like AB (Democracy Matters) focused on campaign finance reform",
+          "source": "FEC/Analysis",
+          "url": "",
+          "date": "2024-01-15",
           "temporal_weight": 1.0,
           "source_urls": []
         },
         {
-          "text": "Partnership with controversial UAE defense firm EDGE Group could embarrass human rights-conscious TMG clients [15]",
-          "source": "The Intercept",
-          "url": "https://theintercept.com/2025/12/11/anduril-uae-weapons-edge-sudan/",
-          "date": "2025-12-11",
+          "text": "Autonomous vehicle technology development creates potential future conflicts with Waymo (HIGH sensitivity)",
+          "source": "Analysis",
+          "url": "",
+          "date": "2024-01-15",
           "temporal_weight": 1.0,
           "source_urls": [
             {
-              "url": "https://theintercept.com/2025/12/11/anduril-uae-weapons-edge-sudan/",
-              "title": "Anduril Partners With UAE Bomb Maker Accused of Arming Sudan's ..."
+              "url": "https://www.livemint.com/companies/news/lloyds-india-metals-congo-copper-mining-risk-analysis-11772951595986.html",
+              "title": "Can Lloyds replicate Gadchiroli success in Congo\u2019s copper belt? - Mint"
             }
           ]
         }
@@ -468,11 +417,11 @@
     }
   },
   "scoring": {
-    "raw_composite": 4.35,
+    "raw_composite": 3.45,
     "engagement_multiplier": 0.85,
-    "adjusted_composite": 3.7,
+    "adjusted_composite": 2.93,
     "confidence_modifier": "none",
-    "final_composite": 3.7,
+    "final_composite": 2.93,
     "risk_tier": "MODERATE",
     "recommendation": "Conditional Approve"
   },
@@ -481,76 +430,68 @@
     "yellow": [
       {
         "category": "media_reputation",
-        "title": "Controversial surveillance technology",
-        "description": "Company repeatedly described as 'controversial' for border surveillance and autonomous weapons systems",
-        "source": "Multiple media sources",
+        "title": "Controversial surveillance company",
+        "description": "Multiple sources describe Anduril as controversial due to border surveillance and AI weapons development",
+        "source": "Fortune, LA Times, Boston Globe",
         "date": "2020-2025",
         "severity": "moderate"
       },
       {
-        "category": "international_pep",
-        "title": "China sanctions",
-        "description": "Company and executives sanctioned by China over Taiwan arms sales",
-        "source": "PBS NewsHour",
-        "date": "2025",
-        "severity": "moderate"
-      },
-      {
-        "category": "corporate_business",
-        "title": "UAE partnership controversy",
-        "description": "Joint venture with EDGE Group, accused of arming Sudan civil war",
-        "source": "The Intercept",
-        "date": "2025",
+        "category": "political_lobbying",
+        "title": "Significant GOP donor",
+        "description": "Palmer Luckey has donated $127,522 primarily to Republican candidates and PACs",
+        "source": "FEC",
+        "date": "2024",
         "severity": "moderate"
       },
       {
         "category": "conflict_of_interest",
-        "title": "TMG client conflicts",
-        "description": "Direct competitive and reputational conflicts with Google, Coinbase, TikTok, and other HIGH sensitivity clients",
-        "source": "Client analysis",
+        "title": "Multiple TMG client conflicts",
+        "description": "Direct conflicts identified with Google LLC, AB Foundation, Democracy Defenders Action, and potential conflicts with Waymo",
+        "source": "Analysis",
         "date": "2024",
-        "severity": "moderate"
+        "severity": "major"
       }
     ]
   },
-  "executive_summary": "## Summary\n\nAnduril Industries is a rapidly growing defense technology company founded in 2017 by Palmer Luckey (creator of Oculus VR). The company specializes in autonomous systems, AI-powered surveillance, and border security technology for the US military and Department of Homeland Security. With a reported valuation approaching $60 billion and over $2.3 billion in government contracts, Anduril has become a major player in the defense technology sector.\n\n## Professional Background\n\nFounded by Palmer Luckey after his controversial exit from Facebook/Meta, Anduril has positioned itself as a next-generation defense contractor challenging traditional firms like Lockheed Martin and Raytheon. The company employs 7,000 people across 35 locations and has secured major contracts with DoD, DHS, and international allies. Key products include autonomous surveillance towers, loitering munitions, and AI-powered defense systems.\n\n## Key Findings\n\n**Factual Risk Factors:**\n- **International Sanctions**: China has sanctioned the company and its executives over Taiwan arms sales, creating potential complications\n- **Problematic Partnerships**: Joint venture with UAE's EDGE Group, which has been accused of arming Sudan's civil war\n- **Regulatory Compliance**: Standard defense contractor oversight requirements with no significant violations identified\n\n**Reputational Risk Factors:**\n- **Controversial Technology Portfolio**: Border surveillance, autonomous weapons, and AI-powered military systems generate significant media criticism as \"controversial surveillance startup\"\n- **Political Entanglements**: Founder's pro-Trump donations and claims of political firing from Facebook; deep ties to Trump administration officials; Trump family investments in drone sector\n- **Stakeholder Opposition**: Strong presumption of DCCC/DNC objections over border wall technology and autonomous weapons; TMG staff concerns in tech hubs\n- **TMG Client Conflicts**: Direct competitive and reputational conflicts with multiple HIGH-sensitivity clients including Google LLC, Coinbase, TikTok Inc., creating severe relationship damage potential\n- **Narrative Vulnerability**: Multiple attack vectors focusing on surveillance, border enforcement, and autonomous weapons already generating negative coverage\n\n## Risk Assessment\n\n**Factual Risk Score**: 3.7/10 MODERATE \u2014 Standard defense contractor compliance profile with limited legal/regulatory exposure\n\n**Reputational Contagion Score**: 7.35/10 HIGH \u2014 Severe brand risk driven by political connections, controversial technology focus, and extensive client conflicts\n\n**Combined Decision**: HIGH \u2014 Recommend Reject\n\n**Divergence Alert**: Significant divergence between factual and reputational risk. Subject passes traditional due diligence screening but poses severe reputational risk to TMG's brand and stakeholder relationships, particularly with Democratic constituencies and tech sector clients.\n\n**Most Damaging Headline**: \"Obama's 2012 campaign manager's firm now advising Trump-linked border wall surveillance contractor\"\n\n## Recommendation\n\n**RECOMMEND REJECT** \u2014 While Anduril presents only moderate factual risks, the reputational contagion risks are severe and drive the final recommendation. The company's association with border surveillance technology, autonomous weapons, and Trump-aligned political networks creates unacceptable brand exposure for TMG. Direct conflicts with multiple HIGH-sensitivity clients (Google, Coinbase, TikTok) would damage critical business relationships. The progressive media narrative around Anduril as a \"controversial surveillance startup\" combined with founder Palmer Luckey's political history creates multiple attack vectors that could severely compromise TMG's reputation with Democratic stakeholders and tech sector clients.",
+  "executive_summary": "## Summary\n\nAnduril Industries is a defense technology company founded in 2017 by Palmer Luckey, the creator of Oculus VR. The company specializes in autonomous systems, AI-powered defense solutions, and surveillance technology, with a current valuation of $30.5 billion. Anduril has secured $2.32 billion in US government contracts and has become a significant player in the defense technology sector.\n\n## Professional Background\n\nFounded by Palmer Luckey after his controversial departure from Facebook, Anduril focuses on developing cutting-edge defense technologies including autonomous drones, counter-drone systems, and border surveillance towers. The company has established strategic partnerships with major defense contractors like Rheinmetall and EDGE Group, and maintains significant contracts with the Department of Defense and Department of Homeland Security.\n\n## Key Findings\n\n**Factual Risk Findings:**\n- No criminal cases, fraud allegations, or SEC enforcement actions\n- China sanctions imposed on Anduril and Palmer Luckey over Taiwan arms sales\n- Strong business fundamentals with $2.32B in government contracts\n- Significant conflicts identified with multiple TMG clients including Google LLC (direct competition in AI/autonomy)\n\n**Reputational Risk Findings:**\n- Palmer Luckey donated $127,522 primarily to Republican candidates, including $50,000 to ONE TEAM SENATE MAJORITY; reportedly fired from Facebook for pro-Trump donation\n- Trump family reportedly has investment connections to drone companies and Anduril\n- Company operates in high-toxicity sectors for a Democratic firm: border surveillance, AI weapons, autonomous military systems\n- Progressive stakeholders would likely view engagement as betrayal of civil liberties values\n- Multiple HIGH sensitivity client conflicts: Google LLC, AB Foundation, Democracy Defenders Action, Mayday Health\n- Company already described as \"controversial\" by mainstream media with demonstrated community opposition\n\n## Risk Assessment\n\n**Factual Risk Score:** 2.93/10 MODERATE \u2014 Conditional Approve\n**Reputational Contagion Score:** 7.53/10 HIGH \u2014 Strong presumption against engagement\n**Combined Decision:** HIGH \u2014 Recommend Reject\n\n**DIVERGENCE ALERT:** Significant divergence between factual risk (MODERATE) and reputational contagion risk (HIGH). While Anduril passes traditional due diligence screening with strong business fundamentals and no legal issues, the company poses severe reputational risk to TMG's brand and progressive stakeholder relationships.\n\nThe reputational risk is driven by Palmer Luckey's Republican political alignment, the company's core business in surveillance and AI weapons technology, and the high likelihood of progressive client and media backlash. Potential headline exposure includes: \"Obama's Campaign Manager's Firm Now Advising Trump-Linked AI Weapons Manufacturer Behind Border Surveillance.\"\n\n## Recommendation\n\n**REJECT** \u2014 While Anduril presents no legal or compliance red flags and demonstrates strong business fundamentals, the HIGH reputational contagion risk makes engagement inadvisable. The company's focus on border surveillance technology and AI weapons systems, combined with Palmer Luckey's Republican political profile and reported Trump family connections, creates unacceptable risk of stakeholder backlash and narrative vulnerability. Engagement would likely trigger severe criticism from progressive TMG clients and undermine the firm's credibility within its core constituency. The reputational downside significantly outweighs any potential business benefits.",
   "reputational_contagion": {
     "q1_partisan_alignment": {
       "score": 7.5,
       "weight": 0.25,
-      "evidence": "Founder Palmer Luckey donated to pro-Trump groups and claims political firing from Facebook. Company has deep ties to Trump administration officials and Trump sons are investing in drone sector. Anduril's hawkish defense posture aligns with Republican foreign policy."
+      "evidence": "Palmer Luckey donated $127,522 primarily to Republican candidates including $50,000 to ONE TEAM SENATE MAJORITY. He was reportedly fired from Facebook for pro-Trump donation. Trump sons are investing in drone companies and have connections to Anduril per news reports [17][28]. Company actively supports military/defense establishment priorities that may conflict with progressive policy positions."
     },
     "q2_stakeholder_backlash": {
       "score": 8.0,
       "weight": 0.2,
-      "evidence": "Progressive media already covers Anduril critically as 'controversial surveillance startup.' DCCC/DNC would likely object strongly given border wall technology and autonomous weapons. TMG staff in tech hubs like SF/NYC would have significant concerns about surveillance tech."
+      "evidence": "Engagement would likely trigger severe backlash from progressive TMG clients and stakeholders. AB Foundation, Democracy Defenders Action, and AB (Democracy Matters) would view association with surveillance/AI weapons company as betrayal of civil liberties values. Progressive media outlets would likely cover this negatively given Anduril's border wall technology and Luckey's Trump ties. DCCC/DNC would question TMG's commitment given Luckey's GOP donations."
     },
     "q3_narrative_vulnerability": {
-      "score": 7.5,
+      "score": 8.5,
       "weight": 0.15,
-      "evidence": "Multiple damaging headlines possible focusing on surveillance, border walls, and autonomous weapons. Company already generates negative coverage.",
-      "damaging_headline": "Obama's 2012 campaign manager's firm now advising Trump-linked border wall surveillance contractor"
+      "evidence": "Multiple devastating headlines possible given TMG's Democratic brand and Anduril's profile. The company is already described as 'controversial' by mainstream media. Community opposition in Boston shows reputational toxicity.",
+      "damaging_headline": "Obama's Campaign Manager's Firm Now Advising Trump-Linked AI Weapons Manufacturer Behind Border Surveillance"
     },
     "q4_client_conflicts": {
-      "score": 8.0,
-      "weight": 0.15,
-      "evidence": "Direct conflicts with Google (competitor in AI/defense), Coinbase (privacy values clash), TikTok (China sanctions), and multiple other HIGH-sensitivity clients. Association would damage TMG's relationships with tech sector clients."
-    },
-    "q5_industry_toxicity": {
       "score": 7.0,
       "weight": 0.15,
-      "evidence": "Border surveillance technology and autonomous weapons systems are highly toxic for Democratic firm. While defense contractors can be acceptable, Anduril's specific focus on immigration enforcement and AI weapons is particularly problematic."
+      "evidence": "Direct reputational conflicts with multiple HIGH sensitivity clients: Google LLC (competitor in AI/defense), AB Foundation (civil liberties), Democracy Defenders Action (democracy protection), Mayday Health (progressive healthcare). Association with Anduril would undermine TMG's credibility with progressive advocacy clients."
+    },
+    "q5_industry_toxicity": {
+      "score": 7.5,
+      "weight": 0.15,
+      "evidence": "Anduril operates in multiple HIGH-TOXICITY sectors for a Democratic firm: surveillance technology used for border enforcement, AI-powered weapons systems, and autonomous military systems. The company's core business of 'building virtual border walls' and developing lethal autonomous systems directly conflicts with progressive policy priorities on immigration and military restraint."
     },
     "q6_temporal_context": {
-      "score": 5.0,
+      "score": 6.0,
       "weight": 0.1,
-      "evidence": "Current scrutiny on AI weapons and border technology makes timing sensitive. However, not at peak news cycle currently. Trump family connections add complications in current political environment."
+      "evidence": "Current political climate makes this particularly sensitive with ongoing debates about AI regulation, border policy, and military spending. Trump family's investment in drone sector and potential return to power increases scrutiny. However, Ukraine support provides some bipartisan cover."
     },
-    "composite_rcs": 7.35,
+    "composite_rcs": 7.53,
     "rcs_risk_tier": "HIGH",
     "rcs_recommendation": "Strong presumption against engagement",
-    "divergence_alert": "DIVERGENCE: Factual risk is MODERATE (3.7/10) but reputational contagion risk is HIGH (7.35/10). Subject passes traditional due diligence screening but poses significant reputational risk to TMG's brand and stakeholder relationships.",
-    "most_damaging_headline": "Obama's 2012 campaign manager's firm now advising Trump-linked border wall surveillance contractor"
+    "divergence_alert": "DIVERGENCE: Factual risk is MODERATE (2.93/10) but reputational contagion risk is HIGH (7.53/10). Subject passes traditional due diligence screening but poses significant reputational risk to TMG's brand and stakeholder relationships.",
+    "most_damaging_headline": "Obama's Campaign Manager's Firm Now Advising Trump-Linked AI Weapons Manufacturer Behind Border Surveillance"
   },
   "metadata": {
     "pipeline_version": "v1.1",
@@ -571,17 +512,17 @@
       "contracts",
       "network"
     ],
-    "started_at": "2026-03-10T16:24:23.080650+00:00",
-    "completed_at": "2026-03-10T16:35:25.814041+00:00",
+    "started_at": "2026-03-11T03:20:39.996313+00:00",
+    "completed_at": "2026-03-11T03:27:55.798019+00:00",
     "total_duration_seconds": 0,
     "model": "claude-opus-4-0",
-    "input_tokens": 22289,
-    "output_tokens": 5546,
+    "input_tokens": 21199,
+    "output_tokens": 5531,
     "tavily_sources": 40,
     "citation_enrichment": {
-      "total_evidence_items": 26,
-      "items_with_source_urls": 18,
-      "total_source_urls_added": 19
+      "total_evidence_items": 22,
+      "items_with_source_urls": 14,
+      "total_source_urls_added": 17
     }
   },
   "sources": [
@@ -600,8 +541,8 @@
     {
       "id": 3,
       "url": "https://www.thebureauinvestigates.com/stories/2025-07-23/selling-weapons-to-westminster-how-defence-giant-anduril-trained-its-sights-on-the-uk",
-      "title": "Anduril AI weapons company lobbies UK government",
-      "score": 0.64773196
+      "title": "Anduril AI weapons company lobbies UK government | TBIJ",
+      "score": 0.63179934
     },
     {
       "id": 4,
@@ -611,198 +552,216 @@
     },
     {
       "id": 5,
-      "url": "https://news.microsoft.com/source/2025/02/11/anduril-and-microsoft-partner-to-advance-integrated-visual-augmentation-system-ivas-program-for-the-u-s-army/",
-      "title": "Anduril and Microsoft partner to advance Integrated Visual ...",
-      "score": 0.6139086
-    },
-    {
-      "id": 6,
       "url": "https://wordpress-1555235-6025816.cloudwaysapps.com/content/anduril-strengthens-ties-with-indo-pacific-with-latest-uas-agreements/",
       "title": "Anduril strengthens ties with Indo-Pacific with latest UAS agreements",
       "score": 0.5818027
     },
     {
+      "id": 6,
+      "url": "https://www.opensecrets.org/orgs/anduril-industries/summary?id=D000073362",
+      "title": "Anduril Industries Profile: Summary - OpenSecrets",
+      "score": 0.57666177
+    },
+    {
       "id": 7,
-      "url": "https://investors.archer.com/news/news-details/2024/Archer-Announces-Strategic-Partnership-With-Anduril-to-Develop-Hybrid-VTOL-Military-Aircraft-Raises-An-Additional-430M/default.aspx",
-      "title": "Archer Announces Strategic Partnership With Anduril to Develop ...",
-      "score": 0.5444871
+      "url": "https://www.fec.gov/data/committee/C00763623/",
+      "title": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE ...",
+      "score": 0.568057
     },
     {
       "id": 8,
+      "url": "https://breakingdefense.com/2025/06/at-first-paris-air-show-visit-anduril-inks-new-partnership-with-rheinmetall-on-drones-weapons/",
+      "title": "At first Paris Air Show visit, Anduril inks new partnership with ...",
+      "score": 0.55478466
+    },
+    {
+      "id": 9,
+      "url": "https://investors.archer.com/news/news-details/2024/Archer-Announces-Strategic-Partnership-With-Anduril-to-Develop-Hybrid-VTOL-Military-Aircraft-Raises-An-Additional-430M/default.aspx",
+      "title": "Archer Announces Strategic Partnership With Anduril to Develop ...",
+      "score": 0.54477775
+    },
+    {
+      "id": 10,
       "url": "https://www.smgconferences.com/editors-corner/6096-news--anduril-industries-expands-presence-in-taiwan-with-accelerated-delivery-of-altius-loitering-munitions",
       "title": "Anduril Industries expands presence in Taiwan with ... - SAE Media",
       "score": 0.53196377
     },
     {
-      "id": 9,
-      "url": "https://business.ca.gov/governor-newsom-highlights-anduril-industries-1-billion-expansion-in-southern-california/",
-      "title": "Governor Newsom highlights Anduril Industries' $1 billion expansion ...",
-      "score": 0.52612424
-    },
-    {
-      "id": 10,
+      "id": 11,
       "url": "https://fortune.com/2025/12/26/anduril-founder-palmer-luckey-us-defense-companies-china-sanctions-taiwan-arms-sales/?ref=upmarket.co",
       "title": "Anduril's Palmer Luckey is among US defense execs, firms ... - Fortune",
       "score": 0.522617
     },
     {
-      "id": 11,
-      "url": "https://www.theguardian.com/us-news/article/2024/aug/08/jd-vance-financial-investments",
-      "title": "JD Vance's investments reveal potential contradictions with his ...",
-      "score": 0.5215936
-    },
-    {
       "id": 12,
-      "url": "https://theintercept.com/2025/12/11/anduril-uae-weapons-edge-sudan/",
-      "title": "Anduril Partners With UAE Bomb Maker Accused of Arming Sudan's ...",
-      "score": 0.5201313
-    },
-    {
-      "id": 13,
       "url": "https://www.bostonglobe.com/2025/03/04/business/anduril-recruiting-ads-dont-work-here/",
       "title": "Anduril recruiting ads in Boston: Don't work here",
       "score": 0.5172057
     },
     {
-      "id": 14,
+      "id": 13,
       "url": "https://www.forbes.com/sites/jeremybogaisky/2020/07/01/anduril-raises-200-million-to-fund-ambitious-plans-to-build-a-defense-tech-giant/",
-      "title": "Anduril Raises $200 Million To Fund Ambitious Plans ...",
-      "score": 0.51193684
+      "title": "Anduril Raises $200 Million To Fund Ambitious Plans To Build A ...",
+      "score": 0.507251
     },
     {
-      "id": 15,
+      "id": 14,
       "url": "https://www.japantimes.co.jp/business/2026/03/06/companies/anduril-defense-president-brose/",
       "title": "Anduril looking to boost defense manufacturing capacity in Japan",
       "score": 0.49099278
     },
     {
-      "id": 16,
-      "url": "https://www.theglobeandmail.com/investing/markets/stocks/ATON/pressreleases/36646552/alphaton-capital-corp-announces-historic-strategic-30-million-investment-in-anduril-industries/",
-      "title": "AlphaTON Capital Corp Announces Historic Strategic $30 Million ...",
-      "score": 0.4896749
-    },
-    {
-      "id": 17,
-      "url": "https://www.wsj.com/business/anduril-industries-defense-tech-problems-52b90cae",
-      "title": "'We Do Fail \u2026 a Lot': Defense Startup Anduril Hits ...",
-      "score": 0.47051823
-    },
-    {
-      "id": 18,
+      "id": 15,
       "url": "https://www.latimes.com/business/story/2019-07-25/anduril-profile-palmer-luckey-border-controversy",
       "title": "A 26-year-old billionaire is building virtual border walls - LATimes.com",
       "score": 0.45188335
     },
     {
-      "id": 19,
-      "url": "https://www.anduril.com/rebooting-the-arsenal",
-      "title": "Rebooting the Arsenal | Anduril",
-      "score": 0.4292146
+      "id": 16,
+      "url": "https://romulusstrategy.substack.com/p/the-corporate-breakdown-of-anduril",
+      "title": "The Corporate Breakdown of Anduril: A Look Into a Company's Soul",
+      "score": 0.45072258
     },
     {
-      "id": 20,
+      "id": 17,
       "url": "https://abcnews.com/US/trump-sons-investing-domestic-drone-production-businesses/story?id=130908416",
       "title": "Trump sons investing in domestic drone production businesses - abcnews.com",
       "score": 0.41648865
     },
     {
+      "id": 18,
+      "url": "https://www.cnbc.com/2025/11/12/govini-eric-gillespie-sex-sting-pentagon.html",
+      "title": "Defense startup Govini founder Gillespie charged in child sex sting",
+      "score": 0.39159262
+    },
+    {
+      "id": 19,
+      "url": "https://www.npr.org/2024/07/11/1198912876/this-u-s-company-is-helping-arm-ukraine-against-russia-with-ai-drones",
+      "title": "This U.S. company is helping arm Ukraine against Russia - NPR",
+      "score": 0.3597245
+    },
+    {
+      "id": 20,
+      "url": "https://www.anduril.com/rebooting-the-arsenal",
+      "title": "Rebooting the Arsenal | Anduril",
+      "score": 0.3458124
+    },
+    {
       "id": 21,
-      "url": "https://techcrunch.com/2026/03/03/anduril-aims-at-60-billion-valuation-in-new-funding-round/",
-      "title": "Anduril aims at $60 billion valuation in new funding round - TechCrunch",
-      "score": 0.34112197
+      "url": "https://www.pbs.org/newshour/world/china-sanctions-20-u-s-defense-companies-and-10-executives-over-taiwan-arms-sale",
+      "title": "China sanctions 20 U.S. defense companies and 10 executives over ...",
+      "score": 0.33692038
     },
     {
       "id": 22,
-      "url": "https://www.pbs.org/newshour/world/china-sanctions-20-u-s-defense-companies-and-10-executives-over-taiwan-arms-sale",
-      "title": "China sanctions 20 U.S. defense companies and 10 executives over ...",
-      "score": 0.33665863
+      "url": "https://www.anduril.com/",
+      "title": "Anduril: Transforming U.S. Defense Capabilities with Advanced ...",
+      "score": 0.33600467
     },
     {
       "id": 23,
       "url": "https://www.npr.org/2024/07/09/nx-s1-4985981/oculus-ai-weapons-ukraine-palmer-luckey",
       "title": "He created Oculus headsets as a teenager. Now he makes AI ... - NPR",
-      "score": 0.32553178
+      "score": 0.32549962
     },
     {
       "id": 24,
-      "url": "https://www.bnnbloomberg.ca/ticker-take/2026/02/27/inside-the-60-billion-defense-startup-challenging-lockheed-martin/",
-      "title": "Jon Erlichman: Inside the $60-billion defense startup challenging ...",
-      "score": 0.3018871
+      "url": "https://www.latimes.com/entertainment-arts/business/story/2025-07-29/anduril-defense-tech-aerospace-venture-capital-los-angeles",
+      "title": "Palmer Luckey's Anduril leads second-quarter venture ...",
+      "score": 0.32216385
     },
     {
       "id": 25,
+      "url": "https://aeromorning.com/en/rheinmetall-and-anduril-industries/",
+      "title": "Rheinmetall and Anduril Industries - AeroMorning",
+      "score": 0.29960752
+    },
+    {
+      "id": 26,
+      "url": "https://acquinox.capital/insights/gen-ai-and-ai-agents/how-open-ai-anthropic-and-anduril-are-rewriting-global-power",
+      "title": "How OpenAI, Anthropic, and Anduril are rewriting global power",
+      "score": 0.29706243
+    },
+    {
+      "id": 27,
+      "url": "https://breakingdefense.com/2025/11/anduril-edge-ink-joint-venture-for-drone-sales/",
+      "title": "Anduril, EDGE ink joint venture for drone sales",
+      "score": 0.2700317
+    },
+    {
+      "id": 28,
       "url": "https://finance.yahoo.com/news/trump-brothers-backed-aureus-merge-123728284.html",
       "title": "Trump brothers-backed Aureus to merge with drone maker Powerus - Yahoo Finance",
       "score": 0.26516554
     },
     {
-      "id": 26,
+      "id": 29,
       "url": "https://www.propublica.org/article/trump-administration-financial-disclosures-steve-feinberg",
       "title": "Documents Reveal a Web of Financial Ties Between Trump Officials and the Industries They Help Regulate - ProPublica",
       "score": 0.21084791
     },
     {
-      "id": 27,
+      "id": 30,
       "url": "https://www.marketscreener.com/news/from-the-tarmac-to-the-stars-defense-budgets-fueling-the-next-aerospace-boom-ce7e5fd8dd8afe27",
       "title": "From the Tarmac to the Stars: Defense Budgets Fueling the Next Aerospace Boom - marketscreener.com",
       "score": 0.18484141
     },
     {
-      "id": 28,
+      "id": 31,
+      "url": "https://techcrunch.com/2026/03/05/hardware-testing-startup-nominal-hits-1b-valuation-raises-155m-in-10-months/",
+      "title": "Hardware testing startup Nominal hits $1B valuation, raises $155M in 10 months - TechCrunch",
+      "score": 0.17267382
+    },
+    {
+      "id": 32,
       "url": "https://www.chronicle.com/article/the-lobbying-arms-race",
       "title": "The Lobbying Arms Race - The Chronicle of Higher Education",
       "score": 0.07209274
     },
     {
-      "id": 29,
-      "url": "https://www.latimes.com/business/story/2026-03-04/sam-altman-admits-openais-pentagon-deal-was-rushed-sloppy",
-      "title": "Sam Altman admits OpenAI\u2019s Pentagon deal was rushed and \u2018sloppy\u2019 - Los Angeles Times",
-      "score": 0.037924558
+      "id": 33,
+      "url": "https://www.unmannedsystemstechnology.com/2026/03/most-read-articles-on-ust-this-week-134/",
+      "title": "Most Read Articles on UST This Week - Unmanned Systems Technology",
+      "score": 0.045692034
     },
     {
-      "id": 30,
+      "id": 34,
       "url": "https://www.brookings.edu/articles/leveraging-the-usmca-to-strengthen-pharmaceutical-manufacturing-and-supply-chains-in-north-america/",
       "title": "Leveraging the USMCA to strengthen pharmaceutical manufacturing and supply chains in North America - Brookings",
       "score": 0.026802607
     },
     {
-      "id": 31,
+      "id": 35,
       "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/a-statement-on-u-s-venezuela-relations",
       "title": "A Statement on U.S.-Venezuela Relations - U.S. Department of State (.gov)",
       "score": 0.024074242
     },
     {
-      "id": 32,
+      "id": 36,
       "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/joint-statement-from-the-international-contact-group-for-the-great-lakes-icg-on-the-situation-in-the-eastern-democratic-republic-of-the-congo-drc",
       "title": "Joint Statement from the International Contact Group for the Great Lakes (ICG) on the Situation in the Eastern Democratic Republic of the Congo (DRC) - U.S. Department of State (.gov)",
       "score": 0.020695398
     },
     {
-      "id": 33,
+      "id": 37,
       "url": "https://www.premiumtimesng.com/business/business-news/862092-strait-of-hormuz-closed-3000-vessels-20000-seafarers-stranded-in-middle-east-imo.html",
       "title": "Strait of Hormuz closed, 3000 vessels, 20,000 seafarers stranded in Middle East \u2013 IMO - Premium Times Nigeria",
       "score": 0.020600608
     },
     {
-      "id": 34,
+      "id": 38,
       "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/statement-from-assistant-secretary-dylan-johnson-on-ensuring-the-safety-of-american-citizens-in-the-middle-east-2",
       "title": "Statement from Assistant Secretary Dylan Johnson on Ensuring the Safety of American Citizens in the Middle East - U.S. Department of State (.gov)",
       "score": 0.02036549
     },
     {
-      "id": 35,
+      "id": 39,
       "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/03/status-of-u-s-embassy-kuwait-city",
       "title": "Status of U.S. Embassy Kuwait City - U.S. Department of State (.gov)",
       "score": 0.019495782
     },
     {
-      "id": 36,
-      "url": "https://www.nytimes.com/2026/03/02/technology/pentagon-anduril-palmer-luckey.html",
-      "title": "The Pentagon's Favorite Tech Guy Is This Hawaiian Shirt-Wearing ...",
-      "score": 0.018112598
-    },
-    {
-      "id": 37,
+      "id": 40,
       "url": "https://www.livemint.com/companies/news/lloyds-india-metals-congo-copper-mining-risk-analysis-11772951595986.html",
       "title": "Can Lloyds replicate Gadchiroli success in Congo\u2019s copper belt? - Mint",
       "score": 0.01802942
@@ -811,87 +770,87 @@
   "context_sources": [
     {
       "id": 1,
-      "url": "https://www.militarytimes.com/industry/techwatch/2026/03/04/pentagon-dispute-bolsters-anthropic-reputation-but-raises-questions-about-ai-readiness-in-military/",
-      "title": "Pentagon dispute bolsters Anthropic reputation but raises questions about AI readiness in military - Military Times",
-      "score": 0.97262347
-    },
-    {
-      "id": 2,
-      "url": "https://www.theguardian.com/technology/2026/mar/09/anthropic-artificial-intelligence-pentagon",
-      "title": "How AI firm Anthropic wound up in the Pentagon\u2019s crosshairs - The Guardian",
-      "score": 0.9124362
-    },
-    {
-      "id": 3,
-      "url": "https://tnsr.org/roundtable/artificial-intelligence-and-the-future-of-strategic-stability/",
-      "title": "Artificial Intelligence and the Future of Strategic Stability - Texas National Security Review",
-      "score": 0.7264256
-    },
-    {
-      "id": 4,
       "url": "https://www.bloomberg.com/news/articles/2026-03-05/anthropic-s-amodei-reopens-ai-discussions-with-pentagon-ft-says",
       "title": "Anthropic Reopens Talks with Pentagon After Feud Over AI Safety - Bloomberg",
       "score": 0.7077487
     },
     {
-      "id": 5,
+      "id": 2,
       "url": "https://www.cnet.com/tech/services-and-software/pentagon-anthropic-ai-feud-wake-up-call-for-congress-analysis/",
       "title": "The Pentagon's Anthropic Feud 'Should Be a Wake-Up Call for Congress' - CNET",
-      "score": 0.6959583
+      "score": 0.70067
     },
     {
-      "id": 6,
-      "url": "https://www.jpost.com/american-politics/article-889046",
-      "title": "Pentagon informed Anthropic it is a supply chain risk - The Jerusalem Post",
-      "score": 0.64182705
+      "id": 3,
+      "url": "https://techcrunch.com/video/anthropics-pentagon-deal-is-a-cautionary-tale-for-startups-chasing-federal-contracts/",
+      "title": "Anthropic\u2019s Pentagon deal is a cautionary tale for startups chasing federal contracts - TechCrunch",
+      "score": 0.6615081
     },
     {
-      "id": 7,
+      "id": 4,
       "url": "https://www.politico.com/news/2026/03/05/bitterly-ironic-trump-is-wrecking-his-ai-agenda-with-anthropic-spat-lobbyists-and-ex-officials-say-00814448",
       "title": "'Bitterly ironic\u2019: Trump is wrecking his AI agenda with Anthropic spat, lobbyists and ex-officials say - Politico",
       "score": 0.6407488
     },
     {
-      "id": 8,
+      "id": 5,
       "url": "https://www.cnbc.com/2026/03/04/anthropic-ai-pentagon-defense-business-risk.html",
       "title": "How Anthropic's AI business risk could become existential in battle with Trump administration - CNBC",
       "score": 0.6396691
     },
     {
-      "id": 9,
-      "url": "https://mlq.ai/news/anthropic-ceo-issues-apology-for-leaked-memo-amid-pentagon-supply-chain-risk-label/",
-      "title": "Anthropic CEO Issues Apology for Leaked Memo Amid Pentagon Supply Chain Risk Label - MLQ.ai",
-      "score": 0.5993685
+      "id": 6,
+      "url": "https://www.theguardian.com/technology/2026/mar/09/anthropic-artificial-intelligence-pentagon",
+      "title": "How AI firm Anthropic wound up in the Pentagon\u2019s crosshairs - The Guardian",
+      "score": 0.6188962
     },
     {
-      "id": 10,
-      "url": "https://www.nytimes.com/2026/03/05/business/dealbook/anthropic-pentagon-ai.html",
-      "title": "Can Anthropic Make Peace With the Pentagon? - The New York Times",
-      "score": 0.5829428
-    },
-    {
-      "id": 11,
+      "id": 7,
       "url": "https://techcrunch.com/2026/03/09/anthropic-sues-defense-department-over-supply-chain-risk-designation/",
       "title": "Anthropic sues Defense Department over supply chain risk designation - TechCrunch",
       "score": 0.57952
     },
     {
-      "id": 12,
+      "id": 8,
+      "url": "https://www.itnews.com.au/news/anthropic-sues-to-block-pentagon-natsec-blacklisting-624152",
+      "title": "Anthropic sues to block Pentagon natsec blacklisting - iTnews",
+      "score": 0.55998856
+    },
+    {
+      "id": 9,
       "url": "https://techcrunch.com/podcast/anthropic-vs-the-pentagon-the-saaspocalypse-and-why-competitions-is-good-actually/",
       "title": "Anthropic vs. the Pentagon, the SaaSpocalypse, and why competitions is good, actually - TechCrunch",
       "score": 0.53692055
     },
     {
-      "id": 13,
+      "id": 10,
       "url": "https://www.cnbc.com/2019/05/22/oculus-co-founder-i-got-fired-from-facebook-for-no-reason-at-all.html",
       "title": "Oculus founder: 'I got fired' from Facebook for 'no reason at all' - CNBC",
-      "score": 0.518815
+      "score": 0.51969254
     },
     {
-      "id": 14,
+      "id": 11,
+      "url": "https://tnsr.org/roundtable/artificial-intelligence-and-the-future-of-strategic-stability/",
+      "title": "Artificial Intelligence and the Future of Strategic Stability - Texas National Security Review",
+      "score": 0.50476116
+    },
+    {
+      "id": 12,
+      "url": "https://www.theglobeandmail.com/investing/markets/markets-news/GlobeNewswire/36530210/from-the-tarmac-to-the-stars-defense-budgets-fueling-the-next-aerospace-boom/",
+      "title": "From the Tarmac to the Stars: Defense Budgets Fueling the Next Aerospace Boom - The Globe and Mail",
+      "score": 0.49218813
+    },
+    {
+      "id": 13,
       "url": "https://finance.yahoo.com/news/military-drone-company-tied-trump-195629023.html",
       "title": "Military Drone Company Tied To Trump\u2019s Sons Announces Bizarre Merger With a \u2018Golf Course Operator\u2019 - Yahoo Finance",
       "score": 0.40260404
+    },
+    {
+      "id": 14,
+      "url": "https://www.bloomberg.com/news/articles/2026-03-10/pentagon-official-sees-little-chance-to-revive-anthropic-ai-deal",
+      "title": "Pentagon Official Sees Little Chance to Revive Anthropic AI Deal - Bloomberg.com",
+      "score": 0.38096678
     },
     {
       "id": 15,
@@ -913,135 +872,135 @@
     },
     {
       "id": 18,
-      "url": "https://fortune.com/2026/03/03/iran-war-trump-strikes-anthropic-ai-used-in-pentagon-speed-of-thought/",
-      "title": "Trump\u2019s strike on Iran and the new breed of AI wars mean bombs can drop faster than the speed of thought - Fortune",
-      "score": 0.33633104
+      "url": "https://www.axios.com/2026/03/04/anthropic-ai-iran-maduro-pentagon",
+      "title": "Anthropic ban may threaten the military's AI advantage over China - Axios",
+      "score": 0.29009062
     },
     {
       "id": 19,
-      "url": "https://www.csoonline.com/article/4140267/anthropic-ai-ultimatums-and-ip-theft-the-unspoken-risk.html",
-      "title": "Anthropic AI ultimatums and IP theft: The unspoken risk - csoonline.com",
-      "score": 0.3120769
-    },
-    {
-      "id": 20,
-      "url": "https://www.cnbc.com/2023/10/02/the-inside-story-of-dave-clarks-tumultuous-last-days-at-flexport.html",
-      "title": "The inside story of Dave Clark's tumultuous last days at Flexport",
-      "score": 0.3098798
-    },
-    {
-      "id": 21,
       "url": "https://www.chicagotribune.com/2026/03/06/column-pentagon-ai-anthropic-shackelford/",
       "title": "Elizabeth Shackelford: The Pentagon\u2019s fight with Anthropic is about unchecked power - Chicago Tribune",
       "score": 0.2830084
     },
     {
-      "id": 22,
-      "url": "https://www.cnet.com/tech/services-and-software/will-we-govern-ai-or-will-ai-govern-us-commentary/",
-      "title": "Will We Govern AI, or Will AI Govern Us? - CNET",
-      "score": 0.27669054
-    },
-    {
-      "id": 23,
-      "url": "https://www.theglobeandmail.com/investing/markets/markets-news/GlobeNewswire/36530210/from-the-tarmac-to-the-stars-defense-budgets-fueling-the-next-aerospace-boom/",
-      "title": "From the Tarmac to the Stars: Defense Budgets Fueling the Next Aerospace Boom - The Globe and Mail",
-      "score": 0.2725166
-    },
-    {
-      "id": 24,
+      "id": 20,
       "url": "https://www.govexec.com/oversight/2026/03/many-federal-programs-are-missing-omb-inventory-watchdog-reports/411993/?oref=ge-featured-river-top",
       "title": "Many federal programs are missing from an OMB inventory, watchdog reports - Government Executive",
       "score": 0.26823986
     },
     {
-      "id": 25,
+      "id": 21,
+      "url": "https://www.cnet.com/tech/services-and-software/will-we-govern-ai-or-will-ai-govern-us-commentary/",
+      "title": "Will We Govern AI, or Will AI Govern Us? - CNET",
+      "score": 0.26346716
+    },
+    {
+      "id": 22,
+      "url": "https://apnews.com/article/ai-anthropic-pentagon-golden-dome-autonomous-weapons-6f3c45ff46172c1bf8658dea0098f3fe",
+      "title": "Pentagon's chief tech officer says he clashed with AI company Anthropic over autonomous warfare - AP News",
+      "score": 0.23707257
+    },
+    {
+      "id": 23,
       "url": "https://www.jpost.com/defense-and-tech/article-889256",
       "title": "The invisible high ground: How a new era of intelligence is redefining global security - opinion - The Jerusalem Post",
       "score": 0.19493458
     },
     {
-      "id": 26,
+      "id": 24,
+      "url": "https://www.securityweek.com/pentagons-chief-tech-officer-says-he-clashed-with-ai-company-anthropic-over-autonomous-warfare/",
+      "title": "Pentagon\u2019s Chief Tech Officer Says He Clashed With AI Company Anthropic Over Autonomous Warfare - SecurityWeek",
+      "score": 0.17638801
+    },
+    {
+      "id": 25,
       "url": "https://www.businessinsider.com/sam-altman-openai-pentagon-government-deal-controversy-explained-2026-3",
       "title": "Sam Altman is stuck playing defense. It all started a week ago. - Business Insider",
       "score": 0.1710892
     },
     {
-      "id": 27,
-      "url": "https://www.unmannedsystemstechnology.com/2026/03/most-read-articles-on-ust-this-week-134/",
-      "title": "Most Read Articles on UST This Week - Unmanned Systems Technology",
-      "score": 0.16410108
-    },
-    {
-      "id": 28,
-      "url": "https://spacenews.com/space-force-modernization-push-runs-into-acquisition-workforce-shortfall/",
-      "title": "Space Force modernization push runs into acquisition workforce shortfall - SpaceNews",
-      "score": 0.15800568
-    },
-    {
-      "id": 29,
+      "id": 26,
       "url": "https://spacenews.com/starliner-and-artemis-commercial-label-vs-commercial-discipline/",
       "title": "Starliner and Artemis: commercial label vs. commercial discipline - SpaceNews",
       "score": 0.15591232
     },
     {
-      "id": 30,
-      "url": "https://www.latimes.com/california/story/2026-03-03/lapd-flock-safety-police-commission",
-      "title": "LAPD\u2019s relationship with Flock Safety under scrutiny from oversight body - Los Angeles Times",
-      "score": 0.1438963
+      "id": 27,
+      "url": "https://www.businessinsider.com/microsoft-backs-anthropic-pentagon-legal-fight-2026-3",
+      "title": "Microsoft backs Anthropic in its legal fight against the Pentagon - Business Insider",
+      "score": 0.14520046
     },
     {
-      "id": 31,
+      "id": 28,
+      "url": "https://news.ycombinator.com/item?id=47299009",
+      "title": "The changing goalposts of AGI and timelines - Hacker News",
+      "score": 0.14310412
+    },
+    {
+      "id": 29,
       "url": "https://www.marinelink.com/news/cleanup-louisiana-oil-spill-underway-536668",
       "title": "Clean-Up Of Louisiana Oil Spill Underway - Marine News Magazine",
       "score": 0.14288872
     },
     {
-      "id": 32,
+      "id": 30,
+      "url": "https://mlq.ai/news/anthropic-ceo-issues-apology-for-leaked-memo-amid-pentagon-supply-chain-risk-label/",
+      "title": "Anthropic CEO Issues Apology for Leaked Memo Amid Pentagon Supply Chain Risk Label - MLQ.ai",
+      "score": 0.13856693
+    },
+    {
+      "id": 31,
       "url": "https://zamin.uz/en/technology/193867-anthropic-sues-the-us-department-of-defense.html",
       "title": "Anthropic sues the US Department of Defense - Zamin.uz",
       "score": 0.13738221
     },
     {
+      "id": 32,
+      "url": "https://www.axios.com/2026/03/07/ai-danger-risks-study-research-backlash",
+      "title": "7 danger moments that show AI's darker side - Axios",
+      "score": 0.12192625
+    },
+    {
       "id": 33,
-      "url": "https://gizmodo.com/tag/u-s-customs-and-border-protection",
-      "title": "U.S. Customs and Border Protection - Gizmodo",
-      "score": 0.13648199
+      "url": "https://www.publictechnology.net/2026/03/06/international-relations/government-acknowledges-a-small-number-of-evisa-users-have-experienced-data-accuracy-issues/",
+      "title": "Government acknowledges \u2018a small number of eVisa users have experienced data accuracy issues\u2019 - PublicTechnology",
+      "score": 0.113236144
     },
     {
       "id": 34,
-      "url": "https://pitchbook.com/news/reports/q4-2025-logistics-report",
-      "title": "Q4 2025 Logistics Report - PitchBook",
-      "score": 0.12939197
+      "url": "https://maritime-executive.com/editorials/the-united-states-can-t-deter-china-without-allied-shipyards",
+      "title": "The United States Can\u2019t Deter China Without Allied Shipyards - The Maritime Executive",
+      "score": 0.11201596
     },
     {
       "id": 35,
-      "url": "https://www.vitallaw.com/news/fraud-and-manipulation-s-d-n-y-investors-again-fail-to-nail-token-developers-but-on-state-law-claims-this-time/sld01fa709daa2ee449b994dfe9e838e9ad00",
-      "title": "FRAUD AND MANIPULATION\u2014S.D.N.Y.: Investors again fail to nail token developers, but on state law claims this time - VitalLaw.com",
-      "score": 0.10793502
+      "url": "https://www.military.com/daily-news/2026/03/10/what-flytrap-method-and-how-can-it-disable-autonomous-ai-drones.html",
+      "title": "What is the 'FlyTrap' Method, and How Can It Disable Autonomous AI Drones? - Military.com",
+      "score": 0.09912977
     },
     {
       "id": 36,
-      "url": "https://abovethelaw.com/2026/03/autonomous-ai-in-law-firms-what-could-possibly-go-wrong/",
-      "title": "Autonomous AI In Law Firms: What Could Possibly Go Wrong? - Above the Law",
-      "score": 0.10302443
-    },
-    {
-      "id": 37,
       "url": "https://www.wsj.com/articles/truelink-capital-collects-2-billion-for-second-fund-68c29bfd?gaa_at=eafs&gaa_n=AWEtsqd-nC2wwe7YuJRKKrJRtbMJwoQburaRWOipY9k-QuVusW0dhXTrR15z&gaa_ts=69aeb024&gaa_sig=ZCRl8vyxklDASykwJSkE5rUfT3TRIpChCNQCWwvV-vC8MPX7QY6wvgzEV0Uo35K4Jd0hAhkMHQAt6EbpAm3JQA%3D%3D",
       "title": "Exclusive | Truelink Capital Collects $2 Billion for Second Fund - WSJ",
       "score": 0.09461931
     },
     {
-      "id": 38,
+      "id": 37,
       "url": "https://www.nortonrosefulbright.com/en/knowledge/publications/bbe0ddfc/canada-s-defence-industrial-strategy-legal-considerations-for-businesses",
       "title": "Canada\u2019s Defence Industrial Strategy: Legal Considerations for Businesses - Norton Rose Fulbright",
       "score": 0.094418734
     },
     {
+      "id": 38,
+      "url": "https://www.law360.com/articles/2450042/compression-sock-seller-hits-ch-11-with-6m-of-debt",
+      "title": "Compression Sock Seller Hits Ch. 11 With $6M Of Debt - Law360",
+      "score": 0.09332227
+    },
+    {
       "id": 39,
-      "url": "http://www.washingtontechnology.com/contracts/2026/03/one-sewp-vi-protest-down-nine-remain/411844/?oref=wt-homepage-river",
-      "title": "One SEWP VI protest down, nine remain - Washington Technology",
-      "score": 0.09312415
+      "url": "https://natlawreview.com/article/understanding-potential-anthropic-ban-key-considerations-federal-contractors",
+      "title": "Understanding the Potential Anthropic Ban: Key Considerations for Federal Contractors - The National Law Review",
+      "score": 0.09322316
     },
     {
       "id": 40,
@@ -1051,93 +1010,93 @@
     },
     {
       "id": 41,
-      "url": "https://www.independent.co.uk/news/world/americas/us-politics/greg-bovino-border-patrol-minnesota-criminal-investigation-b2931170.html",
-      "title": "Greg Bovino and federal agents are under investigation in Minnesota, DA confirms - The Independent",
-      "score": 0.08904994
-    },
-    {
-      "id": 42,
       "url": "https://www.law.com/nationallawjournal/2026/03/05/nasdaq-filing-signals-wall-street-push-into-prediction-market-trades/",
       "title": "Nasdaq Filing Signals Wall Street Push Into Prediction Market Trades - Law.com",
       "score": 0.087540604
     },
     {
-      "id": 43,
+      "id": 42,
       "url": "https://www.vitallaw.com/news/ai-developers-questioned-by-sen-wyden-about-federal-contracts-domestic-surveillance/cspd01f89abb4d2a33413d9a7a573261f0c171",
       "title": "AI Developers Questioned by Sen. Wyden About Federal Contracts, Domestic Surveillance (Mar 5, 2026) - VitalLaw.com",
       "score": 0.086701825
     },
     {
-      "id": 44,
+      "id": 43,
       "url": "https://www.reuters.com/business/canaccord-genuity-fined-20-million-by-us-sec-2026-03-06/",
       "title": "Canaccord Genuity fined record $80 million in US over compliance lapses - Reuters",
       "score": 0.08633136
     },
     {
+      "id": 44,
+      "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_TUA63BGR3:0-gntbm-s-self-developed-anti-cancer-new-drug-gntbm-38-has-obtained-ind-approval-from-the-u-s-fda-for-phase-i-clinical-trials/",
+      "title": "Gntbm's Self-Developed Anti-Cancer New Drug Gntbm-38 Has Obtained Ind Approval From The U.S. FDA For Phase I Clinical Trials - TradingView",
+      "score": 0.08614665
+    },
+    {
       "id": 45,
-      "url": "https://www.prnewswire.com/news-releases/investor-alert-pomerantz-law-firm-investigates-claims-on-behalf-of-investors-of-northern-dynasty-minerals-ltd---nak-302706100.html",
-      "title": "INVESTOR ALERT: Pomerantz Law Firm Investigates Claims On Behalf of Investors of Northern Dynasty Minerals Ltd. - NAK - PR Newswire",
-      "score": 0.07990414
+      "url": "https://www.investors.com/etfs-and-funds/sectors/sp500-stocks-completely-fall-apart-as-the-500-unravels/",
+      "title": "12 Stocks Completely Fall Apart As The S&P 500 Unravels - Investor's Business Daily",
+      "score": 0.08350859
     },
     {
       "id": 46,
+      "url": "https://www.cfo.com/news/the-cash-flow-lever-that-most-cfos-are-missing-in-the-tariff-environment-IC-DISC/814210/",
+      "title": "The cash flow lever that most CFOs are missing in the tariff environment - CFO.com",
+      "score": 0.078113474
+    },
+    {
+      "id": 47,
       "url": "https://www.independent.co.uk/news/world/americas/us-politics/kristi-noem-strategy-group-safe-america-media-contracts-b2932752.html",
       "title": "\u2018We can\u2019t find it\u2019: Noem battered over $143M in no-bid contracts to operative-tied biz that doesn\u2019t have HQ or website - The Independent",
       "score": 0.0778607
     },
     {
-      "id": 47,
+      "id": 48,
       "url": "https://www.wsj.com/politics/national-security/pentagon-formally-labels-anthropic-supply-chain-risk-escalating-conflict-ebdf0523?gaa_at=eafs&gaa_n=AWEtsqcoXBNnlXYxv3kIRddMw2bvdlgMurDdMv5d_Q9gJ7xmJ1qH9buTlO2k&gaa_ts=69aa3f12&gaa_sig=qdHIO70nda6wqKbkGA38B-WHwpGVIoXT7gUruQWZlxI3Cdio29g7zWZBoseIyjqkHyGa1p3gc5RPAdkGECsXXA%3D%3D",
       "title": "Pentagon Labels Anthropic a Supply-Chain Risk, Amodei Apologizes for Memo - WSJ",
       "score": 0.07744104
     },
     {
-      "id": 48,
-      "url": "https://www.law360.com/articles/2448229/solar-plant-tonopah-names-stalking-horse-as-ch-11-buyer",
-      "title": "Solar Plant Tonopah Names Stalking Horse As Ch. 11 Buyer - Law360",
-      "score": 0.077190235
+      "id": 49,
+      "url": "https://www.law360.com/bankruptcy-authority/mid-cap/articles/2451180/judge-urges-resolution-in-ny-nursing-home-ch-11",
+      "title": "Judge Urges Resolution In NY Nursing Home Ch. 11 - Law360",
+      "score": 0.0767739
     },
     {
-      "id": 49,
+      "id": 50,
       "url": "https://www.mediaite.com/media/news/watch-house-democrat-corners-kristi-noem-on-fishy-143m-contract-she-doled-out-in-tense-hearing-confrontation/",
       "title": "House Dem Corners Kristi Noem on Fishy $143M Ad Contract - Mediaite",
       "score": 0.076690875
     },
     {
-      "id": 50,
+      "id": 51,
       "url": "https://www.huffpost.com/entry/anthropic-pentagon-lawsuit-ai_n_69aee95ae4b06c543ae3c8af",
       "title": "Anthropic Sues To Block Pentagon Blacklisting Over AI Use Restrictions - HuffPost",
-      "score": 0.075373694
+      "score": 0.0755372
     },
     {
-      "id": 51,
+      "id": 52,
       "url": "https://maritime-executive.com/article/spill-cleanup-under-way-at-louisiana-offshore-oil-port",
       "title": "Spill Cleanup Under Way at Louisiana Offshore Oil Port - The Maritime Executive",
       "score": 0.074966356
     },
     {
-      "id": 52,
-      "url": "https://www.theguardian.com/us-news/2026/mar/06/ice-arrests-journalist-nashville-noticias",
-      "title": "ICE arrests US Spanish-language news outlet reporter without warrant - The Guardian",
+      "id": 53,
+      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603051800PR_NEWS_USPRX____SF02647-1",
+      "title": "BRBR Investor Alert: BellRing Brands (BRBR) Facing Securities Class Action Over Alleged Artificial Growth and $2.9 Billion Value Wipeout - Hagens Berman \u2013 Company Announcement - FT.com - Financial Times",
       "score": 0.07480398
     },
     {
-      "id": 53,
+      "id": 54,
       "url": "https://www.law360.com/articles/2450646/rhodium-ex-directors-attys-rebuke-ch-11-sanctions-bid",
       "title": "Rhodium Ex-Directors, Attys Rebuke Ch. 11 Sanctions Bid - Law360",
       "score": 0.07391672
     },
     {
-      "id": 54,
+      "id": 55,
       "url": "https://www.thestreet.com/retail/umbrella-armory-gun-brand-files-chapter-7-bankruptcy-faces-liquidation",
       "title": "Popular gun brand files Chapter 7 bankruptcy, faces liquidation - thestreet.com",
       "score": 0.07319798
-    },
-    {
-      "id": 55,
-      "url": "https://www.law360.com/tax-authority/articles/2450431/mining-co-weighs-arbitration-with-mozambique-tax-authority",
-      "title": "Mining Co. Weighs Arbitration With Mozambique Tax Authority - Law360",
-      "score": 0.07272241
     },
     {
       "id": 56,
@@ -1147,669 +1106,669 @@
     },
     {
       "id": 57,
-      "url": "https://www.securityweek.com/fbi-investigating-suspicious-cyber-activity-on-system-holding-sensitive-surveillance-information/",
-      "title": "FBI Investigating \u2018Suspicious\u2019 Cyber Activity on System Holding Sensitive Surveillance Information - SecurityWeek",
-      "score": 0.07100293
+      "url": "https://apnews.com/article/anthropic-trump-pentagon-hegseth-ai-104c6c39306f1adeea3b637d2c1c601b",
+      "title": "Anthropic sues Trump administration seeking to undo \u201csupply chain risk\u201d designation - AP News",
+      "score": 0.07061741
     },
     {
       "id": 58,
-      "url": "https://apnews.com/article/anthropic-trump-pentagon-hegseth-ai-104c6c39306f1adeea3b637d2c1c601b",
-      "title": "Anthropic sues Trump administration seeking to undo \u201csupply chain risk\u201d designation - AP News",
-      "score": 0.070540525
+      "url": "https://www.marketbeat.com/instant-alerts/filing-rio-tinto-plc-rio-is-spx-gestao-de-recursos-ltdas-8th-largest-position-2026-03-07/",
+      "title": "Rio Tinto PLC $RIO is SPX Gestao de Recursos Ltda's 8th Largest Position - MarketBeat",
+      "score": 0.06924549
     },
     {
       "id": 59,
-      "url": "https://www.reuters.com/business/aerospace-defense/italy-defence-minister-urges-arms-industry-speed-up-production-2026-03-07/",
-      "title": "Italy defence minister urges arms industry to speed up production - Reuters",
-      "score": 0.068046756
+      "url": "https://www.vitallaw.com/news/fraud-and-manipulation-e-d-pa-class-certified-in-action-against-pharma-company-for-allegedly-misleading-investors/sld01fec365f5867a4799a045935452a8db4e",
+      "title": "FRAUD AND MANIPULATION\u2014E.D. Pa.:... - VitalLaw.com",
+      "score": 0.06775009
     },
     {
       "id": 60,
-      "url": "https://www.law360.com/bankruptcy-authority/mid-cap/articles/2448452/former-iowa-biz-president-convicted-of-bankruptcy-crimes",
-      "title": "Former Iowa Biz President Convicted Of Bankruptcy Crimes - Law360",
-      "score": 0.06767611
+      "url": "https://www.icelandreview.com/news/report-highlights-icelanders-concerns-over-artificial-intelligence/",
+      "title": "Report Highlights Icelanders\u2019 Concerns Over Artificial Intelligence - Iceland Review",
+      "score": 0.06716035
     },
     {
       "id": 61,
-      "url": "https://www.forbes.com/sites/emilsayegh/2026/03/04/anthropic-the-pentagon-and-the-new-battle-over-artificial-intelligence/",
-      "title": "Anthropic, The Pentagon And The New Battle Over Artificial Intelligence - Forbes",
-      "score": 0.067546695
+      "url": "https://www.mymalonetelegram.com/online_features/press_releases/portnoy-law-firm-announces-class-action-on-behalf-of-soleno-therapeutics-inc-investors/article_903359b9-f4bf-5bd6-8cd0-aa6a999b46b5.html",
+      "title": "Portnoy Law Firm Announces Class Action on Behalf of Soleno Therapeutics, Inc. Investors - The Malone Telegram",
+      "score": 0.06513363
     },
     {
       "id": 62,
-      "url": "https://www.tipranks.com/news/private-companies/mesh-expands-tron-self-custody-support-for-crypto-payment-flows",
-      "title": "Mesh Expands Tron Self-Custody Support for Crypto Payment Flows - TipRanks",
-      "score": 0.06635725
-    },
-    {
-      "id": 63,
-      "url": "https://finance.yahoo.com/news/rtx-ties-weapons-surge-aviation-140816826.html",
-      "title": "RTX Ties Weapons Surge And Aviation Technology To Growth Story - Yahoo Finance",
-      "score": 0.06527648
-    },
-    {
-      "id": 64,
       "url": "https://www.vitallaw.com/news/corporate-governance-del-ch-mfw-not-triggered-as-vote-wasn-t-fully-informed/sld01b25de4f3ff1d401cb624f421a36a9c5d",
       "title": "CORPORATE GOVERNANCE\u2014Del. Ch.: MFW not triggered as vote wasn't fully informed - VitalLaw.com",
       "score": 0.06435309
     },
     {
+      "id": 63,
+      "url": "https://www.jpost.com/american-politics/article-889534",
+      "title": "AIPAC targets candidates looking to condition Israel aid - The Jerusalem Post",
+      "score": 0.063302755
+    },
+    {
+      "id": 64,
+      "url": "https://www.tradingview.com/news/tradingview:18b832adf30c8:0-artiva-biotherapeutics-10-k-revenue-0-0m-net-loss-83-9-m-cash-108-0m/",
+      "title": "Artiva Biotherapeutics 10-K: Revenue $0.0M, Net Loss $(83.9)M \u2014 Cash $108.0M - TradingView",
+      "score": 0.06254268
+    },
+    {
       "id": 65,
-      "url": "https://www.businessinsider.com/palantir-former-employees-return-shire-lord-of-the-rings-2026-3",
-      "title": "Palantir wants its old employees back: 'The shire is calling' - Business Insider",
-      "score": 0.06386092
-    },
-    {
-      "id": 66,
-      "url": "https://www.law360.com/fintech/articles/2450109/sec-ordered-to-release-info-on-text-messaging-sweeps",
-      "title": "SEC Ordered To Release Info On Text Messaging Sweeps - Law360",
-      "score": 0.061995264
-    },
-    {
-      "id": 67,
       "url": "https://www.itnews.com.au/news/us-suspects-china-in-breach-of-fbi-surveillance-network-624132",
       "title": "US suspects China in breach of FBI surveillance network - iTnews",
       "score": 0.061927155
     },
     {
+      "id": 66,
+      "url": "https://www.marketscreener.com/news/housing-inventory-annual-growth-slows-for-9th-straight-month-in-february-realtor-com-says-ce7e5fdbdf89f322",
+      "title": "Housing Inventory Annual Growth Slows for 9th Straight Month in February, Realtor.com Says - marketscreener.com",
+      "score": 0.061384764
+    },
+    {
+      "id": 67,
+      "url": "https://www.cnbc.com/2026/03/08/top-analysts-are-bullish-on-these-3-stocks-despite-ongoing-volatility.html",
+      "title": "Top Wall Street analysts are bullish on these 3 stocks despite ongoing volatility - CNBC",
+      "score": 0.060846824
+    },
+    {
       "id": 68,
-      "url": "https://www.chicagotribune.com/2026/03/10/raja-krishnamoorthi-fundraising-illinois-senate/",
-      "title": "US Rep. Raja Krishnamoorthi raises millions for Illinois Senate bid as fundraising draws scrutiny - Chicago Tribune",
-      "score": 0.06151994
+      "url": "https://zamin.uz/en/technology/193736-new-rules-developed-for-ai-development.html",
+      "title": "New rules developed for AI development - Zamin.uz",
+      "score": 0.060846824
     },
     {
       "id": 69,
-      "url": "https://www.reuters.com/legal/government/noem-defends-220-million-ad-campaign-amid-lawmaker-scrutiny-2026-03-04/",
-      "title": "Noem defends $220 million ad campaign amid lawmaker scrutiny - Reuters",
-      "score": 0.061317287
+      "url": "https://www.marketsmojo.com/news/stock-recommendation/unimech-aerospace-and-manufacturing-ltd-is-rated-strong-sell-3839099",
+      "title": "Unimech Aerospace and Manufacturing Ltd is Rated Strong Sell - Markets Mojo",
+      "score": 0.060646243
     },
     {
       "id": 70,
-      "url": "https://www.politico.com/news/2026/03/05/labor-chavez-deremer-aide-administrative-leave-00813976",
-      "title": "Labor Department scandal investigation sidelines another Chavez-DeRemer aide - Politico",
-      "score": 0.060779896
-    },
-    {
-      "id": 71,
       "url": "https://www.newmediawire.com/news/nuscale-power-corporation-smr-securities-fraud-class-action-lawsuit-filed-april-20-2026-lead-plaintiff-deadline-7085744",
       "title": "NuScale Power Corporation (SMR) Securities Fraud Class Action Lawsuit Filed; April 20, 2026, Lead Plaintiff Deadline - NewMediaWire",
       "score": 0.06057952
     },
     {
-      "id": 72,
+      "id": 71,
       "url": "https://www.tipranks.com/news/private-companies/buildops-highlights-workforce-diversity-as-strategic-issue-in-skilled-trades",
       "title": "BuildOps Highlights Workforce Diversity as Strategic Issue in Skilled Trades - TipRanks",
       "score": 0.060246922
     },
     {
+      "id": 72,
+      "url": "https://www.cnbc.com/2026/03/05/anthropic-pentagon-ai-claude-iran.html",
+      "title": "Anthropic officially told by DOD that it's a supply chain risk even as Claude used in Iran - CNBC",
+      "score": 0.059916034
+    },
+    {
       "id": 73,
-      "url": "https://www.globenewswire.com/news-release/2026/03/10/3252658/0/en/SAGA-Metals-Highlights-Radar-Project-s-Strategic-Relevance-to-North-American-Titanium-and-Vanadium-Supply-Chains-Amid-Heightened-National-Defense-and-Critical-Minerals-Focus.html",
-      "title": "SAGA Metals Highlights Radar Project\u2019s Strategic Relevance - GlobeNewswire",
-      "score": 0.05835133
+      "url": "https://apnews.com/article/nypd-prostitution-brothel-robbery-federal-charges-f18674b7c80f191a4624bdd760407fea",
+      "title": "Ex-NYPD officers accused of stealing a brothel key and robbing a sex worker face federal charges - AP News",
+      "score": 0.05880369
     },
     {
       "id": 74,
+      "url": "https://www.huffpost.com/entry/submarine-torpedo-geneva-conventions_n_69ab102ae4b03ae2f88670fb?ncid=NEWSSTAND0001",
+      "title": "U.S. May Have Committed War Crime In Sinking Of Iranian Ship - HuffPost",
+      "score": 0.05835133
+    },
+    {
+      "id": 75,
+      "url": "https://natlawreview.com/article/bringing-order-orbit-fcc-grapples-licensing-space-based-data-centers",
+      "title": "Bringing Order to Orbit- FCC Grapples With Licensing Space-Based Data Centers - The National Law Review",
+      "score": 0.058286972
+    },
+    {
+      "id": 76,
+      "url": "https://www.foxnews.com/us/miami-developer-accused-85m-fraud-scheme-blowing-investor-cash-yacht-rolex",
+      "title": "Miami developer accused of $85M fraud scheme, blowing investor cash on yacht, Rolex - Fox News",
+      "score": 0.057266273
+    },
+    {
+      "id": 77,
+      "url": "https://www.cbsnews.com/news/anthropic-pentagon-talks/",
+      "title": "Anthropic CEO: We're trying to \"deescalate\" Pentagon AI standoff to reach \"some agreement that works for us and works for them\" - CBS News",
+      "score": 0.056511793
+    },
+    {
+      "id": 78,
+      "url": "https://www.vitallaw.com/news/fraud-and-manipulation-s-d-n-y-shareholders-sue-apollo-black-and-rowan-for-concealing-epstein-ties/sld019737b9618a7741329801c7d561eadc30",
+      "title": "FRAUD AND MANIPULATION\u2014S.D.N.Y.: Shareholders sue Apollo, Black, and Rowan for concealing Epstein ties - VitalLaw.com",
+      "score": 0.056076013
+    },
+    {
+      "id": 79,
       "url": "https://digg.com/technologia/xvhzdlB/nintendo-sues-the-us-government-for",
       "title": "Handmade by human hands using machines - Digg",
       "score": 0.05564338
     },
     {
-      "id": 75,
-      "url": "https://www.wsj.com/tech/ai/pentagon-formally-labels-anthropic-supply-chain-risk-escalating-conflict-ebdf0523",
-      "title": "Anthropic Says It Will Fight New Pentagon Move as CEO Apologizes for Leaked Memo - WSJ",
-      "score": 0.055458937
+      "id": 80,
+      "url": "https://www.reuters.com/legal/government/noem-defends-220-million-ad-campaign-amid-lawmaker-scrutiny-2026-03-04/",
+      "title": "Noem defends $220 million ad campaign amid lawmaker scrutiny - Reuters",
+      "score": 0.055520352
     },
     {
-      "id": 76,
+      "id": 81,
       "url": "https://www.law.com/dailybusinessreview/2026/03/05/miami-bankruptcy-judge-fast-tracks-pat-mcgrath-cosmetics-restructuring/",
       "title": "Miami Bankruptcy Judge Fast-Tracks Pat McGrath Cosmetics Restructuring - Law.com",
       "score": 0.055091754
     },
     {
-      "id": 77,
+      "id": 82,
       "url": "https://www.nbcnews.com/tech/tech-news/anthropic-says-pentagon-declared-national-security-risk-rcna262013",
       "title": "Anthropic says that the Pentagon has declared it a national security risk - NBC News",
       "score": 0.054424554
     },
     {
-      "id": 78,
-      "url": "https://www.vitallaw.com/news/civil-money-penalties-dab-decisions-providers-still-bear-the-compliance-burden-as-alj-upholds-cms-fines/hld01b04b55819de649bc9037177c117631b1",
-      "title": "CIVIL MONEY PENALTIES\u2014DAB DECISIONS: Providers still bear the compliance burden as ALJ upholds CMS fines - VitalLaw.com",
-      "score": 0.054003943
-    },
-    {
-      "id": 79,
-      "url": "https://gizmodo.com/whatever-this-is-weve-never-seen-anything-like-it-2000728411",
-      "title": "Whatever This Is, We\u2019ve Never Seen Anything Like It - Gizmodo",
-      "score": 0.053884324
-    },
-    {
-      "id": 80,
+      "id": 83,
       "url": "https://digg.com/news/OdWLti1/scoop-us-dismayed-by-israels-iran",
       "title": "Scoop: U.S. dismayed by Israel's Iran fuel strikes - Axios - Digg",
       "score": 0.053467654
     },
     {
-      "id": 81,
+      "id": 84,
       "url": "https://www.newsweek.com/brian-mcginnis-tim-sheehy-senate-altercation-marine-green-party-north-carolina-11624785",
       "title": "Who Is Brian McGinnis? Protester In Tim Sheehy Senate Altercation - Newsweek",
       "score": 0.05340838
     },
     {
-      "id": 82,
+      "id": 85,
       "url": "https://www.washingtontechnology.com/contracts/2026/03/gsa-proposes-sweeping-changes-multiple-award-schedule-program/411990/?oref=wt-homepage-river",
       "title": "GSA proposes sweeping changes to Multiple Award Schedule program - Washington Technology",
       "score": 0.053054027
     },
     {
-      "id": 83,
+      "id": 86,
+      "url": "https://www.law360.com/compliance/articles/2449666/investors-accuse-alston-bird-of-aiding-328m-crypto-fraud-",
+      "title": "Investors Accuse Alston & Bird Of Aiding $328M Crypto Fraud - Law360",
+      "score": 0.052526645
+    },
+    {
+      "id": 87,
       "url": "https://digg.com/offbeat/S7EVukF/scientists-find-a-built-in-weapon",
       "title": "Scientists Find a Built-In Weapon Against Peanut Allergies: Human Spit - Digg",
       "score": 0.052293845
     },
     {
-      "id": 84,
-      "url": "https://www.forbes.com/sites/zacharyfolk/2026/03/09/anthropic-challenges-defense-dept-ban-after-ai-dispute/",
-      "title": "Anthropic Fights Back: Sues Over Pentagon Designating It A \u2018Supply Chain Risk\u2019 - Forbes",
+      "id": 88,
+      "url": "https://www.cbsnews.com/colorado/video/denver-judge-holds-hearing-on-warrantless-arrests-by-immigration-and-customs-enforcement-agents/",
+      "title": "Denver judge holds hearing on warrantless arrests by Immigration and Customs Enforcement agents - CBS News",
       "score": 0.052119885
     },
     {
-      "id": 85,
+      "id": 89,
       "url": "https://www.theguardian.com/commentisfree/2026/mar/09/congress-government-ai-surveillance-anthropic",
       "title": "Congress must prevent AI surveillance. The Anthropic feud proves it | Ashley Gorski and Patrick Toomey - The Guardian",
-      "score": 0.05183117
+      "score": 0.05177361
     },
     {
-      "id": 86,
+      "id": 90,
       "url": "https://www.cnbc.com/2026/03/09/one-big-reason-ships-and-insurers-are-unwilling-to-risk-strait-of-hormuz.html",
       "title": "There's another big reason why shipping companies and insurers aren't willing to risk the Strait of Hormuz - CNBC",
       "score": 0.05137238
     },
     {
-      "id": 87,
+      "id": 91,
+      "url": "https://knpr.org/npr/2026-03-08/openai-robotics-leader-resigns-over-concerns-about-pentagon-ai-deal",
+      "title": "OpenAI robotics leader resigns over concerns about Pentagon AI deal - KNPR",
+      "score": 0.051082738
+    },
+    {
+      "id": 92,
       "url": "https://www.justice.gov/opa/pr/former-exthera-medical-corporation-executive-admits-concealing-patient-deaths-fda-and",
       "title": "Former ExThera Medical Corporation Executive Admits to Concealing Patient Deaths from FDA and Company Enters Deferred Prosecution Agreement - Department of Justice (.gov)",
       "score": 0.050917413
     },
     {
-      "id": 88,
-      "url": "https://www.nbcnews.com/politics/politics-news/commerce-secretary-howard-lutnick-testify-house-oversight-committees-j-rcna261579",
-      "title": "Commerce Secretary Howard Lutnick to testify in the House Oversight Committee's Jeffrey Epstein probe, chairman says - NBC News",
-      "score": 0.050298072
+      "id": 93,
+      "url": "https://www.mining.com/press-release?id=69aae2e8bb9f0ee5a133b64c",
+      "title": "U.S. Defense Manufacturers Face A Rare Earth Supply Squeeze - OilPrice.com Market Commentary - Mining.com",
+      "score": 0.05033063
     },
     {
-      "id": 89,
-      "url": "https://www.defenseone.com/business/2026/03/pentagons-investment-deals-draw-congressional-scrutiny/411937/?oref=d1-featured-river-secondary",
-      "title": "The Pentagon\u2019s investment deals draw congressional scrutiny - Defense One",
-      "score": 0.050018918
-    },
-    {
-      "id": 90,
+      "id": 94,
       "url": "https://www.theguardian.com/us-news/2026/mar/06/kristi-noem-congress-investigation",
       "title": "US senator seeks perjury investigation into Kristi Noem over DHS spending - The Guardian",
       "score": 0.050018918
     },
     {
-      "id": 91,
-      "url": "https://www.forbes.com/sites/sofiachierchio/2026/03/03/sam-altman-reportedly-bemoans-really-painful-backlash-to-openais-pentagon-deal/",
-      "title": "Altman Stands By Pentagon Deal Despite \u2018Painful\u2019 Backlash, Report Says - Forbes",
-      "score": 0.04885778
+      "id": 95,
+      "url": "https://www.nytimes.com/2026/03/10/health/canada-oil-sands-fort-chipewyan-alberta.html",
+      "title": "Cancer Haunts Neighbors of Canada\u2019s Oil Sands Wastelands - The New York Times",
+      "score": 0.04974123
     },
     {
-      "id": 92,
-      "url": "https://www.washingtonpost.com/technology/2026/03/06/anthropic-pentagon-claude-popularity/",
-      "title": "Anthropic lost the Pentagon but won over America - The Washington Post",
-      "score": 0.048159245
+      "id": 96,
+      "url": "https://apnews.com/article/mrbeast-jimmy-donaldson-kalshi-7a8bb7e2aecee7428bcc2dd1eb08ac67",
+      "title": "MrBeast\u2019s company fired a video editor after Kalshi accused the employee of insider trading - AP News",
+      "score": 0.049630567
     },
     {
-      "id": 93,
+      "id": 97,
+      "url": "https://www.vitallaw.com/news/vital-briefing-u-s-trade-judge-orders-administration-to-quit-collecting-illegal-tariffs/ipm017a2b83b48afb495180268e2e66ee4179",
+      "title": "VITAL BRIEFING\u2014U.S. trade judge orders administration to quit collecting illegal tariffs - VitalLaw.com",
+      "score": 0.04837458
+    },
+    {
+      "id": 98,
       "url": "https://www.law.com/newyorklawjournal/2026/03/09/-when-moving-isnt-enough-to-avoid-state-taxes/",
       "title": "When Moving Isn\u2019t Enough to Avoid State Taxes - Law.com",
       "score": 0.047998354
     },
     {
-      "id": 94,
-      "url": "https://www.businesswire.com/news/home/20260308671309/en/EAF-Investors-Have-Opportunity-to-Join-GrafTech-International-Ltd.-Fraud-Investigation-with-the-Schall-Law-Firm",
-      "title": "EAF Investors Have Opportunity to Join GrafTech International Ltd. Fraud Investigation with the Schall Law Firm - Business Wire",
-      "score": 0.047998354
+      "id": 99,
+      "url": "https://www.theguardian.com/technology/2026/mar/05/trump-anthropic-ai-pentagon",
+      "title": "Trump says he fired Anthropic \u2018like dogs\u2019 as Pentagon formally blacklists AI startup - The Guardian",
+      "score": 0.047096178
     },
     {
-      "id": 95,
-      "url": "https://news.bloomberglaw.com/us-law-week/pentagon-notifies-lawmakers-anthropic-is-a-supply-chain-risk",
-      "title": "Pentagon Notifies Lawmakers Anthropic Is a Supply-Chain Risk - Bloomberg Law News",
-      "score": 0.046991114
+      "id": 100,
+      "url": "https://www.wsj.com/politics/national-security/anthropic-sues-trump-administration-for-targeting-it-917b52ca?gaa_at=eafs&gaa_n=AWEtsqdwGIIn8Zk-zF2GLdyw7bkNrH4udr8QODuNcE2UzrMIr1c4qRv5tXSt&gaa_ts=69b02993&gaa_sig=mWb6Bn_oqqpgT-3mU3y6sIbmpdiqcQtGzA4OiOMFS9EiFx2m6bg1Owv0w-fhKzSQcgUrJqbdnyV0y-jTzqhyvA%3D%3D",
+      "title": "Anthropic Sues U.S. Defense Department, Pete Hegseth for Targeting the Company - WSJ",
+      "score": 0.046781633
     },
     {
-      "id": 96,
+      "id": 101,
+      "url": "https://www.tipranks.com/news/private-companies/acumen-highlights-catalytic-philanthropy-and-market-based-social-innovation",
+      "title": "Acumen Highlights Catalytic Philanthropy and Market-Based Social Innovation - TipRanks",
+      "score": 0.046677228
+    },
+    {
+      "id": 102,
+      "url": "https://www.law360.com/commercialcontracts/articles/2450878?utm_source=rss&utm_medium=rss&utm_campaign=section",
+      "title": "Chancery Won't Block Precious Metals Deal In Earnout Fight - Law360",
+      "score": 0.04652104
+    },
+    {
+      "id": 103,
+      "url": "https://www.cnbc.com/2026/03/05/anthropic-ceo-says-no-choice-but-to-challenge-trump-admins-supply-chain-risk-designation-in-court.html",
+      "title": "Anthropic CEO says 'no choice' but to challenge Trump admin's supply chain risk designation in court - CNBC",
+      "score": 0.046261825
+    },
+    {
+      "id": 104,
       "url": "https://www.nbcnews.com/video/shorts/two-arrested-after-protests-near-nyc-mayor-s-residence-258932293738",
       "title": "Two arrested after protests near NYC mayor's residence - NBC News",
       "score": 0.04615852
     },
     {
-      "id": 97,
-      "url": "https://www.mycarrollcountynews.com/online_features/press_releases/article_837927c5-b18c-517d-b5e2-69ebacf1bb9b.html",
-      "title": "Portnoy Law Firm Announces Class Action on Behalf of Eos Energy Enterprises, Inc. Investors - Carroll County Mirror-Democrat",
-      "score": 0.04595259
-    },
-    {
-      "id": 98,
+      "id": 105,
       "url": "https://www.nbcnews.com/politics/trump-administration/noem-lewandowski-democrats-probing-companies-220-million-ad-contract-rcna262156",
       "title": "Democrats are probing companies awarded a $220 million ad contract for ties to Noem, Lewandowski - NBC News",
       "score": 0.04554332
     },
     {
-      "id": 99,
+      "id": 106,
+      "url": "https://www.reuters.com/business/us-companies-are-being-denied-refunds-trumps-illegal-tariffs-ft-reports-2026-03-06/",
+      "title": "US companies denied refunds on Trump\u2019s illegal tariffs, FT reports - Reuters",
+      "score": 0.045441553
+    },
+    {
+      "id": 107,
       "url": "https://www.politico.com/news/magazine/2026/03/06/alex-bores-ai-leading-the-future-anthropic-00797055",
       "title": "The New York Race That\u2019s Ground Zero for the Fight Over AI - Politico",
       "score": 0.045339987
     },
     {
-      "id": 100,
+      "id": 108,
       "url": "https://edtechmagazine.com/higher/article/2026/03/design-campus-safety-while-maintaining-student-privacy?amp",
       "title": "Design for Campus Safety While Maintaining Student Privacy - EdTech Magazine",
       "score": 0.045087047
     },
     {
-      "id": 101,
-      "url": "https://news.bloomberglaw.com/daily-labor-report/federal-prosecutor-used-fabricated-quotes-false-cites-in-filing",
-      "title": "Federal Prosecutor Used Fabricated Quotes, False Cites in Filing - Bloomberg Law News",
-      "score": 0.044835445
-    },
-    {
-      "id": 102,
+      "id": 109,
       "url": "https://www.reuters.com/business/energy/after-official-hails-mining-potential-us-allows-some-transactions-venezuelan-2026-03-06/",
       "title": "After official hails mining potential, US allows some transactions of Venezuelan gold - Reuters",
       "score": 0.044535294
     },
     {
-      "id": 103,
-      "url": "https://www.foxnews.com/us/miami-developer-accused-85m-fraud-scheme-blowing-investor-cash-yacht-rolex",
-      "title": "Miami developer accused of $85M fraud scheme, blowing investor cash on yacht, Rolex - Fox News",
-      "score": 0.044187542
+      "id": 110,
+      "url": "https://www.chicagotribune.com/2026/03/08/column-kristi-noem-dhs-ice-congressional-hearing-firing-page/",
+      "title": "Clarence Page: \u2018ICE Barbie\u2019 is gone, but will immigration policy improve? - Chicago Tribune",
+      "score": 0.044039294
     },
     {
-      "id": 104,
+      "id": 111,
       "url": "https://www.law.com/dailybusinessreview/2026/03/10/why-master-lease-structure-matters-in-bankruptcy/",
       "title": "Why Master Lease Structure Matters in Bankruptcy - Law.com",
       "score": 0.04394073
     },
     {
-      "id": 105,
-      "url": "https://www.reuters.com/sustainability/society-equity/defense-contractors-like-lockheed-seen-removing-anthropics-ai-after-trump-ban-2026-03-04/",
-      "title": "Defense contractors, like Lockheed, seen removing Anthropic's AI after Trump ban - Reuters",
-      "score": 0.043695237
+      "id": 112,
+      "url": "https://www.wsj.com/us-news/law/judge-denies-stand-your-ground-immunity-for-second-shooter-in-road-rage-case-192859d3?gaa_at=eafs&gaa_n=AWEtsqdk-JfD_UC4LUrKsRaO8tf3AJW-Doy7y07wmtVO4pF9PqErHdHvHAcI&gaa_ts=69ac5d9d&gaa_sig=0ortowffBPCDf6CxbPq9MnzwcYZXdHAo89TccwxomZMV28xF1pviOM4aYo3SHG8XSevF2ieXiu-IirMX0MP9aA%3D%3D",
+      "title": "Judge Denies \u2018Stand Your Ground\u2019 Immunity for Second Shooter in Road Rage Case - WSJ",
+      "score": 0.043208163
     },
     {
-      "id": 106,
-      "url": "https://natlawreview.com/article/understanding-potential-anthropic-ban-key-considerations-federal-contractors",
-      "title": "Understanding the Potential Anthropic Ban: Key Considerations for Federal Contractors - The National Law Review",
-      "score": 0.043353733
-    },
-    {
-      "id": 107,
+      "id": 113,
       "url": "https://www.marketbeat.com/instant-alerts/filing-russell-investments-group-ltd-has-13178-million-holdings-in-barrick-mining-corporation-b-2026-03-10/",
       "title": "Russell Investments Group Ltd. Has $131.78 Million Holdings in Barrick Mining Corporation $B - MarketBeat",
       "score": 0.04311137
     },
     {
-      "id": 108,
-      "url": "https://www.whas11.com/article/syndication/associatedpress/us-issues-a-license-that-authorizes-sales-of-venezuelan-gold/616-2ac3ca23-f435-4e64-b5b9-62be6386ef2d",
-      "title": "US issues a license that authorizes sales of Venezuelan gold - WHAS11",
-      "score": 0.0428703
-    },
-    {
-      "id": 109,
-      "url": "https://www.washingtonpost.com/politics/2026/03/03/lutnick-epstein-testimony-house-oversight/",
-      "title": "Commerce Secretary Lutnick to appear before House panel investigating Epstein - The Washington Post",
-      "score": 0.04239202
-    },
-    {
-      "id": 110,
+      "id": 114,
       "url": "https://www.houstonchronicle.com/news/investigations/article/txdot-dumping-floodplain-harris-county-violation-21946055.php",
       "title": "Enormous dirt pile dumped near Lake Houston sparks outrage with neighbors - Houston Chronicle",
       "score": 0.042344477
     },
     {
-      "id": 111,
-      "url": "https://www.latimes.com/california/story/2026-03-03/captains-conviction-upheld-in-conception-dive-boat-tragedy-that-killed-34",
-      "title": "Captain\u2019s conviction upheld in Conception dive boat tragedy that killed 34 - Los Angeles Times",
-      "score": 0.042202137
+      "id": 115,
+      "url": "https://cyberscoop.com/fbi-operation-winter-shield-ai-cyber-defense-jason-bilnoski/",
+      "title": "FBI says even in an AI-powered world, security basics still matter - CyberScoop",
+      "score": 0.04191884
     },
     {
-      "id": 112,
-      "url": "https://nationaltoday.com/us/ca/san-francisco/news/2026/03/05/openai-ceo-defends-companys-work-with-trump-administration/",
-      "title": "OpenAI CEO Defends Company's Work with Trump Administration - National Today",
-      "score": 0.042060263
-    },
-    {
-      "id": 113,
+      "id": 116,
       "url": "https://talkingpointsmemo.com/morning-memo/inside-the-dhs-campaign-against-u-s-citizens",
       "title": "Inside The DHS Campaign Against U.S. Citizens - Talking Points Memo",
       "score": 0.04177788
     },
     {
-      "id": 114,
-      "url": "https://www.greenwichtime.com/business/article/trial-against-meta-in-new-mexico-highlights-video-21953343.php",
-      "title": "Trial against Meta in New Mexico highlights video depositions by top executives - Greenwich Time",
-      "score": 0.04112601
-    },
-    {
-      "id": 115,
+      "id": 117,
       "url": "https://wwd.com/business-news/legal/christine-hunsicker-casstle-guilty-fraud-scandal-1238653199/",
       "title": "The Warning in Christine Hunsicker\u2019s Flame-out - WWD",
       "score": 0.040121272
     },
     {
-      "id": 116,
-      "url": "https://deadline.com/2026/03/luxury-movie-theater-chain-ipic-chapter-11-bankruptcy-1236742980/",
-      "title": "Luxury Movie Theater Chain IPic Files For Chapter 11 Bankruptcy Protection - Deadline",
-      "score": 0.040031113
-    },
-    {
-      "id": 117,
-      "url": "https://www.nbcnews.com/politics/trump-administration/labor-secretarys-top-two-aides-resign-investigation-alleged-department-rcna261537",
-      "title": "Labor secretary's top two aides resign amid investigation into alleged department misconduct - NBC News",
-      "score": 0.039941143
-    },
-    {
       "id": 118,
+      "url": "https://www.greenwichtime.com/news/article/jury-selection-to-begin-in-south-florida-for-5-21963580.php",
+      "title": "Jury selection to begin in South Florida for 5 charged in 2021 assassination of Haitian president - Greenwich Time",
+      "score": 0.039717067
+    },
+    {
+      "id": 119,
       "url": "https://www.washingtonpost.com/immigration/2026/03/10/trump-immigration-detention-minneapolis-courts/",
       "title": "Dozens of case files showcase how ICE violated court orders in Minneapolis - The Washington Post",
       "score": 0.039717067
     },
     {
-      "id": 119,
+      "id": 120,
       "url": "https://www.law360.com/legalethics/articles/2450711/judge-oks-sanctions-in-500m-miss-america-ownership-fight",
       "title": "Judge OKs Sanctions In $500M Miss America Ownership Fight - Law360",
       "score": 0.039583195
     },
     {
-      "id": 120,
-      "url": "https://www.nbcnews.com/news/us-news/minnesota-judge-federal-prosecutor-contempt-ice-immigration-rcna261583",
-      "title": "Federal judge demands answers from top Minnesota prosecutor in 'extraordinary' contempt hearing - NBC News",
-      "score": 0.039361045
+      "id": 121,
+      "url": "https://www.cnbc.com/2026/03/04/wednesday-wall-street-biggest-analyst-calls.html",
+      "title": "Here are Wednesday's biggest analyst calls: Nvidia, Apple, Tesla, Oracle, Target, Blue Owl, Toll Brothers & more - CNBC",
+      "score": 0.039052043
     },
     {
-      "id": 121,
+      "id": 122,
+      "url": "https://gizmodo.com/whatever-this-is-weve-never-seen-anything-like-it-2000728411",
+      "title": "Whatever This Is, We\u2019ve Never Seen Anything Like It - Gizmodo",
+      "score": 0.039052043
+    },
+    {
+      "id": 123,
       "url": "https://en.vijesti.me/world-a/globus/798963/Now-they-have-issued-a-license-to-operate-with-the-Venezuelan-state-owned-gold-mining-company.",
       "title": "US issues license: Approval for doing business with Venezuelan state-owned gold mining company - vijesti.me",
       "score": 0.03900808
     },
     {
-      "id": 122,
-      "url": "https://www.cnbc.com/2026/03/05/anthropic-ceo-says-no-choice-but-to-challenge-trump-admins-supply-chain-risk-designation-in-court.html",
-      "title": "Anthropic CEO says 'no choice' but to challenge Trump admin's supply chain risk designation in court - CNBC",
-      "score": 0.03892032
+      "id": 124,
+      "url": "http://paenvironmentdaily.blogspot.com/2026/03/dep-citizens-advisory-council-invites.html",
+      "title": "DEP Citizens Advisory Council Invites Comments On DEP's Act 54 Report Documenting Adverse Impacts Of Longwall And Underground Coal Mining On Structures, Surface And Ground Water; Report Says 20% Of Undermined Streams Damaged - PA Environment Digest Blog",
+      "score": 0.038964175
     },
     {
-      "id": 123,
+      "id": 125,
       "url": "https://gigazine.net/gsc_news/en/20260310-anthropic-sued-us-department-of-war/",
       "title": "Anthropic sues US Department of Defense, OpenAI and Google employees support Anthropic - GIGAZINE",
       "score": 0.03887651
     },
     {
-      "id": 124,
-      "url": "https://www.independent.co.uk/news/world/americas/us-politics/gavin-newsom-kristi-noem-wildfire-money-b2934119.html",
-      "title": "Gavin Newsom wants \u2018Kosplay Kristi\u2019 Noem\u2019s $220M ad money for LA\u2019s fire victims - The Independent",
-      "score": 0.038181942
-    },
-    {
-      "id": 125,
-      "url": "https://www.businessinsider.com/openai-pentagon-deal-fallout-backlash-anthropic-altman-amodei-trump-2026-3",
-      "title": "The Fallout Over OpenAI's Pentagon Deal Is Growing - Business Insider",
-      "score": 0.038138922
-    },
-    {
       "id": 126,
+      "url": "https://www.foxnews.com/opinion/morning-glory-military-needs-money-from-congress-finish-off-iran",
+      "title": "MORNING GLORY: The military needs money from Congress to finish off Iran - Fox News",
+      "score": 0.038658164
+    },
+    {
+      "id": 127,
+      "url": "https://natlawreview.com/article/latin-america-enforcement-trends-2026-insights-doj-fraud-section-year-review-2025",
+      "title": "Latin America Enforcement Trends in 2026: Insights from the DOJ Fraud Section Year in Review 2025 - The National Law Review",
+      "score": 0.038658164
+    },
+    {
+      "id": 128,
+      "url": "https://www.reuters.com/business/openai-robotics-head-resigns-after-deal-with-pentagon-2026-03-07/",
+      "title": "OpenAI Robotics head resigns after deal with Pentagon - Reuters",
+      "score": 0.038614642
+    },
+    {
+      "id": 129,
+      "url": "https://www.newsweek.com/fani-willis-suffers-legal-blow-in-fight-against-trump-11649657",
+      "title": "Fani Willis Suffers Legal Blow In Fight Against Trump - Newsweek",
+      "score": 0.038571153
+    },
+    {
+      "id": 130,
+      "url": "https://news.bloomberglaw.com/business-and-practice/social-media-addiction-suit-gets-boost-from-litigation-funder",
+      "title": "Social Media Addiction Suit Gets Boost From Litigation Funder - Bloomberg Law News",
+      "score": 0.038484335
+    },
+    {
+      "id": 131,
+      "url": "https://www.law360.com/whitecollar/articles/2450804?utm_source=rss&utm_medium=rss&utm_campaign=section",
+      "title": "Fla. Real Estate Execs Convicted In Sexual Assault Case - Law360",
+      "score": 0.038268104
+    },
+    {
+      "id": 132,
+      "url": "https://maritime-executive.com/article/sweden-arrests-captain-and-details-stateless-ship-for-safety-violations",
+      "title": "Sweden Arrests Captain and Details Stateless Ship for Safety Violations - The Maritime Executive",
+      "score": 0.038053043
+    },
+    {
+      "id": 133,
       "url": "http://www.washingtontechnology.com/companies/2026/03/dcs-acquires-research-and-development-firm/411960/?oref=wt-homepage-river",
       "title": "DCS acquires research and development firm - Washington Technology",
       "score": 0.037924558
     },
     {
-      "id": 127,
-      "url": "https://www.law360.com/articles/2449695/judge-says-titlemax-s-forgery-claim-can-t-halt-arbitrations",
-      "title": "Judge Says TitleMax's Forgery Claim Can't Halt Arbitrations - Law360",
-      "score": 0.037881825
+      "id": 134,
+      "url": "https://www.nytimes.com/2026/03/04/business/economy/labor-secretary-lori-chavez-deremer-staff.html",
+      "title": "Top Aide to Labor Secretary Is Placed on Leave - The New York Times",
+      "score": 0.037839137
     },
     {
-      "id": 128,
+      "id": 135,
       "url": "https://www.reuters.com/world/anthropic-sues-block-pentagon-blacklisting-over-ai-use-restrictions-2026-03-09/",
       "title": "Anthropic sues to block Pentagon blacklisting over AI use restrictions - Reuters",
       "score": 0.03771135
     },
     {
-      "id": 129,
-      "url": "https://www.huffpost.com/entry/submarine-torpedo-geneva-conventions_n_69ab102ae4b03ae2f88670fb?ncid=NEWSSTAND0001",
-      "title": "U.S. May Have Committed War Crime In Sinking Of Iranian Ship - HuffPost",
-      "score": 0.03737261
-    },
-    {
-      "id": 130,
+      "id": 136,
       "url": "https://www.wsj.com/us-news/immigration-protests-noem-minneapolis-0b8bd496?gaa_at=eafs&gaa_n=AWEtsqdbDo4DebNlSBcrqOhr8859ccJOA-gRcAkJTLnecGI7jZGgB6rPz_6z&gaa_ts=69ae91ef&gaa_sig=HZmaGzCxDfhed2Y5KScKKQk_1kEPRD94H15Q0-ihxtWHOm7LBN0faLKLyYcRQQpHuRTlTygIyfTMMYrUwyIdow%3D%3D",
       "title": "Americans Are Now a Target in Trump\u2019s Immigration Crackdown - WSJ",
       "score": 0.03720434
     },
     {
-      "id": 131,
+      "id": 137,
       "url": "https://www.defenseone.com/business/2026/03/anthropic-sues-over-dozen-federal-agencies-and-government-leaders/411997/?oref=d1-featured-river-top",
       "title": "Anthropic sues DOD, Hegseth, and a dozen other federal agencies - Defense One",
       "score": 0.037120476
     },
     {
-      "id": 132,
-      "url": "https://www.army-technology.com/news/photonis-defence-binod-us-army/",
-      "title": "Photonis Defense secures $352.6m US Army contract for BiNOD - Army Technology",
-      "score": 0.036911618
-    },
-    {
-      "id": 133,
+      "id": 138,
       "url": "https://techcrunch.com/2026/03/05/anthropic-to-challenge-dods-supply-chain-label-in-court/",
       "title": "Anthropic to challenge DOD\u2019s supply-chain label in court - TechCrunch",
       "score": 0.036869973
     },
     {
-      "id": 134,
+      "id": 139,
       "url": "https://www.haaretz.com/israel-news/2026-03-08/ty-article/.premium/shin-bet-threatens-israeli-with-security-offense-charges-over-netanyahu-posts/0000019c-cd5c-dcff-a3ff-fdfeeb1b0000",
       "title": "Shin Bet threatens Israeli with security offense charges over Netanyahu posts - Haaretz",
       "score": 0.03678684
     },
     {
-      "id": 135,
-      "url": "https://www.law.com/international-edition/2026/03/05/strait-of-hormuz-crisis-forces-lawyers-to-make-split-second-decisions/",
-      "title": "Strait of Hormuz Crisis Forces Lawyers to Make Split-Second Decisions - Law.com",
-      "score": 0.03637385
-    },
-    {
-      "id": 136,
-      "url": "https://www.law.com/dailybusinessreview/2026/03/06/florida-bar-retracts-promise-to-investigate-trump-doj-attorney-as-erroneously-made/",
-      "title": "Florida Bar Retracts Promise to Investigate Trump DOJ Attorney as 'Erroneously' Made - Law.com",
-      "score": 0.036332797
-    },
-    {
-      "id": 137,
-      "url": "https://www.law360.com/internationaltrade/articles/2449355/resilience-planning-as-nat-l-security-shifts-tech-import-policy",
-      "title": "Resilience Planning As Nat'l Security Shifts Tech Import Policy - Law360",
-      "score": 0.036291793
-    },
-    {
-      "id": 138,
-      "url": "https://www.washingtonpost.com/business/2026/03/09/ice-warehouse-detention-centers/",
-      "title": "ICE picks untested firms to oversee new warehouse detention centers - The Washington Post",
-      "score": 0.03625082
-    },
-    {
-      "id": 139,
-      "url": "https://www.foxnews.com/us/suspect-captured-after-3-women-found-dead-southern-utah",
-      "title": "Suspect captured after 3 women found dead in southern Utah - Fox News",
-      "score": 0.03625082
-    },
-    {
       "id": 140,
+      "url": "https://www.theguardian.com/us-news/2026/mar/09/jeffrey-epstein-new-mexico-ranch",
+      "title": "Investigators are finally looking into Jeffrey Epstein\u2019s New Mexico ranch. They may be too late - The Guardian",
+      "score": 0.036703885
+    },
+    {
+      "id": 141,
       "url": "https://www.jpost.com/israel-news/article-889015",
       "title": "How Israel\u2019s cyber chief fights back in the AI cyber era - The Jerusalem Post",
       "score": 0.03616903
     },
     {
-      "id": 141,
-      "url": "https://www.timesofisrael.com/texas-lawmaker-quits-race-handing-gop-nod-to-man-he-called-known-neo-nazi/",
-      "title": "Texas lawmaker quits race, handing GOP nod to man he called \u2018known neo-Nazi\u2019 - The Times of Israel",
-      "score": 0.03604667
+      "id": 142,
+      "url": "https://finance.yahoo.com/news/eric-trump-says-jpmorgan-wells-114609857.html",
+      "title": "Eric Trump Says JPMorgan, Wells Fargo And Bank of America Trying To Block Americans From Getting Higher Yields On Savings By Sabotaging Clarity Act - Yahoo Finance",
+      "score": 0.036128204
     },
     {
-      "id": 142,
+      "id": 143,
+      "url": "https://www.newsfilecorp.com/release/286577/FBRT-INVESTOR-DEADLINE-APPROACHING-Faruqi-Faruqi-LLP-Reminds-Franklin-BSP-Realty-Trust-FBRT-Investors-of-Securities-Class-Action-Deadline-on-April-27-2026",
+      "title": "FBRT INVESTOR DEADLINE APPROACHING: Faruqi & Faruqi, LLP Reminds Franklin BSP Realty Trust (FBRT) Investors of Securities Class Action Deadline on April 27, 2026 - TMX Newsfile",
+      "score": 0.036005974
+    },
+    {
+      "id": 144,
       "url": "https://variety.com/2026/politics/news/paramount-warner-bros-national-security-review-arab-wealth-funds-warren-blumenthal-1236681067/",
       "title": "Democratic Senators Slam Trump Administration\u2019s Inaction on Reviewing Paramount\u2019s Warner Bros. Deal for National Security Risks Over Backing by Arab Wealth Funds - Variety",
       "score": 0.03596532
     },
     {
-      "id": 143,
+      "id": 145,
       "url": "https://www.latimes.com/environment/newsletter/2026-03-05/toxic-vapors-watts-scrap-yard-high-school",
       "title": "Toxic vapors linger beneath a shuttered Watts scrap yard, threatening a nearby high school and other neighbors - Los Angeles Times",
       "score": 0.03596532
     },
     {
-      "id": 144,
+      "id": 146,
       "url": "https://www.timesofisrael.com/nypd-confirms-explosive-thrown-against-anti-muslim-protest-near-mamdani-residence/",
       "title": "NYPD confirms explosive thrown against anti-Muslim protest near Mamdani residence - The Times of Israel",
-      "score": 0.035924714
+      "score": 0.03588415
     },
     {
-      "id": 145,
+      "id": 147,
       "url": "https://www.greenwichtime.com/news/article/trumbull-amazon-fraud-ameer-nasir-guilty-plea-21959774.php",
       "title": "Trumbull trucking company owner pleads guilty to wire fraud in $3.5M Amazon fraud scheme - Greenwich Time",
       "score": 0.03568199
     },
     {
-      "id": 146,
+      "id": 148,
       "url": "https://www.law360.com/insurance/articles/2449994?utm_source=rss&utm_medium=rss&utm_campaign=section",
       "title": "Taxation With Representation: Slaughter And May, Kirkland - Law360",
       "score": 0.035601426
     },
     {
-      "id": 147,
+      "id": 149,
       "url": "http://www.washingtontechnology.com/companies/2026/03/sierra-space-and-vast-detail-their-series-c-investment-rounds/411912/?oref=wt-homepage-river",
       "title": "Sierra Space and Vast detail their Series C investment rounds - Washington Technology",
       "score": 0.035601426
     },
     {
-      "id": 148,
-      "url": "https://www.securityweek.com/in-other-news-fbi-hacked-us-security-pro-killed-in-iran-war-hijacked-cameras-used-in-khamenei-strike/",
-      "title": "In Other News: FBI Hacked, US Security Pro Killed in Iran War, Hijacked Cameras Used in Khamenei Strike - SecurityWeek",
-      "score": 0.035201255
-    },
-    {
-      "id": 149,
-      "url": "https://www.law.com/newyorklawjournal/2026/03/03/meet-the-judges-handling-thousands-of-tariff-refund-suits/",
-      "title": "Meet the Judges Handling Thousands of Tariff Refund Suits - Law.com",
-      "score": 0.035082057
-    },
-    {
       "id": 150,
-      "url": "https://www.law360.com/articles/2448361/breyer-rips-musk-atty-for-false-impression-to-twitter-jury",
-      "title": "Breyer Rips Musk Atty For 'False Impression' To Twitter Jury - Law360",
-      "score": 0.034844812
+      "url": "https://www.quiverquant.com/news/Press+Release%3A+Morgan+Griffith+Commends+%2418.9+Million+Manufacturing+Investment+in+Henry+County",
+      "title": "Press Release: Morgan Griffith Commends $18.9 Million Manufacturing Investment in Henry County - Quiver Quantitative",
+      "score": 0.035521045
     },
     {
       "id": 151,
+      "url": "https://www.prnewswire.com/news-releases/investor-alert-pomerantz-law-firm-investigates-claims-on-behalf-of-investors-of-northern-dynasty-minerals-ltd---nak-302706100.html",
+      "title": "INVESTOR ALERT: Pomerantz Law Firm Investigates Claims On Behalf of Investors of Northern Dynasty Minerals Ltd. - NAK - PR Newswire",
+      "score": 0.035400797
+    },
+    {
+      "id": 152,
+      "url": "https://www.forbes.com/sites/richardnieva/2026/03/05/anthropics-ceo-is-contrite-in-latest-response-to-department-of-war/",
+      "title": "Anthropic\u2019s Dario Amodei Says AI Giant Has More In Common Than Not With Pentagon - Forbes",
+      "score": 0.034923725
+    },
+    {
+      "id": 153,
+      "url": "https://www.law360.com/transactions-uk/articles/2449722/metals-miner-raises-8-4m-to-fund-zimbabwe-gold-expansion",
+      "title": "Metals Miner Raises $8.4M To Fund Zimbabwe Gold Expansion - Law360",
+      "score": 0.034923725
+    },
+    {
+      "id": 154,
       "url": "https://www.bozemandailychronicle.com/news/from-the-belly-of-the-beast-bozeman-residents-protest-iran-war/article_dbc44e38-7cc4-4e65-8ca5-6fa77407583f.html",
       "title": "'From the belly of the beast': Bozeman residents protest Iran war - Bozeman Daily Chronicle",
       "score": 0.034687515
     },
     {
-      "id": 152,
+      "id": 155,
+      "url": "https://www.law.com/newyorklawjournal/2026/03/04/white-house-launches-new-national-fraud-enforcement-division/",
+      "title": "White House Launches New National Fraud Enforcement Division - Law.com",
+      "score": 0.034452844
+    },
+    {
+      "id": 156,
       "url": "https://fortune.com/2026/03/06/anthropic-openai-ceo-apologizes-leaked-memo-supply-chain-risk-designation/",
       "title": "Anthropic CEO apologizes for leaked memo calling OpenAI staff 'gullible,' confirms risk designation - Fortune",
       "score": 0.034065127
     },
     {
-      "id": 153,
+      "id": 157,
       "url": "https://www.businessinsider.com/anthropic-ceo-dario-amodei-apologized-eaked-memo-criticizing-trump-administration-2026-3",
       "title": "Dario Amodei says he's sorry for the 'tone' he took in a leaked internal message criticizing the Trump administration - Business Insider",
-      "score": 0.03402659
+      "score": 0.034065127
     },
     {
-      "id": 154,
-      "url": "https://gizmodo.com/former-military-officials-academics-and-tech-policy-leaders-denounce-pentagons-tactics-against-anthropic-2000729872",
-      "title": "Former Military Officials, Academics, and Tech Policy Leaders Denounce Pentagon's Tactics Against Anthropic - Gizmodo",
-      "score": 0.033949643
-    },
-    {
-      "id": 155,
+      "id": 158,
       "url": "https://www.law360.com/articles/2449923/ark-revenue-through-feb-beats-forecast-by-7m",
       "title": "Ark. Revenue Through Feb. Beats Forecast By $7M - Law360",
       "score": 0.033872854
     },
     {
-      "id": 156,
-      "url": "https://glassalmanac.com/meta-ai-glasses-sent-intimate-clips-to-moderators-in-2026-why-it-matters-now/",
-      "title": "Meta AI Glasses Sent Intimate Clips To Moderators In 2026 \u2013 Why It Matters Now - Glass Almanac",
-      "score": 0.033872854
+      "id": 159,
+      "url": "https://markets.financialcontent.com/stocks/article/bizwire-2026-3-4-nuburu-and-tekne-formalize-ukraine-industrial-deployment-platform-anchored-by-operational-graelion-units-structured-framework-targets-80120m-annual-program-scale",
+      "title": "NUBURU and Tekne Formalize Ukraine Industrial Deployment Platform Anchored by Operational GRAELION Units; Structured Framework Targets \u20ac80\u2013120M Annual Program Scale - FinancialContent",
+      "score": 0.03384404
     },
     {
-      "id": 157,
+      "id": 160,
       "url": "https://www.haaretz.com/west-bank/2026-03-04/ty-article/.premium/idf-reservist-under-investigation-for-killing-two-palestinians-in-the-west-bank/0000019c-b80b-d7e0-abdc-fd2b4bef0000",
       "title": "IDF Reservist Under Investigation for Killing Two Palestinians in the West Bank - Haaretz",
       "score": 0.033643506
     },
     {
-      "id": 158,
+      "id": 161,
+      "url": "https://www.axios.com/2026/03/05/billionaire-donor-feud-dan-crenshaw",
+      "title": "How a feud led a billionaire donor to oust Rep. Crenshaw - Axios",
+      "score": 0.03349144
+    },
+    {
+      "id": 162,
       "url": "https://www.nbcnews.com/news/us-news/luigi-mangione-trials-cases-court-when-date-charges-prison-what-know-rcna257102",
       "title": "What you need to know about the Luigi Mangione prosecutions - NBC News",
       "score": 0.03315172
     },
     {
-      "id": 159,
+      "id": 163,
       "url": "https://techcrunch.com/2026/03/06/x-is-testing-a-new-ad-format-that-connects-posts-with-products/",
       "title": "X is testing a new ad format that connects posts with products - TechCrunch",
       "score": 0.03315172
     },
     {
-      "id": 160,
-      "url": "https://www.law360.com/articles/2448554/goldman-s-departing-clo-gates-asked-to-testify-on-epstein",
-      "title": "Goldman's Departing CLO, Gates Asked To Testify On Epstein - Law360",
-      "score": 0.033114173
-    },
-    {
-      "id": 161,
-      "url": "https://techcrunch.com/video/anthropics-pentagon-deal-is-a-cautionary-tale-for-startups-chasing-federal-contracts/",
-      "title": "Anthropic\u2019s Pentagon deal is a cautionary tale for startups chasing federal contracts - TechCrunch",
-      "score": 0.033114173
-    },
-    {
-      "id": 162,
-      "url": "https://www.forbes.com/sites/janakirammsv/2026/03/10/openai-acquires-promptfoo-to-embed-security-testing-into-its-agents/",
-      "title": "OpenAI Acquires Promptfoo To Embed Security Testing Into Its Agents - Forbes",
-      "score": 0.032852534
-    },
-    {
-      "id": 163,
-      "url": "https://www.bbc.com/news/articles/cy7jm7k7pxzo",
-      "title": "Howard Lutnick, US commerce secretary, to testify about Jeffrey Epstein ties - BBC",
-      "score": 0.03277815
-    },
-    {
       "id": 164,
+      "url": "https://www.findlaw.com/legalblogs/federal-courts/anthropic-starts-legal-battle-with-government-over-supply-chain-risk-classification/",
+      "title": "Anthropic Starts Legal Battle With Government Over \u201cSupply-Chain Risk\u201d Classification - FindLaw",
+      "score": 0.033076674
+    },
+    {
+      "id": 165,
       "url": "https://techcrunch.com/2026/03/05/anthropic-ceo-dario-amodei-could-still-be-trying-to-make-a-deal-with-pentagon/",
       "title": "Anthropic CEO Dario Amodei could still be trying to make a deal with Pentagon - TechCrunch",
       "score": 0.03277815
     },
     {
-      "id": 165,
-      "url": "https://markets.ft.com/data/announce/detail?dockey=600-202603061955PR_NEWS_USPRX____DA03794-1",
-      "title": "e.l.f. Beauty Investigation Initiated: Kahn Swick & Foti, LLC Investigates the Officers and Directors of e.l.f. Beauty, Inc. - ELF \u2013 Company Announcement - Financial Times",
-      "score": 0.032741014
-    },
-    {
       "id": 166,
-      "url": "https://www.darkreading.com/cyber-risk/speakeasies-shadow-ai-banning-ai-browsers-fail",
-      "title": "Speakeasies to Shadow AI: Banning AI Browsers Will Fail - Dark Reading",
-      "score": 0.032592896
+      "url": "https://www.law360.com/articles/2449695/judge-says-titlemax-s-forgery-claim-can-t-halt-arbitrations",
+      "title": "Judge Says TitleMax's Forgery Claim Can't Halt Arbitrations - Law360",
+      "score": 0.03270392
     },
     {
       "id": 167,
-      "url": "https://www.10tv.com/article/syndication/associatedpress/us-issues-a-license-that-authorizes-sales-of-venezuelan-gold/616-2ac3ca23-f435-4e64-b5b9-62be6386ef2d",
-      "title": "US issues a license that authorizes sales of Venezuelan gold - 10TV",
-      "score": 0.03248222
+      "url": "https://techcrunch.com/2026/03/05/its-official-the-pentagon-has-labeled-anthropic-a-supply-chain-risk/",
+      "title": "It\u2019s official: The Pentagon has labeled Anthropic a supply chain risk - TechCrunch",
+      "score": 0.032666873
     },
     {
       "id": 168,
@@ -1819,708 +1778,894 @@
     },
     {
       "id": 169,
-      "url": "https://www.businessinsider.com/anthropic-face-loss-in-dispute-with-pentagon-openai-2026-3",
-      "title": "Workers at OpenAI show support for Anthropic as the company says it could lose $5 billion in its feud with the Pentagon - Business Insider",
-      "score": 0.03240865
+      "url": "https://www.seattletimes.com/business/us-issues-a-license-that-authorizes-sales-of-venezuelan-gold/",
+      "title": "US issues a license that authorizes sales of Venezuelan gold - The Seattle Times",
+      "score": 0.032298584
     },
     {
       "id": 170,
-      "url": "https://www.seattletimes.com/business/us-issues-a-license-that-authorizes-sales-of-venezuelan-gold/",
-      "title": "US issues a license that authorizes sales of Venezuelan gold - The Seattle Times",
-      "score": 0.03222541
-    },
-    {
-      "id": 171,
-      "url": "https://www.prnewswire.com/news-releases/investor-alert-pomerantz-law-firm-investigates-claims-on-behalf-of-investors-of-aerovironment-inc---avav-302706068.html",
-      "title": "INVESTOR ALERT: Pomerantz Law Firm Investigates Claims On Behalf of Investors of AeroVironment, Inc. - AVAV - PR Newswire",
-      "score": 0.03222541
-    },
-    {
-      "id": 172,
       "url": "https://www.cnn.com/2026/03/05/tech/pentagon-anthropic-supply-chain-risk",
       "title": "Anthropic says the Pentagon\u2019s supply chain risk label will have less business impact than feared - CNN",
       "score": 0.032079544
     },
     {
-      "id": 173,
+      "id": 171,
       "url": "https://www.justice.gov/opa/pr/iranian-intelligence-agent-convicted-terrorism-and-murder-hire-connection-foiled-plot",
       "title": "Iranian Intelligence Agent Convicted of Terrorism and Murder for Hire in Connection with Foiled Plot to Assassinate U.S. Politicians and Government Officials - Department of Justice (.gov)",
       "score": 0.03193431
     },
     {
-      "id": 174,
-      "url": "https://www.thedailybeast.com/trump-propaganda-goon-kari-lake-hit-with-humiliating-verdict-by-reagan-judge/",
-      "title": "Trump Propaganda Goon Hit With Humiliating Verdict by Reagan Judge - The Daily Beast",
-      "score": 0.031861935
-    },
-    {
-      "id": 175,
-      "url": "https://sourcenm.com/briefs/defense-manufacturer-announces-plans-to-more-than-double-its-albuquerque-workforce/",
-      "title": "Defense manufacturer announces plans to more than double its Albuquerque workforce - Source New Mexico",
-      "score": 0.031789716
-    },
-    {
-      "id": 176,
-      "url": "https://www.theguardian.com/technology/2026/mar/05/trump-anthropic-ai-pentagon",
-      "title": "Trump says he fired Anthropic \u2018like dogs\u2019 as Pentagon formally blacklists AI startup - The Guardian",
-      "score": 0.031717658
-    },
-    {
-      "id": 177,
+      "id": 172,
       "url": "https://www.forbes.com/sites/antoniopequenoiv/2026/03/04/marine-veteran-removed-from-senate-committee-hearing-no-one-wants-to-fight-for-israel/",
       "title": "\u2018No One Wants To Fight For Israel:\u2019 Marine Veteran Removed From Hearing - Forbes",
       "score": 0.031645752
     },
     {
-      "id": 178,
+      "id": 173,
       "url": "https://gizmodo.com/trump-bros-back-a-drone-company-as-the-pentagon-prepares-to-spend-billions-2000731374",
       "title": "Trump Bros Back a Drone Company as the Pentagon Prepares to Spend Billions - Gizmodo",
       "score": 0.031645752
     },
     {
-      "id": 179,
-      "url": "https://www.axios.com/2026/03/04/anthropic-ai-iran-maduro-pentagon",
-      "title": "Anthropic ban may threaten the military's AI advantage over China - Axios",
-      "score": 0.031618766
+      "id": 174,
+      "url": "https://www.igorslab.de/en/leakwatch-2026-security-incidents-data-leaks-and-it-incidents-in-the-current-calendar-week-10/",
+      "title": "LeakWatch 2026 \u2013 Security incidents, data leaks, and IT incidents in the current calendar week 10 - igor\u00b4sLAB",
+      "score": 0.031645752
     },
     {
-      "id": 180,
-      "url": "https://www.law360.com/transactions-uk/articles/2449722/metals-miner-raises-8-4m-to-fund-zimbabwe-gold-expansion",
-      "title": "Metals Miner Raises $8.4M To Fund Zimbabwe Gold Expansion - Law360",
-      "score": 0.03157401
-    },
-    {
-      "id": 181,
+      "id": 175,
       "url": "https://www.law360.com/productliability/articles/2450639/sig-sauer-defends-p320-pistol-design-in-wash-class-action?about=productliability",
       "title": "Sig Sauer Defends P320 Pistol Design In Wash. Class Action - Law360",
       "score": 0.031288605
     },
     {
-      "id": 182,
-      "url": "https://www.cnn.com/2026/03/03/politics/lutnick-house-oversight-epstein-probe",
-      "title": "Lutnick to appear voluntarily before House Oversight Committee about relationship with Epstein - CNN",
-      "score": 0.031217646
-    },
-    {
-      "id": 183,
+      "id": 176,
       "url": "https://www.law360.com/articles/2449722/kavango-raises-8-4m-to-fund-zimbabwe-gold-expansion",
       "title": "Kavango Raises $8.4M To Fund Zimbabwe Gold Expansion - Law360",
       "score": 0.03107619
     },
     {
-      "id": 184,
-      "url": "https://www.tradingview.com/news/tradingview:fd3bb0223625e:0-twinlab-consolidated-holdings-10-k-11-7m-revenue-0-04-eps/",
-      "title": "Twinlab Consolidated Holdings 10-K: $11.7M Revenue, $(0.04) EPS - TradingView",
-      "score": 0.030795148
+      "id": 177,
+      "url": "https://www.reuters.com/technology/palantir-faces-challenge-remove-anthropic-pentagons-ai-software-2026-03-04/",
+      "title": "Palantir faces challenge to remove Anthropic from Pentagon's AI software - Reuters",
+      "score": 0.030935358
     },
     {
-      "id": 185,
+      "id": 178,
+      "url": "https://www.pcgamer.com/games/third-person-shooter/arc-raiders-is-handing-out-loadout-refunds-for-last-weeks-server-issues-this-outage-impacted-a-large-number-of-players-so-we-are-making-an-exception/",
+      "title": "Arc Raiders is handing out loadout refunds for last week's server issues: 'This outage impacted a large number of players, so we are making an exception' - PC Gamer",
+      "score": 0.030585974
+    },
+    {
+      "id": 179,
       "url": "https://www.bitget.com/amp/news/detail/12560605250133",
       "title": "Indonesian nickel plants halt output after deadly landslide - Bitget",
       "score": 0.030585974
     },
     {
-      "id": 186,
+      "id": 180,
       "url": "https://www.haaretz.com/us-news/2026-03-08/ty-article/.premium/explosive-device-thrown-at-nyc-anti-islam-protest-outside-mamdanis-mayoral-home/0000019c-cceb-dbd6-a3bc-edef90850000",
       "title": "Explosive Device Thrown at NYC anti-Islam Protest Outside Mamdani's Mayoral Home - Haaretz",
       "score": 0.030516557
     },
     {
-      "id": 187,
-      "url": "https://www.vitallaw.com/news/quality-of-care-ind-app-deficiency-under-indiana-law-not-arbitrary-or-capricious-where-staff-failed-to-report-pulse-oximeter-was-not-reading/hld01800f852c109748e8b8548f8ae2662fc3",
-      "title": "QUALITY OF CARE\u2014Ind. App.:... - VitalLaw.com",
-      "score": 0.03037818
-    },
-    {
-      "id": 188,
+      "id": 181,
       "url": "https://subscriber.politicopro.com/article/eenews/2026/03/06/longtime-federal-oil-safety-regulator-on-leave-after-warning-of-staffing-shortfall-ee-00815398",
       "title": "E&E News: Alaska offshore oil safety regulator on leave after warning of staffing shortfall - POLITICO Pro",
       "score": 0.030309225
     },
     {
-      "id": 189,
+      "id": 182,
       "url": "https://news.bloomberglaw.com/daily-tax-report/bringing-it-home-new-tax-law-draws-companies-ip-back-to-us",
       "title": "Bringing It Home: New Tax Law Draws Companies\u2019 IP Back to US - Bloomberg Law News",
       "score": 0.030103253
     },
     {
-      "id": 190,
+      "id": 183,
       "url": "https://mining.com.au/canadian-explorer-confident-of-first-american-tungsten-sale-from-idaho-project/",
       "title": "Canadian explorer confident of first American Tungsten sale from Idaho project - Mining.com.au",
       "score": 0.029830731
     },
     {
-      "id": 191,
+      "id": 184,
       "url": "https://www.kazu.org/npr-news/2026-03-09/anthropic-sues-the-trump-administration-over-supply-chain-risk-label",
       "title": "Anthropic sues the Trump administration over 'supply chain risk' label - 90.3 KAZU",
       "score": 0.029695367
     },
     {
-      "id": 192,
-      "url": "https://www.wsj.com/politics/national-security/anthropic-sues-trump-administration-for-targeting-it-917b52ca?gaa_at=eafs&gaa_n=AWEtsqdwGIIn8Zk-zF2GLdyw7bkNrH4udr8QODuNcE2UzrMIr1c4qRv5tXSt&gaa_ts=69b02993&gaa_sig=mWb6Bn_oqqpgT-3mU3y6sIbmpdiqcQtGzA4OiOMFS9EiFx2m6bg1Owv0w-fhKzSQcgUrJqbdnyV0y-jTzqhyvA%3D%3D",
-      "title": "Anthropic Sues U.S. Defense Department, Pete Hegseth for Targeting the Company - WSJ",
-      "score": 0.029695367
+      "id": 185,
+      "url": "https://gizmodo.com/former-military-officials-academics-and-tech-policy-leaders-denounce-pentagons-tactics-against-anthropic-2000729872",
+      "title": "Former Military Officials, Academics, and Tech Policy Leaders Denounce Pentagon's Tactics Against Anthropic - Gizmodo",
+      "score": 0.029560601
     },
     {
-      "id": 193,
+      "id": 186,
       "url": "https://www.cnbc.com/2026/03/09/anthropic-trump-claude-ai-supply-chain-risk.html",
       "title": "Anthropic sues Trump administration over Pentagon blacklist - CNBC",
       "score": 0.029493442
     },
     {
-      "id": 194,
-      "url": "https://www.cnn.com/2026/03/05/climate/trump-cook-inlet-alaska-oil-drilling",
-      "title": "Trump keeps trying to auction off this US property for oil drilling. No one is buying. - CNN",
-      "score": 0.02929285
+      "id": 187,
+      "url": "https://www.defenseone.com/technology/2026/03/meet-startups-trying-build-military-specific-ai/411969/?oref=d1-featured-river-top",
+      "title": "Meet the startups trying to build military-specific AI - Defense One",
+      "score": 0.029359564
     },
     {
-      "id": 195,
-      "url": "https://www.reuters.com/business/aerospace-defense/lithuania-says-russia-is-expanding-military-units-nato-borders-2026-03-06/",
-      "title": "Lithuania says Russia is expanding military units on NATO borders - Reuters",
-      "score": 0.029159855
+      "id": 188,
+      "url": "https://www.nbcnewyork.com/investigations/nypd-officers-federal-charges-robbing-brothel/6474827/",
+      "title": "Ex-NYPD officers accused of brothel key and robbing a sex worker face federal charges - NBC New York",
+      "score": 0.029226275
     },
     {
-      "id": 196,
+      "id": 189,
       "url": "https://www.cnbc.com/2026/03/09/anthropic-was-the-pentagons-choice-for-ai-now-its-banned-and-experts-are-worried.html",
       "title": "Anthropic was the Pentagon's choice for AI. Now it's banned and experts are worried - CNBC",
       "score": 0.029159855
     },
     {
-      "id": 197,
-      "url": "https://gizmodo.com/sen-wyden-warns-of-mass-surveillance-amid-pentagons-fight-with-anthropic-2000728971",
-      "title": "Sen. Wyden Warns of Mass Surveillance Amid Pentagon\u2019s Fight With Anthropic - Gizmodo",
-      "score": 0.029159855
-    },
-    {
-      "id": 198,
-      "url": "https://www.insurancejournal.com/news/west/2026/03/06/860926.htm",
-      "title": "Attorneys for Suspect in LA Wildfire Seek Release Based on New Evidence - Insurance Journal",
-      "score": 0.029027443
-    },
-    {
-      "id": 199,
+      "id": 190,
       "url": "https://www.military.com/feature/2026/03/05/brian-mcginnis-removed-senate-hearing-after-protest-over-us-policy-toward-israel.html",
       "title": "Brian McGinnis Removed From Senate Hearing After Protest Over US Policy Toward Israel - Military.com",
       "score": 0.029027443
     },
     {
-      "id": 200,
+      "id": 191,
       "url": "https://www.arkansasonline.com/news/2026/mar/07/us-issues-license-to-authorize-sale-of-gold-from/",
       "title": "US issues license to authorize sale of gold from Venezuela - The Arkansas Democrat-Gazette",
       "score": 0.028829927
     },
     {
-      "id": 201,
+      "id": 192,
       "url": "https://www.nwaonline.com/news/2026/mar/07/us-issues-license-to-authorize-sale-of-gold-from/",
       "title": "US issues license to authorize sale of gold from Venezuela - Northwest Arkansas Democrat-Gazette",
       "score": 0.02869897
     },
     {
-      "id": 202,
+      "id": 193,
+      "url": "https://www.globenewswire.com/news-release/2026/03/10/3252658/0/en/SAGA-Metals-Highlights-Radar-Project-s-Strategic-Relevance-to-North-American-Titanium-and-Vanadium-Supply-Chains-Amid-Heightened-National-Defense-and-Critical-Minerals-Focus.html",
+      "title": "SAGA Metals Highlights Radar Project\u2019s Strategic Relevance - GlobeNewswire",
+      "score": 0.02869897
+    },
+    {
+      "id": 194,
       "url": "https://www.npr.org/2026/03/09/nx-s1-5742548/anthropic-pentagon-lawsuit-amodai-hegseth",
       "title": "Anthropic sues the Trump administration over 'supply chain risk' label - NPR",
       "score": 0.028568588
     },
     {
-      "id": 203,
+      "id": 195,
       "url": "https://www.designdevelopmenttoday.com/industries/manufacturing/news/22961944/massive-explosion-at-cocoa-butter-processor-injures-five",
       "title": "Massive Explosion at Cocoa Butter Processor Injures Five - Design and Development Today",
       "score": 0.028568588
     },
     {
-      "id": 204,
-      "url": "https://www.wsj.com/tech/ai/meta-to-create-new-applied-ai-engineering-organization-in-reality-labs-division-d41c4a69?gaa_at=eafs&gaa_n=AWEtsqe3cMB37cHnJHsNGSL7Z_8jPJwTjrLRogMRQEKfIrydnYIxmweMjB7_&gaa_ts=69a7471f&gaa_sig=RvGieMtDhbs2QQ0YC4ilYDNXjqCyDhdCdL2UfOrrdCL-EqZOf2VyXhntcfo2lD63KABQLmh9KzUuJeA-LOi2jg%3D%3D",
-      "title": "Exclusive | Meta to Create New Applied AI Engineering Organization in Reality Labs Division - WSJ",
-      "score": 0.028374104
-    },
-    {
-      "id": 205,
+      "id": 196,
       "url": "https://www.greenwichtime.com/connecticut/article/ct-investment-scheme-andrew-komarow-charged-21954623.php",
       "title": "Former CT investment adviser shifted millions in high-risk scheme, feds say - Greenwich Time",
       "score": 0.028309563
     },
     {
-      "id": 206,
+      "id": 197,
       "url": "https://www.wsj.com/us-news/immigration-protests-noem-minneapolis-0b8bd496?gaa_at=eafs&gaa_n=AWEtsqc3q6WeZi79UVRY7LaDuYyNyDlyiswut38HMLnwqjq7TAfgJ9GqbiAG&gaa_ts=69acd5ad&gaa_sig=-YrvJIA3hIyNdvd4KbXI3R0dZ5-xtHM_ImrIfaWGCYJXCQ2nI-ne2Fz86hJ4JMo046xyaG5uu4GkV0Ir3kcz-w%3D%3D",
       "title": "Americans Are Now a Target in Trump\u2019s Immigration Crackdown - WSJ",
       "score": 0.028245157
     },
     {
-      "id": 207,
-      "url": "https://www.forbes.com/sites/siladityaray/2026/03/10/saudi-aramco-ceo-warns-of-catastrophic-consequences-from-iran-war-crude-prices-remain-volatile/",
-      "title": "Iran War: Oil Remains Volatile As Saudi Aramco Warns Of \u2018Catastrophic Consequences\u2019 - Forbes",
-      "score": 0.028245157
+      "id": 198,
+      "url": "https://www.wsj.com/tech/ai/pentagon-formally-labels-anthropic-supply-chain-risk-escalating-conflict-ebdf0523",
+      "title": "Anthropic Says It Will Fight New Pentagon Move as CEO Apologizes for Leaked Memo - WSJ",
+      "score": 0.028116787
     },
     {
-      "id": 208,
+      "id": 199,
       "url": "https://www.businessinsider.com/anthropic-sues-pentagon-lawsuit-supply-chain-risk-2026-3",
       "title": "Anthropic sues Defense Department over the Pentagon's effective blacklisting - Business Insider",
       "score": 0.028052807
     },
     {
-      "id": 209,
-      "url": "https://www.bloomberg.com/news/features/2026-03-06/noem-dhs-ad-blitz-benefits-firms-linked-to-trump-campaigns",
-      "title": "Noem Ad Blitz Benefits Media Firms Linked to Trump Campaigns - Bloomberg",
+      "id": 200,
+      "url": "https://www.defensenews.com/news/your-military/2026/03/10/trumps-sons-invest-in-companies-vying-to-fill-gaps-in-us-drone-industry/",
+      "title": "Trump\u2019s sons invest in companies vying to fill gaps in US drone industry - Defense News",
       "score": 0.028052807
     },
     {
-      "id": 210,
+      "id": 201,
       "url": "https://www.law360.com/articles/2449691/anthropic-deemed-supply-chain-risk-by-pentagon-vows-suit",
       "title": "Anthropic Deemed Supply Chain Risk By Pentagon, Vows Suit - Law360",
       "score": 0.02792528
     },
     {
-      "id": 211,
+      "id": 202,
+      "url": "https://deadline.com/2026/03/jeff-shell-sued-paramount-future-cloudy-1236743018/",
+      "title": "Jeff Shell\u2019s Paramount Future Imperiled, As $150M Suit Against Exec Details Loose Lips & More - Deadline",
+      "score": 0.027861731
+    },
+    {
+      "id": 203,
       "url": "https://x.com/MarioNawfal/status/2030155323235860867",
       "title": "Grok's absolutely owning the rankings right now, Grok Fast takes number 1 on OpenRouter for long-context (2M tokens) and real-time trivia. Grok Thinking leads emotional intelligence with EQ-Bench3: 1586, while Grok Code Fast 1 grabs 57.6% programming - x.com",
       "score": 0.027798323
     },
     {
-      "id": 212,
-      "url": "https://techcrunch.com/2026/03/06/osha-probing-fatality-at-rivian-warehouse/",
-      "title": "OSHA probing fatality at Rivian warehouse - TechCrunch",
-      "score": 0.027735045
-    },
-    {
-      "id": 213,
-      "url": "https://www.nytimes.com/2026/03/04/business/economy/labor-secretary-lori-chavez-deremer-staff.html",
-      "title": "Top Aide to Labor Secretary Is Placed on Leave - The New York Times",
+      "id": 204,
+      "url": "https://www.timesofisrael.com/texas-lawmaker-quits-race-handing-gop-nod-to-man-he-called-known-neo-nazi/",
+      "title": "Texas lawmaker quits race, handing GOP nod to man he called \u2018known neo-Nazi\u2019 - The Times of Israel",
       "score": 0.027546074
     },
     {
-      "id": 214,
+      "id": 205,
       "url": "https://www.nhpr.org/2026-03-09/anthropic-sues-the-trump-administration-over-supply-chain-risk-label",
       "title": "Anthropic sues the Trump administration over 'supply chain risk' label - New Hampshire Public Radio",
       "score": 0.027420785
     },
     {
-      "id": 215,
+      "id": 206,
       "url": "https://www.latimes.com/business/story/2026-03-05/judge-rules-companies-are-entitled-to-refunds-for-tariffs",
       "title": "Judge rules companies are entitled to refunds for tariffs - Los Angeles Times",
       "score": 0.027420785
     },
     {
-      "id": 216,
-      "url": "https://www.businessinsider.com/movies-cheaper-than-kristi-noem-dhs-ads-2026-3",
-      "title": "Kristi Noem's $220 million DHS ad campaigns cost more than some of Hollywood's biggest hits - Business Insider",
-      "score": 0.027233893
-    },
-    {
-      "id": 217,
+      "id": 207,
       "url": "https://www.stabroeknews.com/2026/03/09/news/guyana/lawsuit-over-alleged-trade-secrets-theft-in-us-mires-plan-to-refine-guyanas-crude-for-domestic-regional-use/",
       "title": "Lawsuit over alleged trade secrets theft in US mires plan to refine Guyana\u2019s crude for domestic, regional use - Stabroek News",
       "score": 0.027109984
     },
     {
-      "id": 218,
-      "url": "https://www.law.com/delbizcourt/2026/03/06/these-gibson-dunn-and-wachtell-lawyers-convinced-the-del-supreme-court-to-uphold-controversial-state-corporate-law-changes/",
-      "title": "These Gibson Dunn and Wachtell Lawyers Convinced the Del Supreme Court to Uphold Controversial State Corporate Law Changes - Law.com",
-      "score": 0.026802607
+      "id": 208,
+      "url": "https://www.washingtonpost.com/technology/2026/03/06/anthropic-pentagon-claude-popularity/",
+      "title": "Anthropic lost the Pentagon but won over America - The Washington Post",
+      "score": 0.026863813
     },
     {
-      "id": 219,
+      "id": 209,
       "url": "https://www.wsj.com/business/sturm-ruger-accuses-beretta-of-attempting-to-gain-control-of-company-de3ac40d?gaa_at=eafs&gaa_n=AWEtsqdbzq-6phekM6pEyIqTiQbxsUC8XaCQG8ziihDNhhehtfpfe4QVP6TT&gaa_ts=69afc845&gaa_sig=Y234zALvfomU4W9nyiWvo6RiLcjmHuHK9eTheocRpFy1C40YIAEU7WC0QBL6gNeL1MlFegLQAuHfTxP3bfuQAw%3D%3D",
       "title": "Sturm Ruger Accuses Beretta of Attempting to Gain Control of Company - WSJ",
       "score": 0.026802607
     },
     {
-      "id": 220,
+      "id": 210,
       "url": "https://thenextweb.com/news/anthropic-sues-the-us-government",
       "title": "Anthropic sues the US government over its Pentagon blacklist - The Next Web",
       "score": 0.026680605
     },
     {
-      "id": 221,
-      "url": "https://www.reuters.com/business/openai-robotics-head-resigns-after-deal-with-pentagon-2026-03-07/",
-      "title": "OpenAI Robotics head resigns after deal with Pentagon - Reuters",
+      "id": 211,
+      "url": "https://www.builderonline.com/money/avila-real-estate-capital-announces-second-close-of-debt-fund-reaching-200-million-in-commitments",
+      "title": "Avila Real Estate Capital Announces Second Close of Debt Fund, Reaching $200 Million in Commitments - Builder Magazine",
       "score": 0.026680605
     },
     {
-      "id": 222,
-      "url": "https://indianexpress.com/article/explained/explained-sci-tech/anthropic-vs-pentagon-us-supply-chain-risk-standoff-claude-ai-10571260/lite/",
-      "title": "Anthropic to fight US govt in court over \u2018supply-chain risk\u2019 label: Behind the standoff, and what it means for Claude AI - The Indian Express",
-      "score": 0.026559154
-    },
-    {
-      "id": 223,
-      "url": "https://www.law360.com/articles/2449719/acquisition-co-marwyn-ends-talks-with-palmer-street",
-      "title": "Acquisition Co. Marwyn Ends Talks With Palmer Street - Law360",
-      "score": 0.02643823
-    },
-    {
-      "id": 224,
+      "id": 212,
       "url": "https://www.law360.com/articles/2450184/meta-witness-says-spotty-audits-show-commitment-to-safety",
       "title": "Meta Witness Says Spotty Audits Show Commitment To Safety - Law360",
       "score": 0.026377967
     },
     {
-      "id": 225,
-      "url": "https://www.wsj.com/tech/ai/meta-to-create-new-applied-ai-engineering-organization-in-reality-labs-division-d41c4a69?gaa_at=eafs&gaa_n=AWEtsqdDmLQVBa5ICzS6p9urBbqTIrETYPY2lL6cUaQJubZAHv774yZEXzKH&gaa_ts=69a7c187&gaa_sig=g_3ObULG1WwENncEvaC1x4Uy_sZ8U7LisqJt-QR8fTevg__cg92VNCG1wHEiRlPIQBu0G18cjlnE23eSK8ouGg%3D%3D",
-      "title": "Exclusive | Meta to Create New Applied AI Engineering Organization - WSJ",
+      "id": 213,
+      "url": "https://www.caledonianrecord.com/rosen-a-top-ranked-law-firm-encourages-navan-inc-investors-to-secure-counsel-before/article_e346aa06-792f-530e-ae0a-8cc8759e9bf7.html",
+      "title": "ROSEN, A TOP RANKED LAW FIRM, Encourages Navan, Inc. Investors to Secure Counsel Before ... - Caledonian Record",
       "score": 0.026377967
     },
     {
-      "id": 226,
-      "url": "https://www.digitaljournal.com/business/anthropic-vows-court-fight-in-pentagon-row/article",
-      "title": "Anthropic vows court fight in Pentagon row - Digital Journal",
+      "id": 214,
+      "url": "https://www.law360.com/publicpolicy/articles/2451185/pa-justices-wonder-when-printed-parts-become-guns",
+      "title": "Pa. Justices Wonder When Printed Parts Become Guns - Law360",
       "score": 0.026197992
     },
     {
-      "id": 227,
+      "id": 215,
+      "url": "https://www.mycarrollcountynews.com/online_features/press_releases/article_837927c5-b18c-517d-b5e2-69ebacf1bb9b.html",
+      "title": "Portnoy Law Firm Announces Class Action on Behalf of Eos Energy Enterprises, Inc. Investors - Carroll County Mirror-Democrat",
+      "score": 0.026138267
+    },
+    {
+      "id": 216,
+      "url": "https://www.politico.com/news/2026/03/05/labor-chavez-deremer-aide-administrative-leave-00813976",
+      "title": "Labor Department scandal investigation sidelines another Chavez-DeRemer aide - Politico",
+      "score": 0.026138267
+    },
+    {
+      "id": 217,
+      "url": "https://www.axios.com/2026/03/04/pentagon-anthropic-white-house-amodei",
+      "title": "Scoop: White House casts doubt on Pentagon-Anthropic reconciliation - Axios",
+      "score": 0.026138267
+    },
+    {
+      "id": 218,
+      "url": "https://www.defenseone.com/business/2026/03/pentagons-investment-deals-draw-congressional-scrutiny/411937/?oref=d1-featured-river-secondary",
+      "title": "The Pentagon\u2019s investment deals draw congressional scrutiny - Defense One",
+      "score": 0.026138267
+    },
+    {
+      "id": 219,
+      "url": "https://www.nytimes.com/2026/03/05/us/politics/noem-perjury-investigation-blumenthal.html",
+      "title": "Senator Blumenthal Pushes to Investigate Kristi Noem for Perjury - The New York Times",
+      "score": 0.026019212
+    },
+    {
+      "id": 220,
       "url": "https://www.insurancejournal.com/news/national/2026/03/10/861190.htm",
       "title": "Anthropic Sues to Block Pentagon Blacklisting Over AI Use Restrictions - Insurance Journal",
       "score": 0.025841616
     },
     {
-      "id": 228,
-      "url": "https://www.therobotreport.com/openai-robotics-head-resigns-over-pentagon-deal/",
-      "title": "OpenAI robotics head resigns over Pentagon deal - The Robot Report",
-      "score": 0.025665203
-    },
-    {
-      "id": 229,
+      "id": 221,
       "url": "https://www.marinelink.com/news/windward-daily-brief-march-hormuz-536633",
       "title": "Windward Daily Brief March 6: 35 Hormuz Crossings in 4 Days, LPG Exports Fall - Marine News Magazine",
       "score": 0.025665203
     },
     {
-      "id": 230,
-      "url": "https://au.variety.com/2026/film/news/paramount-warner-bros-national-security-review-arab-wealth-funds-warren-blumenthal-33961/",
-      "title": "Democratic Senators Slam Trump Administration's Inaction on Reviewing Paramount's Warner Bros. Deal - Variety Australia",
+      "id": 222,
+      "url": "https://www.law.com/2026/03/06/with-bove-as-author-third-circuit-eases-the-way-for-reverse-discrimination-claims/",
+      "title": "With Bove as Author, Third Circuit Eases the Way for Reverse-Discrimination Claims - Law.com",
+      "score": 0.025548246
+    },
+    {
+      "id": 223,
+      "url": "https://www.nbcnews.com/tech/tech-news/anthropic-sues-trump-administration-ai-dispute-pentagon-rcna262444",
+      "title": "Anthropic sues Trump administration after AI dispute with Pentagon - NBC News",
+      "score": 0.025489958
+    },
+    {
+      "id": 224,
+      "url": "https://mining.com.au/greenpeace-surges-for-swift-action-against-deep-sea-mining/",
+      "title": "Greenpeace surges for \u2018swift action\u2019 against deep sea mining - Mining.com.au",
+      "score": 0.025489958
+    },
+    {
+      "id": 225,
+      "url": "https://news.bloomberglaw.com/daily-labor-report/case-individual-employment-rights-whistleblowing-e-d-ky",
+      "title": "Case: Individual Employment Rights/Whistleblowing (E.D. Ky.) - Bloomberg Law News",
+      "score": 0.025142966
+    },
+    {
+      "id": 226,
+      "url": "https://techcrunch.com/2026/03/06/osha-probing-fatality-at-rivian-warehouse/",
+      "title": "OSHA probing fatality at Rivian warehouse - TechCrunch",
+      "score": 0.024987794
+    },
+    {
+      "id": 227,
+      "url": "https://techcrunch.com/2026/03/09/an-iphone-hacking-toolkit-used-by-russian-spies-likely-came-from-u-s-military-contractor/",
+      "title": "The mystery of a globetrotting iPhone-hacking toolkit - TechCrunch",
       "score": 0.024914194
     },
     {
+      "id": 228,
+      "url": "https://www.wsj.com/politics/national-security/anthropic-sues-trump-administration-for-targeting-it-917b52ca?gaa_at=eafs&gaa_n=AWEtsqel0CeGuM75FuzJQx-RQdFrmjuap-BUUPFP5rUW8LjCLOTxabWMluGu&gaa_ts=69af0028&gaa_sig=bURpODwbxlZd9Wcmc6Qdy3b8LHEiJs8wpqGQC1IoLtmd7KCjklYsiToNS0w0b6wvHiNy7nQsfdicxCk96vrmiA%3D%3D",
+      "title": "Anthropic Sues Trump Administration for Targeting It - WSJ",
+      "score": 0.024743952
+    },
+    {
+      "id": 229,
+      "url": "https://www.wsj.com/tech/ai/anthropic-trump-ai-talent-race-779c91d7?gaa_at=eafs&gaa_n=AWEtsqe4Vn5fTUscJ1lLMwEL2xRtOGdTSxQM06wxtLRSkJSovcplZ481be57&gaa_ts=69af7f6c&gaa_sig=TSIjACEUndFPZdDjuB8Qw1A26PEy1uycL1AIauc9Ql6OtjdS4fKe0qpe7udZLgKbxdK-an1OmKIq5YUVgrb_LA%3D%3D",
+      "title": "Anthropic\u2019s Standoff With the Pentagon Shakes Up AI Talent Race - WSJ",
+      "score": 0.024019241
+    },
+    {
+      "id": 230,
+      "url": "https://www.forbes.com/sites/zacharyfolk/2026/03/09/anthropic-challenges-defense-dept-ban-after-ai-dispute/",
+      "title": "Anthropic Fights Back: Sues Over Pentagon Designating It A \u2018Supply Chain Risk\u2019 - Forbes",
+      "score": 0.02396436
+    },
+    {
       "id": 231,
-      "url": "https://www.forbes.com/sites/the-prompt/2026/03/03/how-anthropics-kerfuffle-with-the-pentagon-became-a-optics-headache-for-openai/",
-      "title": "How Anthropic\u2019s Kerfuffle With The Pentagon Became A Optics Headache For OpenAI - Forbes",
-      "score": 0.024631085
-    },
-    {
-      "id": 232,
-      "url": "https://knpr.org/npr/2026-03-08/openai-robotics-leader-resigns-over-concerns-about-pentagon-ai-deal",
-      "title": "OpenAI robotics leader resigns over concerns about Pentagon AI deal - KNPR",
-      "score": 0.024574842
-    },
-    {
-      "id": 233,
-      "url": "https://www.foxnews.com/opinion/morning-glory-military-needs-money-from-congress-finish-off-iran",
-      "title": "MORNING GLORY: The military needs money from Congress to finish off Iran - Fox News",
-      "score": 0.024129374
-    },
-    {
-      "id": 234,
       "url": "https://techcrunch.com/2026/03/09/electric-air-taxi-maker-archer-hits-back-at-joby-in-countersuit-alleging-concealed-chinese-ties/",
       "title": "Electric air taxi maker Archer hits back at Joby in countersuit alleging concealed Chinese ties - TechCrunch",
       "score": 0.02396436
     },
     {
-      "id": 235,
+      "id": 232,
       "url": "https://www.cnn.com/2026/03/04/tech/pentagon-anthropic-openai-staff-reactions",
       "title": "When the Pentagon gave Anthropic the boot, OpenAI swooped in. Some staff are frustrated with how it unfolded - CNN",
       "score": 0.023691783
     },
     {
-      "id": 236,
-      "url": "https://markets.businessinsider.com/news/stocks/dylangemelli-com-announces-his-trusted-partners-in-2026-1035894359",
-      "title": "DylanGemelli.com Announces his Trusted Partners in 2026 - markets.businessinsider.com",
-      "score": 0.023583598
+      "id": 233,
+      "url": "https://www.jpost.com/opinion/article-889378",
+      "title": "Israel's citizens must become strategic communicators - The Jerusalem Post",
+      "score": 0.023691783
     },
     {
-      "id": 237,
-      "url": "https://www.forbes.com/sites/richardnieva/2026/03/05/anthropics-ceo-is-contrite-in-latest-response-to-department-of-war/",
-      "title": "Anthropic\u2019s Dario Amodei Says AI Giant Has More In Common Than Not With Pentagon - Forbes",
-      "score": 0.023529684
+      "id": 234,
+      "url": "https://www.law.com/litigationdaily/2026/03/06/litigator-of-the-week-runners-up-and-shout-outs/",
+      "title": "Litigator of the Week Runners-Up and Shout-Outs - Law.com",
+      "score": 0.023368675
     },
     {
-      "id": 238,
+      "id": 235,
       "url": "https://www.forbes.com/sites/richardnieva/2026/03/04/the-anthropic-cofounders-standing-up-to-trump/",
       "title": "Why These Anthropic Cofounders Are So Willing To Stand Up To Trump - Forbes",
       "score": 0.023368675
     },
     {
-      "id": 239,
-      "url": "https://glassalmanac.com/this-wasnt-an-easy-call-sparks-resignations-in-march-2026-heres-why/",
-      "title": "\u201cThis Wasn\u2019t An Easy Call\u201d Sparks Resignations In March 2026: Here\u2019s Why - Glass Almanac",
-      "score": 0.023102712
-    },
-    {
-      "id": 240,
+      "id": 236,
       "url": "https://www.huffpost.com/entry/pentagon-taps-former-doge-official-to-lead-its-ai-efforts_n_69ac3616e4b089ab3d8f2119?origin=home-politics-feed-unit",
       "title": "Pentagon Taps Former DOGE Official To Lead Its AI Efforts - HuffPost",
       "score": 0.023049878
     },
     {
-      "id": 241,
-      "url": "https://www.law.com/international-edition/2026/03/08/mccarthy-ttrault-lands-ma-partner-in-canadas-shifting-energy-sector/",
-      "title": "McCarthy T\u00e9trault Lands M&A Partner in Canada\u2019s Shifting Energy Sector - Law.com",
-      "score": 0.022892075
-    },
-    {
-      "id": 242,
-      "url": "https://www.law.com/2026/03/05/opaque-discipline-barred-from-campus-after-arrest-at-protest-march-unc-law-grad-sues-university/",
-      "title": "'Opaque' Discipline: Barred from Campus After Arrest at Protest March, UNC Law Grad Sues University - Law.com",
-      "score": 0.022683308
-    },
-    {
-      "id": 243,
+      "id": 237,
       "url": "https://www.businessinsider.com/anthropic-ceo-dario-amodei-pentagon-lawsuit-conversations-2026-3",
       "title": "Dario Amodei says Anthropic is having 'productive conversations' with the Pentagon despite blacklist - Business Insider",
       "score": 0.022476401
     },
     {
-      "id": 244,
+      "id": 238,
+      "url": "https://www.mining-technology.com/news/usac-domestic-critical-materials-extraction/",
+      "title": "USAC secures $27m for domestic critical materials extraction - Mining Technology",
+      "score": 0.022220362
+    },
+    {
+      "id": 239,
+      "url": "https://www.theguardian.com/technology/2026/mar/10/elon-musk-xai-data-centers",
+      "title": "Musk\u2019s xAI wins permit for data center\u2019s makeshift power plant despite backlash - The Guardian",
+      "score": 0.021667069
+    },
+    {
+      "id": 240,
       "url": "https://www.cnn.com/2026/03/10/us/mamdani-gracie-mansion-protest-what-we-know",
       "title": "Two men were charged for throwing makeshift bombs near the NYC mayor\u2019s home. Here\u2019s what we know - CNN",
       "score": 0.021617446
     },
     {
-      "id": 245,
-      "url": "https://www.mining.com/press-release?id=69aae2e8bb9f0ee5a133b64c",
-      "title": "U.S. Defense Manufacturers Face A Rare Earth Supply Squeeze - OilPrice.com Market Commentary - Mining.com",
-      "score": 0.021469228
-    },
-    {
-      "id": 246,
-      "url": "https://glassalmanac.com/this-wasnt-an-easy-call-sparks-employee-backlash-in-march-2026-heres-why/",
-      "title": "\u201cThis Wasn\u2019t An Easy Call\u201d Sparks Employee Backlash In March 2026 \u2013 Here\u2019s Why - Glass Almanac",
-      "score": 0.021469228
-    },
-    {
-      "id": 247,
+      "id": 241,
       "url": "https://www.politico.com/news/2026/03/07/top-researcher-openai-pentagon-surveillance-00818124",
       "title": "Top researcher leaves OpenAI due to Pentagon deal - Politico",
       "score": 0.02127316
     },
     {
-      "id": 248,
+      "id": 242,
       "url": "https://www.jpost.com/israel-news/crime-in-israel/article-889061",
       "title": "Daughter of Hamas terrorist arrested for terror incitement - The Jerusalem Post",
       "score": 0.021224413
     },
     {
-      "id": 249,
-      "url": "https://www.businessinsider.com/meta-ai-new-applied-engineering-team-2026-3",
-      "title": "Meta is forming a new AI engineering org for its superintelligence push, with teams as large as 50 people per manager - Business Insider",
-      "score": 0.021078838
+      "id": 243,
+      "url": "https://www.reuters.com/business/aerospace-defense/white-house-press-defense-firms-boost-production-us-strikes-iran-draw-down-2026-03-06/",
+      "title": "White House to press defense firms to boost production as US strikes on Iran draw down stockpiles - Reuters",
+      "score": 0.021175781
     },
     {
-      "id": 250,
-      "url": "https://www.ainonline.com/aviation-news/futureflight/2026-03-05/ascendances-aircraft-enters-final-integration-phase",
-      "title": "Ascendance\u2019s VTOL Aircraft Enters Final Integration Phase - Aviation International News",
-      "score": 0.021078838
+      "id": 244,
+      "url": "https://fortune.com/2026/03/07/openai-robotics-leader-caitlin-kalinowski-resignation-pentagon-surveillance-autonomous-weapons-anthropic/",
+      "title": "OpenAI robotics leader resigns over concerns about surveillance and autonomous weapons amid Pentagon contract - Fortune",
+      "score": 0.020695398
     },
     {
-      "id": 251,
-      "url": "https://www.latimes.com/world-nation/story/2026-03-03/testy-exchanges-highlight-growing-confrontations-between-judges-doj",
-      "title": "Testy exchanges over immigration cases highlight growing confrontations between judges and DOJ - Los Angeles Times",
-      "score": 0.02074295
-    },
-    {
-      "id": 252,
-      "url": "https://www.axios.com/local/portland/2026/03/05/portland-leather-goods-expands-stores-facebook-groups",
-      "title": "Inside Portland Leather's Facebook-fueled retail play - Axios",
-      "score": 0.02064795
-    },
-    {
-      "id": 253,
-      "url": "https://www.defenseone.com/technology/2026/03/meet-startups-trying-build-military-specific-ai/411969/?oref=d1-featured-river-top",
-      "title": "Meet the startups trying to build military-specific AI - Defense One",
-      "score": 0.020506242
-    },
-    {
-      "id": 254,
+      "id": 245,
       "url": "https://www.jpost.com/israel-news/article-889342",
       "title": "Court bars Benjamin Netanyahu aide Urich from contacting PM - The Jerusalem Post",
       "score": 0.020412305
     },
     {
-      "id": 255,
+      "id": 246,
+      "url": "https://www.cnbc.com/2026/03/08/openai-hardware-leader-resigns-after-deal-with-the-pentagon.html",
+      "title": "OpenAI hardware leader resigns after deal with the Pentagon - CNBC",
+      "score": 0.020332353
+    },
+    {
+      "id": 247,
       "url": "https://www.bloomberg.com/news/articles/2026-03-05/why-are-people-deleting-chatgpt-claude-has-the-answer",
       "title": "ChatGPT Backlash Reveals New Pitfalls in Aligning With Trump - Bloomberg.com",
       "score": 0.020225683
     },
     {
-      "id": 256,
-      "url": "https://www.cnbc.com/2026/03/08/openai-hardware-leader-resigns-after-deal-with-the-pentagon.html",
-      "title": "OpenAI hardware leader resigns after deal with the Pentagon - CNBC",
-      "score": 0.020225683
-    },
-    {
-      "id": 257,
-      "url": "https://www.law.com/thelegalintelligencer/2026/03/10/tuesday-public-noticescalendars/",
-      "title": "Tuesday Public Notices/Calendars - Law.com",
-      "score": 0.020040736
-    },
-    {
-      "id": 258,
+      "id": 248,
       "url": "https://www.politico.com/news/2026/03/10/trump-announced-a-hostile-takeover-of-las-wildfire-rebuild-collaboration-ensued-00819989",
       "title": "Trump announced a hostile takeover of LA\u2019s wildfire rebuild. Collaboration ensued. - Politico",
       "score": 0.019766418
     },
     {
-      "id": 259,
+      "id": 249,
       "url": "https://news.bloomberglaw.com/business-and-practice/anthropic-taps-trump-targeted-law-firm-to-fight-blacklisting",
       "title": "Anthropic Taps Trump-Targeted Law Firm to Fight Blacklisting - Bloomberg Law News",
       "score": 0.01972106
     },
     {
-      "id": 260,
-      "url": "https://www.axios.com/2026/03/04/pentagon-anthropic-white-house-amodei",
-      "title": "Scoop: White House casts doubt on Pentagon-Anthropic reconciliation - Axios",
-      "score": 0.019630643
+      "id": 250,
+      "url": "https://www.flightglobal.com/airframers/archer-accuses-joby-of-fraud-over-alleged-china-ties/166601.article",
+      "title": "Archer accuses Joby of fraud over alleged China ties in air taxi legal battle - FlightGlobal",
+      "score": 0.019495782
     },
     {
-      "id": 261,
-      "url": "https://techcrunch.com/2026/03/05/its-official-the-pentagon-has-labeled-anthropic-a-supply-chain-risk/",
-      "title": "It\u2019s official: The Pentagon has labeled Anthropic a supply chain risk - TechCrunch",
-      "score": 0.019540632
-    },
-    {
-      "id": 262,
-      "url": "https://www.law.com/2026/03/06/with-bove-as-author-third-circuit-eases-the-way-for-reverse-discrimination-claims/",
-      "title": "With Bove as Author, Third Circuit Eases the Way for Reverse-Discrimination Claims - Law.com",
-      "score": 0.019228773
-    },
-    {
-      "id": 263,
-      "url": "https://techcrunch.com/2026/03/04/the-us-military-is-still-using-claude-but-defense-tech-clients-are-fleeing/",
-      "title": "The US military is still using Claude \u2014 but defense-tech clients are fleeing - TechCrunch",
-      "score": 0.018965354
-    },
-    {
-      "id": 264,
-      "url": "https://gizmodo.com/anthropic-officially-sues-the-pentagon-for-labeling-the-ai-company-a-supply-chain-risk-2000731365",
-      "title": "Anthropic Officially Sues the Pentagon for Labeling the AI Company a \u2018Supply Chain Risk\u2019 - Gizmodo",
-      "score": 0.01879171
-    },
-    {
-      "id": 265,
-      "url": "https://www.law.com/newyorklawjournal/2026/03/06/ex-ny-grievance-attorneys-criticize-doj-proposal-as-unprecedented-attempt-to-insulate-governments-lawyers/",
-      "title": "Ex-NY Grievance Attorneys Criticize DOJ Proposal as 'Unprecedented Attempt to Insulate' Government's Lawyers - Law.com",
-      "score": 0.018748544
-    },
-    {
-      "id": 266,
-      "url": "https://fortune.com/2026/03/07/openai-robotics-leader-caitlin-kalinowski-resignation-pentagon-surveillance-autonomous-weapons-anthropic/",
-      "title": "OpenAI robotics leader resigns over concerns about surveillance and autonomous weapons amid Pentagon contract - Fortune",
-      "score": 0.018619627
-    },
-    {
-      "id": 267,
+      "id": 251,
       "url": "https://www.politico.com/newsletters/weekly-trade/2026/03/09/tariff-refunds-incoming-but-not-yet-00818518",
       "title": "Tariff refunds incoming. Just not yet. - Politico",
       "score": 0.018576846
     },
     {
-      "id": 268,
-      "url": "https://www.cbsnews.com/news/anthropic-pentagon-talks/",
-      "title": "Anthropic CEO: We're trying to \"deescalate\" Pentagon AI standoff to reach \"some agreement that works for us and works for them\" - CBS News",
-      "score": 0.018491575
-    },
-    {
-      "id": 269,
+      "id": 252,
       "url": "https://www.theatlantic.com/technology/2026/03/pentagon-anthropic-dispute/686307/",
       "title": "The Unaddressed Problem With the Pentagon\u2019s AI Dispute - The Atlantic",
       "score": 0.018406695
     },
     {
-      "id": 270,
-      "url": "https://www.chicagotribune.com/2026/03/03/dhs-kristi-noem-senate-marimar-martinez-shooting/",
-      "title": "Kristi Noem declines to address Marimar Martinez at Senate hearing - Chicago Tribune",
-      "score": 0.017864192
+      "id": 253,
+      "url": "https://indianexpress.com/article/explained/explained-sci-tech/anthropic-vs-pentagon-us-supply-chain-risk-standoff-claude-ai-10571260/lite/",
+      "title": "Anthropic to fight US govt in court over \u2018supply-chain risk\u2019 label: Behind the standoff, and what it means for Claude AI - The Indian Express",
+      "score": 0.018154327
     },
     {
-      "id": 271,
+      "id": 254,
       "url": "https://thenationonlineng.net/how-nigerias-defense-sector-is-opening-to-global-investment/amp/",
       "title": "\u2018How Nigeria\u2019s defense sector is opening to global investment\u2019 - The Nation Newspaper",
       "score": 0.017619124
     },
     {
-      "id": 272,
+      "id": 255,
+      "url": "https://www.forbes.com/sites/sofiachierchio/2026/03/06/founder-accused-by-his-own-startup-of-forgery-secret-deals-and-luxury-spending/",
+      "title": "Founder Accused By His Own Startup Of Forgery, Secret Deals And Luxury Spending - Forbes",
+      "score": 0.017578604
+    },
+    {
+      "id": 256,
       "url": "https://www.huffpost.com/entry/defense-executives-white-house-meeting_n_69a8030fe4b0b7f2ce600262",
       "title": "Defense Executives To Meet At White House As Strikes On Iran Diminish U.S. Stockpiles - HuffPost",
       "score": 0.01749784
     },
     {
-      "id": 273,
-      "url": "https://subscriber.politicopro.com/article/eenews/2026/03/10/trump-announced-a-hostile-takeover-of-las-wildfire-rebuild-collaboration-ensued-ee-00819989",
-      "title": "E&E News: Trump announced a hostile takeover of LA\u2019s wildfire rebuild. Collaboration ensued. - POLITICO Pro",
-      "score": 0.01729751
-    },
-    {
-      "id": 274,
-      "url": "https://www.hppr.org/npr-news/2026-03-08/openai-robotics-leader-resigns-over-concerns-about-pentagon-ai-deal",
-      "title": "OpenAI robotics leader resigns over concerns about Pentagon AI deal - HPPR",
-      "score": 0.016709944
-    },
-    {
-      "id": 275,
+      "id": 257,
       "url": "https://cleantechnica.com/2026/03/06/anthropics-people-power-is-part-of-a-bigger-fight-that-affects-clean-technology/",
       "title": "Anthropic\u2019s People Power Is Part Of A Bigger Fight That Affects Clean Technology - CleanTechnica",
       "score": 0.016179273
     },
     {
-      "id": 276,
-      "url": "https://techcrunch.com/2026/03/09/an-iphone-hacking-toolkit-used-by-russian-spies-likely-came-from-u-s-military-contractor/",
-      "title": "The mystery of a globetrotting iPhone-hacking toolkit - TechCrunch",
-      "score": 0.014889645
+      "id": 258,
+      "url": "https://au.variety.com/2026/film/news/paramount-warner-bros-national-security-review-arab-wealth-funds-warren-blumenthal-33961/",
+      "title": "Democratic Senators Slam Trump Administration's Inaction on Reviewing Paramount's Warner Bros. Deal - Variety Australia",
+      "score": 0.01478686
     },
     {
-      "id": 277,
-      "url": "https://www.engadget.com/ai/openais-robotics-hardware-lead-resigns-following-deal-with-the-department-of-defense-195918599.html",
-      "title": "OpenAI's robotics hardware lead resigns following deal with the Department of Defense - Engadget",
-      "score": 0.012606726
+      "id": 259,
+      "url": "https://defensescoop.com/2026/03/09/army-strategic-capital-initiative-joint-investment/",
+      "title": "Army calls on industry for joint-funding ideas in bid to 'de-risk' investments, increase production - DefenseScoop",
+      "score": 0.014583387
     },
     {
-      "id": 278,
-      "url": "https://www.mining-technology.com/news/usac-domestic-critical-materials-extraction/",
-      "title": "USAC secures $27m for domestic critical materials extraction - Mining Technology",
-      "score": 0.011385514
+      "id": 260,
+      "url": "https://thenextweb.com/news/augur-15m-plural-ai-surveillance-critical-infrastructure",
+      "title": "Augur raises $15M to protect critical infrastructure - The Next Web",
+      "score": 0.014482684
     },
     {
-      "id": 279,
-      "url": "https://www.axios.com/2026/03/07/ai-danger-risks-study-research-backlash",
-      "title": "7 danger moments that show AI's darker side - Axios",
-      "score": 0.009708476
+      "id": 261,
+      "url": "https://glassalmanac.com/this-wasnt-an-easy-call-sparks-employee-backlash-in-march-2026-heres-why/",
+      "title": "\u201cThis Wasn\u2019t An Easy Call\u201d Sparks Employee Backlash In March 2026 \u2013 Here\u2019s Why - Glass Almanac",
+      "score": 0.014415935
     },
     {
-      "id": 280,
-      "url": "https://zamin.uz/en/technology/193736-new-rules-developed-for-ai-development.html",
-      "title": "New rules developed for AI development - Zamin.uz",
-      "score": 0.0022170132
+      "id": 262,
+      "url": "https://www.latimes.com/business/story/2026-03-04/sam-altman-admits-openais-pentagon-deal-was-rushed-sloppy",
+      "title": "Sam Altman admits OpenAI\u2019s Pentagon deal was rushed and \u2018sloppy\u2019 - Los Angeles Times",
+      "score": 0.014349489
+    },
+    {
+      "id": 263,
+      "url": "https://www.marinelink.com/news/seafarers-year-jail-term-upheld-turkish-536735",
+      "title": "Seafarer\u2019s 30-Year Jail Term Upheld by Turkish Supreme Court - Marine News Magazine",
+      "score": 0.014250378
+    },
+    {
+      "id": 264,
+      "url": "https://www.forbes.com/sites/steveforbes/2026/03/06/crucial-test-will-courts-stand-for-science-or-speculation/",
+      "title": "Crucial Test: Will Courts Stand For Science Or Speculation? - Forbes",
+      "score": 0.01379672
+    },
+    {
+      "id": 265,
+      "url": "https://spacenews.com/terran-orbital-appoints-kwon-park-as-senior-director-of-manufacturing-operations/",
+      "title": "Terran Orbital Appoints Kwon Park as Senior Director of Manufacturing Operations - SpaceNews",
+      "score": 0.012920473
+    },
+    {
+      "id": 266,
+      "url": "https://techcrunch.com/2026/03/04/the-us-military-is-still-using-claude-but-defense-tech-clients-are-fleeing/",
+      "title": "The US military is still using Claude \u2014 but defense-tech clients are fleeing - TechCrunch",
+      "score": 0.010971057
+    },
+    {
+      "id": 267,
+      "url": "https://www.manilatimes.net/2026/03/10/tmt-newswire/globenewswire/saga-metals-highlights-radar-projects-strategic-relevance-to-north-american-titanium-and-vanadium-supply-chains-amid-heightened-national-defense-and-critical-minerals-focus/2296806",
+      "title": "SAGA Metals Highlights Radar Project\u2019s Strategic Relevance to North American Titanium and Vanadium Supply Chains Amid Heightened National Defense and Critical Minerals Focus - The Manila Times",
+      "score": 0.008677717
+    },
+    {
+      "id": 268,
+      "url": "https://mlq.ai/news/openais-head-of-robotics-steps-down-citing-ethical-issues-with-pentagon-contract/",
+      "title": "AI for investors - MLQ.ai",
+      "score": 0.0059340666
+    },
+    {
+      "id": 269,
+      "url": "https://www.hppr.org/npr-news/2026-03-08/openai-robotics-leader-resigns-over-concerns-about-pentagon-ai-deal",
+      "title": "OpenAI robotics leader resigns over concerns about Pentagon AI deal - HPPR",
+      "score": 0.0016581542
     }
   ],
   "combined_decision": {
     "recommendation": "Recommend Reject",
     "combined_tier": "HIGH",
     "factual_tier": "MODERATE",
-    "factual_score": 3.7,
+    "factual_score": 2.93,
     "rcs_tier": "HIGH",
-    "rcs_score": 7.35,
+    "rcs_score": 7.53,
     "driver": "reputational_contagion",
-    "driver_detail": "Combined recommendation driven by Reputational Contagion Score (7.35/10 HIGH) which is more cautious than Factual Risk Score (3.7/10 MODERATE)"
+    "driver_detail": "Combined recommendation driven by Reputational Contagion Score (7.53/10 HIGH) which is more cautious than Factual Risk Score (2.93/10 MODERATE)"
   },
   "key_executives": [
     {
       "name": "Palmer Luckey",
       "title": "Founder",
-      "sanctions_status": "China sanctions (Dec 2025) over Taiwan arms sales"
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 127521.82,
+      "fec_count": 984,
+      "fec_top_recipients": [
+        {
+          "name": "ONE TEAM SENATE MAJORITY",
+          "total": 50000.0,
+          "count": 1
+        },
+        {
+          "name": "CALVERT VICTORY FUND",
+          "total": 13185.91,
+          "count": 1
+        },
+        {
+          "name": "NRSC",
+          "total": 8000.0,
+          "count": 1
+        },
+        {
+          "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+          "total": 5150.0,
+          "count": 3
+        },
+        {
+          "name": "HISPANIC 100 FED PAC",
+          "total": 5000.0,
+          "count": 1
+        },
+        {
+          "name": "EUREKA POLITICAL ACTION COMMITTEE",
+          "total": 5000.0,
+          "count": 1
+        },
+        {
+          "name": "THE LINCOLN CLUB OF ORANGE COUNTY FEDERAL PAC",
+          "total": 5000.0,
+          "count": 1
+        },
+        {
+          "name": "KEN CALVERT FOR CONGRESS COMMITTEE",
+          "total": 3500.0,
+          "count": 1
+        },
+        {
+          "name": "KANSANS FOR MARSHALL",
+          "total": 3500.0,
+          "count": 1
+        },
+        {
+          "name": "ROUNDS FOR SENATE",
+          "total": 3500.0,
+          "count": 1
+        }
+      ],
+      "news_hits": 9
     },
     {
       "name": "Brian Schimpf",
-      "title": "CEO & Co-Founder"
-    },
-    {
-      "name": "Trae Stephens",
-      "title": "Co-Founder & Executive Chairman"
+      "title": "Co-Founder & CEO",
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 37689.8,
+      "fec_count": 512,
+      "fec_top_recipients": [
+        {
+          "name": "ALEX PADILLA FOR SENATE",
+          "total": 4000.0,
+          "count": 2
+        },
+        {
+          "name": "CHRIS PAPPAS FOR SENATE",
+          "total": 3500.0,
+          "count": 1
+        },
+        {
+          "name": "COOPER FOR NORTH CAROLINA",
+          "total": 3500.0,
+          "count": 1
+        },
+        {
+          "name": "VINDMAN FOR CONGRESS",
+          "total": 3500.0,
+          "count": 1
+        },
+        {
+          "name": "JON OSSOFF FOR SENATE",
+          "total": 3500.0,
+          "count": 1
+        }
+      ],
+      "news_hits": 1
     },
     {
       "name": "Matt Grimm",
-      "title": "Chief Financial Officer"
+      "title": "Co-Founder & COO",
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 200.0,
+      "fec_count": 7040,
+      "fec_top_recipients": [
+        {
+          "name": "ACTBLUE",
+          "total": 200.0,
+          "count": 20
+        }
+      ],
+      "news_hits": 0
+    },
+    {
+      "name": "Trae Stephens",
+      "title": "Co-Founder & Executive Chairman",
+      "is_officer": true,
+      "is_director": true,
+      "fec_total": 719.91,
+      "fec_count": 7,
+      "fec_top_recipients": [
+        {
+          "name": "PALANTIR TECHNOLOGIES INC PAC",
+          "total": 500.0,
+          "count": 1
+        },
+        {
+          "name": "ACTBLUE",
+          "total": 135.0,
+          "count": 5
+        },
+        {
+          "name": "DONALD J. TRUMP FOR PRESIDENT, INC.",
+          "total": 84.91,
+          "count": 1
+        }
+      ],
+      "news_hits": 1
+    },
+    {
+      "name": "Babak Siavoshy",
+      "title": "CFO",
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 0,
+      "fec_count": 0,
+      "fec_top_recipients": [],
+      "news_hits": 0
     },
     {
       "name": "Christian Brose",
-      "title": "President"
+      "title": "President & Chief Strategy Officer",
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 38857.5,
+      "fec_count": 182,
+      "fec_top_recipients": [
+        {
+          "name": "MCGUIREWOODS FEDERAL PAC",
+          "total": 25000.0,
+          "count": 5
+        },
+        {
+          "name": "KEN CALVERT FOR CONGRESS COMMITTEE",
+          "total": 3900.0,
+          "count": 2
+        },
+        {
+          "name": "MIKE GALLAGHER FOR WISCONSIN",
+          "total": 2900.0,
+          "count": 1
+        },
+        {
+          "name": "CITIZENS FOR TURNER",
+          "total": 1500.0,
+          "count": 2
+        },
+        {
+          "name": "KATKO FOR CONGRESS",
+          "total": 1500.0,
+          "count": 1
+        }
+      ],
+      "news_hits": 1
+    },
+    {
+      "name": "Matthew Steckman",
+      "title": "President & Chief Business Officer",
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 39046.98,
+      "fec_count": 95,
+      "fec_top_recipients": [
+        {
+          "name": "ANDURIL INDUSTRIES, INC. POLITICAL ACTION COMMITTEE (ANDURIL PAC)",
+          "total": 9999.98,
+          "count": 3
+        },
+        {
+          "name": "HARRIS FOR PRESIDENT",
+          "total": 5000.0,
+          "count": 2
+        },
+        {
+          "name": "HARRIS VICTORY FUND",
+          "total": 5000.0,
+          "count": 1
+        },
+        {
+          "name": "PAT RYAN FOR CONGRESS",
+          "total": 3500.0,
+          "count": 1
+        },
+        {
+          "name": "SCHIFF FOR SENATE",
+          "total": 3300.0,
+          "count": 1
+        }
+      ],
+      "news_hits": 0
+    },
+    {
+      "name": "Matthew Kaplan",
+      "title": "SVP Corporate Operations",
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 8543.0,
+      "fec_count": 752,
+      "fec_top_recipients": [
+        {
+          "name": "SCHNEIDER FOR CONGRESS",
+          "total": 7000.0,
+          "count": 2
+        },
+        {
+          "name": "ALFONSO FOR CONGRESS",
+          "total": 1000.0,
+          "count": 1
+        },
+        {
+          "name": "OPTIMUM COMMUNICATIONS, INC. PAC",
+          "total": 343.0,
+          "count": 7
+        },
+        {
+          "name": "ACTBLUE",
+          "total": 125.0,
+          "count": 7
+        },
+        {
+          "name": "AMERICAN ASSOCIATION FOR JUSTICE POLITICAL ACTION COMMITTEE (AAJ PAC)",
+          "total": 75.0,
+          "count": 3
+        }
+      ],
+      "news_hits": 0
+    },
+    {
+      "name": "Joseph Larson",
+      "title": "SVP National Security Operations",
+      "is_officer": true,
+      "is_director": false,
+      "fec_total": 453.67,
+      "fec_count": 501,
+      "fec_top_recipients": [
+        {
+          "name": "ACTBLUE",
+          "total": 453.67,
+          "count": 20
+        }
+      ],
+      "news_hits": 0
     }
   ],
   "government_contracts": {
@@ -2636,6 +2781,5 @@
         "end_date": "2026-08-27"
       }
     ]
-  },
-  "executive_data_note": "Executives manually corrected. EDGAR SEC search returned Lockheed Martin executives (Anduril is private/not in EDGAR). Actual Anduril leadership sourced from news and company website."
+  }
 }
